@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         float distance = Vector2.Distance(Camera.main.transform.position, Target.transform.position);
-        var currentTarget = new Vector3(Target.transform.position.x + screenWidth, -10, -10);
+        var currentTarget = new Vector3(Target.transform.position.x + screenWidth, 0, -10);
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, currentTarget + Vector3.forward*-10, Speed * Time.deltaTime * distance);
     }
 }

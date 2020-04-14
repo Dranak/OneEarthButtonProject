@@ -11,13 +11,12 @@ public class WormHead : WormBody
     public float DiggingForce;
     public WormBody PrefabWormBody;
     public float _angleDig = 30f;
-    private List<WormBody> _wormBodies ;
+    private List<WormBody> _wormBodies;
     private bool IsDigging = false;
 
     // Start is called before the first frame update
     void Start()
     {
-       
         _wormBodies = new List<WormBody>();
         for (int i =0;i<NumberOfParts;++i)
         {
@@ -50,7 +49,6 @@ public class WormHead : WormBody
         }
     }
 
-
     private void FixedUpdate()
     {
         if(IsDigging)
@@ -64,19 +62,14 @@ public class WormHead : WormBody
     void Move()
     {
         Rigidbody.AddForce(Vector2.right  * Speed);
-       
     }
-
 
     void Dig()
     {
-         
         _angleDig = Mathf.Clamp(_angleDig, 0, 90);
         Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
        
         Rigidbody.AddForce(transform.right* DiggingForce, ForceMode2D.Force);
         _angleDig += 10f;
     }
-
-
 }
