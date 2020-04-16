@@ -11,33 +11,64 @@ public class BlocManager : MonoBehaviour
     Bloc.BlocKind startingBlocKind = 0;
     [SerializeField]
     Bloc[] countryBG2, townBG2, transitionsBG;//...
+    [SerializeField]
+    Transform cansPoolT;
 
     //[HideInInspector]
     public List<GameObject> blocsPool;
-    public float currentBlocMax = 400;
+    [SerializeField][HideInInspector]
+    List<GameObject> cansPool;
+    public float currentBlocMax = 200;
 
     private void Awake()
     {
         if (Instance == null)
         {
+            AddToPool(cansPoolT, ref cansPool);
             Instance = this;
         }
         else
             Destroy(this);
     }
-    /*void AddToPool(Object[] parent, ref List<GameObject> pool, bool letActive = false)
+
+    void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false)
     {
-        foreach (Object child in parent)
+        foreach (Transform child in parent)
         {
-            pool.Add((child as Transform).GetComponent<GameObject>());
+            pool.Add(child.gameObject);
             if (!letActive)
-                ((child as Transform).GetComponent<GameObject>()).SetActive(false);
+                child.gameObject.SetActive(false);
         }
-    }*/
-    
+    }
+
+    private void Start()
+    {
+        NewBloc(); // first bloc to be created (after the empty starting bloc)
+    }
+
+    public void NewBloc()
+    {
+        GameObject pooledIn;
+        PoolIn(ref blocsPool, Vector3.right * currentBlocMax, out pooledIn);
+
+
+
+        // incremement X position where to spawn next bloc
+        currentBlocMax += pooledIn.GetComponent<Bloc>().blocWidth;
+    }
+
+    #region procedural
+
+    void ObstacleSpawn()
+    {
+        
+    }
+
+    #endregion
+
     #region pool
     // objects to appear next are pooled in (activated)
-    public void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj)
+    void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj)
     {
         var objectToPoolIn = pool.FirstOrDefault(i => !i.activeInHierarchy); // finds the first inactive object in the pool
 
@@ -48,11 +79,6 @@ public class BlocManager : MonoBehaviour
         objectToPoolIn.transform.localPosition = toPosition; // position the object
         objectToPoolIn.SetActive(true); // activate the object
         pooledInObj = objectToPoolIn;
-
-        // incremement X position where to spawn next bloc (for blocs only)
-        var possBloc = pooledInObj.GetComponent<Bloc>();
-        if (possBloc != null)
-            currentBlocMax += possBloc.blocWidth;
     }
     // objects no longer being seen are pooled out (deactivated)
     public void PoolOut(GameObject toPoolOut)

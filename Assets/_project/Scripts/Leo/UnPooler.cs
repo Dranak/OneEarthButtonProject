@@ -5,7 +5,7 @@ public class UnPooler : MonoBehaviour
     [SerializeField]
     bool isCameraUnPooler;
 
-    private void Start()
+    private void Awake()
     {
         if (isCameraUnPooler)
         {
@@ -19,9 +19,8 @@ public class UnPooler : MonoBehaviour
         if (tag == "BlocUnPoolerTrigger")
         {
             BlocManager.Instance.PoolOut(other.transform.parent.gameObject);
-            // Pool in ??
-            GameObject pooledIn;
-            BlocManager.Instance.PoolIn(ref BlocManager.Instance.blocsPool, Vector3.right * BlocManager.Instance.currentBlocMax, out pooledIn);
+            // Pool in new bloc
+            BlocManager.Instance.NewBloc();
         }
         /*
         else if (tag == "")
