@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WormHead1 : WormBody
 {
@@ -87,5 +88,13 @@ public class WormHead1 : WormBody
        
         Rigidbody.AddForce(Vector2.down * DiggingForce);
         _angleDig += 10f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Death"))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

@@ -22,6 +22,10 @@ public class UnPooler : MonoBehaviour
             // Pool in new bloc
             BlocManager.Instance.NewBloc();
         }
+        if (tag == "Death")
+        {
+            BlocManager.Instance.PoolOut(other.gameObject);
+        }
         /*
         else if (tag == "")
         {

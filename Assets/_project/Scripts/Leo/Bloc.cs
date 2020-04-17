@@ -15,4 +15,6 @@ public class Bloc : MonoBehaviour
     public BlocKind blockKind;
 
     public float blocWidth = 200;
+
+    public Transform ObjsAnchor;
 }
