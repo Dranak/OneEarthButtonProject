@@ -14,6 +14,7 @@ public class WormHead1 : WormBody
     public float _angleDig = 30f;
     private List<WormBody> _wormBodies;
     private bool IsDigging = false;
+    public bool IsDead { get; set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,9 @@ public class WormHead1 : WormBody
     }
 
     Vector2 currentForce;
+
+  
+
     private void FixedUpdate()
     {
         Move(IsDigging);
@@ -94,7 +98,9 @@ public class WormHead1 : WormBody
     {
         if (collision.collider.CompareTag("Death"))
         {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            
+            IsDead = true;
+
         }
     }
 }
