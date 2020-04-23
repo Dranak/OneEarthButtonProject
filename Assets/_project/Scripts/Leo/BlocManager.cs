@@ -79,7 +79,7 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         MIX
     }
-    void ObstaclesSpawn(Bloc spawnedBloc, int lowBound = 43, int highBound = 0, SeriesType seriesType = SeriesType.VERTICAL)
+    void ObstaclesSpawn(Bloc spawnedBloc, int lowBound = 22, int highBound = 0, SeriesType seriesType = SeriesType.VERTICAL)
     {
         var regionWidth = 50;
         int regionsCount = (int)(spawnedBloc.blocWidth / regionWidth);
@@ -126,10 +126,11 @@ public class BlocManager : MonoBehaviour
             var randomIndex = Random.Range(0, yFixedPoss.Count);
             int randomY = yFixedPoss[randomIndex];
 
-            ObstacleSpawn(spawnedBloc.ObjsAnchor, i * regionWidth, randomY, thisObstaclePool); // spawn the obstacle
+            ObstacleSpawn(spawnedBloc.ObjsAnchor, i * regionWidth, randomY * 2, thisObstaclePool); // spawn the obstacle
 
             // remove the coordinates not to use any more in the global range
-            yPoss.RemoveRange(yPoss.IndexOf(randomY) - obstacleYoverlapp, obstacleYoverlapp);
+            var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
+            yPoss.RemoveRange(indexOfRy, obstacleYoverlapp);
             // remove the Y coordinates already used (where the obstacle overlaps)
             /*for (int j = randomY - obstacleYoverlapp; j < randomY; ++j)
             {
@@ -145,8 +146,8 @@ public class BlocManager : MonoBehaviour
 
         for (int i = 0; i < _yPoss.Count; ++i)
         {
-            var yCheck = _yPoss[i] - 1;
-            for (int j = yCheck; j > yCheck - _obstacleH; --j)
+            var yCheck = _yPoss[i] - _obstacleH;
+            for (int j = yCheck; j < yCheck + _obstacleH; ++j)
             {
                 if (!_yPoss.Contains(j)) // obstacle can't fit at this Y position
                 {
