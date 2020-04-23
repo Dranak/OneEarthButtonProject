@@ -11,7 +11,6 @@ public class Bloc : MonoBehaviour
         COUNTOWN,
         TOWNTRY
     }
-
     public BlocKind blockKind;
 
     public float blocWidth = 200;

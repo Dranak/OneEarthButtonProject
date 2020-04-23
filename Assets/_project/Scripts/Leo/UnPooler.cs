@@ -24,7 +24,7 @@ public class UnPooler : MonoBehaviour
         }
         if (tag == "Death")
         {
-            BlocManager.Instance.PoolOut(other.gameObject);
+            BlocManager.Instance.PoolOut(other.transform.parent.gameObject);
         }
         /*
         else if (tag == "")

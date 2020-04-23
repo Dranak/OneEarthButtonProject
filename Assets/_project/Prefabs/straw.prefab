@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4922862240516108784
+--- !u!1 &2753176374930679606
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9092673461667280697}
-  - component: {fileID: 6159896478445279387}
-  - component: {fileID: 2765978082864517387}
+  - component: {fileID: 5459831813111310063}
+  - component: {fileID: 5053046649689906370}
+  - component: {fileID: 364034836179356524}
   m_Layer: 9
   m_Name: unpooler
   m_TagString: Death
@@ -18,34 +18,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9092673461667280697
+--- !u!4 &5459831813111310063
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4922862240516108784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 2753176374930679606}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
   m_Children: []
   m_Father: {fileID: 6428080576600548920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6159896478445279387
+--- !u!61 &5053046649689906370
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4922862240516108784}
+  m_GameObject: {fileID: 2753176374930679606}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.5, y: 0.5}
+  m_Offset: {x: 1.5, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,16 +56,16 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!50 &2765978082864517387
+--- !u!50 &364034836179356524
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4922862240516108784}
+  m_GameObject: {fileID: 2753176374930679606}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -90,9 +90,9 @@ GameObject:
   - component: {fileID: 6428080576600548920}
   - component: {fileID: 7865212843479178313}
   - component: {fileID: 5135739438609510452}
-  - component: {fileID: -2959379854910894414}
+  - component: {fileID: -8711519537347812994}
   m_Layer: 11
-  m_Name: can
+  m_Name: straw
   m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,9 +107,9 @@ Transform:
   m_GameObject: {fileID: 5442496086607022910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 1}
+  m_LocalScale: {x: 2, y: 6, z: 1}
   m_Children:
-  - {fileID: 9092673461667280697}
+  - {fileID: 5459831813111310063}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6dd4d9ae78998f04db951804d11936d6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.93350244, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -189,7 +189,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-2959379854910894414
+--- !u!114 &-8711519537347812994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,4 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175b35afed68c2d4ebb36bd49d24d3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 1, y: 2}
+  size: {x: 1, y: 3}
