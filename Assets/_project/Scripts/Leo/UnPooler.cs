@@ -18,6 +18,13 @@ public class UnPooler : MonoBehaviour
         var tag = other.tag;
         if (tag == "BlocUnPoolerTrigger")
         {
+            /*foreach(Transform obs in other.transform)
+            {
+                if (obs.tag == "Death")
+                {
+                    BlocManager.Instance.PoolOut(other.transform.parent.gameObject;
+                }
+            }*/
             BlocManager.Instance.PoolOut(other.transform.parent.gameObject);
             // Pool in new bloc
             BlocManager.Instance.NewBloc();

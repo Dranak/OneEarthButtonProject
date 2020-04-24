@@ -19,4 +19,5 @@ public class Obstacle : MonoBehaviour
     }
 
     public Vector2Int size;
+    public Transform objectT;
 }
