@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/Robin/Menu.unity
     guid: a6f389963838ea4419b9657decd28107
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/Robin/SceneGameRob.unity
     guid: 4c5c389b3a14a3342b1b1054d92543e3
+  - enabled: 1
+    path: Assets/_project/Scenes/Leo/New Scene 2.unity
+    guid: 481cad2eb7fbc754598e4a49f3154f9d
   m_configObjects: {}

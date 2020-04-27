@@ -101,7 +101,7 @@ BuoyancyEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_SurfaceLevel: 7.5
-  m_Density: 5
+  m_Density: 7
   m_LinearDrag: 3
   m_AngularDrag: 3
   m_FlowAngle: 0
@@ -376,7 +376,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 52bc287d42852024dba69a869c830e69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96aee4d761c08f24183926c7051fc151, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -83,7 +83,7 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         MIX
     }
-    void ObstaclesSpawn(Bloc spawnedBloc, int lowBound = 15, int highBound = 0, SeriesType seriesType = SeriesType.VERTICAL)
+    void ObstaclesSpawn(Bloc spawnedBloc, int lowBound = 15, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
         var regionWidth = 8;
         int regionsCount = (int)(spawnedBloc.blocWidth / regionWidth);
@@ -103,7 +103,7 @@ public class BlocManager : MonoBehaviour
             Obstacle.ObstacleSpawnType obstacletype = (Obstacle.ObstacleSpawnType)seriesType;
             if ((int)obstacletype > 2)
             {
-                obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, 3);
+                obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, 3); //3 for sideways
             }
 
             // Get the obstacle height
@@ -133,7 +133,6 @@ public class BlocManager : MonoBehaviour
             // find a random Y position among remaining possibilities
             var randomIndex = Random.Range(0, yFixedPoss.Count);
             int randomY = yFixedPoss[randomIndex];
-
 
             ObstacleSpawn(obstaclesAnchor, currentBlocMax + i * regionWidth, randomY, thisObstaclePool, obstacletype, obstacleOverlapp); // spawn the obstacle
 
@@ -200,7 +199,7 @@ public class BlocManager : MonoBehaviour
                 break;
             case Obstacle.ObstacleSpawnType.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
-                obstacleBody.transform.localEulerAngles = Vector3.forward * 45 * backOrForth;
+                obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
                 obstacleBody.transform.localPosition = Vector2.up * 0.5f * overlapSize.x;
                 if (backOrForth < 0)
                     obstacleBody.transform.localPosition += Vector3.right * overlapSize.y;
@@ -228,6 +227,7 @@ public class BlocManager : MonoBehaviour
     // objects no longer being seen are pooled out (deactivated)
     public void PoolOut(GameObject toPoolOut)
     {
+        toPoolOut.transform.rotation = Quaternion.identity;
         toPoolOut.SetActive(false);
     }
     #endregion
