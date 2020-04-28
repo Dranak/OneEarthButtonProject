@@ -39,7 +39,7 @@ public class WormHead1 : WormBody
     {
         _wormBodies.ForEach(wB => wB.UpdateLineRender());
 
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
             IsDigging = true;
            // Dig();
@@ -101,6 +101,14 @@ public class WormHead1 : WormBody
             
             IsDead = true;
 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BlocUnPoolerTrigger"))
+        {
+            Speed = Mathf.Min(Speed + 0.1f, 8);
         }
     }
 }

@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5088fc11b914114097e52aecd64db68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: 1.29
+  Damping: 2
 --- !u!96 &-2779244663440505359
 TrailRenderer:
   serializedVersion: 2
