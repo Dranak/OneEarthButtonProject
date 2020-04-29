@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class BlocManager : MonoBehaviour
 {
     public static BlocManager Instance;
@@ -13,7 +14,9 @@ public class BlocManager : MonoBehaviour
     Bloc.BlocArea startingBlocKind = 0;
     [SerializeField]
     Bloc[] countryBG2, townBG2, transitionsBG;//...
-    public List<GameObject> blocsPool;
+    public List<GameObject> wpPool;
+    [SerializeField]
+    GameObject blocPoolerPrefab;
 
     [Space]
     [Header("Obstacles")]
@@ -30,6 +33,7 @@ public class BlocManager : MonoBehaviour
 
     // bloc generation
     public int currentBlocMax;
+    int currentWPMax;
 
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class BlocManager : MonoBehaviour
             AddToPool(bottlesPoolT, ref bottlesPool);
             AddToPool(strawsPoolT, ref strawsPool);
             obstaclePoolsList = new List<List<GameObject>>() { cansPool,  strawsPool, bottlesPool };
+            currentWPMax = currentBlocMax;
             Instance = this;
         }
         else
@@ -57,21 +62,25 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        //NewBloc(); // first bloc to be created (after the empty starting bloc)
+        var firstWpRightBoundPos = wpPool[0].transform.position.x + 3;
+        if (firstWpRightBoundPos < GameManager.Instance.camera.transform.position.x - GameManager.Instance.cameraHalfWidth)
+        {
+            wpPool[0].SetActive(false);
+        }
+        NewBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
     public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocWidth = 4)
     {
-        GameObject pooledIn;
-        PoolIn(ref blocsPool, Vector3.right * currentBlocMax, out pooledIn);
-
         Bloc createdBloc = new Bloc(blocArea, blocWidth); // classic bloc with basic parameters (area determining the environment, and width)
-        pooledIn.transform.position += Vector3.right * 6; // 6 is one BG wallpaper width
 
         ObstaclesSpawn(createdBloc);
 
         // incremement X position where to spawn next bloc
         currentBlocMax += blocWidth * 6;
+
+        // spawn pooler trigger that will spawn another obstacle
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
     }
 
     #region procedural
@@ -207,11 +216,20 @@ public class BlocManager : MonoBehaviour
 
         //return obstacleSpawned;
     }
+
+    // Spawns WPapers
+    public void NewWP(Transform toUnpool)
+    {
+        PoolOut(toUnpool.parent.gameObject);
+        GameObject pooledIn;
+        currentWPMax += 6;
+        PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn);
+    }
     #endregion
 
     #region pool
     // objects to appear next are pooled in (activated)
-    void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj)
+    public void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj)
     {
         var objectToPoolIn = pool.FirstOrDefault(i => !i.activeInHierarchy); // finds the first inactive object in the pool
 

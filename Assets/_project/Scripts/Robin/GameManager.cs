@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Player Player;
     public GameObject DeathCanvas;
     [HideInInspector] public Camera camera;
+    [HideInInspector] public float cameraHalfWidth;
+    [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
     [SerializeField] Transform boundToFollow;
 
     private void Awake()
@@ -18,7 +20,11 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
 
         camera = Camera.main;
-        boundToFollow.localPosition = Vector3.right * 15 + Vector3.left * camera.orthographicSize * Instance.camera.aspect;
+        var cameraHalfWidth = camera.orthographicSize * camera.aspect;
+        var camUnitsWidth = cameraHalfWidth * 2;
+        var vCamXOffset = (camUnitsWidth - 15) / camUnitsWidth;
+        VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = vCamXOffset;
+        //boundToFollow.localPosition = Vector3.right * 15 + Vector3.left * camera.orthographicSize * Instance.camera.aspect; // LEGACY
     }
 
     void Start()

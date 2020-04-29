@@ -106,7 +106,7 @@ public class WormHead1 : WormBody
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("BlocUnPoolerTrigger"))
+        if (collision.CompareTag("BlocPoolerTrigger"))
         {
             Speed = Mathf.Min(Speed + 0.1f, 8);
         }
