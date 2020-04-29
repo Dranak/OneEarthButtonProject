@@ -5,16 +5,28 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public Player Player;
     public GameObject DeathCanvas;
-    // Start is called before the first frame update
+    [HideInInspector] public Camera camera;
+    [SerializeField] Transform boundToFollow;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else Destroy(this);
+
+        camera = Camera.main;
+        boundToFollow.localPosition = Vector3.right * 15 + Vector3.left * camera.orthographicSize * Instance.camera.aspect;
+    }
+
     void Start()
     {
         Instance = Instance ?? this;
         Time.timeScale = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Player.IsDead)

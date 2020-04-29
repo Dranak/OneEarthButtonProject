@@ -9,7 +9,7 @@ public class UnPooler : MonoBehaviour
     {
         if (isCameraUnPooler)
         {
-            transform.localPosition = Vector2.left * Camera.main.orthographicSize * Camera.main.aspect + Vector2.left * 0.5f;
+            transform.localPosition = Vector2.left * GameManager.Instance.camera.orthographicSize * GameManager.Instance.camera.aspect + Vector2.left * 0.5f;
         }
     }
 

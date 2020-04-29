@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bloc : MonoBehaviour
+public class Bloc
 {
-    public enum BlocKind
+    public Bloc(BlocArea _blocKind, int _blocWidth)
+    {
+        blockKind = _blocKind;
+        blocWidth = _blocWidth;
+    }
+    public enum BlocArea
     {
         COUNTRY = 0,
         TOWN,
         COUNTOWN,
         TOWNTRY
     }
-    public BlocKind blockKind;
+
+    public BlocArea blockKind;
 
     public int blocWidth;
-
-    public Transform ObjsAnchor;
 }

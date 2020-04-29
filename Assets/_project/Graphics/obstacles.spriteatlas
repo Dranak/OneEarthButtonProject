@@ -11,7 +11,7 @@ SpriteAtlas:
     serializedVersion: 2
     textureSettings:
       serializedVersion: 2
-      anisoLevel: 16
+      anisoLevel: 0
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
@@ -27,7 +27,7 @@ SpriteAtlas:
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
-      m_CompressionQuality: 50
+      m_CompressionQuality: 100
       m_CrunchedCompression: 1
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: e83a25facd6b8e04c9a766cd9a724b0d, type: 3}
     - {fileID: 2800000, guid: 656d08f835711724b9fb274cafa1fa7b, type: 3}
-    totalSpriteSurfaceArea: 246240
+    totalSpriteSurfaceArea: 194400
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:

@@ -10,7 +10,7 @@ public class BlocManager : MonoBehaviour
     [Header("Blocs")]
 
     [SerializeField]
-    Bloc.BlocKind startingBlocKind = 0;
+    Bloc.BlocArea startingBlocKind = 0;
     [SerializeField]
     Bloc[] countryBG2, townBG2, transitionsBG;//...
     public List<GameObject> blocsPool;
@@ -60,18 +60,18 @@ public class BlocManager : MonoBehaviour
         //NewBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
-    public void NewBloc(Bloc.BlocKind blocKind = Bloc.BlocKind.COUNTRY)
+    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocWidth = 4)
     {
         GameObject pooledIn;
         PoolIn(ref blocsPool, Vector3.right * currentBlocMax, out pooledIn);
 
-        Bloc pooledInBloc = pooledIn.GetComponent<Bloc>();
-        pooledIn.transform.position += Vector3.right * pooledInBloc.blocWidth;
+        Bloc createdBloc = new Bloc(blocArea, blocWidth); // classic bloc with basic parameters (area determining the environment, and width)
+        pooledIn.transform.position += Vector3.right * 6; // 6 is one BG wallpaper width
 
-        ObstaclesSpawn(pooledInBloc);
+        ObstaclesSpawn(createdBloc);
 
         // incremement X position where to spawn next bloc
-        currentBlocMax += pooledInBloc.blocWidth;
+        currentBlocMax += blocWidth * 6;
     }
 
     #region procedural
@@ -83,10 +83,9 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         MIX
     }
-    void ObstaclesSpawn(Bloc spawnedBloc, int lowBound = 15, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
+    void ObstaclesSpawn(Bloc generatedBloc, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
-        var regionWidth = 8;
-        int regionsCount = (int)(spawnedBloc.blocWidth / regionWidth);
+        int regionsCount = generatedBloc.blocWidth;
         List<int> yPoss = new List<int>();
 
         for (int i = highBound; i < lowBound; ++i)
@@ -134,7 +133,7 @@ public class BlocManager : MonoBehaviour
             var randomIndex = Random.Range(0, yFixedPoss.Count);
             int randomY = yFixedPoss[randomIndex];
 
-            ObstacleSpawn(obstaclesAnchor, currentBlocMax + i * regionWidth, randomY, thisObstaclePool, obstacletype, obstacleOverlapp); // spawn the obstacle
+            ObstacleSpawn(obstaclesAnchor, currentBlocMax + 3 /*half a paperW width*/ + i * generatedBloc.blocWidth, randomY, thisObstaclePool, obstacletype, obstacleOverlapp); // spawn the obstacle
 
             // remove the coordinates not to use any more in the global range
             var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
