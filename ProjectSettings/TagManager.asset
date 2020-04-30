@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Border
-  - BlocUnPoolerTrigger
   - Death
+  - BlocPoolerTrigger
+  - WPUnPoolerTrigger
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - 
   - Effector
-  - BlocUnPoolerTrigger
+  - PoolTrigger
   - Camera
   - Obstacle
   - 
