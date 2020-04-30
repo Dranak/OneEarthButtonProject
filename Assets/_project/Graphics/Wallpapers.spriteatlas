@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: obstacles
+  m_Name: Wallpapers
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -16,7 +16,7 @@ SpriteAtlas:
       maxTextureSize: 2048
       textureCompression: 0
       filterMode: 1
-      generateMipMaps: 1
+      generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
       sRGB: 1
@@ -26,8 +26,20 @@ SpriteAtlas:
       m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 1
+      m_TextureCompression: 3
       m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 33
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
       m_CrunchedCompression: 1
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
@@ -35,23 +47,23 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 2
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 21300000, guid: e83a25facd6b8e04c9a766cd9a724b0d, type: 3}
-    - {fileID: 21300000, guid: 656d08f835711724b9fb274cafa1fa7b, type: 3}
-    totalSpriteSurfaceArea: 194400
+    - {fileID: 21300000, guid: 5f8b173d52159e34e946f6c29e6b6292, type: 3}
+    - {fileID: 21300000, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+    totalSpriteSurfaceArea: 4471200
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 656d08f835711724b9fb274cafa1fa7b, type: 3}
-  - {fileID: 21300000, guid: e83a25facd6b8e04c9a766cd9a724b0d, type: 3}
+  - {fileID: 21300000, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+  - {fileID: 21300000, guid: 5f8b173d52159e34e946f6c29e6b6292, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Bouteille
-  - Canette
-  m_Tag: obstacles
+  - Wallpaper_Ver_2
+  - Wallpaper_Ver_1
+  m_Tag: Wallpapers
   m_IsVariant: 0
