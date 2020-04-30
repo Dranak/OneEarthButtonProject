@@ -20,7 +20,6 @@ public class Obstacle : MonoBehaviour
     public ObstacleSpawnType obstacleSpawnType;
 
     public Vector2Int size;
-    [HideInInspector]
-    public Vector2 boxSize;
+    //public Vector2 boxSize;
     public Transform objectT;
 }

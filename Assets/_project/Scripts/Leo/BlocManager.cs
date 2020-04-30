@@ -137,6 +137,8 @@ public class BlocManager : MonoBehaviour
             // Spawn Obstacle
             GameObject obstacleSpawned;
             PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, obstaclesAnchor);
+            Obstacle obstacleObj = obstacleSpawned.GetComponent<Obstacle>();
+            obstacleObj.obstacleSpawnType = obstacletype; // set the obstacle type on the spawned obstacle object
 
             // get how much the obstacle is taking space (X and Y)
             Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().size;
@@ -236,14 +238,12 @@ public class BlocManager : MonoBehaviour
         var obstacleObject = obstacleToPlace.GetComponent<Obstacle>();
         var obstacleBody = obstacleObject.objectT;
 
-        obstacleObject.boxSize = obstacleObject.size;
-
         Vector2 obstacleOffset = Vector2.zero;
-        switch (obstacleObject.obstacleSpawnType)
+        switch (obstacleObject.obstacleSpawnType) // Rotates then adds position offset
         {
             case Obstacle.ObstacleSpawnType.HORIZONTAL:
-                obstacleOffset = Vector2.up * obstacleObject.size.y;
                 obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
+                obstacleOffset = Vector2.up * obstacleObject.size.x;
                 break;
             case Obstacle.ObstacleSpawnType.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
