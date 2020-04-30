@@ -27,7 +27,7 @@ public class BlocManager : MonoBehaviour
     Transform bottlesPoolT, strawsPoolT;
     [SerializeField][HideInInspector]
     List<GameObject> cansPool, bottlesPool, strawsPool;
-    List<List<GameObject>> obstaclePoolsList;
+    Dictionary<Vector2Int, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2Int, List<GameObject>>();
     [SerializeField]
     Transform obstaclesAnchor;
 
@@ -41,8 +41,8 @@ public class BlocManager : MonoBehaviour
         {
             AddToPool(cansPoolT, ref cansPool);
             AddToPool(bottlesPoolT, ref bottlesPool);
-            AddToPool(strawsPoolT, ref strawsPool);
-            obstaclePoolsList = new List<List<GameObject>>() { cansPool,  strawsPool, bottlesPool };
+            //AddToPool(strawsPoolT, ref strawsPool);
+
             currentWPMax = currentBlocMax;
             Instance = this;
         }
@@ -58,6 +58,9 @@ public class BlocManager : MonoBehaviour
             if (!letActive)
                 child.gameObject.SetActive(false);
         }
+
+        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().size;
+        obstaclePoolsDic.Add(obstaclesSize, pool);
     }
 
     void Start()
@@ -70,14 +73,14 @@ public class BlocManager : MonoBehaviour
         NewBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
-    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocWidth = 4)
+    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 4, int blockLength = 16)
     {
-        Bloc createdBloc = new Bloc(blocArea, blocWidth); // classic bloc with basic parameters (area determining the environment, and width)
+        Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
 
-        ObstaclesSpawn(createdBloc);
+        ObstaclesSpawn(createdBloc, out blockLength);
 
         // incremement X position where to spawn next bloc
-        currentBlocMax += blocWidth * 6;
+        currentBlocMax += blockLength + 1;
 
         // spawn pooler trigger that will spawn another obstacle
         Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
@@ -92,10 +95,11 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         MIX
     }
-    void ObstaclesSpawn(Bloc generatedBloc, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
+    void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
-        int regionsCount = generatedBloc.blocWidth;
+        int regionsCount = generatedBloc.blocCount;
         List<int> yPoss = new List<int>();
+        int currentBlocLength = 0;
 
         for (int i = highBound; i < lowBound; ++i)
         {
@@ -104,8 +108,8 @@ public class BlocManager : MonoBehaviour
 
         for (int i = 0; i < regionsCount; ++i)
         {
-            // pick an obstacle pool
-            List<GameObject> thisObstaclePool = obstaclePoolsList[Random.Range(0, 1/*obstaclePoolsList.Count*/)];
+            // get current largest Y gap among the series of obstacle (BLOC)
+            int currentLY = LargerRemainingYGap(in yPoss);
 
             // set the obstacle type
             Obstacle.ObstacleSpawnType obstacletype = (Obstacle.ObstacleSpawnType)seriesType;
@@ -114,24 +118,40 @@ public class BlocManager : MonoBehaviour
                 obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, 3); //3 for sideways
             }
 
-            // Get the obstacle height
-            int obstacleYoverlapp = 0; // how much the obstacles overlapps in Y
-            Vector2 obstacleOverlapp = thisObstaclePool[0].GetComponent<Obstacle>().size;
-
+            // pick an obstacle pool based on the 
+            List<List<GameObject>> possObstaclePools = new List<List<GameObject>>();
             switch (obstacletype)
             {
                 case Obstacle.ObstacleSpawnType.VERTICAL:
-                    obstacleYoverlapp = (int)obstacleOverlapp.y;
+                    possObstaclePools = obstaclePoolsDic.Where(x => x.Key.y <= currentLY).Select(x => x.Value).ToList();
                     break;
                 case Obstacle.ObstacleSpawnType.HORIZONTAL:
-                    obstacleYoverlapp = (int)obstacleOverlapp.x;
+                    possObstaclePools = obstaclePoolsDic.Where(x => x.Key.x <= currentLY).Select(x => x.Value).ToList();
                     break;
                 case Obstacle.ObstacleSpawnType.SIDEWAYS:
-                    var sideWaysH = Mathf.Sqrt(Mathf.Pow(thisObstaclePool[0].GetComponent<Obstacle>().size.y, 2) / 2);
-                    obstacleOverlapp = new Vector2(obstacleOverlapp.x, sideWaysH);
-                    obstacleYoverlapp = Mathf.CeilToInt(sideWaysH); // close approximation of the sideways height
+                    possObstaclePools = obstaclePoolsDic.Where(x => SidewaysH(x.Key) <= currentLY).Select(x => x.Value).ToList();
                     break;
             }
+            List<GameObject> thisObstaclePool = possObstaclePools[Random.Range(0, possObstaclePools.Count)];
+
+            // Spawn Obstacle
+            GameObject obstacleSpawned;
+            PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, obstaclesAnchor);
+
+            // get how much the obstacle is taking space (X and Y)
+            Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().size;
+            switch (obstacletype)
+            {
+                case Obstacle.ObstacleSpawnType.HORIZONTAL:
+                    obstacleOverlapp = new Vector2(obstacleOverlapp.y, obstacleOverlapp.x);
+                    break;
+                case Obstacle.ObstacleSpawnType.SIDEWAYS:
+                    var sideWaysH = SidewaysH(in obstacleOverlapp);
+                    obstacleOverlapp = new Vector2(sideWaysH, sideWaysH);
+                    break;
+            }
+            int obstacleXoverlapp = Mathf.CeilToInt(obstacleOverlapp.x);
+            int obstacleYoverlapp = Mathf.CeilToInt(obstacleOverlapp.y);
 
             // create a fixed list of possibilities considering the current list and the obstacle height
             List<int> yFixedPoss = yPoss;
@@ -142,17 +162,46 @@ public class BlocManager : MonoBehaviour
             var randomIndex = Random.Range(0, yFixedPoss.Count);
             int randomY = yFixedPoss[randomIndex];
 
-            ObstacleSpawn(obstaclesAnchor, currentBlocMax + 3 /*half a paperW width*/ + i * generatedBloc.blocWidth, randomY, thisObstaclePool, obstacletype, obstacleOverlapp); // spawn the obstacle
+            // Placing the obstacle
+            ObstaclePlacing(in obstacleSpawned, currentBlocMax + 3 /*half a paperW width*/ + i * generatedBloc.blocCount, randomY); // moves/rotates the obstacle
+            currentBlocLength += obstacleXoverlapp;
 
             // remove the coordinates not to use any more in the global range
             var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
             yPoss.RemoveRange(indexOfRy, obstacleYoverlapp);
-            // remove the Y coordinates already used (where the obstacle overlaps)
-            /*for (int j = randomY - obstacleYoverlapp; j < randomY; ++j)
-            {
-                if (yPoss.coun)
-            }*/
         }
+
+        _blockLength = currentBlocLength;
+    }
+
+    float SidewaysH(in Vector2 obstacleSize)
+    {
+        var bodyH = HypotenusHalfAntecedent(obstacleSize.y);
+        var endsH = HypotenusHalfAntecedent(obstacleSize.x);
+        return bodyH + endsH;
+    }
+    float HypotenusHalfAntecedent(in float hypoLength)
+    {
+        return Mathf.Sqrt(Mathf.Pow(hypoLength, 2) / 2);
+    }
+
+    int LargerRemainingYGap(in List<int> _yPoss)
+    {
+        int largestGap = 0;
+
+        for (int i = 0; i < _yPoss.Count; ++i)
+        {
+            int inspectedY = _yPoss[i];
+            int thisGap = 1;
+            while ((i + 1) < _yPoss.Count && _yPoss[i + 1] == inspectedY + 1)
+            {
+                ++thisGap;
+                inspectedY = _yPoss[++i];
+            }
+            if (thisGap > largestGap) largestGap = thisGap; // final gap from that cell size (set as largest gap or not)
+        }
+
+        return largestGap;
     }
 
     List<int> yRealPossibilities(in List<int> _yPoss, in int _obstacleH)
@@ -180,41 +229,32 @@ public class BlocManager : MonoBehaviour
 
         return possCopy;
     }
-    /*bool canObsFitInBlock(int obsY, int overlapHeight, in List<int> _yPoss)
+
+    void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
     {
-        for (int i = obsY; i < obsY + overlapHeight; ++i)
-        {
-            if (!_yPoss.Contains(i))
-                return false;
-        }
-        return true;
-    }*/
+        obstacleToPlace.transform.localPosition = new Vector2(xCoord, -yCoord);
+        var obstacleObject = obstacleToPlace.GetComponent<Obstacle>();
+        var obstacleBody = obstacleObject.objectT;
 
-    void ObstacleSpawn(Transform parentBloc, int xCoord, int yCoord, List<GameObject> obstaclePool, Obstacle.ObstacleSpawnType obstacleType, Vector2 overlapSize)
-    {
-        GameObject obstacleSpawned;
-        PoolIn(ref obstaclePool, Vector3.zero, out obstacleSpawned);
-        obstacleSpawned.transform.parent = parentBloc;
+        obstacleObject.boxSize = obstacleObject.size;
 
-        obstacleSpawned.transform.localPosition = new Vector2(xCoord, -yCoord);
-        var obstacleBody = obstacleSpawned.GetComponent<Obstacle>().objectT;
-
-        switch (obstacleType)
+        Vector2 obstacleOffset = Vector2.zero;
+        switch (obstacleObject.obstacleSpawnType)
         {
             case Obstacle.ObstacleSpawnType.HORIZONTAL:
+                obstacleOffset = Vector2.up * obstacleObject.size.y;
                 obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
-                obstacleBody.transform.localPosition = Vector2.up * overlapSize.x;
                 break;
             case Obstacle.ObstacleSpawnType.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
                 obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
-                obstacleBody.transform.localPosition = Vector2.up * 0.5f * overlapSize.x;
                 if (backOrForth < 0)
-                    obstacleBody.transform.localPosition += Vector3.right * overlapSize.y;
+                    obstacleOffset = Vector2.right * obstacleObject.size.y;
+                else
+                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.size.x);
                 break;
         }
-
-        //return obstacleSpawned;
+        obstacleBody.transform.localPosition += (Vector3)obstacleOffset;
     }
 
     // Spawns WPapers
@@ -229,7 +269,7 @@ public class BlocManager : MonoBehaviour
 
     #region pool
     // objects to appear next are pooled in (activated)
-    public void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj)
+    public void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj, Transform parent = null)
     {
         var objectToPoolIn = pool.FirstOrDefault(i => !i.activeInHierarchy); // finds the first inactive object in the pool
 
@@ -237,6 +277,7 @@ public class BlocManager : MonoBehaviour
         if (objectToPoolIn == null)
             Debug.LogError("No more remaining to pool in");
 
+        objectToPoolIn.transform.parent = parent;
         objectToPoolIn.transform.position = toPosition; // position the object
         objectToPoolIn.SetActive(true); // activate the object
         pooledInObj = objectToPoolIn;

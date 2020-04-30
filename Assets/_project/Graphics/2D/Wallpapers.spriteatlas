@@ -54,14 +54,14 @@ SpriteAtlas:
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 21300000, guid: 5f8b173d52159e34e946f6c29e6b6292, type: 3}
+    - {fileID: 21300000, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
     - {fileID: 21300000, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
     totalSpriteSurfaceArea: 4471200
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
-  - {fileID: 21300000, guid: 5f8b173d52159e34e946f6c29e6b6292, type: 3}
+  - {fileID: 21300000, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
   m_PackedSpriteNamesToIndex:
   - Wallpaper_Ver_2
   - Wallpaper_Ver_1

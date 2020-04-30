@@ -17,7 +17,10 @@ public class Obstacle : MonoBehaviour
         HORIZONTAL,
         SIDEWAYS
     }
+    public ObstacleSpawnType obstacleSpawnType;
 
     public Vector2Int size;
+    [HideInInspector]
+    public Vector2 boxSize;
     public Transform objectT;
 }
