@@ -13,9 +13,9 @@ public class Obstacle : MonoBehaviour
 
     public enum ObstacleSpawnType
     {
-        VERTICAL = 0,
-        HORIZONTAL,
-        SIDEWAYS
+        HORIZONTAL = 0,
+        SIDEWAYS,
+        VERTICAL // default
     }
     public ObstacleSpawnType obstacleSpawnType;
 

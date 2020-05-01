@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/Robin/Menu.unity
     guid: a6f389963838ea4419b9657decd28107
-  - enabled: 1
+  - enabled: 0
     path: Assets/_project/Scenes/Robin/1SceneGame2.unity
     guid: 314a055fe7f16214483c7dbb0f62e920
   - enabled: 1

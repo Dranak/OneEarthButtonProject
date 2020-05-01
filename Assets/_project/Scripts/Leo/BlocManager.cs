@@ -73,29 +73,31 @@ public class BlocManager : MonoBehaviour
         NewBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
-    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 4, int blockLength = 16)
+    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
     {
         Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
 
-        ObstaclesSpawn(createdBloc, out blockLength);
+        ObstaclesSpawn(createdBloc, out blockLength, ref obstaclesXGap);
 
         // incremement X position where to spawn next bloc
-        currentBlocMax += blockLength + 1;
+        currentBlocMax += blockLength;
 
         // spawn pooler trigger that will spawn another obstacle
-        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax + 1, 0), Quaternion.identity);
+
+        currentBlocMax += obstaclesXGap; // blocs gap ?
     }
 
     #region procedural
 
     enum SeriesType
     {
-        VERTICAL = 0,
-        HORIZONTAL,
+        HORIZONTAL = 0,
         SIDEWAYS,
+        VERTICAL,
         MIX
     }
-    void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
+    void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, ref int obstaclesXGap, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
         int regionsCount = generatedBloc.blocCount;
         List<int> yPoss = new List<int>();
@@ -109,27 +111,57 @@ public class BlocManager : MonoBehaviour
         for (int i = 0; i < regionsCount; ++i)
         {
             // get current largest Y gap among the series of obstacle (BLOC)
-            int currentLY = LargerRemainingYGap(in yPoss);
+            int currentLY = LargestRemainingGap(in yPoss);
 
             // set the obstacle type
-            Obstacle.ObstacleSpawnType obstacletype = (Obstacle.ObstacleSpawnType)seriesType;
-            if ((int)obstacletype > 2)
+            Obstacle.ObstacleSpawnType obstacletype = (Obstacle.ObstacleSpawnType)seriesType; // obstacle type for this series is constant
+
+            // listing each rotation type possibilities for future use
+            List<List<GameObject>>[] allPossLists = new List<List<GameObject>>[3];
+            if ((int)obstacletype > 2) // random obstacle type series
             {
-                obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, 3); //3 for sideways
+                // removing orientations that wouldn't fit either way
+                var orientationPoss = 0;
+                var horizontalPoss = obstaclePoolsDic.Where(x => x.Key.x <= currentLY).Select(x => x.Value).ToList();
+
+                if (horizontalPoss.Count == 0) // no horizontal possibility means no possibility
+                {
+                    Debug.Log("Couldn't spawn obstacle following the no-y-overlapp rule. Stopping bloc generation.");
+                    break;
+                }
+                else  // horizontal poss at least
+                {
+                    allPossLists[0] = horizontalPoss;
+                    ++orientationPoss;
+                    var sidewayPoss = obstaclePoolsDic.Where(x => SidewaysH(x.Key) <= currentLY).Select(x => x.Value).ToList();
+                    if (sidewayPoss.Count != 0) // sideway poss ?
+                    {
+                        allPossLists[1] = sidewayPoss;
+                        ++orientationPoss;
+                        var vertPoss = obstaclePoolsDic.Where(x => x.Key.y <= currentLY).Select(x => x.Value).ToList();
+                        if (vertPoss.Count != 0) // vert poss ?
+                        {
+                            allPossLists[2] = vertPoss;
+                            ++orientationPoss;
+                        }
+                    }
+                }
+
+                obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, orientationPoss); //3 for sideways
             }
 
-            // pick an obstacle pool based on the 
+            // pick an obstacle pool based on the size the obstacle would take (either rotation)
             List<List<GameObject>> possObstaclePools = new List<List<GameObject>>();
             switch (obstacletype)
             {
-                case Obstacle.ObstacleSpawnType.VERTICAL:
-                    possObstaclePools = obstaclePoolsDic.Where(x => x.Key.y <= currentLY).Select(x => x.Value).ToList();
-                    break;
                 case Obstacle.ObstacleSpawnType.HORIZONTAL:
-                    possObstaclePools = obstaclePoolsDic.Where(x => x.Key.x <= currentLY).Select(x => x.Value).ToList();
+                    possObstaclePools = allPossLists[0];
                     break;
                 case Obstacle.ObstacleSpawnType.SIDEWAYS:
-                    possObstaclePools = obstaclePoolsDic.Where(x => SidewaysH(x.Key) <= currentLY).Select(x => x.Value).ToList();
+                    possObstaclePools = allPossLists[1];
+                    break;
+                case Obstacle.ObstacleSpawnType.VERTICAL:
+                    possObstaclePools = allPossLists[2];
                     break;
             }
             List<GameObject> thisObstaclePool = possObstaclePools[Random.Range(0, possObstaclePools.Count)];
@@ -160,17 +192,25 @@ public class BlocManager : MonoBehaviour
             if (obstacleYoverlapp > 1)
                 yFixedPoss = yRealPossibilities(in yPoss, in obstacleYoverlapp);
 
-            // find a random Y position among remaining possibilities
-            var randomIndex = Random.Range(0, yFixedPoss.Count);
-            int randomY = yFixedPoss[randomIndex];
+            // find a random Y position among remaining possibilities (if possible)
+            if (yFixedPoss.Count == 0)
+            {
+                Debug.Log("Couldn't spawn desired number of obstacles following the no-y-overlapp rule. Stopping bloc generation.");
+                break;
+            }
+            else
+            {
+                var randomIndex = Random.Range(0, yFixedPoss.Count);
+                int randomY = yFixedPoss[randomIndex];
 
-            // Placing the obstacle
-            ObstaclePlacing(in obstacleSpawned, currentBlocMax + 3 /*half a paperW width*/ + i * generatedBloc.blocCount, randomY); // moves/rotates the obstacle
-            currentBlocLength += obstacleXoverlapp;
+                // Placing the obstacle
+                ObstaclePlacing(in obstacleSpawned, currentBlocMax + currentBlocLength, randomY); // moves/rotates the obstacle
+                currentBlocLength += obstacleXoverlapp + obstaclesXGap;
 
-            // remove the coordinates not to use any more in the global range
-            var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
-            yPoss.RemoveRange(indexOfRy, obstacleYoverlapp);
+                // remove the coordinates not to use any more in the global range
+                var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
+                yPoss.RemoveRange(indexOfRy, obstacleYoverlapp);
+            }
         }
 
         _blockLength = currentBlocLength;
@@ -187,7 +227,7 @@ public class BlocManager : MonoBehaviour
         return Mathf.Sqrt(Mathf.Pow(hypoLength, 2) / 2);
     }
 
-    int LargerRemainingYGap(in List<int> _yPoss)
+    int LargestRemainingGap(in List<int> _yPoss)
     {
         int largestGap = 0;
 
@@ -213,7 +253,7 @@ public class BlocManager : MonoBehaviour
 
         for (int i = 0; i < _yPoss.Count; ++i)
         {
-            var yCheck = _yPoss[i] - _obstacleH;
+            var yCheck = _yPoss[i] - (_obstacleH - 1);
             for (int j = yCheck; j < yCheck + _obstacleH; ++j)
             {
                 if (!_yPoss.Contains(j)) // obstacle can't fit at this Y position
@@ -223,12 +263,10 @@ public class BlocManager : MonoBehaviour
                 }
             }
         }
-
         foreach(int y in toRemove)
         {
             possCopy.Remove(y);
         }
-
         return possCopy;
     }
 
@@ -249,12 +287,12 @@ public class BlocManager : MonoBehaviour
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
                 obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
                 if (backOrForth < 0)
-                    obstacleOffset = Vector2.right * obstacleObject.size.y;
+                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.size.y);
                 else
                     obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.size.x);
                 break;
         }
-        obstacleBody.transform.localPosition += (Vector3)obstacleOffset;
+        obstacleBody.transform.localPosition = (Vector3)obstacleOffset;
     }
 
     // Spawns WPapers
@@ -285,7 +323,12 @@ public class BlocManager : MonoBehaviour
     // objects no longer being seen are pooled out (deactivated)
     public void PoolOut(GameObject toPoolOut)
     {
-        toPoolOut.transform.rotation = Quaternion.identity;
+        if (toPoolOut.GetComponent<Obstacle>()) // resets obstacle inner body position/rotation
+        {
+            toPoolOut.transform.position = Vector2.zero;
+            toPoolOut.transform.GetChild(0).transform.rotation = Quaternion.identity;
+        }
+        //toPoolOut.transform.rotation = Quaternion.identity;
         toPoolOut.SetActive(false);
     }
     #endregion

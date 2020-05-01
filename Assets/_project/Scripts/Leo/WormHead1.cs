@@ -34,7 +34,8 @@ public class WormHead1 : WormBody
         Debug.Log("NTM");
     }
 
-    // Update is called once per frame
+    Vector2 currentForce;
+
     void Update()
     {
         _wormBodies.ForEach(wB => wB.UpdateLineRender());
@@ -42,22 +43,19 @@ public class WormHead1 : WormBody
         if(Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
             IsDigging = true;
-           // Dig();
         }
         else
         {
             IsDigging = false;
             _angleDig = 30f;
         }
+        SetForce(IsDigging);
     }
-
-    Vector2 currentForce;
-
-  
 
     private void FixedUpdate()
     {
-        Move(IsDigging);
+        //Move(IsDigging);
+        Rigidbody.AddForce(currentForce);
 
         /*if (IsDigging)
         {
@@ -66,12 +64,7 @@ public class WormHead1 : WormBody
         Move();*/
     }
 
-    void Move()
-    {
-        Rigidbody.AddForce(Vector2.right  * Speed);
-    }
-
-    void Move(bool _isDigging)
+    void SetForce(bool _isDigging)
     {
         currentForce = Vector2.right * Speed;
         if (_isDigging)
@@ -81,8 +74,6 @@ public class WormHead1 : WormBody
             _angleDig += 10f;
             currentForce += Vector2.down * DiggingForce;
         }
-
-        Rigidbody.AddForce(currentForce * Speed);
     }
 
     void Dig()
