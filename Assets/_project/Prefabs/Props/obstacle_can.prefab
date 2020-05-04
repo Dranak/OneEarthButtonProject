@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175b35afed68c2d4ebb36bd49d24d3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleSpawnType: 2
+  obstacleRotation: 0
   size: {x: 1, y: 2}
-  objectT: {fileID: 5880604076227151516}
+  objectBody: {fileID: 5880604076227151516}
 --- !u!1 &7219171948759471169
 GameObject:
   m_ObjectHideFlags: 0

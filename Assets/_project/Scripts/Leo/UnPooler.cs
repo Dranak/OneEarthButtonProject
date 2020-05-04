@@ -7,7 +7,7 @@ public class UnPooler : MonoBehaviour
     private void Awake()
     {
         blocManager = BlocManager.Instance;
-        transform.localPosition = Vector2.left * GameManager.Instance.camera.orthographicSize * GameManager.Instance.camera.aspect + Vector2.left * 0.5f;
+        transform.localPosition = Vector2.left * GetComponentInParent<Camera>().orthographicSize * GetComponentInParent<Camera>().aspect + Vector2.left * 0.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

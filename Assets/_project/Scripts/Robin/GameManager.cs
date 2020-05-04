@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
     [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
-    [SerializeField] Transform boundToFollow;
+    [HideInInspector] public float savedStartingOffset;
+    [SerializeField] GameObject unPoolerLeft, poolerRight;
 
     private void Awake()
     {
@@ -20,16 +21,16 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
 
         camera = Camera.main;
-        var cameraHalfWidth = camera.orthographicSize * camera.aspect;
+        cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
-        var vCamXOffset = (camUnitsWidth - 15) / camUnitsWidth;
-        VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = vCamXOffset;
+        savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
+        VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
         //boundToFollow.localPosition = Vector3.right * 15 + Vector3.left * camera.orthographicSize * Instance.camera.aspect; // LEGACY
     }
 
     void Start()
     {
-        Instance = Instance ?? this;
+        //Instance = Instance ?? this;
         Time.timeScale = 1f;
     }
 
@@ -40,5 +41,20 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             DeathCanvas.gameObject.SetActive(true);
         }
+    }
+
+    public void BGWPSetup()
+    {
+        // DISABLES EXTRA USELESS BACKGROUND WP DEPENDMING ON ASPECT RATIO
+        var firstWpRightBoundPos = BlocManager.Instance.wpPool[0].transform.position.x + 3;
+        // comparing the WP right bound to the camera left bound
+        if (firstWpRightBoundPos < savedStartingOffset * camera.aspect - cameraHalfWidth)
+        {
+            BlocManager.Instance.wpPool[0].SetActive(false);
+        }
+
+        // enables camera unpooler bounds
+        unPoolerLeft.SetActive(true);
+        poolerRight.SetActive(true);
     }
 }

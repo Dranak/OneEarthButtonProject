@@ -89,9 +89,7 @@ public class WormHead1 : WormBody
     {
         if (collision.collider.CompareTag("Death"))
         {
-            
             IsDead = true;
-
         }
     }
 

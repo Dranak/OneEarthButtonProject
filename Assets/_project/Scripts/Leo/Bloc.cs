@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bloc
 {
-    public Bloc(BlocArea _blocKind, int _blocCount, int _blocLength)
+    public Bloc(BlocArea _blockArea, int _blocCount, int _blocLength)
     {
-        blockKind = _blocKind;
+        blockArea = _blockArea;
         blocCount = _blocCount;
         blocLength = _blocLength;
     }
@@ -18,7 +18,6 @@ public class Bloc
         TOWNTRY
     }
 
-    public BlocArea blockKind;
-
+    public BlocArea blockArea;
     public int blocCount, blocLength;
 }
