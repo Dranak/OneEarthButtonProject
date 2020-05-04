@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Bloc
 {
-    public Bloc(BlocArea _blocKind, int _blocWidth)
+    public Bloc(BlocArea _blocKind, int _blocCount, int _blocLength)
     {
         blockKind = _blocKind;
-        blocWidth = _blocWidth;
+        blocCount = _blocCount;
+        blocLength = _blocLength;
     }
     public enum BlocArea
     {
@@ -19,5 +20,5 @@ public class Bloc
 
     public BlocArea blockKind;
 
-    public int blocWidth;
+    public int blocCount, blocLength;
 }
