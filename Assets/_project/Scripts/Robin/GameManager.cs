@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //Instance = Instance ?? this;
         Time.timeScale = 1f;
     }
 
