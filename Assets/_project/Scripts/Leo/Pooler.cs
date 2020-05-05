@@ -15,6 +15,7 @@ public class Pooler : MonoBehaviour
         {
             BlocManager.Instance.NewBloc();
             Destroy(other.gameObject);
+            GameManager.Instance.Player.WormHead.Speed = Mathf.Min(GameManager.Instance.Player.WormHead.Speed + 0.25f, 10); // increment speed function
         }
     }
 }
