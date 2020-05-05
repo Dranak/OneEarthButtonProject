@@ -11,11 +11,12 @@ public class GameManagerRob : MonoBehaviour
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
     [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
-    [SerializeField] Transform boundToFollow;
+    [HideInInspector] public float savedStartingOffset;
+    [SerializeField] GameObject unPoolerLeft, poolerRight;
 
     private void Awake()
     {
-      
+        Instance = Instance ?? this;
         camera = Camera.main;
         var cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
@@ -26,7 +27,7 @@ public class GameManagerRob : MonoBehaviour
 
     void Start()
     {
-        Instance = Instance ?? this;
+      
         Time.timeScale = 1f;
     }
 
