@@ -72,15 +72,16 @@ public class BlocManager : MonoBehaviour
     {
         Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
 
-        ObstaclesSpawn(createdBloc, out blockLength, ref obstaclesXGap);
+        var gapRandomization = 0.25f; // gap randomization percentage -/+ (ceil rounded)
+        ObstaclesSpawn(createdBloc, out blockLength, in obstaclesXGap, in gapRandomization);
 
         // incremement X position where to spawn next bloc
         currentBlocMax += blockLength;
 
         // spawn pooler trigger that will spawn another obstacle
-        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax + 1, 0), Quaternion.identity);
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
 
-        currentBlocMax += obstaclesXGap; // blocs gap ?
+        currentBlocMax += obstaclesXGap * 2; // blocs gap ? AFTER BLOCK
     }
 
     #region procedural
@@ -92,12 +93,21 @@ public class BlocManager : MonoBehaviour
         VERTICAL,
         MIX
     }
-    void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, ref int obstaclesXGap, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
+    void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, in int obstaclesXGap, in float XGapRandomization, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
         int regionsCount = generatedBloc.blocCount;
         List<int> yPoss = new List<int>();
         int currentBlocLength = 0;
 
+        // define random gap possibilities
+        int maxGapChange = Mathf.CeilToInt(XGapRandomization * obstaclesXGap);
+        List<int> possGaps = new List<int>();
+        for (int i = -maxGapChange; i <= maxGapChange; ++i)
+        {
+            possGaps.Add(obstaclesXGap + i);
+        }
+
+        // define all Y position possibilities (no exception)
         for (int i = highBound; i <= lowBound; ++i)
         {
             yPoss.Add(i);
@@ -200,7 +210,12 @@ public class BlocManager : MonoBehaviour
 
                 // Placing the obstacle
                 ObstaclePlacing(in obstacleSpawned, currentBlocMax + currentBlocLength, randomY); // moves/rotates the obstacle
-                currentBlocLength += obstacleXoverlapp + obstaclesXGap;
+                currentBlocLength += obstacleXoverlapp;
+                if (i < regionsCount - 1)
+                {
+                    var thisGap = possGaps[Random.Range(0, possGaps.Count)];
+                    currentBlocLength += thisGap;
+                }
 
                 // remove the coordinates not to use any more in the global range
                 var indexOfRy = yPoss.IndexOf(randomY - obstacleYoverlapp + 1);
