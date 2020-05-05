@@ -65,11 +65,6 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        var firstWpRightBoundPos = wpPool[0].transform.position.x + 3;
-        if (firstWpRightBoundPos < GameManager.Instance.camera.transform.position.x - GameManager.Instance.cameraHalfWidth)
-        {
-            wpPool[0].SetActive(false);
-        }
         NewBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
@@ -103,7 +98,7 @@ public class BlocManager : MonoBehaviour
         List<int> yPoss = new List<int>();
         int currentBlocLength = 0;
 
-        for (int i = highBound; i < lowBound; ++i)
+        for (int i = highBound; i <= lowBound; ++i)
         {
             yPoss.Add(i);
         }
@@ -114,7 +109,7 @@ public class BlocManager : MonoBehaviour
             int currentLY = LargestRemainingGap(in yPoss);
 
             // set the obstacle type
-            Obstacle.ObstacleSpawnType obstacletype = (Obstacle.ObstacleSpawnType)seriesType; // obstacle type for this series is constant
+            Obstacle.ObstacleRotation obstacletype = (Obstacle.ObstacleRotation)seriesType; // obstacle type for this series is constant
 
             // listing each rotation type possibilities for future use
             List<List<GameObject>>[] allPossLists = new List<List<GameObject>>[3];
@@ -147,20 +142,20 @@ public class BlocManager : MonoBehaviour
                     }
                 }
 
-                obstacletype = (Obstacle.ObstacleSpawnType)Random.Range(0, orientationPoss); //3 for sideways
+                obstacletype = (Obstacle.ObstacleRotation)Random.Range(0, orientationPoss); //3 for sideways
             }
 
             // pick an obstacle pool based on the size the obstacle would take (either rotation)
             List<List<GameObject>> possObstaclePools = new List<List<GameObject>>();
             switch (obstacletype)
             {
-                case Obstacle.ObstacleSpawnType.HORIZONTAL:
+                case Obstacle.ObstacleRotation.HORIZONTAL:
                     possObstaclePools = allPossLists[0];
                     break;
-                case Obstacle.ObstacleSpawnType.SIDEWAYS:
+                case Obstacle.ObstacleRotation.SIDEWAYS:
                     possObstaclePools = allPossLists[1];
                     break;
-                case Obstacle.ObstacleSpawnType.VERTICAL:
+                case Obstacle.ObstacleRotation.VERTICAL:
                     possObstaclePools = allPossLists[2];
                     break;
             }
@@ -170,16 +165,16 @@ public class BlocManager : MonoBehaviour
             GameObject obstacleSpawned;
             PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, obstaclesAnchor);
             Obstacle obstacleObj = obstacleSpawned.GetComponent<Obstacle>();
-            obstacleObj.obstacleSpawnType = obstacletype; // set the obstacle type on the spawned obstacle object
+            obstacleObj.obstacleRotation = obstacletype; // set the obstacle type on the spawned obstacle object
 
             // get how much the obstacle is taking space (X and Y)
             Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().size;
             switch (obstacletype)
             {
-                case Obstacle.ObstacleSpawnType.HORIZONTAL:
+                case Obstacle.ObstacleRotation.HORIZONTAL:
                     obstacleOverlapp = new Vector2(obstacleOverlapp.y, obstacleOverlapp.x);
                     break;
-                case Obstacle.ObstacleSpawnType.SIDEWAYS:
+                case Obstacle.ObstacleRotation.SIDEWAYS:
                     var sideWaysH = SidewaysH(in obstacleOverlapp);
                     obstacleOverlapp = new Vector2(sideWaysH, sideWaysH);
                     break;
@@ -215,7 +210,7 @@ public class BlocManager : MonoBehaviour
 
         _blockLength = currentBlocLength;
     }
-
+    #region OBSTACLES_CALCULS
     float SidewaysH(in Vector2 obstacleSize)
     {
         var bodyH = HypotenusHalfAntecedent(obstacleSize.y);
@@ -226,7 +221,6 @@ public class BlocManager : MonoBehaviour
     {
         return Mathf.Sqrt(Mathf.Pow(hypoLength, 2) / 2);
     }
-
     int LargestRemainingGap(in List<int> _yPoss)
     {
         int largestGap = 0;
@@ -245,7 +239,6 @@ public class BlocManager : MonoBehaviour
 
         return largestGap;
     }
-
     List<int> yRealPossibilities(in List<int> _yPoss, in int _obstacleH)
     {
         var possCopy = new List<int>(_yPoss);
@@ -269,21 +262,22 @@ public class BlocManager : MonoBehaviour
         }
         return possCopy;
     }
+    #endregion
 
     void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
     {
         obstacleToPlace.transform.localPosition = new Vector2(xCoord, -yCoord);
         var obstacleObject = obstacleToPlace.GetComponent<Obstacle>();
-        var obstacleBody = obstacleObject.objectT;
+        var obstacleBody = obstacleObject.objectBody;
 
         Vector2 obstacleOffset = Vector2.zero;
-        switch (obstacleObject.obstacleSpawnType) // Rotates then adds position offset
+        switch (obstacleObject.obstacleRotation) // Rotates then adds position offset
         {
-            case Obstacle.ObstacleSpawnType.HORIZONTAL:
+            case Obstacle.ObstacleRotation.HORIZONTAL:
                 obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
                 obstacleOffset = Vector2.up * obstacleObject.size.x;
                 break;
-            case Obstacle.ObstacleSpawnType.SIDEWAYS:
+            case Obstacle.ObstacleRotation.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
                 obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
                 if (backOrForth < 0)
@@ -294,14 +288,13 @@ public class BlocManager : MonoBehaviour
         }
         obstacleBody.transform.localPosition = (Vector3)obstacleOffset;
     }
-
     // Spawns WPapers
     public void NewWP(Transform toUnpool)
     {
         PoolOut(toUnpool.parent.gameObject);
         GameObject pooledIn;
         currentWPMax += 6;
-        PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn);
+        PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
     }
     #endregion
 

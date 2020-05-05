@@ -34,7 +34,7 @@ public class WormHead1 : WormBody
         Debug.Log("NTM");
     }
 
-    Vector2 currentForce;
+    Vector2 currentForce = Vector2.zero;
 
     void Update()
     {
@@ -50,18 +50,13 @@ public class WormHead1 : WormBody
             _angleDig = 30f;
         }
         SetForce(IsDigging);
+        
+        Debug.Log(Rigidbody.velocity.x);
     }
 
     private void FixedUpdate()
     {
-        //Move(IsDigging);
         Rigidbody.AddForce(currentForce);
-
-        /*if (IsDigging)
-        {
-            Dig();
-        }
-        Move();*/
     }
 
     void SetForce(bool _isDigging)
@@ -70,7 +65,7 @@ public class WormHead1 : WormBody
         if (_isDigging)
         {
             _angleDig = Mathf.Clamp(_angleDig, 0, 90);
-            Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
+            //Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
             _angleDig += 10f;
             currentForce += Vector2.down * DiggingForce;
         }
@@ -79,7 +74,7 @@ public class WormHead1 : WormBody
     void Dig()
     {
         _angleDig = Mathf.Clamp(_angleDig, 0, 90);
-        Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
+        //Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
        
         Rigidbody.AddForce(Vector2.down * DiggingForce);
         _angleDig += 10f;
@@ -89,17 +84,7 @@ public class WormHead1 : WormBody
     {
         if (collision.collider.CompareTag("Death"))
         {
-            
             IsDead = true;
-
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("BlocPoolerTrigger"))
-        {
-            Speed = Mathf.Min(Speed + 0.1f, 8);
         }
     }
 }

@@ -6,7 +6,7 @@ public class Pooler : MonoBehaviour
 {
     private void Awake()
     {
-        transform.localPosition = Vector2.right * GameManager.Instance.camera.orthographicSize * GameManager.Instance.camera.aspect + Vector2.left * 0.5f;
+        transform.localPosition = Vector2.right * GetComponentInParent<Camera>().orthographicSize * GetComponentInParent<Camera>().aspect + Vector2.left * 0.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -15,6 +15,7 @@ public class Pooler : MonoBehaviour
         {
             BlocManager.Instance.NewBloc();
             Destroy(other.gameObject);
+            GameManager.Instance.Player.WormHead.Speed = Mathf.Min(GameManager.Instance.Player.WormHead.Speed + 0.25f, 10); // increment speed function
         }
     }
 }

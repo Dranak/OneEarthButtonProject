@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 4516079124152242871}
   - component: {fileID: 4516079124152242865}
   - component: {fileID: 4516079124152242864}
-  - component: {fileID: -1560266077247555116}
-  - component: {fileID: 7003915580435463713}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WormBody 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,8 +80,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5088fc11b914114097e52aecd64db68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Damping: 3.53
 --- !u!212 &-1560266077247555116
 SpriteRenderer:

@@ -101,9 +101,9 @@ BuoyancyEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_SurfaceLevel: 6
-  m_Density: 4
-  m_LinearDrag: 3
-  m_AngularDrag: 3
+  m_Density: 3
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4163451659451614815}
   - component: {fileID: 3511199194501970453}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095891204209767739}
   - component: {fileID: 1278765860472518738}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BedRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
