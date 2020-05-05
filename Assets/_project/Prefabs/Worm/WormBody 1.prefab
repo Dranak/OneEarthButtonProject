@@ -45,13 +45,13 @@ Rigidbody2D:
   m_GameObject: {fileID: 4516079124152242867}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5cbd5c473a6d5ce48a9fa3384d768fa6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -178,13 +178,13 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.48571205
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -192,8 +192,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.92197883
-        value: 0.18571532
+        time: 1
+        value: 0.75
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -205,8 +205,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.2264151, g: 0.15272339, b: 0.15272339, a: 1}
-      key1: {r: 0.5283019, g: 0.21357924, b: 0.09718762, a: 1}
+      key0: {r: 0.09433961, g: 0.061698996, b: 0.02180491, a: 1}
+      key1: {r: 0.066037714, g: 0.04319448, b: 0.0146404365, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

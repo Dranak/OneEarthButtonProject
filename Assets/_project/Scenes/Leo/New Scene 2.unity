@@ -366,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 1138417978277333391, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
       propertyPath: DiggingForce
-      value: 70
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1138417978277333391, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
@@ -398,6 +398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899084864064695810, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.69397783
       objectReference: {fileID: 0}
     - target: {fileID: 6899084864064695812, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
