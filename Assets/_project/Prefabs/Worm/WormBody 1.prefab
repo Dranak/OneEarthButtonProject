@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4516079124152242871}
   - component: {fileID: 4516079124152242865}
   - component: {fileID: 4516079124152242864}
+  - component: {fileID: -1560266077247555116}
+  - component: {fileID: 8579848885667173714}
   m_Layer: 8
   m_Name: WormBody 1
   m_TagString: Untagged
@@ -80,8 +82,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5088fc11b914114097e52aecd64db68, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Damping: 3.53
 --- !u!212 &-1560266077247555116
 SpriteRenderer:
@@ -133,7 +135,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!96 &7003915580435463713
+--- !u!96 &8579848885667173714
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -176,13 +178,13 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.2
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.48571205
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -190,8 +192,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0.8753668
+        time: 0.92197883
+        value: 0.18571532
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -203,7 +205,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.3490566, g: 0, b: 0, a: 1}
+      key0: {r: 0.2264151, g: 0.15272339, b: 0.15272339, a: 1}
       key1: {r: 0.5283019, g: 0.21357924, b: 0.09718762, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

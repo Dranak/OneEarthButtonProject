@@ -16,15 +16,12 @@ public class WormHead : WormBody
     private bool IsDigging = false;
     public bool IsDead { get; set; } = false;
     public LineRenderer Line;
+    Vector2 currentForce = Vector2.zero;
 
-    Vector2 currentForce;
-
-
-    // Start is called before the first frame update
     void Start()
     {
         _wormBodies = new List<WormBody>();
-       
+
         for (int i = 0; i < NumberOfParts; ++i)
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
@@ -37,11 +34,9 @@ public class WormHead : WormBody
         }
         _wormBodies.Last().Trail.enabled = true;
         _wormBodies.Last().GetComponent<SpriteRenderer>().enabled = true;
-        Line.positionCount = _wormBodies.Count +1;
-   
+        Line.positionCount = _wormBodies.Count + 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateLineRenderer();
@@ -49,76 +44,46 @@ public class WormHead : WormBody
         if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
             IsDigging = true;
-            // Dig();
         }
         else
         {
             IsDigging = false;
             _angleDig = 30f;
         }
+        SetForce(IsDigging);
+
+        Debug.Log(Rigidbody.velocity.x);
     }
-
-
-
 
     private void FixedUpdate()
     {
-        Move(IsDigging);
-
+        Rigidbody.AddForce(currentForce);
     }
 
-    void Move()
-    {
-        Rigidbody.AddForce(Vector2.right * Speed);
-    }
-
-    void Move(bool _isDigging)
+    void SetForce(bool _isDigging)
     {
         currentForce = Vector2.right * Speed;
         if (_isDigging)
         {
             _angleDig = Mathf.Clamp(_angleDig, 0, 90);
-            Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
             _angleDig += 10f;
             currentForce += Vector2.down * DiggingForce;
         }
-
-        Rigidbody.AddForce(currentForce * Speed);
-    }
-
-    void Dig()
-    {
-        _angleDig = Mathf.Clamp(_angleDig, 0, 90);
-        Rigidbody.MoveRotation(Quaternion.AngleAxis(-_angleDig, Vector3.forward));
-
-        Rigidbody.AddForce(Vector2.down * DiggingForce);
-        _angleDig += 10f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Death"))
         {
-
             IsDead = true;
-
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("BlocUnPoolerTrigger"))
-        {
-            Speed = Mathf.Min(Speed + 0.1f, 8);
-        }
-    }
-
     void UpdateLineRenderer()
     {
         Line.SetPosition(0, transform.position);
-        for (int index =0; index < _wormBodies.Count;++index)
+        for (int index = 0; index < _wormBodies.Count; ++index)
         {
-            Line.SetPosition(index+1, _wormBodies[index].transform.position);
+            Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
     }
 }

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void BGWPSetup()
     {
-        // DISABLES EXTRA USELESS BACKGROUND WP DEPENDMING ON ASPECT RATIO
+        // DISABLES EXTRA USELESS BACKGROUND WP DEPENDING ON ASPECT RATIO
         var firstWpRightBoundPos = BlocManager.Instance.wpPool[0].transform.position.x + 3;
         // comparing the WP right bound to the camera left bound
         if (firstWpRightBoundPos < savedStartingOffset * camera.aspect - cameraHalfWidth)
