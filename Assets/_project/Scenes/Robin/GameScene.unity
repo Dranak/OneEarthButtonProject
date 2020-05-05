@@ -387,7 +387,9 @@ MonoBehaviour:
   camera: {fileID: 0}
   cameraHalfWidth: 0
   VCam: {fileID: 2081793070}
-  boundToFollow: {fileID: 2145042687}
+  savedStartingOffset: 0
+  unPoolerLeft: {fileID: 827740840}
+  poolerRight: {fileID: 971222875}
 --- !u!4 &65989899
 Transform:
   m_ObjectHideFlags: 0
@@ -7724,12 +7726,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2118149824}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2145042687 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7020912101408183390, guid: bd3dff6583a080b408eb786cd084432e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1798966925}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8605509185843251459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7761,12 +7757,12 @@ PrefabInstance:
     - target: {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb,
         type: 3}
