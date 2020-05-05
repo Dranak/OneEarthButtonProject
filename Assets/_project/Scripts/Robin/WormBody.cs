@@ -11,7 +11,6 @@ public class WormBody : MonoBehaviour
     public Rigidbody2D Rigidbody { get; set; }
     public CircleCollider2D Collider { get; set; }
     public TrailRenderer Trail { get; set; }
-    public LineRenderer LineRenderer { get; set; }
     public float Damping;
 
     // Start is called before the first frame update
@@ -31,23 +30,35 @@ public class WormBody : MonoBehaviour
 
     public void SetTarget(WormBody target)
     {
-        Target = target;    
-        LineRenderer = GetComponent<LineRenderer>();
+        Target = target;
 
-    }
 
-    public void UpdateLineRender()
-    {
-        LineRenderer.SetPosition(0, Rigidbody.position);
-        LineRenderer.SetPosition(1, Target.Rigidbody.transform.position);
     }
 
     void FollowTarget()
     {
         if (!Target)
             return;
-        Rigidbody.MovePosition(Vector2.Lerp(Rigidbody.position,(Vector2) Target.Rigidbody.transform.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.transform.position, Target.Rigidbody.transform.position) * Damping));
+        Rigidbody.MovePosition(Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.transform.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.transform.position, Target.Rigidbody.transform.position) * Damping));
+        Vector3 diff = Vector3.zero;
+        if (Target is WormHead)
+        {
+            diff =  Target.transform.position - transform.position ;
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+            Target.transform.rotation = Quaternion.Euler(0f, 0f, rot_z );
+
+        }
+        else if(Trail.enabled)
+        {
+            diff = transform.position - Target.transform.position;
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 180f);
+        }
+
     }
+
 
 
 

@@ -15,11 +15,16 @@ public class WormHead : WormBody
     private List<WormBody> _wormBodies;
     private bool IsDigging = false;
     public bool IsDead { get; set; } = false;
+    public LineRenderer Line;
+
+    Vector2 currentForce;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _wormBodies = new List<WormBody>();
+       
         for (int i = 0; i < NumberOfParts; ++i)
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
@@ -31,13 +36,15 @@ public class WormHead : WormBody
 
         }
         _wormBodies.Last().Trail.enabled = true;
-        Debug.Log("NTM");
+        _wormBodies.Last().GetComponent<SpriteRenderer>().enabled = true;
+        Line.positionCount = _wormBodies.Count +1;
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-        _wormBodies.ForEach(wB => wB.UpdateLineRender());
+        UpdateLineRenderer();
 
         if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
@@ -51,7 +58,6 @@ public class WormHead : WormBody
         }
     }
 
-    Vector2 currentForce;
 
 
 
@@ -59,11 +65,6 @@ public class WormHead : WormBody
     {
         Move(IsDigging);
 
-        /*if (IsDigging)
-        {
-            Dig();
-        }
-        Move();*/
     }
 
     void Move()
@@ -109,6 +110,15 @@ public class WormHead : WormBody
         if (collision.CompareTag("BlocUnPoolerTrigger"))
         {
             Speed = Mathf.Min(Speed + 0.1f, 8);
+        }
+    }
+
+    void UpdateLineRenderer()
+    {
+        Line.SetPosition(0, transform.position);
+        for (int index =0; index < _wormBodies.Count;++index)
+        {
+            Line.SetPosition(index+1, _wormBodies[index].transform.position);
         }
     }
 }
