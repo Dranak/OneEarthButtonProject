@@ -25,6 +25,7 @@ public class WormHead : WormBody
         for (int i = 0; i < NumberOfParts; ++i)
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
+            _wormBodies[i].Trail.enabled = false;
 
             if (i > 0)
                 _wormBodies.Last().SetTarget(_wormBodies[i - 1]);

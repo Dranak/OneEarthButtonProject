@@ -16,16 +16,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else Destroy(this);
-
+        Instance = Instance ?? this; // Nice compact way ! (Rob)
         camera = Camera.main;
         cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
         VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
-        //boundToFollow.localPosition = Vector3.right * 15 + Vector3.left * camera.orthographicSize * Instance.camera.aspect; // LEGACY
     }
 
     void Start()

@@ -10,29 +10,25 @@ public class WormBody : MonoBehaviour
     public WormBody Target { get; set; }
     public Rigidbody2D Rigidbody { get; set; }
     public CircleCollider2D Collider { get; set; }
-    public TrailRenderer Trail { get; set; }
+    //public TrailRenderer Trail { get; set; } // LEGACY
+    public ParticleSystemRenderer Trail { get; set; }
     public float Damping;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
-        Trail = GetComponent<TrailRenderer>();
+        Trail = GetComponentInChildren<ParticleSystemRenderer>(); // new TRAIL is a Particle System
         Collider = GetComponent<CircleCollider2D>();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         FollowTarget();
     }
 
-
     public void SetTarget(WormBody target)
     {
         Target = target;
-
-
     }
 
     void FollowTarget()
@@ -56,10 +52,5 @@ public class WormBody : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 180f);
         }
-
     }
-
-
-
-
 }

@@ -58,8 +58,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6899084864064695812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.49, y: 4.97, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7020912101408183390}
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
+  m_UseAutoMass: 0
   m_Mass: 0.7
   m_LinearDrag: 1
   m_AngularDrag: 0
@@ -152,7 +152,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.47
+  m_Radius: 0.425
 --- !u!114 &1138417978277333391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,11 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf2b1453ff0b7b4da0d90e9b599eb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: 1.09
-  NumberOfParts: 4
-  OffsetBodyPart: 2
-  Speed: 1.26
-  DiggingForce: 15
+  Damping: 0
+  NumberOfParts: 5
+  OffsetBodyPart: 1
+  Speed: 5
+  DiggingForce: 70
   PrefabWormBody: {fileID: 4516079124152242864, guid: dee885e79bdba74459da5c15d65ab558,
     type: 3}
   _angleDig: 30
@@ -263,7 +263,7 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
+    numCornerVertices: 10
     numCapVertices: 0
     alignment: 0
     textureMode: 3
