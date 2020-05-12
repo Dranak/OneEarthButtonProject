@@ -59,7 +59,7 @@ public class BlocManager : MonoBehaviour
                 child.gameObject.SetActive(false);
         }
 
-        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().size;
+        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().obstacleParameters.Size;
         obstaclePoolsDic.Add(obstaclesSize, pool);
     }
 
@@ -178,7 +178,7 @@ public class BlocManager : MonoBehaviour
             obstacleObj.obstacleRotation = obstacletype; // set the obstacle type on the spawned obstacle object
 
             // get how much the obstacle is taking space (X and Y)
-            Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().size;
+            Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().obstacleParameters.Size;
             switch (obstacletype)
             {
                 case Obstacle.ObstacleRotation.HORIZONTAL:
@@ -290,15 +290,15 @@ public class BlocManager : MonoBehaviour
         {
             case Obstacle.ObstacleRotation.HORIZONTAL:
                 obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
-                obstacleOffset = Vector2.up * obstacleObject.size.x;
+                obstacleOffset = Vector2.up * obstacleObject.obstacleParameters.Size.x;
                 break;
             case Obstacle.ObstacleRotation.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
                 obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
                 if (backOrForth < 0)
-                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.size.y);
+                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.obstacleParameters.Size.y);
                 else
-                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.size.x);
+                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.obstacleParameters.Size.x);
                 break;
         }
         obstacleBody.transform.localPosition = (Vector3)obstacleOffset;
@@ -331,11 +331,11 @@ public class BlocManager : MonoBehaviour
     // objects no longer being seen are pooled out (deactivated)
     public void PoolOut(GameObject toPoolOut)
     {
-        if (toPoolOut.GetComponent<Obstacle>()) // resets obstacle inner body position/rotation
+        /*if (toPoolOut.GetComponent<Obstacle>()) // resets obstacle inner body position/rotation
         {
             toPoolOut.transform.position = Vector2.zero;
             toPoolOut.transform.GetChild(0).transform.rotation = Quaternion.identity;
-        }
+        }*/
         //toPoolOut.transform.rotation = Quaternion.identity;
         toPoolOut.SetActive(false);
     }

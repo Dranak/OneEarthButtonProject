@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public enum ObstacleKind
+    public void SetObstacle(in Vector2Int _size, in Vector2Int _blocPos, in Quaternion _bodyRot, in Vector2 _bodyOffset, in uint _prefabIndex)
     {
-        FIXED = 0,
-        ROTATIVE,
-        LINEMOVE
+        obstacleParameters.Size = _size;
+        obstacleParameters.BlocPosition = _blocPos;
+        obstacleParameters.BodyRotation = _bodyRot;
+        obstacleParameters.BodyOffset = _bodyOffset;
+        obstacleParameters.ObstaclePrefabIndex = _prefabIndex;
     }
 
-    public enum ObstacleRotation
+    public enum ObstacleRotation // LEGACY
     {
         HORIZONTAL = 0,
         SIDEWAYS,
@@ -19,7 +21,13 @@ public class Obstacle : MonoBehaviour
     }
     public ObstacleRotation obstacleRotation;
 
-    public Vector2Int size;
-    //public Vector2 boxSize;
+    public ObstacleSpawnable obstacleParameters;
+
     public Transform objectBody;
+
+    private void OnEnable()
+    {
+        objectBody.localRotation = obstacleParameters.BodyRotation;
+        objectBody.localPosition = obstacleParameters.BodyOffset;
+    }
 }

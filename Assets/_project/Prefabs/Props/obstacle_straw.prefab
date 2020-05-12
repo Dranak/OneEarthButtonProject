@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!61 &1747266883797660443
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978345437148695944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.51666665, y: 1.0027778}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1.0333333, y: 2.0055556}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0333333, y: 2.0055556}
+  m_EdgeRadius: 0
 --- !u!1001 &2381602349890800987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +37,11 @@ PrefabInstance:
         type: 3}
       propertyPath: size.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: obstacleRotation
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be,
         type: 3}
@@ -87,5 +118,12 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.932047
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1012906314991533173, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
+--- !u!1 &3978345437148695944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1601252459335991507, guid: fe1ce22affbca9d43822e666f1c921be,
+    type: 3}
+  m_PrefabInstance: {fileID: 2381602349890800987}
+  m_PrefabAsset: {fileID: 0}

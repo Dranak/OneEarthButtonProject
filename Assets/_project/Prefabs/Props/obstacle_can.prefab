@@ -268,8 +268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175b35afed68c2d4ebb36bd49d24d3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleRotation: 0
-  size: {x: 1, y: 2}
+  obstacleRotation: 2
+  obstacleParameters:
+    Size: {x: 1, y: 2}
+    BlocPosition: {x: 0, y: 0}
+    BodyRotation: {x: 0, y: 0, z: 0, w: 0}
+    BodyOffset: {x: 0, y: 0}
+    ObstaclePrefabIndex: 0
+    ObsKind: 0
   objectBody: {fileID: 5880604076227151516}
 --- !u!1 &7219171948759471169
 GameObject:
