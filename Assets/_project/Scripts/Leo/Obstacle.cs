@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public void SetObstacle(in Vector2Int _size, in Vector2Int _blocPos, in Quaternion _bodyRot, in Vector2 _bodyOffset, in uint _prefabIndex)
+    public void SetObstacle(in Vector2Int _size, in Vector2Int _blocPos, in Quaternion _bodyRot, in Vector2 _bodyOffset, in int _prefabIndex)
     {
         obstacleParameters.Size = _size;
         obstacleParameters.BlocPosition = _blocPos;

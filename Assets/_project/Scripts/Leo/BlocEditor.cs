@@ -61,7 +61,7 @@ public class BlocEditor : Editor
             bc.rootTransform = (Transform)EditorGUILayout.ObjectField("Root Transform", bc.rootTransform, typeof(Transform), true);
             return;
         }
-        EditorGUILayout.HelpBox("Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll", MessageType.Info);
+        EditorGUILayout.HelpBox("Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll\nRevert/Redo: Ctrl+Z/Ctrl+Y", MessageType.Info);
         base.OnInspectorGUI();
 
         GUILayout.Space(16);
@@ -86,12 +86,19 @@ public class BlocEditor : Editor
         GUILayout.Space(8);
         blocName = EditorGUILayout.TextField("Bloc Name", blocName);
         blocArea = (Bloc.BlocArea)EditorGUILayout.EnumPopup("Bloc Area : ", blocArea);
+        GUILayout.Space(6);
+        var scriptableStoredBlocs = bc.blocScriptable.storedBlocs;
+        var presavedBloc = scriptableStoredBlocs.FirstOrDefault(b => b.blocName == blocName); // is there a block with that name saved already ?
+        EditorGUI.BeginDisabledGroup(presavedBloc == null);
+        if (GUILayout.Button("Load existing Bloc"))
+        {
+            LoadObstaclesFromBloc(presavedBloc);
+        }
+        EditorGUI.EndDisabledGroup();
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
             var obstacles = bc.rootTransform.GetComponentsInChildren<Obstacle>().Select(o => o.obstacleParameters).ToArray();
             Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, 0, blocName, obstacles);
-            var scriptableStoredBlocs = bc.blocScriptable.storedBlocs;
-            var presavedBloc = bc.blocScriptable.storedBlocs.FirstOrDefault(b => b.blocName == blocName);
             if (presavedBloc != null)
             {
                 scriptableStoredBlocs[scriptableStoredBlocs.IndexOf(presavedBloc)] = newBloc;
@@ -151,14 +158,38 @@ public class BlocEditor : Editor
         }
     }
 
-    uint GetIndexFromPrefabList(in List<GameObject> prefabList, in GameObject chosenObject)
+    void LoadObstaclesFromBloc(Bloc selectedBloc)
+    {
+        if (bc.rootTransform == null)
+        {
+            Debug.LogError("Can't spawn bloc without a root Transform");
+            return;
+        }
+        // destroy all root objects
+        while (bc.rootTransform.childCount > 0) {
+            Undo.DestroyObjectImmediate(bc.rootTransform.GetChild(0).gameObject);
+        }
+        foreach (ObstacleSpawnable obstacleP in selectedBloc.obstaclesParams)
+        {
+            var prefab = bc.blocScriptable.obstaclesPrefabs[obstacleP.ObstaclePrefabIndex];
+            var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
+            Undo.RegisterCreatedObjectUndo(g, "ReStamp");
+            var gT = g.transform;
+            gT.localPosition = (Vector2)obstacleP.BlocPosition;
+            gT.GetChild(0).rotation = obstacleP.BodyRotation;
+            gT.GetChild(0).localPosition = obstacleP.BodyOffset;
+            gT.GetComponentInChildren<Obstacle>().obstacleParameters = obstacleP;
+        }
+    }
+
+    int GetIndexFromPrefabList(in List<GameObject> prefabList, in GameObject chosenObject)
     {
         var chosenPrefabParent = PrefabUtility.GetCorrespondingObjectFromSource(chosenObject);
         GameObject correspondingP = prefabList.FirstOrDefault(w => w == chosenPrefabParent);
         if (!correspondingP) throw new System.Exception("Couldn't find prefab correspondance, this is not a prefab");
         var indexFound = prefabList.IndexOf(correspondingP);
         if (indexFound < 0) throw new System.Exception("Couldn't find prefab in prefab list");
-        else return (uint)indexFound;
+        else return indexFound;
     }
 
     void RotateStamp(Vector2 delta)

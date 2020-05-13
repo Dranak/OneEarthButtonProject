@@ -86,18 +86,40 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData:
-  - name: Groupe 2
+  - name: Calque 7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 947
+      width: 0
+      height: 0
+    spriteID: 115e6c892855319428d2e1892b020527
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -217, y: 215}
+  - name: Calque 6
     originalName: 
     pivot: {x: 0, y: 0}
     alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 276
+      x: 189
       y: 4
-      width: 186
-      height: 721
-    spriteID: 3841c44cafe942b43983a08967e93621
+      width: 181
+      height: 522
+    spriteID: b553ea566b2e2c846b9aefe885e62d68
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -107,19 +129,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 232, y: -36}
-  - name: Calque 1
+    uvTransform: {x: 164, y: -12}
+  - name: Calque 2
     originalName: 
-    pivot: {x: 0.165, y: 0.05}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 5
-      width: 264
-      height: 765
-    spriteID: d770d6a2b078d714a9d6667aaf56b93e
+      y: 727
+      width: 162
+      height: 212
+    spriteID: b5630d738bcfba44a8d260e342809b80
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -129,7 +151,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -42, y: 543}
+  - name: Calque 1
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 177
+      height: 715
+    spriteID: 4713751c29a2f8642bec530d1b357a53
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -34, y: -9}
   rigSpriteImportData:
   - name: Groupe 2
     originalName: 
@@ -193,7 +237,7 @@ ScriptedImporter:
   importHiddenLayers: 0
   importedTextureWidth: 512
   importedTextureHeight: 1024
-  documentSize: {x: 264, y: 765}
+  documentSize: {x: 221, y: 732}
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   spriteCategoryList:
@@ -204,19 +248,47 @@ ScriptedImporter:
   resliceFromLayer: 0
   characterMode: 0
   mosaicPSDLayers:
-  - name: Groupe 2
-    spriteName: Groupe 2
-    isGroup: 0
+  - name: Groupe Vin
+    spriteName: 
+    isGroup: 1
     parentIndex: -1
-    spriteID: 3841c44cafe942b43983a08967e93621
-    layerID: 9
-    mosaicPosition: {x: 276, y: 4}
+    spriteID: 00000000000000000000000000000000
+    layerID: 13
+    mosaicPosition: {x: 0, y: 0}
+  - name: Groupe 2
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: 00000000000000000000000000000000
+    layerID: 12
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 7
+    spriteName: Calque 7
+    isGroup: 0
+    parentIndex: 1
+    spriteID: 115e6c892855319428d2e1892b020527
+    layerID: 11
+    mosaicPosition: {x: 4, y: 947}
+  - name: Calque 6
+    spriteName: Calque 6
+    isGroup: 0
+    parentIndex: 1
+    spriteID: b553ea566b2e2c846b9aefe885e62d68
+    layerID: 10
+    mosaicPosition: {x: 189, y: 4}
+  - name: Calque 2
+    spriteName: Calque 2
+    isGroup: 0
+    parentIndex: 1
+    spriteID: b5630d738bcfba44a8d260e342809b80
+    layerID: 5
+    mosaicPosition: {x: 4, y: 727}
   - name: Calque 1
     spriteName: Calque 1
     isGroup: 0
-    parentIndex: -1
-    spriteID: d770d6a2b078d714a9d6667aaf56b93e
-    layerID: 3
+    parentIndex: 1
+    spriteID: 4713751c29a2f8642bec530d1b357a53
+    layerID: 4
     mosaicPosition: {x: 4, y: 4}
   rigPSDLayers:
   - name: Groupe 2

@@ -20,7 +20,7 @@ public class ObstacleSpawnable : Spawnable
 {
     public Quaternion BodyRotation;
     public Vector2 BodyOffset;
-    /*[HideInInspector] */public uint ObstaclePrefabIndex;
+    [HideInInspector] public int ObstaclePrefabIndex;
     public ObstacleKind ObsKind;
 }
 
