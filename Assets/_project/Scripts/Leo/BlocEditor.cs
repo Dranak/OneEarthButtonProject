@@ -4,6 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
+using GD.MinMaxSlider;
 
 [CustomEditor(typeof(BlocCreator))]
 //[CanEditMultipleObjects]
@@ -50,7 +51,13 @@ public class BlocEditor : Editor
     }
 
     string blocName = "Enter Bloc Name"; // bloc name to store
+    int selectedName = 0;
     Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY; // bloc area to store
+
+    Vector2 blocYRange;
+    Vector4 gOffset;
+    Vector2 rotOff;
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -82,30 +89,128 @@ public class BlocEditor : Editor
             GUILayout.Space(16);
         }
 
-        GUILayout.Label("Bloc Saving:");
-        GUILayout.Space(8);
-        blocName = EditorGUILayout.TextField("Bloc Name", blocName);
-        blocArea = (Bloc.BlocArea)EditorGUILayout.EnumPopup("Bloc Area : ", blocArea);
+        // ADDITIONAL BLOC PARAMETERS
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("MISC PARAMETERS:", GUILayout.MaxWidth(250));
+        if (GUILayout.Button("Reset Misc", GUILayout.MaxWidth(100)))
+        {
+            blocYRange = Vector2.zero;
+            gOffset = Vector4.zero;
+            rotOff = Vector2.zero;
+        }
+        EditorGUILayout.EndHorizontal();
+        // Bloc Y Range parameter
         GUILayout.Space(6);
+        MinMaxIntSliderGUI("Bloc Y Range", ref blocYRange.x, ref blocYRange.y, -9, 9);
+        GUILayout.Space(3);
+        // Global offset parameters
+        MinMaxIntSliderGUI("Global Obs X Offset" , ref gOffset.x, ref gOffset.y, -6, 6);
+        MinMaxIntSliderGUI("Global Obs Y Offset", ref gOffset.w, ref gOffset.z, -9, 9);
+        GUILayout.Space(3);
+        // Global Rotation parameter
+        MinMaxIntSliderGUI("Global Rotation Offset", ref rotOff.x, ref rotOff.y, -16, 16);
+
+        GUILayout.Space(8);
+
+        // BLOC SAVING
+        GUILayout.Label("BLOC SAVING:");
+        GUILayout.Space(6);
+        GetSavedBlocsNames();
+        EditorGUI.BeginChangeCheck();
+        blocName = EditorGUILayout.TextField("Bloc Name : ", blocName);
+        if (EditorGUI.EndChangeCheck())
+        {
+            if (bc.blocNames.Contains(blocName))
+                selectedName = bc.blocNames.IndexOf(blocName);
+        }
+        EditorGUI.BeginChangeCheck();
+        selectedName = EditorGUILayout.Popup("Available Blocs Selection : ", selectedName, bc.blocNames.ToArray());
+        if (EditorGUI.EndChangeCheck())
+        {
+            blocName = bc.blocNames[selectedName];
+        }
+
+        blocArea = (Bloc.BlocArea)EditorGUILayout.EnumPopup("Bloc Area : ", blocArea);
+        GUILayout.Space(8);
         var scriptableStoredBlocs = bc.blocScriptable.storedBlocs;
         var presavedBloc = scriptableStoredBlocs.FirstOrDefault(b => b.blocName == blocName); // is there a block with that name saved already ?
         EditorGUI.BeginDisabledGroup(presavedBloc == null);
+        GUI.backgroundColor = Color.blue;
         if (GUILayout.Button("Load existing Bloc"))
         {
+            // load bloc parameters
+            LoadBlocParameters(presavedBloc);
             LoadObstaclesFromBloc(presavedBloc);
         }
+        GUILayout.Space(6);
+        GUI.backgroundColor = Color.red;
+        if (GUILayout.Button("Delete existing bloc"))
+        {
+            scriptableStoredBlocs.Remove(presavedBloc);
+        }
+        GUI.backgroundColor = Color.white;
         EditorGUI.EndDisabledGroup();
+        GUILayout.Space(8);
+        EditorGUI.BeginDisabledGroup(blocName == "Enter Bloc Name");
+        GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
             var obstacles = bc.rootTransform.GetComponentsInChildren<Obstacle>().Select(o => o.obstacleParameters).ToArray();
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, 0, blocName, obstacles);
+            int blocLength = 0;
+            foreach(ObstacleSpawnable osbP in obstacles)
+            {
+                var obsRightBoundX = osbP.BoundsSize.x + osbP.BlocPosition.x;
+                if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
+            }
+            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, blocName, obstacles);
+
+            // set misc parameters
+            if (blocYRange != Vector2.zero)
+            {
+                newBloc.blocYRange = new Vector2Int((int)blocYRange.x, (int)blocYRange.y);
+            }
+            if (gOffset != Vector4.zero)
+            {
+                newBloc.globalOffsetRange = gOffset;
+            }
+            if (rotOff != Vector2.zero)
+            {
+                newBloc.globalRotationOffsetRange = new Vector2Int((int)rotOff.x, (int)rotOff.y);
+            }
+
             if (presavedBloc != null)
             {
                 scriptableStoredBlocs[scriptableStoredBlocs.IndexOf(presavedBloc)] = newBloc;
             }
             else
+            {
                 bc.blocScriptable.storedBlocs.Add(newBloc);
+
+                bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
+                selectedName = bc.blocNames.IndexOf(blocName);  // set pop field as equal to the new bloc name
+            }
         }
+        EditorGUI.EndDisabledGroup();
+    }
+
+    void MinMaxIntSliderGUI(in string _label, ref float _minVal, ref float _maxVal, in int _minBound, in int _maxBound)
+    {
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField(_label, GUILayout.MaxWidth(125));
+        _minVal = EditorGUILayout.IntField((int)_minVal, GUILayout.MaxWidth(25));
+        EditorGUI.BeginChangeCheck();
+        EditorGUILayout.MinMaxSlider(ref _minVal, ref _maxVal, _minBound, _maxBound, GUILayout.MaxWidth(300));
+        if (EditorGUI.EndChangeCheck())
+        {
+            _minVal = Mathf.RoundToInt(_minVal);
+            _maxVal = Mathf.RoundToInt(_maxVal);
+        }
+        _maxVal = EditorGUILayout.IntField((int)_maxVal, GUILayout.MaxWidth(20));
+        EditorGUILayout.EndHorizontal();
+    }
+    void GetSavedBlocsNames()
+    {
+        bc.blocNames = bc.blocScriptable.storedBlocs.Select(w => w.blocName).ToList();
     }
 
     void CreateNewStamp()
@@ -154,10 +259,33 @@ public class BlocEditor : Editor
 
             var obstacle = g.GetComponent<Obstacle>();
             var obstacleIndex = GetIndexFromPrefabList(bc.blocScriptable.obstaclesPrefabs, g);
-            obstacle.SetObstacle(obstacle.obstacleParameters.Size, new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), rotation, offset, obstacleIndex);
+            var obsRectBounds = dummyBounds.size;
+            if (obsRectBounds == Vector3.zero)
+                obsRectBounds = (Vector2)obstacle.obstacleParameters.Size;
+            obstacle.SetObstacle(obstacle.obstacleParameters.Size, new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), rotation, offset, obstacleIndex, obsRectBounds);
         }
     }
 
+    Bounds dummyBounds;
+    void RotateStamp(Vector2 delta)
+    {
+        var obsBody = stamp.transform.GetChild(0).GetChild(0);
+        obsBody.Rotate(Vector3.back , delta.y);
+
+        dummyBounds = obsBody.gameObject.GetBoxColliderFixedBounds();
+        Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
+        obsBody.localPosition += (Vector3)dummyOffset;
+    }
+
+    void LoadBlocParameters(Bloc selectedBloc)
+    {
+        if (selectedBloc.blocYRange != null)
+            blocYRange = (Vector2)selectedBloc.blocYRange;
+        if (selectedBloc.globalOffsetRange != null)
+            gOffset = (Vector4)selectedBloc.globalOffsetRange;
+        if (selectedBloc.globalRotationOffsetRange != null)
+            rotOff = (Vector2)selectedBloc.globalRotationOffsetRange;
+    }
     void LoadObstaclesFromBloc(Bloc selectedBloc)
     {
         if (bc.rootTransform == null)
@@ -166,7 +294,8 @@ public class BlocEditor : Editor
             return;
         }
         // destroy all root objects
-        while (bc.rootTransform.childCount > 0) {
+        while (bc.rootTransform.childCount > 0)
+        {
             Undo.DestroyObjectImmediate(bc.rootTransform.GetChild(0).gameObject);
         }
         foreach (ObstacleSpawnable obstacleP in selectedBloc.obstaclesParams)
@@ -190,16 +319,6 @@ public class BlocEditor : Editor
         var indexFound = prefabList.IndexOf(correspondingP);
         if (indexFound < 0) throw new System.Exception("Couldn't find prefab in prefab list");
         else return indexFound;
-    }
-
-    void RotateStamp(Vector2 delta)
-    {
-        var obsBody = stamp.transform.GetChild(0).GetChild(0);
-        obsBody.Rotate(Vector3.back , delta.y);
-
-        var dummyBounds = obsBody.gameObject.GetBoxColliderFixedBounds();
-        Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
-        obsBody.localPosition += (Vector3)dummyOffset;
     }
 
     private void OnSceneGUI()
