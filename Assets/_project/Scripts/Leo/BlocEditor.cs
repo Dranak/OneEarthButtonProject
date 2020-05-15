@@ -205,7 +205,7 @@ public class BlocEditor : Editor
             _minVal = Mathf.RoundToInt(_minVal);
             _maxVal = Mathf.RoundToInt(_maxVal);
         }
-        _maxVal = EditorGUILayout.IntField((int)_maxVal, GUILayout.MaxWidth(20));
+        _maxVal = EditorGUILayout.IntField((int)_maxVal, GUILayout.MaxWidth(25));
         EditorGUILayout.EndHorizontal();
     }
     void GetSavedBlocsNames()

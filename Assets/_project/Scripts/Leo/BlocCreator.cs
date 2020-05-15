@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [ExecuteAlways]
 public class BlocCreator : MonoBehaviour
@@ -11,14 +12,14 @@ public class BlocCreator : MonoBehaviour
         ColliderBounds
     }
 
-    public LayerMask layerMask;
-    public Transform rootTransform;
+    [HideInInspector] public LayerMask layerMask;
+    [HideInInspector] public Transform rootTransform;
     public GameObject[] prefabPallete;
     public BlocsStorageScriptableObject blocScriptable;
 
     [HideInInspector] public bool useGrid = true;
     [HideInInspector] public int selectedPrefabIndex = 0;
-    public float maxIntersectionVolume = 0;
+    [HideInInspector] public float maxIntersectionVolume = 0;
     public CollisionTest collisionTest;
     [HideInInspector] public List<string> blocNames; // available blocs names
 
@@ -30,5 +31,11 @@ public class BlocCreator : MonoBehaviour
         }
     }
 
-    public Bloc createdBloc;
+    public void OnValidate()
+    {
+        if (prefabPallete != blocScriptable.obstaclesPrefabs.ToArray())
+        {
+            blocScriptable.obstaclesPrefabs = prefabPallete.ToList();
+        }
+    }
 }

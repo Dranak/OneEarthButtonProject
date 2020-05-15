@@ -21,7 +21,7 @@ public enum ObstacleKind
 public class ObstacleSpawnable : Spawnable
 {
     public Quaternion BodyRotation;
-    public Vector2 BodyOffset;
+    [HideInInspector] public Vector2 BodyOffset;
     [HideInInspector] public int ObstaclePrefabIndex;
     public ObstacleKind ObsKind;
     [MinMaxSlider(-6, 6)]

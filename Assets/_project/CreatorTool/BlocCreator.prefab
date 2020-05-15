@@ -274,18 +274,12 @@ MonoBehaviour:
   prefabPallete:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
-  - {fileID: 2005348715299561, guid: a0374746ca3865c438902c98058c08b6, type: 3}
   blocScriptable: {fileID: 11400000, guid: 38949373056f614448cca441245fd0c9, type: 2}
   useGrid: 1
   selectedPrefabIndex: 0
   maxIntersectionVolume: 0
   collisionTest: 0
-  createdBloc:
-    blocName: 
-    blockArea: 0
-    blocCount: 0
-    blocLength: 0
-    obstaclesParams: []
+  blocNames: []
 --- !u!1 &8076917303351851766
 GameObject:
   m_ObjectHideFlags: 0
