@@ -35,5 +35,6 @@ public class ObstacleSpawnable : Spawnable
 [System.Serializable]
 public class CoinsSpawnable : Spawnable
 {
-
+   public int PointGain;
+   public bool IsEggShell;
 }

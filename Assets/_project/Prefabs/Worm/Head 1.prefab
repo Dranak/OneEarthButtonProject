@@ -165,15 +165,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf2b1453ff0b7b4da0d90e9b599eb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: 0
-  NumberOfParts: 5
-  OffsetBodyPart: 1
-  Speed: 5
-  DiggingForce: 70
+  Damping: 3.5
   PrefabWormBody: {fileID: 4516079124152242864, guid: dee885e79bdba74459da5c15d65ab558,
     type: 3}
-  _angleDig: 30
+  NumberOfParts: 5
+  OffsetBodyPart: 1
   Line: {fileID: 489562508}
+  Speed: 5
+  MinAngleDig: 0
+  MaxAngleDig: 0
+  DurationRotateDig: 0
+  DurationRotateRising: 0
+  MaxAngleRising: 0
 --- !u!120 &489562508
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Player Player;
+   
     public GameObject DeathCanvas;
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
@@ -22,20 +23,19 @@ public class GameManager : MonoBehaviour
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
         VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
+      
+       // DontDestroyOnLoad(DeathCanvas);
     }
 
     void Start()
     {
         Time.timeScale = 1f;
+        
     }
 
     void Update()
     {
-        if(Player.IsDead)
-        {
-            Time.timeScale = 0f;
-            DeathCanvas.gameObject.SetActive(true);
-        }
+        
     }
 
     public void BGWPSetup()
@@ -52,4 +52,12 @@ public class GameManager : MonoBehaviour
         unPoolerLeft.SetActive(true);
         poolerRight.SetActive(true);
     }
+
+    //private void OnLevelWasLoaded(int level)
+    //{
+    //    if (DeathCanvas.activeInHierarchy)
+    //    {
+    //        DeathCanvas.SetActive(false);
+    //    }
+    //}
 }
