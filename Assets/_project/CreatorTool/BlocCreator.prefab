@@ -274,12 +274,14 @@ MonoBehaviour:
   prefabPallete:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
+  - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   blocScriptable: {fileID: 11400000, guid: 38949373056f614448cca441245fd0c9, type: 2}
   useGrid: 1
   selectedPrefabIndex: 0
   maxIntersectionVolume: 0
   collisionTest: 0
-  blocNames: []
+  blocNames:
+  - qsdqs
 --- !u!1 &8076917303351851766
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7677705203068724792}
   m_Layer: 0
-  m_Name: Blocs
+  m_Name: BlocT(spawnables)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

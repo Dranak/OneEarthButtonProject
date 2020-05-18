@@ -298,22 +298,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2380778448985100210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 175b35afed68c2d4ebb36bd49d24d3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: c78c98cc9bbe864488d6b640f981b20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleRotation: 2
+  objectBody: {fileID: 5880604076227151516}
+  obstacleRotation: 0
   obstacleParameters:
     Size: {x: 1, y: 2}
     BlocPosition: {x: 0, y: 0}
     BoundsSize: {x: 0, y: 0}
+    SpawnablePrefabIndex: 0
     BodyRotation: {x: 0, y: 0, z: 0, w: 0}
     BodyOffset: {x: 0, y: 0}
-    ObstaclePrefabIndex: 0
     ObsKind: 0
     OffsetXRange: {x: 0, y: 0}
     OffsetYRange: {x: 0, y: 0}
     RotationOffsetRange: {x: 0, y: 0}
-  objectBody: {fileID: 5880604076227151516}
 --- !u!1 &6230961764298289145
 GameObject:
   m_ObjectHideFlags: 0

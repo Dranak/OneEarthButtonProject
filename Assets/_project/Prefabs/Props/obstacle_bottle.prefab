@@ -44,6 +44,11 @@ PrefabInstance:
       propertyPath: obstacleParameters.Size.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: obstacleParameters.Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1012906314991533173, guid: fe1ce22affbca9d43822e666f1c921be,
         type: 3}
       propertyPath: m_Enabled

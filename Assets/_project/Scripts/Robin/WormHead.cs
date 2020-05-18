@@ -48,12 +48,7 @@ public class WormHead : WormBody
     private bool IsDigging = false;
 
     public Action CallBackDead;
-    public Action<CoinsSpawnable> CallBackPoint;
-
-
-
-
-
+    public Action<CollectibleSpawnable> CallBackPoint;
 
     void Start()
     {

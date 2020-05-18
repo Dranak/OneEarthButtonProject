@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.DeathCanvas.gameObject?.SetActive(true);
     }
 
-    void GetPoint(CoinsSpawnable collectible)
+    void GetPoint(CollectibleSpawnable collectible)
     {
         if(!collectible.IsEggShell)
         {

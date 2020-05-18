@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626be762bbbc9654c94758b07b5877be, type: 3}
   m_Name: StoredBlocs
   m_EditorClassIdentifier: 
-  storedBlocs: []
+  storedBlocs:
+  - blocName: qsdqs
+    blockArea: 0
+    blocCount: 2
+    blocLength: 24
+    spawnlablesParams:
+    - Size: {x: 1, y: 2}
+      BlocPosition: {x: 13, y: -6}
+      BoundsSize: {x: 2.105586, y: 1.5992241}
+      SpawnablePrefabIndex: 0
+    - Size: {x: 1, y: 2}
+      BlocPosition: {x: 22, y: -5}
+      BoundsSize: {x: 1.9681149, y: 1.9759707}
+      SpawnablePrefabIndex: 0
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}

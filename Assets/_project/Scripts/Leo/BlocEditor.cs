@@ -1,10 +1,8 @@
 ﻿using UnityEditor;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 using System.Linq;
-using GD.MinMaxSlider;
+using System;
 
 [CustomEditor(typeof(BlocCreator))]
 //[CanEditMultipleObjects]
@@ -140,7 +138,7 @@ public class BlocEditor : Editor
         {
             // load bloc parameters
             LoadBlocParameters(presavedBloc);
-            LoadObstaclesFromBloc(presavedBloc);
+            LoadSpawnablesFromBloc(presavedBloc);
         }
         GUILayout.Space(6);
         GUI.backgroundColor = Color.red;
@@ -155,14 +153,14 @@ public class BlocEditor : Editor
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
-            var obstacles = bc.rootTransform.GetComponentsInChildren<Obstacle>().Select(o => o.obstacleParameters).ToArray();
+            var spawnables = bc.rootTransform.GetComponentsInChildren<SpawnableObject>().Select(o => o.GetSpawnable()).ToArray();
             int blocLength = 0;
-            foreach(ObstacleSpawnable osbP in obstacles)
+            foreach(Spawnable osbP in spawnables)
             {
                 var obsRightBoundX = osbP.BoundsSize.x + osbP.BlocPosition.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, blocName, obstacles);
+            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, blocName, spawnables);
 
             // set misc parameters
             if (blocYRange != Vector2.zero)
@@ -257,24 +255,38 @@ public class BlocEditor : Editor
             g.transform.GetChild(0).rotation = rotation;
             g.transform.GetChild(0).localPosition = offset;
 
-            var obstacle = g.GetComponent<Obstacle>();
+            var spawnable = g.GetComponent<SpawnableObject>();
+            var spawnableParameters = spawnable.GetSpawnable();
             var obstacleIndex = GetIndexFromPrefabList(bc.blocScriptable.obstaclesPrefabs, g);
             var obsRectBounds = dummyBounds.size;
+
             if (obsRectBounds == Vector3.zero)
-                obsRectBounds = (Vector2)obstacle.obstacleParameters.Size;
-            obstacle.SetObstacle(obstacle.obstacleParameters.Size, new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), rotation, offset, obstacleIndex, obsRectBounds);
+                obsRectBounds = (Vector2)spawnableParameters.Size;
+            var spawnableType = spawnableParameters.GetType();
+            if (typeof(ObstacleSpawnable) == spawnableType)
+            {
+                (spawnable as Obstacle).SetObstacle(new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), obsRectBounds, rotation, offset, obstacleIndex);
+            }
+            else if (typeof(CollectibleSpawnable) == spawnableType)
+            {
+                (spawnable as Collectible).SetCollectible(new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), rotation, obsRectBounds, obstacleIndex);
+            }
         }
     }
 
     Bounds dummyBounds;
     void RotateStamp(Vector2 delta)
     {
-        var obsBody = stamp.transform.GetChild(0).GetChild(0);
-        obsBody.Rotate(Vector3.back , delta.y);
+        var spn = stamp.transform.GetChild(0);
+        var spnBody = spn.GetChild(0);
+        spnBody.Rotate(Vector3.back , delta.y);
 
-        dummyBounds = obsBody.gameObject.GetBoxColliderFixedBounds();
-        Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
-        obsBody.localPosition += (Vector3)dummyOffset;
+        if (spn.GetComponent<SpawnableObject>().GetType() == typeof(Obstacle))
+        {
+            dummyBounds = spnBody.gameObject.GetBoxColliderFixedBounds();
+            Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
+            spnBody.localPosition += (Vector3)dummyOffset;
+        }
     }
 
     void LoadBlocParameters(Bloc selectedBloc)
@@ -286,7 +298,7 @@ public class BlocEditor : Editor
         if (selectedBloc.globalRotationOffsetRange != null)
             rotOff = (Vector2)selectedBloc.globalRotationOffsetRange;
     }
-    void LoadObstaclesFromBloc(Bloc selectedBloc)
+    void LoadSpawnablesFromBloc(Bloc selectedBloc)
     {
         if (bc.rootTransform == null)
         {
@@ -298,16 +310,28 @@ public class BlocEditor : Editor
         {
             Undo.DestroyObjectImmediate(bc.rootTransform.GetChild(0).gameObject);
         }
-        foreach (ObstacleSpawnable obstacleP in selectedBloc.obstaclesParams)
+        foreach (Spawnable spawnable in selectedBloc.spawnlablesParams)
         {
-            var prefab = bc.blocScriptable.obstaclesPrefabs[obstacleP.ObstaclePrefabIndex];
+            var prefab = bc.blocScriptable.obstaclesPrefabs[spawnable.SpawnablePrefabIndex];
             var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
             Undo.RegisterCreatedObjectUndo(g, "ReStamp");
             var gT = g.transform;
-            gT.localPosition = (Vector2)obstacleP.BlocPosition;
-            gT.GetChild(0).rotation = obstacleP.BodyRotation;
-            gT.GetChild(0).localPosition = obstacleP.BodyOffset;
-            gT.GetComponentInChildren<Obstacle>().obstacleParameters = obstacleP;
+            gT.localPosition = (Vector2)spawnable.BlocPosition;
+            var bodyT = gT.GetChild(0);
+            bodyT.rotation = spawnable.BodyRotation;
+
+            var spawnableObj = gT.GetComponentInChildren<SpawnableObject>();
+            Type spawnableType = spawnableObj.GetSpawnable().GetType();
+            if (spawnableType == typeof(ObstacleSpawnable))
+            {
+                bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
+                (spawnableObj as Obstacle).obstacleParameters = (ObstacleSpawnable)spawnable;
+            }
+            else if (spawnableType == typeof(ObstacleSpawnable))
+            {
+                (spawnableObj as Collectible).collectibleParameters = (CollectibleSpawnable)spawnable;
+                // implement ?..
+            }
         }
     }
 

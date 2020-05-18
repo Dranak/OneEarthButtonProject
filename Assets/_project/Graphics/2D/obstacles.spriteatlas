@@ -42,22 +42,40 @@ SpriteAtlas:
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: -2824613798883352397, guid: ea7bbf6a3a756e54781a3a9b96c54f3e, type: 3}
-    - {fileID: 3383585356591685064, guid: 559c65d210f950a4189015045f22cf6c, type: 3}
-    - {fileID: 4747338645490024123, guid: 559c65d210f950a4189015045f22cf6c, type: 3}
-    - {fileID: 6333241670078913907, guid: ea7bbf6a3a756e54781a3a9b96c54f3e, type: 3}
-    totalSpriteSurfaceArea: 502927
+    - {fileID: 7880480322225668665, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+    - {fileID: 4428431818956017365, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+    - {fileID: -8070191969714574970, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+    - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+    - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+    - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+    - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+    - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+    - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+    - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
+    totalSpriteSurfaceArea: 1854498
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 3383585356591685064, guid: 559c65d210f950a4189015045f22cf6c, type: 3}
-  - {fileID: 4747338645490024123, guid: 559c65d210f950a4189015045f22cf6c, type: 3}
-  - {fileID: -2824613798883352397, guid: ea7bbf6a3a756e54781a3a9b96c54f3e, type: 3}
-  - {fileID: 6333241670078913907, guid: ea7bbf6a3a756e54781a3a9b96c54f3e, type: 3}
+  - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+  - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+  - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+  - {fileID: 4428431818956017365, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+  - {fileID: 7880480322225668665, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+  - {fileID: -8070191969714574970, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+  - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+  - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+  - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
+  - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Groupe 2
-  - Calque 1
-  - Canette
-  - incrustation terre canette
+  - Bouteille_cassee_2
+  - Bouteille_cassee_0
+  - Bouteille_cassee_1
+  - Bouteille_1
+  - Bouteille_0
+  - Bouteille_2
+  - Canette_0
+  - Canette_1
+  - Canette_2
+  - Eggshell
   m_Tag: obstacles
   m_IsVariant: 0
