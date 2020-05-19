@@ -306,10 +306,10 @@ MonoBehaviour:
   obstacleParameters:
     Size: {x: 1, y: 2}
     BlocPosition: {x: 0, y: 0}
+    BodyOffset: {x: 0, y: 0}
     BoundsSize: {x: 0, y: 0}
     SpawnablePrefabIndex: 0
     BodyRotation: {x: 0, y: 0, z: 0, w: 0}
-    BodyOffset: {x: 0, y: 0}
     ObsKind: 0
     OffsetXRange: {x: 0, y: 0}
     OffsetYRange: {x: 0, y: 0}

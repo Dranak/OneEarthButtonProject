@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class Spawnable
+public abstract class Spawnable
 {
     public Vector2Int Size; // the grid-wise size (1 as minimum)
     public Vector2Int BlocPosition;

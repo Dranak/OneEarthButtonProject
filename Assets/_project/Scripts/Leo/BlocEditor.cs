@@ -192,6 +192,9 @@ public class BlocEditor : Editor
             else
             {
                 bc.blocsScriptable.storedBlocs.Add(newBloc);
+                EditorUtility.SetDirty(bc.blocsScriptable);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
 
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(blocName);  // set pop field as equal to the new bloc name
@@ -322,19 +325,19 @@ public class BlocEditor : Editor
             var gT = g.transform;
             gT.localPosition = (Vector2)spawnable.BlocPosition;
             var bodyT = gT.GetChild(0);
+            bodyT.localPosition = spawnable.BodyOffset;
 
             var spawnableObj = gT.GetComponentInChildren<SpawnableObject>();
-            Type spawnableType = spawnableObj.GetSpawnable().GetType();
-            if (spawnableType == typeof(ObstacleSpawnable))
+            //Type spawnableType = spawnableObj.GetSpawnable().GetType();
+            
+            if (spawnableObj is Obstacle)
             {
-                bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
                 bodyT.rotation = (spawnable as ObstacleSpawnable).BodyRotation;
                 (spawnableObj as Obstacle).obstacleParameters = (ObstacleSpawnable)spawnable;
             }
-            else if (spawnableType == typeof(CollectibleSpawnable))
+            else if (spawnableObj is Collectible)
             {
                 (spawnableObj as Collectible).collectibleParameters = (CollectibleSpawnable)spawnable;
-                // implement ?..
             }
         }
     }

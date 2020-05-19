@@ -7,7 +7,7 @@ public class Collectible : SpawnableObject
     public void SetCollectible(in Vector2Int _blocPos, in int _prefabIndex) // + new parameters?
     {
         base.SetSpawnable(collectibleParameters, _blocPos, collectibleParameters.BodyOffset, _prefabIndex);
-        SetAnchorBodyPos();
+        //SetAnchorBodyPos(); // useless if collectible hasn't got precise positioning
     }
     public void SetCollectible(in Vector2Int _blocPos, in int _prefabIndex, in Vector2 _bodyOffset) // + parameter for precise positionning (smaller than 1)
     {
