@@ -12,16 +12,16 @@ public class Obstacle : SpawnableObject
 
     public ObstacleSpawnable obstacleParameters;
 
-    public void SetObstacle(in Vector2Int _blocPos, in int _prefabIndex, in Vector2 _bodyOffset, in Vector2 _rectBounds, in Quaternion _bodyRot)
+    public void SetObstacle(in Vector2Int _blocPos, in int _prefabIndex, in Vector2 _bodyOffset, in Vector2 _rectBounds, in float _bodyRot)
     {
-        base.SetSpawnable(obstacleParameters, _blocPos, _bodyOffset, _prefabIndex);
+        base.SetSpawnable(obstacleParameters, _blocPos, _prefabIndex, _bodyOffset);
         obstacleParameters.BoundsSize = _rectBounds;
         obstacleParameters.BodyRotation = _bodyRot;
     }
 
     private void OnEnable()
     {
-        objectBody.localRotation = obstacleParameters.BodyRotation;
+        objectBody.localRotation = Quaternion.Euler(0, 0, obstacleParameters.BodyRotation);
         objectBody.localPosition = obstacleParameters.BodyOffset;
     }
 

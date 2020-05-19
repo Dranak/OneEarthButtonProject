@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1601252459335991507
 GameObject:
@@ -177,7 +177,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -301,15 +301,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78c98cc9bbe864488d6b640f981b20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Size: {x: 1, y: 2}
   objectBody: {fileID: 5880604076227151516}
   obstacleRotation: 0
   obstacleParameters:
-    Size: {x: 1, y: 2}
     BlocPosition: {x: 0, y: 0}
     BodyOffset: {x: 0, y: 0}
     BoundsSize: {x: 0, y: 0}
     SpawnablePrefabIndex: 0
-    BodyRotation: {x: 0, y: 0, z: 0, w: 0}
+    BodyRotation: 0
     ObsKind: 0
     OffsetXRange: {x: 0, y: 0}
     OffsetYRange: {x: 0, y: 0}

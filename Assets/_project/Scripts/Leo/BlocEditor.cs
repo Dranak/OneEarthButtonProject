@@ -192,10 +192,6 @@ public class BlocEditor : Editor
             else
             {
                 bc.blocsScriptable.storedBlocs.Add(newBloc);
-                EditorUtility.SetDirty(bc.blocsScriptable);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
-
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(blocName);  // set pop field as equal to the new bloc name
             }
@@ -261,19 +257,19 @@ public class BlocEditor : Editor
                 g.isStatic = bc.rootTransform.gameObject.isStatic;
             }
 
-            var rotation = dummy.transform.GetChild(0).rotation;
+            var rotation = dummy.transform.GetChild(0).rotation.eulerAngles.z;
             var offset = dummy.transform.GetChild(0).localPosition;
 
-            g.transform.GetChild(0).rotation = rotation;
+            g.transform.GetChild(0).rotation = Quaternion.Euler(0, 0, rotation);
             g.transform.GetChild(0).localPosition = offset;
 
             var spawnable = g.GetComponent<SpawnableObject>();
             var spawnableParameters = spawnable.GetSpawnable();
             var obstacleIndex = GetIndexFromPrefabList(bc.blocsScriptable.obstaclesPrefabs, g);
-            var obsRectBounds = dummyBounds.size;
 
+            var obsRectBounds = dummyBounds.size;
             if (obsRectBounds == Vector3.zero)
-                obsRectBounds = (Vector2)spawnableParameters.Size;
+                obsRectBounds = (Vector2)spawnable.Size;
             var spawnableType = spawnableParameters.GetType();
             if (typeof(ObstacleSpawnable) == spawnableType)
             {
@@ -332,7 +328,7 @@ public class BlocEditor : Editor
             
             if (spawnableObj is Obstacle)
             {
-                bodyT.rotation = (spawnable as ObstacleSpawnable).BodyRotation;
+                bodyT.rotation = Quaternion.Euler(0, 0, (spawnable as ObstacleSpawnable).BodyRotation);
                 (spawnableObj as Obstacle).obstacleParameters = (ObstacleSpawnable)spawnable;
             }
             else if (spawnableObj is Collectible)

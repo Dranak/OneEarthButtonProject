@@ -10,7 +10,7 @@ public class ObstacleSpawnable : Spawnable
         ROTATIVE,
         LINEMOVE
     }
-    public Quaternion BodyRotation;
+    public float BodyRotation;
     public ObstacleKind ObsKind;
     [MinMaxSlider(-6, 6)]
     public Vector2Int OffsetXRange;

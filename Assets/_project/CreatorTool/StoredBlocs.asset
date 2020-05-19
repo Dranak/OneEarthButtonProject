@@ -15,15 +15,14 @@ MonoBehaviour:
   storedBlocs:
   - blocName: test
     blockArea: 0
-    blocCount: 6
-    blocLength: 18
+    blocCount: 5
+    blocLength: 21
     spawnlablesParams:
     - id: 0
     - id: 1
     - id: 2
     - id: 3
     - id: 4
-    - id: 5
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -33,12 +32,12 @@ MonoBehaviour:
     00000000:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 6, y: -3}
-        BodyOffset: {x: -0.10945606, y: 0.52331924}
-        BoundsSize: {x: 1.8005891, y: 2.0766773}
+        Tag: obstacle_can
+        BlocPosition: {x: 9, y: -4}
+        BodyOffset: {x: 0, y: 0}
+        BoundsSize: {x: 1, y: 2}
         SpawnablePrefabIndex: 0
-        BodyRotation: {x: -0, y: -0, z: -0.29028466, w: 0.95694035}
+        BodyRotation: 0
         ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
@@ -46,12 +45,12 @@ MonoBehaviour:
     00000001:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 15, y: -7}
-        BodyOffset: {x: 1.77423, y: -0.09685421}
-        BoundsSize: {x: 2.105586, y: 1.5992246}
+        Tag: obstacle_can
+        BlocPosition: {x: 19, y: -7}
+        BodyOffset: {x: -0.11784935, y: 0.6992502}
+        BoundsSize: {x: 1.9681149, y: 1.9759707}
         SpawnablePrefabIndex: 0
-        BodyRotation: {x: -0, y: -0, z: 0.5555702, w: 0.8314697}
+        BodyRotation: 315
         ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
@@ -59,12 +58,12 @@ MonoBehaviour:
     00000002:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 11, y: -4}
-        BodyOffset: {x: -0.06283474, y: 0.876461}
-        BoundsSize: {x: 3.906188, y: 2.1142023}
+        Tag: obstacle_bottle
+        BlocPosition: {x: 7, y: -8}
+        BodyOffset: {x: 0, y: 0}
+        BoundsSize: {x: 1.9681149, y: 1.9759707}
         SpawnablePrefabIndex: 1
-        BodyRotation: {x: -0, y: -0, z: -0.5555702, w: 0.83146966}
+        BodyRotation: 0
         ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
@@ -72,33 +71,22 @@ MonoBehaviour:
     00000003:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 5, y: -8}
-        BodyOffset: {x: 0, y: 0}
-        BoundsSize: {x: 0, y: 0}
+        Tag: collectible_eggshell
+        BlocPosition: {x: 13, y: -6}
+        BodyOffset: {x: 0.25, y: 0.25}
+        BoundsSize: {x: 0.5, y: 0.5}
         SpawnablePrefabIndex: 2
         anchorBodyPosition: {x: 0, y: 0}
-        PointGain: 0
-        IsEggShell: 0
+        PointGain: 10
+        IsEggShell: 1
     00000004:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 11, y: -8}
-        BodyOffset: {x: 0, y: 0}
-        BoundsSize: {x: 0, y: 0}
+        Tag: collectible_eggshell
+        BlocPosition: {x: 13, y: -9}
+        BodyOffset: {x: 0.25, y: 0.25}
+        BoundsSize: {x: 0.5, y: 0.5}
         SpawnablePrefabIndex: 2
         anchorBodyPosition: {x: 0, y: 0}
-        PointGain: 0
-        IsEggShell: 0
-    00000005:
-      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Size: {x: 0, y: 0}
-        BlocPosition: {x: 17, y: -9}
-        BodyOffset: {x: 0, y: 0}
-        BoundsSize: {x: 0, y: 0}
-        SpawnablePrefabIndex: 2
-        anchorBodyPosition: {x: 0, y: 0}
-        PointGain: 0
-        IsEggShell: 0
+        PointGain: 10
+        IsEggShell: 1

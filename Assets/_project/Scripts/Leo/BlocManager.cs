@@ -12,7 +12,7 @@ public class BlocManager : MonoBehaviour
     [SerializeField]
     Bloc.BlocArea startingBlocKind = 0;
     [SerializeField]
-    Bloc[] countryBG2, townBG2, transitionsBG;//...
+    BlocsStorageScriptableObject blocsStorage;
     public List<GameObject> wpPool;
     [SerializeField]
     GameObject blocPoolerPrefab;
@@ -21,12 +21,10 @@ public class BlocManager : MonoBehaviour
     [Header("Obstacles")]
 
     [SerializeField]
-    Transform cansPoolT;
-    [SerializeField]
-    Transform bottlesPoolT, strawsPoolT;
+    Transform spawnablesPoolsT;
     [SerializeField][HideInInspector]
-    List<GameObject> cansPool, bottlesPool, strawsPool;
-    Dictionary<Vector2Int, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2Int, List<GameObject>>();
+    List<GameObject> cansPool, bottlesPool; // used only for the dictionary
+    Dictionary<Vector2Int, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2Int, List<GameObject>>(); // only for total randomizer
     [SerializeField]
     Transform obstaclesAnchor;
 
@@ -38,8 +36,9 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            AddToPool(cansPoolT, ref cansPool);
-            AddToPool(bottlesPoolT, ref bottlesPool);
+            SetPoolersHierarchy(spawnablesPoolsT, blocsStorage);
+            AddToPool(spawnablesPoolsT.GetChild(0), ref cansPool);
+            AddToPool(spawnablesPoolsT.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
             currentWPMax = currentBlocMax;
@@ -49,6 +48,16 @@ public class BlocManager : MonoBehaviour
             Destroy(this);
     }
 
+    void SetPoolersHierarchy(in Transform poolsParent, in BlocsStorageScriptableObject _blocsStorage)
+    {
+        if (poolsParent.childCount != _blocsStorage.obstaclesPrefabs.Count)
+            return;
+        foreach (Transform pool in poolsParent)
+        {
+            var poolPrefabName = pool.GetChild(0).name;
+            pool.SetSiblingIndex(_blocsStorage.obstaclesPrefabs.FindIndex(p => p.name == poolPrefabName));
+        }
+    }
     void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false)
     {
         foreach (Transform child in parent)
@@ -57,8 +66,7 @@ public class BlocManager : MonoBehaviour
             if (!letActive)
                 child.gameObject.SetActive(false);
         }
-
-        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().obstacleParameters.Size;
+        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().Size;
         obstaclePoolsDic.Add(obstaclesSize, pool);
     }
 
@@ -177,7 +185,7 @@ public class BlocManager : MonoBehaviour
             obstacleObj.obstacleRotation = obstacletype; // set the obstacle type on the spawned obstacle object
 
             // get how much the obstacle is taking space (X and Y)
-            Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().obstacleParameters.Size;
+            Vector2 obstacleOverlapp = obstacleSpawned.GetComponent<Obstacle>().Size;
             switch (obstacletype)
             {
                 case Obstacle.ObstacleRotation.HORIZONTAL:
@@ -289,15 +297,15 @@ public class BlocManager : MonoBehaviour
         {
             case Obstacle.ObstacleRotation.HORIZONTAL:
                 obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
-                obstacleOffset = Vector2.up * obstacleObject.obstacleParameters.Size.x;
+                obstacleOffset = Vector2.up * obstacleObject.Size.x;
                 break;
             case Obstacle.ObstacleRotation.SIDEWAYS:
                 var backOrForth = Random.Range(0, 2) * 2 - 1;
                 obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
                 if (backOrForth < 0)
-                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.obstacleParameters.Size.y);
+                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.Size.y);
                 else
-                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.obstacleParameters.Size.x);
+                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.Size.x);
                 break;
         }
         obstacleBody.transform.localPosition = (Vector3)obstacleOffset;

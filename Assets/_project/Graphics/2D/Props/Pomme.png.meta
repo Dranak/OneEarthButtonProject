@@ -1,7 +1,46 @@
 fileFormatVersion: 2
-guid: 008821d7ca7986c4fbf80e0e88b06659
+guid: f01875da5319759438468f027269b375
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4981867654178296933
+    second: Pomme_0
+  - first:
+      213: 5773722506178961019
+    second: Pomme_1
+  - first:
+      213: -1096486704364685834
+    second: Pomme_2
+  - first:
+      213: -3229309981968820445
+    second: Pomme_3
+  - first:
+      213: -2546483103613826464
+    second: Pomme_4
+  - first:
+      213: 7938368259989030669
+    second: Pomme_5
+  - first:
+      213: -7471098053753270014
+    second: Pomme_6
+  - first:
+      213: -1350803123417227104
+    second: Pomme_7
+  - first:
+      213: 1129095151625733475
+    second: Pomme_8
+  - first:
+      213: -2409013888733041280
+    second: Pomme_9
+  - first:
+      213: -3018648449449693315
+    second: Pomme_10
+  - first:
+      213: -1466568056463932722
+    second: Pomme_11
+  - first:
+      213: -8964244759232252187
+    second: Pomme_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -61,7 +100,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -73,7 +112,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -85,7 +124,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,7 +136,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -121,11 +160,53 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Pomme_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 190
+        height: 236
+      alignment: 9
+      pivot: {x: 0.042105265, y: 0.076271184}
+      border: {x: 8, y: 18, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ba1ba73c9dcdab0800000000000000
+      internalID: -4981867654178296933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pomme_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 0
+        width: 190
+        height: 236
+      alignment: 9
+      pivot: {x: 0.042105265, y: 0.076271184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e99746702602050800000000000000
+      internalID: 5773722506178961019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: e0e8f881b8d4ca6479a883713135108a
     internalID: 0
     vertices: []
     indices: 
