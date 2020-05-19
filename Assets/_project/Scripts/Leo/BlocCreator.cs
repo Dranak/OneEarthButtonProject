@@ -14,7 +14,7 @@ public class BlocCreator : MonoBehaviour
     [HideInInspector] public LayerMask layerMask;
     [HideInInspector] public Transform rootTransform;
     public GameObject[] prefabPallete;
-    public BlocsStorageScriptableObject blocScriptable;
+    public BlocsStorageScriptableObject blocsScriptable;
 
     [HideInInspector] public bool useGrid = true;
     [HideInInspector] public int selectedPrefabIndex = 0;
@@ -32,9 +32,9 @@ public class BlocCreator : MonoBehaviour
 
     public void OnValidate()
     {
-        if (prefabPallete != blocScriptable.obstaclesPrefabs.ToArray())
+        if (prefabPallete != blocsScriptable.obstaclesPrefabs.ToArray())
         {
-            blocScriptable.obstaclesPrefabs = prefabPallete.ToList();
+            blocsScriptable.obstaclesPrefabs = prefabPallete.ToList();
         }
     }
 }

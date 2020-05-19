@@ -130,9 +130,10 @@ MonoBehaviour:
   collectibleParameters:
     Size: {x: 1, y: 1}
     BlocPosition: {x: 0, y: 0}
-    BodyRotation: {x: 0, y: 0, z: 0, w: 0}
-    BoundsSize: {x: 1, y: 1}
+    BoundsSize: {x: 0.5, y: 0.5}
     SpawnablePrefabIndex: 0
+    PointGain: 10
+    IsEggShell: 1
 --- !u!1 &4462045825403191495
 GameObject:
   m_ObjectHideFlags: 0
