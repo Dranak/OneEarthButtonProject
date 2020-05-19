@@ -21,7 +21,7 @@ public class BlocManager : MonoBehaviour
     [Header("Obstacles")]
 
     [SerializeField]
-    Transform spawnablesPoolsT;
+    PoolersCreator spawnablesPoolsT; // spawnables pools parent
     [SerializeField][HideInInspector]
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2Int, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2Int, List<GameObject>>(); // only for total randomizer
@@ -36,9 +36,8 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            SetPoolersHierarchy(spawnablesPoolsT, blocsStorage);
-            AddToPool(spawnablesPoolsT.GetChild(0), ref cansPool);
-            AddToPool(spawnablesPoolsT.GetChild(1), ref bottlesPool);
+            AddToPool(spawnablesPoolsT.transform.GetChild(0), ref cansPool);
+            AddToPool(spawnablesPoolsT.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
             currentWPMax = currentBlocMax;

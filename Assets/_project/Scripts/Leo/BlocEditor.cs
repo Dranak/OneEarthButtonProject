@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System;
 
 [CustomEditor(typeof(BlocCreator))]
 //[CanEditMultipleObjects]
@@ -224,8 +223,7 @@ public class BlocEditor : Editor
         while (stamp.transform.childCount > 0)
             DestroyImmediate(stamp.transform.GetChild(0).gameObject);
 
-        GameObject dummy;
-        dummy = PrefabUtility.InstantiatePrefab(bc.SelectedPrefab as GameObject) as GameObject;
+        GameObject dummy = PrefabUtility.InstantiatePrefab(bc.SelectedPrefab as GameObject) as GameObject;
         foreach (var c in dummy.GetComponentsInChildren<Collider>())
             c.enabled = false;
         dummy.transform.parent = stamp.transform;
