@@ -319,7 +319,8 @@ public class BlocEditor : Editor
             var gT = g.transform;
             gT.localPosition = (Vector2)spawnable.BlocPosition;
             var bodyT = gT.GetChild(0);
-            bodyT.localPosition = spawnable.BodyOffset;
+            if (spawnable is ObstacleSpawnable)
+                bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
 
             var spawnableObj = gT.GetComponentInChildren<SpawnableObject>();
             //Type spawnableType = spawnableObj.GetSpawnable().GetType();

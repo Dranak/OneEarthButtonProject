@@ -9,15 +9,6 @@ public class Collectible : SpawnableObject
         base.SetSpawnable(collectibleParameters, _blocPos, _prefabIndex);
         // + new parameters?
     }
-    public void SetCollectible(in Vector2Int _blocPos, in int _prefabIndex, in Vector2 _bodyOffset) // + parameter for precise positionning (smaller than 1)
-    {
-        base.SetSpawnable(collectibleParameters, _blocPos, _prefabIndex, _bodyOffset);
-        SetAnchorBodyPos();
-    }
-    void SetAnchorBodyPos()
-    {
-        collectibleParameters.anchorBodyPosition = collectibleParameters.BlocPosition + collectibleParameters.BodyOffset - collectibleParameters.BoundsSize / 2;
-    }
 
     private void OnEnable()
     {

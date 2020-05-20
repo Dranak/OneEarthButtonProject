@@ -11,6 +11,7 @@ public class ObstacleSpawnable : Spawnable
         LINEMOVE
     }
     public float BodyRotation;
+    public Vector2 BodyOffset; // body sub-object offset, used for obstacle offsetting post-rotation
     public ObstacleKind ObsKind;
     [MinMaxSlider(-6, 6)]
     public Vector2Int OffsetXRange;
