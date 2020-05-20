@@ -34,24 +34,24 @@ public class Player : MonoBehaviour
     public float SpeedDig;
     [Tooltip("The Time the worm take to make the distance From BedRock To Grass")]
     public float SpeedRising;
-    //[Tooltip("The Time the worm take before he dig")]
-    //public float AccelerationTimeRising;
-    //public AnimationCurve AccelerationCurveRising;
+    [Tooltip("The Time the worm take before he dig")]
+    public float AccelerationTimeRising;
+    public AnimationCurve AccelerationCurveRising;
    
-    //[Tooltip("The Time the worm take before he dig")]
-    //public float AccelerationTimeDig;
-    //public AnimationCurve AccelerationCurveDig;
+    [Tooltip("The Time the worm take before he dig")]
+    public float AccelerationTimeDig;
+    public AnimationCurve AccelerationCurveDig;
 
-    [Header("Motion-Angle")]
-    [Space]
+    //[Header("Motion-Angle")]
+    //[Space]
 
-    public float MaxAngleRising;
-    public float DurationRotateDig;
-    public float DurationRotateRising;
-    [Range(0, 360)]
-    public float MinAngleDig;
-    [Range(0, 360)]
-    public float MaxAngleDig;
+    //public float MaxAngleRising;
+    //public float DurationRotateDig;
+    //public float DurationRotateRising;
+    //[Range(0, 360)]
+    //public float MinAngleDig;
+    //[Range(0, 360)]
+    //public float MaxAngleDig;
 
    
 
@@ -75,21 +75,13 @@ public class Player : MonoBehaviour
         WormHead.VelocityDig = distance / SpeedDig;
         WormHead.VelocityRising = distance / SpeedRising;
         WormHead.Speed = SpeedRight;
-        //WormHead.AccelerationCurveDig = AccelerationCurveDig;
-        //WormHead.AccelerationCurveRising = AccelerationCurveRising;
-        //WormHead.AccelerationTimeRising = AccelerationTimeRising;
-        //WormHead.AccelerationTimeDig = AccelerationTimeDig;
+        WormHead.AccelerationCurveDig = AccelerationCurveDig;
+        WormHead.AccelerationCurveRising = AccelerationCurveRising;
+        WormHead.AccelerationTimeRising = AccelerationTimeRising;
+        WormHead.AccelerationTimeDig = AccelerationTimeDig;
     }
 
-    void SetDiggingAngle()
-    {
-        WormHead.MinAngleDig = MinAngleDig;
-        WormHead.MaxAngleDig = MaxAngleDig;
-        WormHead.MaxAngleRising = MaxAngleRising;
-
-        WormHead.DurationRotateDig = DurationRotateDig;
-        WormHead.DurationRotateRising = DurationRotateRising;
-    }
+   
 
     void GainPointUnderground()
     {
@@ -121,7 +113,7 @@ public class Player : MonoBehaviour
     void SetupWorm()
     {
         SetVelocityFromSpeed();
-        SetDiggingAngle();
+        
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
 
@@ -163,6 +155,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    //void SetDiggingAngle()
+    //{
+    //    //WormHead.MinAngleDig = MinAngleDig;
+    //    //WormHead.MaxAngleDig = MaxAngleDig;
+    //    //WormHead.MaxAngleRising = MaxAngleRising;
+
+    //    //WormHead.DurationRotateDig = DurationRotateDig;
+    //    //WormHead.DurationRotateRising = DurationRotateRising;
+    //}
     //IEnumerator  AddScoreEverySecond()
     //{
     //    Score += UndergroundBonus;

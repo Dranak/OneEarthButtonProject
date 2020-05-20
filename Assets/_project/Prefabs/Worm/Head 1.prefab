@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 6899084864064695815}
   - component: {fileID: 6899084864064695809}
   - component: {fileID: 6899084864064695810}
-  - component: {fileID: 6899084864064695808}
   - component: {fileID: 1138417978277333391}
   - component: {fileID: 489562508}
+  - component: {fileID: 7494857935275730649}
   m_Layer: 8
   m_Name: Head 1
   m_TagString: Player
@@ -113,7 +113,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6899084864064695810
@@ -137,22 +137,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &6899084864064695808
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6899084864064695812}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.425
 --- !u!114 &1138417978277333391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +156,20 @@ MonoBehaviour:
   OffsetBodyPart: 1
   Line: {fileID: 489562508}
   Speed: 5
+  AccelerationTimeRising: 0
+  AccelerationCurveRising:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AccelerationTimeDig: 0
+  AccelerationCurveDig:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   MinAngleDig: 0
   MaxAngleDig: 0
   DurationRotateDig: 0
@@ -274,3 +272,44 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!60 &7494857935275730649
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899084864064695812}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9777778, y: 0.95555556}
+    newSize: {x: 1.76, y: 1.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.48333335, y: -0.17777778}
+      - {x: 0.5, y: -0.10555556}
+      - {x: 0.5, y: 0.13333334}
+      - {x: 0.4388889, y: 0.27222222}
+      - {x: 0.3, y: 0.42222223}
+      - {x: 0.1388889, y: 0.5}
+      - {x: -0.45000002, y: 0.5}
+      - {x: -0.4888889, y: 0.49444446}
+      - {x: -0.5, y: 0.48333335}
+      - {x: -0.5, y: -0.48333335}
+      - {x: -0.4888889, y: -0.4888889}
+      - {x: -0.45000002, y: -0.5}
+      - {x: 0.12777779, y: -0.5}
+      - {x: 0.25555557, y: -0.45000002}
+      - {x: 0.32222223, y: -0.4}
+      - {x: 0.45000002, y: -0.25555557}

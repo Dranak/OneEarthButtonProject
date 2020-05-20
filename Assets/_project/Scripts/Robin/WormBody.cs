@@ -35,7 +35,8 @@ public class WormBody : MonoBehaviour
     {
         if (!Target)
             return;
-        Rigidbody.MovePosition(Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.transform.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.transform.position, Target.Rigidbody.transform.position) * Damping));
+ 
+            Rigidbody.MovePosition(Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.transform.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.transform.position, Target.Rigidbody.transform.position) * Damping));
         //Vector3 diff = Vector3.zero;
         //if (Target is WormHead)
         //{
