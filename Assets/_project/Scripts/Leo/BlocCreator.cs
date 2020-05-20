@@ -19,7 +19,6 @@ public class BlocCreator : MonoBehaviour
     [HideInInspector] public bool useGrid = true;
     [HideInInspector] public int selectedPrefabIndex = 0;
     [HideInInspector] public float maxIntersectionVolume = 0;
-    public CollisionTest collisionTest;
     [HideInInspector] public List<string> blocNames; // available blocs names
 
     public GameObject SelectedPrefab

@@ -45,18 +45,23 @@ public static class GameObjectExtensions
 
         Vector2[] vertices = new Vector2[0];
         var collider = gameObject.GetComponent<Collider2D>();
+        var colliderType = collider.GetType();
 
-        if (collider.GetType() == typeof(PolygonCollider2D))
+        if (colliderType == typeof(PolygonCollider2D))
             vertices = (collider as PolygonCollider2D).points;
-        else if (collider.GetType() == typeof(EdgeCollider2D))
+        else if (colliderType == typeof(EdgeCollider2D))
             vertices = (collider as EdgeCollider2D).points;
-        else if (collider.GetType() == typeof(BoxCollider2D))
+        else if (colliderType == typeof(BoxCollider2D))
         {
             float top = collider.offset.y + (collider as BoxCollider2D).size.y / 2;
             float btm = collider.offset.y - (collider as BoxCollider2D).size.y / 2;
             float left = collider.offset.x - (collider as BoxCollider2D).size.x / 2;
             float right = collider.offset.x + (collider as BoxCollider2D).size.x / 2;
             vertices = new Vector2[4] { new Vector2(left, top), new Vector2(right, top), new Vector2(right, btm), new Vector2(left, btm) };
+        }
+        else if (colliderType == typeof(CircleCollider2D))
+        {
+            return collider.bounds;
         }
 
         if (vertices.Length <= 0) return bounds;

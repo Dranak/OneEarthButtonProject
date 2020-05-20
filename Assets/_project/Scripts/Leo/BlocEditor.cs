@@ -226,12 +226,16 @@ public class BlocEditor : Editor
         bc.blocNames = bc.blocsScriptable.storedBlocs.Select(w => w.blocName).ToList();
     }
 
+    GameObject dummy = null;
+    SpawnableObject dummySpawnable = null;
     void CreateNewStamp()
     {
         while (stamp.transform.childCount > 0)
             DestroyImmediate(stamp.transform.GetChild(0).gameObject);
 
-        GameObject dummy = PrefabUtility.InstantiatePrefab(bc.SelectedPrefab as GameObject) as GameObject;
+        dummy = PrefabUtility.InstantiatePrefab(bc.SelectedPrefab as GameObject) as GameObject;
+        dummySpawnable = dummy.GetComponent<SpawnableObject>();
+
         foreach (var c in dummy.GetComponentsInChildren<Collider>())
             c.enabled = false;
         dummy.transform.parent = stamp.transform;
@@ -373,18 +377,28 @@ public class BlocEditor : Editor
         mousePosition = ray.origin;
 
         // Handling raycast
-        int creatorMask = bc.layerMask << 0;
+        int creatorMask = bc.layerMask;
         RaycastHit2D hit2d = editorPS.Raycast(ray.origin, ray.direction, Mathf.Infinity, creatorMask);
 
         if (hit2d.collider)
         {
             //worldCursor = hit2d.point;
-            Vector3 snappedMousePos = new Vector3(Mathf.Floor(mousePosition.x), Mathf.Floor(mousePosition.y));
-            var discS = new Vector3(.5f, .5f);
+            Vector3 snappedMousePos = Vector3.zero;
+            var discS = new Vector3(.5f, .5f); // default disc size 
+            if (dummySpawnable.Size.x < 1 && dummySpawnable.GetSpawnable() is CollectibleSpawnable) //specific to small collectibles(less than 1 of size)
+            {
+                snappedMousePos = new Vector3(Mathf.Floor(mousePosition.x / dummySpawnable.Size.x), Mathf.Floor(mousePosition.y / dummySpawnable.Size.x)) * dummySpawnable.Size.x;
+                discS = dummySpawnable.Size / 2;
+            }
+            else
+            {
+                snappedMousePos = new Vector3(Mathf.Floor(mousePosition.x), Mathf.Floor(mousePosition.y));
+            }
             var visibleMousePos = snappedMousePos + discS;
-            Handles.DrawWireDisc(visibleMousePos, -ray.direction, discS.magnitude); // white disc is always visible
 
-            OverlapCapsule(visibleMousePos, discS.magnitude * 2, bc.layerMask);
+            Handles.DrawWireDisc(visibleMousePos, -ray.direction, discS.x); // white disc is always visible
+
+            OverlapCircle(visibleMousePos, discS.x * 2, 1 << LayerMask.NameToLayer("Obstacle"));
             if (isErasing)
                 DrawEraser(snappedMousePos);
             else
@@ -416,64 +430,52 @@ public class BlocEditor : Editor
         }
     }
 
-    private void OverlapCapsule(Vector2 center, float brushRadius, LayerMask layerMask)
+    private void OverlapCircle(Vector2 center, float brushRadius, int layerMask)
     {
         overlaps.Clear();
         overlappedGameObjects.Clear();
-        if (bc.collisionTest == BlocCreator.CollisionTest.ColliderBounds)
+
+        var capsule = new Bounds(center, new Vector3(brushRadius, brushRadius, brushRadius));
+        for (var i = 0; i < bc.rootTransform.childCount; ++i)
         {
-            foreach (var c in Physics2D.OverlapCapsuleAll(center, Vector2.one, CapsuleDirection2D.Vertical, 0f))
+            var child = bc.rootTransform.GetChild(i);
+            if (child.gameObject == stamp)
+                continue;
+            var bounds = child.GetChild(0).gameObject.GetBoxColliderFixedBounds();
+            if (capsule.Intersects(bounds))
             {
-                if (c.transform.parent == bc.rootTransform)
-                {
-                    overlaps.Add(c.bounds);
-                    overlappedGameObjects.Add(c.gameObject);
-                }
-            }
-        }
-        if (bc.collisionTest == BlocCreator.CollisionTest.RendererBounds)
-        {
-            var capsule = new Bounds(center, new Vector3(brushRadius, brushRadius, brushRadius));
-            for (var i = 0; i < bc.rootTransform.childCount; i++)
-            {
-                var child = bc.rootTransform.GetChild(i);
-                var bounds = child.gameObject.GetRendererBounds();
-                if (capsule.Intersects(bounds))
-                {
-                    overlaps.Add(bounds);
-                    overlappedGameObjects.Add(child.gameObject);
-                }
+                overlaps.Add(bounds);
+                overlappedGameObjects.Add(child.gameObject);
             }
         }
     }
 
     void DrawStamp(Vector3 center)
     {
-        stamp.transform.parent = bc.transform;
+        stamp.transform.parent = bc.rootTransform;
 
         stamp.transform.position = center;
 
         stamp.transform.rotation = Quaternion.identity;
 
-        var dummy = stamp.transform.GetChild(0).gameObject;
-        dummy.SetActive(true);// .gameObject.SetActive(true);
+        dummy.SetActive(true);
 
-        var bounds = stamp.GetRendererBounds();
-        var childVolume = bounds.size.x * bounds.size.y * bounds.size.z;
+        /*var bounds = dummy.transform.GetChild(0).gameObject.GetBoxColliderFixedBounds();
+        var childVolume = bounds.size.x * bounds.size.y;
         foreach (var b in overlaps)
         {
             if (b.Intersects(bounds))
             {
-                var overlapVolume = b.size.x * b.size.y * b.size.z;
+                var overlapVolume = b.size.x * b.size.y;
                 var intersection = Intersection(b, bounds);
-                var intersectionVolume = intersection.size.x * intersection.size.y * intersection.size.z;
+                var intersectionVolume = intersection.size.x * intersection.size.y;
                 var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume, intersectionVolume / childVolume);
                 if (maxIntersection > bc.maxIntersectionVolume)
                 {
                     dummy.SetActive(false);
                 }
             }
-        }
+        }*/
     }
 
     Bounds Intersection(Bounds A, Bounds B)

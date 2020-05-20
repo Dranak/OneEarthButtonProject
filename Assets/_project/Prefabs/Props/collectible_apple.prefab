@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: collectible_apple
       objectReference: {fileID: 0}
+    - target: {fileID: 567502663715467897, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 692463357366536043, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -529,6 +534,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5773722506178961019, guid: f01875da5319759438468f027269b375,
         type: 3}
+    - target: {fileID: 5987981404753878342, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987981404753878342, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987981404753878342, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8542196433737091509, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_RootOrder
