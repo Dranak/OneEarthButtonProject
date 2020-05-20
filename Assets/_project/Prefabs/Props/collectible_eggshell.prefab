@@ -126,14 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a914fe08785b3044787799c76de04840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: {x: 1, y: 1}
+  Size: {x: 0.5, y: 0.5}
   objectBody: {fileID: 6601043523379389630}
   collectibleParameters:
+    Tag: 
     BlocPosition: {x: 0, y: 0}
-    BodyOffset: {x: 0.25, y: 0.25}
     BoundsSize: {x: 0.5, y: 0.5}
     SpawnablePrefabIndex: 0
-    anchorBodyPosition: {x: 0, y: 0}
     PointGain: 10
     IsEggShell: 1
 --- !u!1 &4462045825403191495

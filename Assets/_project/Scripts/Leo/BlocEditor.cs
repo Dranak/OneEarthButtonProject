@@ -161,11 +161,19 @@ public class BlocEditor : Editor
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
-            var spawnables = bc.rootTransform.GetComponentsInChildren<SpawnableObject>().Select(o => o.GetSpawnable()).ToArray();
+            var spawnableObjects = bc.rootTransform.GetComponentsInChildren<SpawnableObject>().ToArray();
+            Spawnable[] spawnables = spawnableObjects.Select(o => o.GetSpawnable()).ToArray();
             int blocLength = 0;
-            foreach(Spawnable osbP in spawnables)
+            for(int i = 0; i < spawnableObjects.Length; ++i)
             {
-                var obsRightBoundX = osbP.BoundsSize.x + osbP.BlocPosition.x;
+                var spawnableObject = spawnableObjects[i];
+                var spawnable = spawnables[i];
+                var obsRightBoundX = spawnable.BlocPosition.x;
+                // compute bloc length to possibly add
+                if (spawnable is ObstacleSpawnable)
+                    obsRightBoundX += (spawnable as ObstacleSpawnable).BoundsSize.x;
+                else
+                    obsRightBoundX += spawnableObject.Size.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
             Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, blocName, spawnables);

@@ -4,7 +4,7 @@ public class Collectible : SpawnableObject
 {
     public CollectibleSpawnable collectibleParameters;
 
-    public void SetCollectible(in Vector2Int _blocPos, in int _prefabIndex) // + new parameters?
+    public void SetCollectible(in Vector2 _blocPos, in int _prefabIndex) // + new parameters?
     {
         base.SetSpawnable(collectibleParameters, _blocPos, _prefabIndex);
         // + new parameters?

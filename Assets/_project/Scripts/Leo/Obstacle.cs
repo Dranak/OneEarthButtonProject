@@ -12,7 +12,7 @@ public class Obstacle : SpawnableObject
 
     public ObstacleSpawnable obstacleParameters;
 
-    public void SetObstacle(in Vector2Int _blocPos, in int _prefabIndex, in Vector2 _bodyOffset, in Vector2 _rectBounds, in float _bodyRot)
+    public void SetObstacle(in Vector2 _blocPos, in int _prefabIndex, in Vector2 _bodyOffset, in Vector2 _rectBounds, in float _bodyRot)
     {
         base.SetSpawnable(obstacleParameters, _blocPos, _prefabIndex);
         obstacleParameters.BoundsSize = _rectBounds;

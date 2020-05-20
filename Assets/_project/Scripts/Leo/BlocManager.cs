@@ -11,8 +11,6 @@ public class BlocManager : MonoBehaviour
 
     [SerializeField]
     Bloc.BlocArea startingBlocKind = 0;
-    [SerializeField]
-    BlocsStorageScriptableObject blocsStorage;
     public List<GameObject> wpPool;
     [SerializeField]
     GameObject blocPoolerPrefab;
@@ -21,10 +19,10 @@ public class BlocManager : MonoBehaviour
     [Header("Obstacles")]
 
     [SerializeField]
-    PoolersCreator spawnablesPoolsT; // spawnables pools parent
+    PoolersCreator spawnablesPools; // spawnables pools parent
     [SerializeField][HideInInspector]
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
-    Dictionary<Vector2Int, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2Int, List<GameObject>>(); // only for total randomizer
+    Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
     [SerializeField]
     Transform obstaclesAnchor;
 
@@ -36,8 +34,8 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            AddToPool(spawnablesPoolsT.transform.GetChild(0), ref cansPool);
-            AddToPool(spawnablesPoolsT.transform.GetChild(1), ref bottlesPool);
+            AddToPool(spawnablesPools.transform.GetChild(0), ref cansPool);
+            AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
             currentWPMax = currentBlocMax;
@@ -65,7 +63,7 @@ public class BlocManager : MonoBehaviour
             if (!letActive)
                 child.gameObject.SetActive(false);
         }
-        Vector2Int obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().Size;
+        Vector2 obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().Size;
         obstaclePoolsDic.Add(obstaclesSize, pool);
     }
 

@@ -2,10 +2,10 @@
 
 public abstract class SpawnableObject : MonoBehaviour
 {
-    public Vector2Int Size; // the grid-wise size (1 as minimum unit) -> shall not change ig (part of the prefab)
+    public Vector2 Size; // the grid-wise size -> shall not change ig (part of the prefab)
     public Transform objectBody;
 
-    public virtual void SetSpawnable(Spawnable _spawnableParameters, in Vector2Int _blocPos, in int _prefabIndex)
+    public virtual void SetSpawnable(Spawnable _spawnableParameters, in Vector2 _blocPos, in int _prefabIndex)
     {
         _spawnableParameters.Tag = name;
         _spawnableParameters.BlocPosition = _blocPos;

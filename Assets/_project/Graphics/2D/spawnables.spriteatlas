@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: obstacles
+  m_Name: spawnables
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -77,5 +77,5 @@ SpriteAtlas:
   - Canette_1
   - Canette_2
   - Eggshell
-  m_Tag: obstacles
+  m_Tag: spawnables
   m_IsVariant: 0

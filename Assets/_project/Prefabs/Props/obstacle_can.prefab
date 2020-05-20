@@ -305,11 +305,12 @@ MonoBehaviour:
   objectBody: {fileID: 5880604076227151516}
   obstacleRotation: 0
   obstacleParameters:
+    Tag: 
     BlocPosition: {x: 0, y: 0}
-    BodyOffset: {x: 0, y: 0}
-    BoundsSize: {x: 0, y: 0}
+    BoundsSize: {x: 1, y: 2}
     SpawnablePrefabIndex: 0
     BodyRotation: 0
+    BodyOffset: {x: 0, y: 0}
     ObsKind: 0
     OffsetXRange: {x: 0, y: 0}
     OffsetYRange: {x: 0, y: 0}
