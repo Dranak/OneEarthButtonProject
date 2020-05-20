@@ -379,10 +379,12 @@ public class BlocEditor : Editor
         if (hit2d.collider)
         {
             //worldCursor = hit2d.point;
-            var snappedMousePos = new Vector3(Mathf.Floor(mousePosition.x), Mathf.Floor(mousePosition.y));
-            var visibleMousePos = snappedMousePos + new Vector3(.5f, .5f);
-            Handles.DrawWireDisc(visibleMousePos, -ray.direction, .5f); // white disc is always visible
-            OverlapCapsule(visibleMousePos, 1, bc.layerMask);
+            Vector3 snappedMousePos = new Vector3(Mathf.Floor(mousePosition.x), Mathf.Floor(mousePosition.y));
+            var discS = new Vector3(.5f, .5f);
+            var visibleMousePos = snappedMousePos + discS;
+            Handles.DrawWireDisc(visibleMousePos, -ray.direction, discS.magnitude); // white disc is always visible
+
+            OverlapCapsule(visibleMousePos, discS.magnitude * 2, bc.layerMask);
             if (isErasing)
                 DrawEraser(snappedMousePos);
             else
