@@ -278,11 +278,11 @@ MonoBehaviour:
   - {fileID: 3377678760059438315, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
+  - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   blocsScriptable: {fileID: 11400000, guid: 38949373056f614448cca441245fd0c9, type: 2}
   useGrid: 1
-  selectedPrefabIndex: 0
+  selectedPrefabIndex: 5
   maxIntersectionVolume: 0
-  collisionTest: 0
   blocNames:
   - test
 --- !u!1 &8076917303351851766
