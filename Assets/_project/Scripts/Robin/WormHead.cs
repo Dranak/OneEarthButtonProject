@@ -52,13 +52,10 @@ public class WormHead : WormBody
 
     void Start()
     {
-       
         _collider = GetComponent<PolygonCollider2D>();
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-
-
     }
 
     void Update()
@@ -96,7 +93,7 @@ public class WormHead : WormBody
         else
         {
             timeaccelerationDig = 0f;
-           
+
 
             if (Rigidbody.position.y < StartPosition.y)
             {
@@ -105,14 +102,10 @@ public class WormHead : WormBody
                 Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, timeaccelerationRising, AccelerationTimeRising));
 
                 timeaccelerationRising += Time.fixedDeltaTime;
-              
-            }
-            
-        }
 
-       
-       
-    
+            }
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -129,8 +122,6 @@ public class WormHead : WormBody
         //        CallBackPoint(collectible);
         //    }
         //}
-
-
     }
 
     void UpdateLineRenderer()
