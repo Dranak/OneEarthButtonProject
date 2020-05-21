@@ -26,25 +26,25 @@ public class WormHead : WormBody
     public float VelocityRising { get; set; }
     public float VelocityDig { get; set; }
 
-    //public float AccelerationTimeRising;
-    //public AnimationCurve AccelerationCurveRising;
-    //float timeaccelerationRising = 0f;
+    public float AccelerationTimeRising;
+    public AnimationCurve AccelerationCurveRising;
+    float timeaccelerationRising = 0f;
 
-    //float timeacceleratioDig = 0f;
-    //public float AccelerationTimeDig;
-    //public AnimationCurve AccelerationCurveDig;
+    float timeaccelerationDig = 0f;
+    public float AccelerationTimeDig;
+    public AnimationCurve AccelerationCurveDig;
 
-    [Header("Digging")]
-    public float MinAngleDig;
-    public float MaxAngleDig;
-    public float DurationRotateDig;
-    private float _chronoRotateDig = 0f;
+    //[Header("Digging")]
+    //public float MinAngleDig;
+    //public float MaxAngleDig;
+    //public float DurationRotateDig;
+    //private float _chronoRotateDig = 0f;
 
-    public float DurationRotateRising;
-    public float MaxAngleRising;
+    //public float DurationRotateRising;
+    //public float MaxAngleRising;
 
-    private float _startAngleRising = 0f;
-    private float _chronoRotateRising = 0f;
+    //private float _startAngleRising = 0f;
+    //private float _chronoRotateRising = 0f;
     private bool IsDigging = false;
 
     public Action CallBackDead;
@@ -84,47 +84,34 @@ public class WormHead : WormBody
 
     void SetForce(bool _isDigging)
     {
-        float velocity = 0f;
+        Rigidbody.velocity = new Vector2(Vector2.right.x * Speed, Rigidbody.velocity.y);
 
         if (_isDigging)
         {
-            _chronoRotateRising = 0f;
-            if (_chronoRotateDig <= DurationRotateDig)
-            {
-                Rigidbody.MoveRotation(-GetAngleToRotate(MinAngleDig, MaxAngleDig, DurationRotateDig, _chronoRotateDig));
-                _chronoRotateDig += Time.fixedDeltaTime;
-            }
 
-            velocity = VelocityDig;
-            //timeacceleratioDig += Time.fixedDeltaTime;
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, timeaccelerationDig, AccelerationTimeDig));
+
+            timeaccelerationDig += Time.fixedDeltaTime;
         }
         else
         {
-            //timeacceleratioDig = 0f;
-            _chronoRotateDig = 0f;
+            timeaccelerationDig = 0f;
+           
 
             if (Rigidbody.position.y < StartPosition.y)
             {
-                if (_chronoRotateRising == 0)
-                    _startAngleRising = Rigidbody.rotation;
 
-                Rigidbody.MoveRotation(GetAngleToRotate(_startAngleRising, MaxAngleRising, DurationRotateRising, _chronoRotateRising));
-                //timeaccelerationRising += Time.fixedDeltaTime;
-                _chronoRotateRising += Time.fixedDeltaTime;
-                velocity = VelocityRising;
+
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, timeaccelerationRising, AccelerationTimeRising));
+
+                timeaccelerationRising += Time.fixedDeltaTime;
+              
             }
-            else
-            {
-                velocity = 0f;
-            }
+            
         }
 
-        Rigidbody.velocity = (Vector2)(transform.right * velocity) + (Vector2.right * Speed);
-        //if(velocity != 0)
-        //{
-        //    float ajustVelocity = Speed - Rigidbody.velocity.x;
-        //    Rigidbody.velocity += Vector2.right * ajustVelocity;
-        //}
+       
+       
     
     }
 
@@ -153,6 +140,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
+        UpdateCollider();
     }
 
     float Accelerate(AnimationCurve curve, float maxVelocity, float time, float duration)
@@ -206,6 +194,49 @@ public class WormHead : WormBody
 
 
     }
+
+    //void SetForce(bool _isDigging)
+    //{
+    //    Rigidbody.velocity = Vector2.right * Speed;
+
+    //    if (_isDigging)
+    //    {
+    //        _chronoRotateRising = 0f;
+    //        if (_chronoRotateDig <= DurationRotateDig)
+    //        {
+    //            Rigidbody.MoveRotation(-GetAngleToRotate(MinAngleDig, MaxAngleDig, DurationRotateDig, _chronoRotateDig));
+    //            _chronoRotateDig += Time.fixedDeltaTime;
+    //        }
+
+    //        velocity = VelocityDig;
+    //        //timeacceleratioDig += Time.fixedDeltaTime;
+    //    }
+    //    else
+    //    {
+    //        //timeacceleratioDig = 0f;
+    //        _chronoRotateDig = 0f;
+
+    //        if (Rigidbody.position.y < StartPosition.y)
+    //        {
+    //            if (_chronoRotateRising == 0)
+    //                _startAngleRising = Rigidbody.rotation;
+
+    //            Rigidbody.MoveRotation(GetAngleToRotate(_startAngleRising, MaxAngleRising, DurationRotateRising, _chronoRotateRising));
+    //            //timeaccelerationRising += Time.fixedDeltaTime;
+    //            _chronoRotateRising += Time.fixedDeltaTime;
+    //            velocity = VelocityRising;
+    //        }
+    //        else
+    //        {
+    //            velocity = 0f;
+    //        }
+    //    }
+
+    //    Rigidbody.velocity = (Vector2)(transform.right * velocity) + (Vector2.right * Speed);
+
+
+    //}
+
 }
 
 
