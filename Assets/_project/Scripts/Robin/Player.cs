@@ -9,8 +9,7 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
-    public Transform GrassTransform;
-    public Transform BedRockTransform;
+    int dirtDepth = 9; // playable heigth
     public TextMeshProUGUI ScoreText;
     [Space]
     [Header("Scoring")]
@@ -58,7 +57,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         SetupWorm();
+        SetupWorm();
 
     }
 
@@ -71,9 +70,9 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        float distance = Vector3.Distance(GrassTransform.position, BedRockTransform.position);
-        WormHead.VelocityDig = distance / SpeedDig;
-        WormHead.VelocityRising = distance / SpeedRising;
+        //float distance = Vector3.Distance(GrassTransform.position, BedRockTransform.position);
+        WormHead.VelocityDig = dirtDepth / SpeedDig;
+        WormHead.VelocityRising = dirtDepth / SpeedRising;
         WormHead.Speed = SpeedRight;
         //WormHead.AccelerationCurveDig = AccelerationCurveDig;
         //WormHead.AccelerationCurveRising = AccelerationCurveRising;

@@ -24,7 +24,7 @@ public class BlocManager : MonoBehaviour
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
     [SerializeField]
-    Transform obstaclesAnchor;
+    Transform spawnablesAnchor;
 
     // bloc generation
     public int currentBlocMax;
@@ -177,7 +177,7 @@ public class BlocManager : MonoBehaviour
 
             // Spawn Obstacle
             GameObject obstacleSpawned;
-            PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, obstaclesAnchor);
+            PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, spawnablesAnchor);
             Obstacle obstacleObj = obstacleSpawned.GetComponent<Obstacle>();
             obstacleObj.obstacleRotation = obstacletype; // set the obstacle type on the spawned obstacle object
 

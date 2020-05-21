@@ -43,10 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7b752b8ddea094db4ae0746c639376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WormHead: {fileID: 1138417978277333391, guid: bd3dff6583a080b408eb786cd084432e,
-    type: 3}
-  BuoyancyEffector2D: {fileID: 0}
-  SpeedUnDig: 0
-  SpeedDig: 0
-  MinAngleDig: 0
-  MaxAngleDig: 0
+  WormHead: {fileID: 0}
+  ScoreText: {fileID: 0}
+  StepDistanceScoreIncrease: 100
+  SpeedRight: 1
+  SpeedDig: 2
+  SpeedRising: 1
+  MaxAngleRising: 30
+  DurationRotateDig: 1
+  DurationRotateRising: 1
+  MinAngleDig: 15
+  MaxAngleDig: 90

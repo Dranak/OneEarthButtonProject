@@ -228,6 +228,9 @@ public class BlocEditor : Editor
 
     GameObject dummy = null;
     SpawnableObject dummySpawnable = null;
+    Transform spnBodyT;
+    SpriteRenderer spnBodyRenderer;
+    bool canPlaceStamp = false;
     void CreateNewStamp()
     {
         while (stamp.transform.childCount > 0)
@@ -235,6 +238,8 @@ public class BlocEditor : Editor
 
         dummy = PrefabUtility.InstantiatePrefab(bc.SelectedPrefab as GameObject) as GameObject;
         dummySpawnable = dummy.GetComponent<SpawnableObject>();
+        spnBodyT = dummy.transform.GetChild(0);
+        spnBodyRenderer = spnBodyT.GetComponent<SpriteRenderer>();
 
         foreach (var c in dummy.GetComponentsInChildren<Collider>())
             c.enabled = false;
@@ -252,15 +257,15 @@ public class BlocEditor : Editor
 
     void PerformStamp()
     {
-        var dummy = stamp.transform.GetChild(0);
-        if (dummy.gameObject.activeSelf)
+        //var dummy = stamp.transform.GetChild(0);
+        if (dummy.activeSelf && canPlaceStamp)
         {
             var stampObject = dummy;
             var prefab = PrefabUtility.GetCorrespondingObjectFromSource(stampObject.gameObject);
             var g = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
             Undo.RegisterCreatedObjectUndo(g, "Stamp");
 
-            g.transform.position = stampObject.position;
+            g.transform.position = stampObject.transform.position;
             if (bc.rootTransform != null)
             {
                 g.transform.parent = bc.rootTransform;
@@ -295,14 +300,12 @@ public class BlocEditor : Editor
     Bounds dummyBounds;
     void RotateStamp(Vector2 delta)
     {
-        var spn = stamp.transform.GetChild(0);
-        if (spn.GetComponent<SpawnableObject>().GetType() == typeof(Obstacle))
+        if (dummy.GetComponent<SpawnableObject>().GetType() == typeof(Obstacle))
         {
-            var spnBody = spn.GetChild(0);
-            spnBody.Rotate(Vector3.back, delta.y);
-            dummyBounds = spnBody.gameObject.GetBoxColliderFixedBounds();
+            spnBodyT.Rotate(Vector3.back, delta.y);
+            dummyBounds = spnBodyT.gameObject.GetBoxColliderFixedBounds();
             Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
-            spnBody.localPosition += (Vector3)dummyOffset;
+            spnBodyT.localPosition += (Vector3)dummyOffset;
         }
     }
 
@@ -368,7 +371,13 @@ public class BlocEditor : Editor
 
     private void OnSceneGUI()
     {
-        if (Event.current.type == EventType.MouseMove) SceneView.RepaintAll();
+        if (Event.current.type == EventType.MouseMove)
+        {
+            SceneView.RepaintAll();
+            Physics2D.autoSyncTransforms = true;
+        }
+        else
+            Physics2D.autoSyncTransforms = false;
 
         var isErasing = Event.current.control;
         var controlId = GUIUtility.GetControlID(FocusType.Passive);
@@ -382,7 +391,6 @@ public class BlocEditor : Editor
 
         if (hit2d.collider)
         {
-            //worldCursor = hit2d.point;
             Vector3 snappedMousePos = Vector3.zero;
             var discS = new Vector3(.5f, .5f); // default disc size 
             if (dummySpawnable.Size.x < 1 && dummySpawnable.GetSpawnable() is CollectibleSpawnable) //specific to small collectibles(less than 1 of size)
@@ -398,44 +406,49 @@ public class BlocEditor : Editor
 
             Handles.DrawWireDisc(visibleMousePos, -ray.direction, discS.x); // white disc is always visible
 
-            OverlapCircle(visibleMousePos, discS.x * 2, 1 << LayerMask.NameToLayer("Obstacle"));
+            OverlapCircle(snappedMousePos, discS.x * 2, LayerMask.GetMask("Obstacle"));
             if (isErasing)
                 DrawEraser(snappedMousePos);
             else
                 DrawStamp(snappedMousePos);
-        }
 
-        switch (Event.current.type)
+            switch (Event.current.type)
+            {
+                case EventType.ScrollWheel:
+                    if (Event.current.shift)
+                    {
+                        RotateStamp(Event.current.delta.normalized * 11.25f);
+                        Event.current.Use();
+                    }
+                    break;
+                case EventType.MouseDown:
+                    //If not using the default orbit mode...
+                    if (Event.current.button == 0 && !Event.current.alt)
+                    {
+                        if (isErasing)
+                            PerformErase();
+                        else
+                            PerformStamp();
+
+                        GUIUtility.hotControl = controlId;
+                        Event.current.Use();
+                    }
+                    break;
+            }
+        }
+        else
         {
-            case EventType.ScrollWheel:
-                if (Event.current.shift)
-                {
-                    RotateStamp(Event.current.delta.normalized * 11.25f);
-                    Event.current.Use();
-                }
-                break;
-            case EventType.MouseDown:
-                //If not using the default orbit mode...
-                if (Event.current.button == 0 && !Event.current.alt)
-                {
-                    if (isErasing)
-                        PerformErase();
-                    else
-                        PerformStamp();
-                    
-                    GUIUtility.hotControl = controlId;
-                    Event.current.Use();
-                }
-                break;
+            dummy.SetActive(false);
         }
     }
 
-    private void OverlapCircle(Vector2 center, float brushRadius, int layerMask)
+    private void OverlapCircle(Vector2 center, float brushRadius, LayerMask obsLayerMask)
     {
         overlaps.Clear();
         overlappedGameObjects.Clear();
 
-        var capsule = new Bounds(center, new Vector3(brushRadius, brushRadius, brushRadius));
+        var capsule = new Bounds(center, new Vector3(brushRadius, brushRadius, brushRadius)); // capsule is the circle
+        capsule = spnBodyT.gameObject.GetBoxColliderFixedBounds(); // capsule is the stamp bounds
         for (var i = 0; i < bc.rootTransform.childCount; ++i)
         {
             var child = bc.rootTransform.GetChild(i);
@@ -450,19 +463,27 @@ public class BlocEditor : Editor
         }
     }
 
-    void DrawStamp(Vector3 center)
+    void DrawStamp(Vector2 center)
     {
         stamp.transform.parent = bc.rootTransform;
-
         stamp.transform.position = center;
-
-        stamp.transform.rotation = Quaternion.identity;
-
         dummy.SetActive(true);
+        canPlaceStamp = true;
+        spnBodyRenderer.color = Color.white;
 
-        /*var bounds = dummy.transform.GetChild(0).gameObject.GetBoxColliderFixedBounds();
-        var childVolume = bounds.size.x * bounds.size.y;
-        foreach (var b in overlaps)
+        if (overlaps.Count > 0)
+        {
+            Collider2D[] colliderCastC = new Collider2D[10];
+            ContactFilter2D contactFilter2D = new ContactFilter2D(); contactFilter2D.SetLayerMask(LayerMask.GetMask("Obstacle")); contactFilter2D.useTriggers = true;
+            var coOverlaps = (spnBodyT.GetComponent<Collider2D>()).OverlapCollider(contactFilter2D, colliderCastC);
+            if (coOverlaps > 0)
+            {
+                spnBodyRenderer.color = Color.red;
+                canPlaceStamp = false;
+                //dummy.SetActive(false);
+            }
+        }
+        /*foreach (var b in overlaps)
         {
             if (b.Intersects(bounds))
             {
@@ -470,21 +491,21 @@ public class BlocEditor : Editor
                 var intersection = Intersection(b, bounds);
                 var intersectionVolume = intersection.size.x * intersection.size.y;
                 var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume, intersectionVolume / childVolume);
-                if (maxIntersection > bc.maxIntersectionVolume)
-                {
-                    dummy.SetActive(false);
-                }
+                //if (maxIntersection > bc.maxIntersectionVolume)
+                //{
+                    //dummy.SetActive(false);
+                //}
             }
         }*/
     }
-
+    /*
     Bounds Intersection(Bounds A, Bounds B)
     {
         var min = new Vector3(Mathf.Max(A.min.x, B.min.x), Mathf.Max(A.min.y, B.min.y), Mathf.Max(A.min.z, B.min.z));
         var max = new Vector3(Mathf.Min(A.max.x, B.max.x), Mathf.Min(A.max.y, B.max.y), Mathf.Min(A.max.z, B.max.z));
         return new Bounds(Vector3.Lerp(min, max, 0.5f), max - min);
     }
-
+    */
     void DrawEraser(Vector3 center)
     {
         erase.Clear();
