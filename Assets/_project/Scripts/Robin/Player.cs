@@ -52,16 +52,12 @@ public class Player : MonoBehaviour
     //[Range(0, 360)]
     //public float MaxAngleDig;
 
-   
-
-    // Start is called before the first frame update
     void Start()
     {
         SetupWorm();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         GainPointUnderground();
