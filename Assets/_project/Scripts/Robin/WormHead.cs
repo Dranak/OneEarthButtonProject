@@ -12,11 +12,13 @@ public class WormHead : WormBody
     public WormBody PrefabWormBody;
     public int NumberOfParts;
     public float OffsetBodyPart = 5f;
+    
     private List<WormBody> _wormBodies;
     public Vector3 StartPosition { get; set; }
     public float DistanceFromStart { get { return Vector3.Distance(StartPosition, transform.position); } }
     public LineRenderer Line;
-    
+   
+
 
     PolygonCollider2D _collider;
 
@@ -34,17 +36,6 @@ public class WormHead : WormBody
     public float AccelerationTimeDig;
     public AnimationCurve AccelerationCurveDig;
 
-    //[Header("Digging")]
-    //public float MinAngleDig;
-    //public float MaxAngleDig;
-    //public float DurationRotateDig;
-    //private float _chronoRotateDig = 0f;
-
-    //public float DurationRotateRising;
-    //public float MaxAngleRising;
-
-    //private float _startAngleRising = 0f;
-    //private float _chronoRotateRising = 0f;
     private bool IsDigging = false;
 
     public Action CallBackDead;
@@ -52,10 +43,12 @@ public class WormHead : WormBody
 
     void Start()
     {
+       
         _collider = GetComponent<PolygonCollider2D>();
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
+      
     }
 
     void Update()
@@ -85,24 +78,16 @@ public class WormHead : WormBody
 
         if (_isDigging)
         {
-
             Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, timeaccelerationDig, AccelerationTimeDig));
-
             timeaccelerationDig += Time.fixedDeltaTime;
         }
         else
         {
             timeaccelerationDig = 0f;
-
-
             if (Rigidbody.position.y < StartPosition.y)
             {
-
-
                 Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, timeaccelerationRising, AccelerationTimeRising));
-
                 timeaccelerationRising += Time.fixedDeltaTime;
-
             }
 
         }

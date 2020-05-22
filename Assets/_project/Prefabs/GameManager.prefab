@@ -399,7 +399,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
 --- !u!1 &4130807427715762269 stripped
 GameObject:
@@ -603,7 +604,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
 --- !u!1 &4130807427377165920 stripped
 GameObject:

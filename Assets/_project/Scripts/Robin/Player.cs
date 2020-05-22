@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
-    int dirtDepth = 9; // playable heigth
+    public Transform Grass;
+    public Transform BedRock;
     public TextMeshProUGUI ScoreText;
     [Space]
     [Header("Scoring")]
@@ -41,17 +42,7 @@ public class Player : MonoBehaviour
     public float AccelerationTimeDig;
     public AnimationCurve AccelerationCurveDig;
 
-    //[Header("Motion-Angle")]
-    //[Space]
-
-    //public float MaxAngleRising;
-    //public float DurationRotateDig;
-    //public float DurationRotateRising;
-    //[Range(0, 360)]
-    //public float MinAngleDig;
-    //[Range(0, 360)]
-    //public float MaxAngleDig;
-
+  
     void Start()
     {
         SetupWorm();
@@ -66,9 +57,9 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        //float distance = Vector3.Distance(GrassTransform.position, BedRockTransform.position);
-        WormHead.VelocityDig = dirtDepth / SpeedDig;
-        WormHead.VelocityRising = dirtDepth / SpeedRising;
+        float distance = Vector3.Distance(Grass.position, BedRock.position);
+        WormHead.VelocityDig = distance / SpeedDig;
+        WormHead.VelocityRising = distance / SpeedRising;
         WormHead.Speed = SpeedRight;
         WormHead.AccelerationCurveDig = AccelerationCurveDig;
         WormHead.AccelerationCurveRising = AccelerationCurveRising;
@@ -150,18 +141,5 @@ public class Player : MonoBehaviour
         }
     }
 
-    //void SetDiggingAngle()
-    //{
-    //    //WormHead.MinAngleDig = MinAngleDig;
-    //    //WormHead.MaxAngleDig = MaxAngleDig;
-    //    //WormHead.MaxAngleRising = MaxAngleRising;
 
-    //    //WormHead.DurationRotateDig = DurationRotateDig;
-    //    //WormHead.DurationRotateRising = DurationRotateRising;
-    //}
-    //IEnumerator  AddScoreEverySecond()
-    //{
-    //    Score += UndergroundBonus;
-    //    yield return new WaitForSeconds(1f);
-    //}
 }

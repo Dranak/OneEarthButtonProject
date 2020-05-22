@@ -46,11 +46,56 @@ MonoBehaviour:
   WormHead: {fileID: 0}
   ScoreText: {fileID: 0}
   StepDistanceScoreIncrease: 100
-  SpeedRight: 1
+  SpeedRight: 5
   SpeedDig: 2
   SpeedRising: 1
-  MaxAngleRising: 30
-  DurationRotateDig: 1
-  DurationRotateRising: 1
-  MinAngleDig: 15
-  MaxAngleDig: 90
+  AccelerationTimeRising: 1
+  AccelerationCurveRising:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AccelerationTimeDig: 1
+  AccelerationCurveDig:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

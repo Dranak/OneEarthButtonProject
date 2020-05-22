@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class WormBody : MonoBehaviour
 {
 
     public WormBody Target { get; set; }
-    public Rigidbody2D Rigidbody { get; set; }
-    public CircleCollider2D Collider { get; set; }
+
+    //public CircleCollider2D Collider { get; set; }
     //public TrailRenderer Trail { get; set; } // LEGACY
+    public Rigidbody2D Rigidbody { get; set; }
     public ParticleSystemRenderer Trail { get; set; }
     public float Damping;
 
@@ -18,7 +19,7 @@ public class WormBody : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         Trail = GetComponentInChildren<ParticleSystemRenderer>(); // new TRAIL is a Particle System
-        Collider = GetComponent<CircleCollider2D>();
+        //Collider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
@@ -36,7 +37,7 @@ public class WormBody : MonoBehaviour
         if (!Target)
             return;
  
-            Rigidbody.MovePosition(Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.transform.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.transform.position, Target.Rigidbody.transform.position) * Damping));
+           Rigidbody.MovePosition( Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * Damping));
         //Vector3 diff = Vector3.zero;
         //if (Target is WormHead)
         //{
