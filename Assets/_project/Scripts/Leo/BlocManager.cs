@@ -90,7 +90,7 @@ public class BlocManager : MonoBehaviour
         // spawn pooler trigger that will spawn another obstacle
         Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
 
-        currentBlocMax += obstaclesXGap * 2; // blocs gap ? AFTER BLOCK
+        currentBlocMax += obstaclesXGap; // blocs gap ? AFTER BLOCK
     }
 
     public void NewRandomBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
@@ -124,13 +124,10 @@ public class BlocManager : MonoBehaviour
         {
             // Spawn Obstacle
             GameObject obstacleSpawned;
-            var thisObstaclePool = spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex);
-            //PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, spawnablesAnchor);
-            Obstacle obstacleObj = obstacleSpawned.GetComponent<Obstacle>();
+            List<GameObject> thisSpawnablesPool = spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
+            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, 0), out obstacleSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
+            SpawnablePlacing(obstacleSpawned.GetComponent<SpawnableObject>(), spawnable); // adjust position
         }
-
-        // incremement X position where to spawn next bloc
-        currentBlocMax += chosenBloc.blocLength;
     }
     void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, in int obstaclesXGap, in float XGapRandomization, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
@@ -318,10 +315,9 @@ public class BlocManager : MonoBehaviour
     }
     #endregion
 
-    void SpawnablePlacing(in SpawnableObject spawnableToPlace)
+    void SpawnablePlacing(in SpawnableObject spawnableToPlace, in Spawnable spawnableParams)
     {
-        Spawnable spawnableParams = spawnableToPlace.GetSpawnable();
-        spawnableToPlace.transform.localPosition = new Vector2(spawnableParams.BlocPosition.x + currentBlocMax,  spawnableParams.BlocPosition.y);
+        spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
         if (spawnableParams is ObstacleSpawnable)
         {
             spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset;
@@ -369,7 +365,7 @@ public class BlocManager : MonoBehaviour
 
     #region pool
     // objects to appear next are pooled in (activated)
-    public void PoolIn(ref List<GameObject> pool, Vector3 toPosition, out GameObject pooledInObj, Transform parent = null)
+    public void PoolIn(ref List<GameObject> pool, Vector2 toPosition, out GameObject pooledInObj, Transform parent = null)
     {
         var objectToPoolIn = pool.FirstOrDefault(i => !i.activeInHierarchy); // finds the first inactive object in the pool
 
@@ -378,7 +374,7 @@ public class BlocManager : MonoBehaviour
             Debug.LogError("No more remaining to pool in");
 
         objectToPoolIn.transform.parent = parent;
-        objectToPoolIn.transform.position = toPosition; // position the object
+        objectToPoolIn.transform.localPosition = toPosition; // position the object
         objectToPoolIn.SetActive(true); // activate the object
         pooledInObj = objectToPoolIn;
     }
