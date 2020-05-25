@@ -216,7 +216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGround_ver2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
 --- !u!1 &5638359925300924218 stripped
 GameObject:
@@ -303,7 +306,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
 --- !u!1 &4130807427335435893 stripped
 GameObject:
@@ -767,7 +773,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 834437544426591403, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76f80758ddcffd445abc19b1d73cefbb, type: 3}
 --- !u!1 &4130807428685078130 stripped
 GameObject:
