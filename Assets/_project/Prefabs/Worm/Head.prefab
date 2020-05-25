@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: 3
-  PrefabWormBody: {fileID: 4516079124152242864, guid: dee885e79bdba74459da5c15d65ab558,
+  PrefabWormBody: {fileID: 4516079124152242864, guid: 7ff8d7e4b7fed8d45b407d9daa0028d2,
     type: 3}
   NumberOfParts: 5
   OffsetBodyPart: 1

@@ -75,6 +75,7 @@ public class WormHead : WormBody
     void SetForce(bool _isDigging)
     {
         Rigidbody.velocity = new Vector2(Vector2.right.x * Speed, Rigidbody.velocity.y);
+        Debug.Log("Speed: " + Speed);
 
         if (_isDigging)
         {
