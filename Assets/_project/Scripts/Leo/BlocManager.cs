@@ -29,6 +29,7 @@ public class BlocManager : MonoBehaviour
     // bloc generation
     public int currentBlocMax;
     int currentWPMax;
+    List<Bloc> allBlocs;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class BlocManager : MonoBehaviour
             //AddToPool(strawsPoolT, ref strawsPool);
 
             currentWPMax = currentBlocMax;
+            allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             Instance = this;
         }
         else
@@ -69,10 +71,29 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        NewBloc(); // first bloc to be created (after the empty starting bloc)
+        NewBloc();
+        //NewRandomBloc(); // first bloc to be created (after the empty starting bloc)
     }
 
-    public void NewBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
+    public void NewBloc(int obstaclesXGap = 3)
+    {
+        var randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
+        //var gapRandomization = randomBloc.blocYRange;
+        //var rotRandomization = randomBloc.globalRotationOffsetRange;
+        //var globalOffsetR = randomBloc.globalOffsetRange;
+
+        ObstaclesSpawn(randomBloc);
+
+        // incremement X position where to spawn next bloc
+        currentBlocMax += randomBloc.blocLength;
+
+        // spawn pooler trigger that will spawn another obstacle
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
+
+        currentBlocMax += obstaclesXGap * 2; // blocs gap ? AFTER BLOCK
+    }
+
+    public void NewRandomBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
     {
         Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
 
@@ -96,6 +117,20 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         VERTICAL,
         MIX
+    }
+    void ObstaclesSpawn(Bloc chosenBloc)
+    {
+        foreach(Spawnable spawnable in chosenBloc.spawnlablesParams)
+        {
+            // Spawn Obstacle
+            GameObject obstacleSpawned;
+            var thisObstaclePool = spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex);
+            //PoolIn(ref thisObstaclePool, Vector3.zero, out obstacleSpawned, spawnablesAnchor);
+            Obstacle obstacleObj = obstacleSpawned.GetComponent<Obstacle>();
+        }
+
+        // incremement X position where to spawn next bloc
+        currentBlocMax += chosenBloc.blocLength;
     }
     void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, in int obstaclesXGap, in float XGapRandomization, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
     {
@@ -283,6 +318,21 @@ public class BlocManager : MonoBehaviour
     }
     #endregion
 
+    void SpawnablePlacing(in SpawnableObject spawnableToPlace)
+    {
+        Spawnable spawnableParams = spawnableToPlace.GetSpawnable();
+        spawnableToPlace.transform.localPosition = new Vector2(spawnableParams.BlocPosition.x + currentBlocMax,  spawnableParams.BlocPosition.y);
+        if (spawnableParams is ObstacleSpawnable)
+        {
+            spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset;
+            spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, (spawnableParams as ObstacleSpawnable).BodyRotation);
+        }
+        else
+        {
+            var randomRot = Random.Range(0, 16);
+            spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, 22.5f * randomRot);
+        }
+    }
     void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
     {
         obstacleToPlace.transform.localPosition = new Vector2(xCoord, -yCoord);
@@ -305,7 +355,7 @@ public class BlocManager : MonoBehaviour
                     obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.Size.x);
                 break;
         }
-        obstacleBody.transform.localPosition = (Vector3)obstacleOffset;
+        obstacleBody.transform.localPosition = obstacleOffset;
     }
     // Spawns WPapers
     public void NewWP(Transform toUnpool)
