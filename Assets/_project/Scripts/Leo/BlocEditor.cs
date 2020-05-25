@@ -71,11 +71,15 @@ public class BlocEditor : Editor
         EditorGUILayout.HelpBox("Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll\nRevert/Redo: Ctrl+Z/Ctrl+Y", MessageType.Info);
         base.OnInspectorGUI();
 
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(scriptableProp);
-        if (EditorGUI.EndChangeCheck())
+        if (scriptableProp != null)
         {
-            EditorUtility.SetDirty(bc.blocsScriptable);
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(scriptableProp);
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+                EditorUtility.SetDirty(bc.blocsScriptable);
+            }
         }
 
         GUILayout.Space(16);

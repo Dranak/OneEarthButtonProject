@@ -271,6 +271,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   rootTransform: {fileID: 7677705203068724792}
+  blocsScriptable: {fileID: 11400000, guid: 38949373056f614448cca441245fd0c9, type: 2}
   prefabPallete:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -279,7 +280,6 @@ MonoBehaviour:
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
-  blocsScriptable: {fileID: 11400000, guid: 38949373056f614448cca441245fd0c9, type: 2}
   useGrid: 1
   selectedPrefabIndex: 1
   maxIntersectionVolume: 0
