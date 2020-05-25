@@ -9,9 +9,8 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
-    //public Transform Grass;
-    //public Transform BedRock;
-    const int _depth = 9;
+    public Transform Grass;
+    public Transform BedRock;
     public TextMeshProUGUI ScoreText;
     [Space]
     [Header("Scoring")]
@@ -58,9 +57,9 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        //float distance = Vector3.Distance(Grass.position, BedRock.position);
-        WormHead.VelocityDig = _depth / SpeedDig;
-        WormHead.VelocityRising = _depth / SpeedRising;
+        float distance = Vector3.Distance(Grass.position, BedRock.position);
+        WormHead.VelocityDig = distance / SpeedDig;
+        WormHead.VelocityRising = distance / SpeedRising;
         WormHead.Speed = SpeedRight;
         WormHead.AccelerationCurveDig = AccelerationCurveDig;
         WormHead.AccelerationCurveRising = AccelerationCurveRising;
