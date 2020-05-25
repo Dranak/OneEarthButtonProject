@@ -132,7 +132,7 @@ public class BlocEditor : Editor
         var scriptableStoredBlocs = bc.blocsScriptable.storedBlocs;
         var presavedBloc = scriptableStoredBlocs.FirstOrDefault(b => b.blocName == blocName); // is there a block with that name saved already ?
 
-        EditorGUI.BeginDisabledGroup(bc.rootTransform.childCount == 0);
+        EditorGUI.BeginDisabledGroup(bc.rootTransform.childCount == 0 || (stamp.transform.parent == bc.rootTransform && bc.rootTransform.childCount == 1));
         if (GUILayout.Button("Wipe all obstacles"))
         {
             DestroyAllRootSpawnables(); // destroy all root objects
@@ -325,7 +325,8 @@ public class BlocEditor : Editor
             Debug.LogError("Can't spawn bloc without a root Transform");
             return;
         }
-        DestroyAllRootSpawnables(); // destroy all root objects
+        if (!(bc.rootTransform.childCount == 0 || (stamp.transform.parent == bc.rootTransform && bc.rootTransform.childCount == 1)))
+            DestroyAllRootSpawnables(); // destroy all root objects
         foreach (Spawnable spawnable in selectedBloc.spawnlablesParams)
         {
             var prefab = bc.blocsScriptable.obstaclesPrefabs[spawnable.SpawnablePrefabIndex];
@@ -353,9 +354,21 @@ public class BlocEditor : Editor
     }
     void DestroyAllRootSpawnables()
     {
-        while (bc.rootTransform.childCount > 0)
+        GameObject[] toDestroy = new GameObject[bc.rootTransform.childCount];
+        int c = 0;
+        foreach(Transform childT in bc.rootTransform)
         {
-            Undo.DestroyObjectImmediate(bc.rootTransform.GetChild(0).gameObject);
+            if (childT.gameObject != stamp)
+            {
+                toDestroy[c] = childT.gameObject;
+                ++c;
+            }
+        }
+
+        foreach (GameObject spn in toDestroy)
+        {
+            if (spn != null)
+                Undo.DestroyObjectImmediate(spn);
         }
     }
 
@@ -438,7 +451,8 @@ public class BlocEditor : Editor
         }
         else
         {
-            dummy.SetActive(false);
+            if (dummy)
+                dummy.SetActive(false);
         }
     }
 
