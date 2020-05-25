@@ -458,6 +458,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4516079124152242864, guid: 7ff8d7e4b7fed8d45b407d9daa0028d2,
         type: 3}
+    - target: {fileID: 1138417978277333391, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: AccelerationTimeDig
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6899084864064695812, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
       propertyPath: m_Name
@@ -974,6 +979,31 @@ PrefabInstance:
       propertyPath: BedRock
       value: 
       objectReference: {fileID: 2141310175}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: SpeedDig
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationTimeRising
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: SpeedRight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].time
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].value
+      value: 1.0047188
+      objectReference: {fileID: 0}
     - target: {fileID: 4505670463351821053, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_LocalPosition.x
