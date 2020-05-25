@@ -12,6 +12,8 @@ public abstract class SpawnableObject : MonoBehaviour
         _spawnableParameters.SpawnablePrefabIndex = _prefabIndex;
     }
 
+    public abstract void SetSpawnable(Spawnable _spawnableParameters);
+
     public abstract void GetSpawnable(out Spawnable spawnable);
     public abstract Spawnable GetSpawnable();
 }

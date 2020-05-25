@@ -17,9 +17,9 @@ public class UnPooler : MonoBehaviour
         {
             blocManager.NewWP(other.transform);
         }
-        if (tag == "Death")
+        if (tag == "Death" || tag == "Collectible")
         {
-            blocManager.PoolOut(other.transform.parent.gameObject);
+            blocManager.PoolOut(other.transform.GetComponentInParent<SpawnableObject>());
         }
     }
 }

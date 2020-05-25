@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2995639226411482580}
   m_Layer: 11
   m_Name: collectible_eggshell
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 1, y: 1}
-  objectBody: {fileID: 8542196433737091509}
+  objectBody: {fileID: 3018955264390912844}
   collectibleParameters:
     Tag: 
     BlocPosition: {x: 0, y: 0}
@@ -66,9 +66,9 @@ GameObject:
   - component: {fileID: 5667820513441003617}
   - component: {fileID: 567502663715467897}
   - component: {fileID: 5530215313447671214}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: unpooler
-  m_TagString: Death
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 5987981404753878342}
   m_Layer: 11
   m_Name: body
-  m_TagString: Death
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

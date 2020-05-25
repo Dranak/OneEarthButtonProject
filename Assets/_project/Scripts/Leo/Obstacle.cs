@@ -34,4 +34,9 @@ public class Obstacle : SpawnableObject
     {
         return obstacleParameters as ObstacleSpawnable;
     }
+
+    public override void SetSpawnable(Spawnable _spawnableParameters)
+    {
+        obstacleParameters = _spawnableParameters as ObstacleSpawnable;
+    }
 }

@@ -82,7 +82,7 @@ public class BlocManager : MonoBehaviour
         //var rotRandomization = randomBloc.globalRotationOffsetRange;
         //var globalOffsetR = randomBloc.globalOffsetRange;
 
-        ObstaclesSpawn(randomBloc);
+        SpawnablesSpawn(randomBloc);
 
         // incremement X position where to spawn next bloc
         currentBlocMax += randomBloc.blocLength;
@@ -118,15 +118,17 @@ public class BlocManager : MonoBehaviour
         VERTICAL,
         MIX
     }
-    void ObstaclesSpawn(Bloc chosenBloc)
+    void SpawnablesSpawn(Bloc chosenBloc)
     {
         foreach(Spawnable spawnable in chosenBloc.spawnlablesParams)
         {
             // Spawn Obstacle
-            GameObject obstacleSpawned;
+            GameObject spawnableSpawned;
             List<GameObject> thisSpawnablesPool = spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
-            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, 0), out obstacleSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
-            SpawnablePlacing(obstacleSpawned.GetComponent<SpawnableObject>(), spawnable); // adjust position
+            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, 0), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
+            var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
+            spawnableObj.SetSpawnable(spawnable);
+            SpawnablePlacing(spawnableObj); // adjust position
         }
     }
     void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, in int obstaclesXGap, in float XGapRandomization, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
@@ -315,8 +317,9 @@ public class BlocManager : MonoBehaviour
     }
     #endregion
 
-    void SpawnablePlacing(in SpawnableObject spawnableToPlace, in Spawnable spawnableParams)
+    void SpawnablePlacing(in SpawnableObject spawnableToPlace)
     {
+        var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
         if (spawnableParams is ObstacleSpawnable)
         {
@@ -381,13 +384,12 @@ public class BlocManager : MonoBehaviour
     // objects no longer being seen are pooled out (deactivated)
     public void PoolOut(GameObject toPoolOut)
     {
-        /*if (toPoolOut.GetComponent<Obstacle>()) // resets obstacle inner body position/rotation
-        {
-            toPoolOut.transform.position = Vector2.zero;
-            toPoolOut.transform.GetChild(0).transform.rotation = Quaternion.identity;
-        }*/
-        //toPoolOut.transform.rotation = Quaternion.identity;
         toPoolOut.SetActive(false);
+    }
+    public void PoolOut (SpawnableObject toPoolOut)
+    {
+        PoolOut(toPoolOut.gameObject);
+        toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool
     }
     #endregion
 }

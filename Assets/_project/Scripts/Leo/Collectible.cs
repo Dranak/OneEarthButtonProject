@@ -22,4 +22,8 @@ public class Collectible : SpawnableObject
     {
         return collectibleParameters as CollectibleSpawnable;
     }
+    public override void SetSpawnable(Spawnable _spawnableParameters)
+    {
+        collectibleParameters = _spawnableParameters as CollectibleSpawnable;
+    }
 }
