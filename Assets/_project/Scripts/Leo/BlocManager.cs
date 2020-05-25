@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Linq;
 
-
 public class BlocManager : MonoBehaviour
 {
     public static BlocManager Instance;
@@ -20,6 +19,7 @@ public class BlocManager : MonoBehaviour
 
     [SerializeField]
     PoolersCreator spawnablesPools; // spawnables pools parent
+    List<GameObject>[] spawnablePoolsObjects; // lists of objects within the pools (spawnables only)
     [SerializeField][HideInInspector]
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
@@ -41,12 +41,23 @@ public class BlocManager : MonoBehaviour
 
             currentWPMax = currentBlocMax;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
+            SetSpawnablesPools();
             Instance = this;
         }
         else
             Destroy(this);
     }
 
+    void SetSpawnablesPools()
+    {
+        System.Array.Resize(ref spawnablePoolsObjects, spawnablesPools.transform.childCount);
+        int counter = 0;
+        foreach (Transform poolC in spawnablesPools.transform)
+        {
+            spawnablePoolsObjects[counter] = poolC.Cast<Transform>().Select(w => w.gameObject).ToList();
+            ++counter;
+        }
+    }
     void SetPoolersHierarchy(in Transform poolsParent, in BlocsStorageScriptableObject _blocsStorage)
     {
         if (poolsParent.childCount != _blocsStorage.obstaclesPrefabs.Count)
@@ -120,11 +131,11 @@ public class BlocManager : MonoBehaviour
     }
     void SpawnablesSpawn(Bloc chosenBloc)
     {
-        foreach(Spawnable spawnable in chosenBloc.spawnlablesParams)
+        foreach (Spawnable spawnable in chosenBloc.spawnlablesParams)
         {
             // Spawn Obstacle
             GameObject spawnableSpawned;
-            List<GameObject> thisSpawnablesPool = spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
+            List<GameObject> thisSpawnablesPool = spawnablePoolsObjects[spawnable.SpawnablePrefabIndex]; //spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
             PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, 0), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
             var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
             spawnableObj.SetSpawnable(spawnable);
@@ -382,7 +393,7 @@ public class BlocManager : MonoBehaviour
         pooledInObj = objectToPoolIn;
     }
     // objects no longer being seen are pooled out (deactivated)
-    public void PoolOut(GameObject toPoolOut)
+    public void PoolOut(GameObject toPoolOut) // for WPapers only
     {
         toPoolOut.SetActive(false);
     }
