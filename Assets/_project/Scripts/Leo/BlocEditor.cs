@@ -16,6 +16,7 @@ public class BlocEditor : Editor
     List<GameObject> erase = new List<GameObject>();
     List<Bounds> overlaps = new List<Bounds>();
     List<GameObject> overlappedGameObjects = new List<GameObject>();
+    SerializedProperty scriptableProp;
 
     private void OnEnable()
     {
@@ -27,6 +28,8 @@ public class BlocEditor : Editor
 
         var scriptObject = bc.gameObject;
         editorPS = PhysicsSceneExtensions2D.GetPhysicsScene2D(scriptObject.scene);
+        scriptableProp = serializedObject.FindProperty("blocsScriptable");
+        EditorUtility.SetDirty(bc.blocsScriptable);
     }
 
     private void OnDisable()
@@ -67,6 +70,13 @@ public class BlocEditor : Editor
         }
         EditorGUILayout.HelpBox("Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll\nRevert/Redo: Ctrl+Z/Ctrl+Y", MessageType.Info);
         base.OnInspectorGUI();
+
+        EditorGUI.BeginChangeCheck();
+        EditorGUILayout.PropertyField(scriptableProp);
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(bc.blocsScriptable);
+        }
 
         GUILayout.Space(16);
         if (bc.prefabPallete != null && bc.prefabPallete.Length > 0)
@@ -154,6 +164,7 @@ public class BlocEditor : Editor
         {
             DestroyAllRootSpawnables(); // destroy all root objects
             scriptableStoredBlocs.Remove(presavedBloc);
+            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
         GUILayout.Space(8);
@@ -202,6 +213,7 @@ public class BlocEditor : Editor
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(blocName);  // set pop field as equal to the new bloc name
             }
+            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
     }
@@ -284,7 +296,7 @@ public class BlocEditor : Editor
 
             var obsRectBounds = dummyBounds.size;
             if (obsRectBounds == Vector3.zero)
-                obsRectBounds = (Vector2)spawnable.Size;
+                obsRectBounds = spawnable.Size;
             var spawnableType = spawnableParameters.GetType();
             if (typeof(ObstacleSpawnable) == spawnableType)
             {

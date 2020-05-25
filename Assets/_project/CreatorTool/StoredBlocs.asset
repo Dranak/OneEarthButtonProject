@@ -23,9 +23,19 @@ MonoBehaviour:
     - id: 2
     - id: 3
     - id: 4
+  - blocName: ez
+    blockArea: 0
+    blocCount: 2
+    blocLength: 9
+    spawnlablesParams:
+    - id: 5
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
+  - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+  - {fileID: 3377678760059438315, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
+  - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
+  - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   references:
     version: 1
@@ -34,49 +44,48 @@ MonoBehaviour:
       data:
         Tag: obstacle_can
         BlocPosition: {x: 9, y: -4}
-        BodyOffset: {x: 0, y: 0}
-        BoundsSize: {x: 1, y: 2}
-        SpawnablePrefabIndex: 0
-        BodyRotation: 0
-        ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 0
+        BoundsSize: {x: 1, y: 2}
+        BodyOffset: {x: 0, y: 0}
         RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
     00000001:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_can
         BlocPosition: {x: 19, y: -7}
-        BodyOffset: {x: -0.11784935, y: 0.6992502}
-        BoundsSize: {x: 1.9681149, y: 1.9759707}
-        SpawnablePrefabIndex: 0
-        BodyRotation: 315
-        ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 315
+        BoundsSize: {x: 1.9681149, y: 1.9759707}
+        BodyOffset: {x: -0.11784935, y: 0.6992502}
         RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
     00000002:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_bottle
         BlocPosition: {x: 7, y: -8}
-        BodyOffset: {x: 0, y: 0}
-        BoundsSize: {x: 1.9681149, y: 1.9759707}
-        SpawnablePrefabIndex: 1
-        BodyRotation: 0
-        ObsKind: 0
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 1
+        BodyRotation: 0
+        BoundsSize: {x: 1.9681149, y: 1.9759707}
+        BodyOffset: {x: 0, y: 0}
         RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
     00000003:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_eggshell
         BlocPosition: {x: 13, y: -6}
-        BodyOffset: {x: 0.25, y: 0.25}
-        BoundsSize: {x: 0.5, y: 0.5}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 2
-        anchorBodyPosition: {x: 0, y: 0}
         PointGain: 10
         IsEggShell: 1
     00000004:
@@ -84,9 +93,21 @@ MonoBehaviour:
       data:
         Tag: collectible_eggshell
         BlocPosition: {x: 13, y: -9}
-        BodyOffset: {x: 0.25, y: 0.25}
-        BoundsSize: {x: 0.5, y: 0.5}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 2
-        anchorBodyPosition: {x: 0, y: 0}
         PointGain: 10
         IsEggShell: 1
+    00000005:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_bottle
+        BlocPosition: {x: 8, y: -8}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 1
+        BodyRotation: 0
+        BoundsSize: {x: 1, y: 4}
+        BodyOffset: {x: 0, y: 0}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0

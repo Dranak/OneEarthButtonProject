@@ -13,8 +13,8 @@ public class BlocCreator : MonoBehaviour
 
     [HideInInspector] public LayerMask layerMask;
     [HideInInspector] public Transform rootTransform;
+    [HideInInspector] public BlocsStorageScriptableObject blocsScriptable;
     public GameObject[] prefabPallete;
-    public BlocsStorageScriptableObject blocsScriptable;
 
     [HideInInspector] public bool useGrid = true;
     [HideInInspector] public int selectedPrefabIndex = 0;
