@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +94,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,8 +137,8 @@ TextureImporter:
         width: 130
         height: 150
       alignment: 9
-      pivot: {x: 0.26153848, y: 0.27333334}
-      border: {x: 34, y: 41, z: 0, w: 0}
+      pivot: {x: 0.61153847, y: 0.5733333}
+      border: {x: 34, y: 41, z: 5, w: 19}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -158,8 +158,8 @@ TextureImporter:
         width: 130
         height: 150
       alignment: 9
-      pivot: {x: 0.26153848, y: 0.27333334}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.61153847, y: 0.5733333}
+      border: {x: 28, y: 35, z: 1, w: 14}
       outline: []
       physicsShape: []
       tessellationDetail: 0
