@@ -38,21 +38,21 @@ public class WormBody : MonoBehaviour
             return;
  
            Rigidbody.MovePosition( Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * Damping));
-        //Vector3 diff = Vector3.zero;
-        //if (Target is WormHead)
-        //{
-        //    diff = Target.transform.position - transform.position;
-        //    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        Vector3 diff = Vector3.zero;
+        if (Target is WormHead)
+        {
+            diff = Target.transform.position - transform.position;
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
-        //    Target.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
+            Target.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
 
-        //}
-        //else if (Trail.enabled)
-        //{
-        //    diff = transform.position - Target.transform.position;
-        //    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        }
+        else if (Trail.enabled)
+        {
+            diff = transform.position - Target.transform.position;
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
-        //    transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 180f);
-        //}
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 180f);
+        }
     }
 }

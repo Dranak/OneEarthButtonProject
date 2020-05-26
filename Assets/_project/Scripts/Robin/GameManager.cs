@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
         VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
       
-       // DontDestroyOnLoad(DeathCanvas);
+        DontDestroyOnLoad(DeathCanvas);
     }
 
     void Start()
@@ -53,11 +53,5 @@ public class GameManager : MonoBehaviour
         poolerRight.SetActive(true);
     }
 
-    //private void OnLevelWasLoaded(int level)
-    //{
-    //    if (DeathCanvas.activeInHierarchy)
-    //    {
-    //        DeathCanvas.SetActive(false);
-    //    }
-    //}
+    
 }

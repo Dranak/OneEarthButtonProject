@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public WormHead WormHead;
     const int detph = 9;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI ScoreTextFB;
     [Space]
     [Header("Scoring")]
     [Space]
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 
     public int UndergroundBonus { get; set; } = 1;
     public int Score { get; set; } = 0;
-   
+
     private int _lastMultiplicator = 1;
     private float _chronosUndergroundBonus = 0f;
     private int _streakEggShell = 0;
@@ -43,10 +44,10 @@ public class Player : MonoBehaviour
     [Tooltip("The Time the worm take before he dig")]
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
-   
-  
 
-  
+
+
+
     void Start()
     {
         SetupWorm();
@@ -75,7 +76,7 @@ public class Player : MonoBehaviour
     }
 
 
-   
+
 
     void GainPointUnderground()
     {
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
 
             }
             _chronosUndergroundBonus += Time.deltaTime;
-           
+
             if (_chronosUndergroundBonus >= 1f)
             {
                 Score += UndergroundBonus;
@@ -107,13 +108,13 @@ public class Player : MonoBehaviour
     void SetupWorm()
     {
         SetVelocityFromSpeed();
-        
+
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
 
 
     }
-   
+
     void YourAreDead()
     {
         Time.timeScale = 0f;
@@ -122,31 +123,52 @@ public class Player : MonoBehaviour
 
     void GetPoint(CollectibleSpawnable collectible)
     {
-        if(!collectible.IsEggShell)
+        if (!collectible.IsEggShell)
         {
+            ScoreTextFB.text = collectible.PointGain.ToString();
+
+
             Score += collectible.PointGain;
 
         }
-        else if(!collectible.IsEggShell && _streakEggShell>0)
+        else if (!collectible.IsEggShell && _streakEggShell > 0)
         {
             _streakEggShell = 0;
         }
-        else
+        else if (collectible.IsEggShell)
         {
             ++_streakEggShell;
-            switch(_streakEggShell)
+            Debug.Log("toot");
+            switch (_streakEggShell)
             {
                 case 1:
                     Score += 20;
+                    ScoreTextFB.text = "20";
                     break;
                 case 2:
                     Score += 50;
+                    ScoreTextFB.text = "50";
                     break;
                 case 3:
                     Score += 100;
+                    ScoreTextFB.text = "100";
                     break;
             }
         }
+        //ScoreTextFB.enabled = true;
+        StartCoroutine(WaitSecond(ScoreTextFB, 1));
+    }
+
+    IEnumerator WaitSecond(TextMeshProUGUI text, float time)
+    {
+
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(time);
+        text.ClearMesh();
+        //text.enabled = false;
+
+
     }
 
 

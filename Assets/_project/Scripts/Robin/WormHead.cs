@@ -30,9 +30,9 @@ public class WormHead : WormBody
 
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
-    float timeaccelerationRising = 0f;
+    float _chronoAccelerationRising = 0f;
 
-    float timeaccelerationDig = 0f;
+    float _chronoAccelerationDig = 0f;
     public float AccelerationTimeDig;
     public AnimationCurve AccelerationCurveDig;
 
@@ -48,7 +48,7 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-        UpdateCollider();
+        //UpdateCollider();
     }
 
     void Update()
@@ -70,7 +70,9 @@ public class WormHead : WormBody
 
     private void FixedUpdate()
     {
+       // UpdateCollider();
         SetForce(IsDigging);
+
     }
 
     void SetForce(bool _isDigging)
@@ -80,16 +82,17 @@ public class WormHead : WormBody
 
         if (_isDigging)
         {
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, timeaccelerationDig, AccelerationTimeDig));
-            timeaccelerationDig += Time.fixedDeltaTime;
+            _chronoAccelerationRising = 0f;
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
+            _chronoAccelerationDig += Time.fixedDeltaTime;
         }
         else
         {
-            timeaccelerationDig = 0f;
+            _chronoAccelerationDig = 0f;
             if (Rigidbody.position.y < StartPosition.y)
             {
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, timeaccelerationRising, AccelerationTimeRising));
-                timeaccelerationRising += Time.fixedDeltaTime;
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
+                _chronoAccelerationRising += Time.fixedDeltaTime;
             }
 
         }
@@ -98,17 +101,23 @@ public class WormHead : WormBody
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        SpawnableObject spawnableObject = collision.gameObject.GetComponent<SpawnableObject>();
-
-        if (spawnableObject is Obstacle)
+        SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
+       
+        if(spawnableObject)
         {
-            CallBackDead();
+            if (spawnableObject is Obstacle)
+            {
+                Debug.Log("Dead by " + spawnableObject.name);
+                CallBackDead();
+            }
+            else if (spawnableObject is Collectible)
+            {
+                Debug.Log("Eat "+spawnableObject.name);
+                CallBackPoint((spawnableObject as Collectible).collectibleParameters);
+                BlocManager.Instance.PoolOut(spawnableObject);
+            }
         }
-        else if (spawnableObject is Collectible)
-        {
-            CallBackPoint((spawnableObject as Collectible).collectibleParameters);
-            BlocManager.Instance.PoolOut(spawnableObject);
-        }
+       
 
     }
 
@@ -119,6 +128,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
+        
 
     }
 
