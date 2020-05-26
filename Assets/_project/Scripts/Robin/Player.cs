@@ -9,8 +9,7 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
-    public Transform Grass;
-    public Transform BedRock;
+    const int detph = 9;
     public TextMeshProUGUI ScoreText;
     [Space]
     [Header("Scoring")]
@@ -30,17 +29,22 @@ public class Player : MonoBehaviour
 
     [Tooltip("The Speed of the worm to the right")]
     public float SpeedRight;
+    public float TimeToIncreaseSpeed;
+    public float MaxSpeed;
+    public float ValueIncreaseSpeed;
+
     [Tooltip("The Time the worm take to make the distance From Grass To BedRock")]
     public float SpeedDig;
+    [Tooltip("The Time the worm take before he dig")]
+    public float AccelerationTimeDig;
+    public AnimationCurve AccelerationCurveDig;
     [Tooltip("The Time the worm take to make the distance From BedRock To Grass")]
     public float SpeedRising;
     [Tooltip("The Time the worm take before he dig")]
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
    
-    [Tooltip("The Time the worm take before he dig")]
-    public float AccelerationTimeDig;
-    public AnimationCurve AccelerationCurveDig;
+  
 
   
     void Start()
@@ -57,15 +61,19 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        float distance = Vector3.Distance(Grass.position, BedRock.position);
-        WormHead.VelocityDig = distance / SpeedDig;
-        WormHead.VelocityRising = distance / SpeedRising;
+        //float distance = Vector3.Distance(Grass.position, BedRock.position);
+        WormHead.VelocityDig = detph / SpeedDig;
+        WormHead.VelocityRising = detph / SpeedRising;
         WormHead.Speed = SpeedRight;
         WormHead.AccelerationCurveDig = AccelerationCurveDig;
         WormHead.AccelerationCurveRising = AccelerationCurveRising;
         WormHead.AccelerationTimeRising = AccelerationTimeRising;
         WormHead.AccelerationTimeDig = AccelerationTimeDig;
+        WormHead.TimeToIncreaseSpeed = TimeToIncreaseSpeed;
+        WormHead.MaxSpeed = MaxSpeed;
+        WormHead.ValueIncreaseSpeed = ValueIncreaseSpeed;
     }
+
 
    
 

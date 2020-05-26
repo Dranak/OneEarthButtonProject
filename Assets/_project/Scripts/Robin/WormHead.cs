@@ -18,13 +18,13 @@ public class WormHead : WormBody
     public float DistanceFromStart { get { return Vector3.Distance(StartPosition, transform.position); } }
     public LineRenderer Line;
    
-
-
     PolygonCollider2D _collider;
 
-
-    [Header("Velocity")]
-    public float Speed;
+    public float Speed { get; set; }
+    public float TimeToIncreaseSpeed { get; set; }
+    public float MaxSpeed { get; set; }
+    public float ValueIncreaseSpeed { get; set; }
+    float _chronoIncreaseSpeed =0f;
     public float VelocityRising { get; set; }
     public float VelocityDig { get; set; }
 
@@ -53,6 +53,7 @@ public class WormHead : WormBody
 
     void Update()
     {
+        IncreaseSpeed();
         UpdateLineRenderer();
 
         if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
@@ -96,18 +97,19 @@ public class WormHead : WormBody
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Death"))
+
+        SpawnableObject spawnableObject = collision.gameObject.GetComponent<SpawnableObject>();
+
+        if(spawnableObject is Obstacle)
         {
             CallBackDead();
         }
-        //else
-        //{
-        //    CoinsSpawnable collectible = collision.gameObject.GetComponent<CoinsSpawnable>();
-        //    if (collectible != null)
-        //    {
-        //        CallBackPoint(collectible);
-        //    }
-        //}
+        else if( spawnableObject is Collectible)
+        {
+            CallBackPoint((spawnableObject as Collectible).collectibleParameters);
+            BlocManager.Instance.PoolOut(spawnableObject);
+        }
+
     }
 
     void UpdateLineRenderer()
@@ -117,7 +119,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-        UpdateCollider();
+       // UpdateCollider();
     }
 
     float Accelerate(AnimationCurve curve, float maxVelocity, float time, float duration)
@@ -156,20 +158,39 @@ public class WormHead : WormBody
 
     void UpdateCollider()
     {
-        //List<Vector2> colliderPoints = new List<Vector2>();
+        List<Vector2> colliderPoints = new List<Vector2>();
+        List<Vector2> upperPoints = new List<Vector2>();
+        List<Vector2> downerPoint = new List<Vector2>();
         float halfWidth = Line.startWidth / 2f;
-        for (int index = 0; index < Line.positionCount; ++index)
+        foreach(WormBody wormBody in _wormBodies)
         {
-            Vector2 upPoint = Line.GetPosition(index);
-            Vector2 downPoint = Line.GetPosition(index);
-            upPoint.x -= halfWidth;
-            downPoint.x += halfWidth;
-            _collider.points.ToList().Add(upPoint);
-            _collider.points.ToList().Add(downPoint);
+            Vector2 upPoint = wormBody.transform.position;
+            Vector2 downPoint = wormBody.transform.position;
+            upPoint.y -= halfWidth;
+            downPoint.y += halfWidth;
+            upperPoints.Add(upPoint);
+            downerPoint.Add(downPoint);
         }
 
+        colliderPoints.AddRange(upperPoints);
+        downerPoint.Reverse();
+        colliderPoints.AddRange(downerPoint);
+        _collider.SetPath(0, colliderPoints);
 
 
+    }
+
+    void IncreaseSpeed()
+    {
+      
+        if(_chronoIncreaseSpeed >= TimeToIncreaseSpeed)
+        {
+            Speed += ValueIncreaseSpeed;
+            Mathf.Min(Speed, MaxSpeed);
+            _chronoIncreaseSpeed = 0f;
+        }
+
+        _chronoIncreaseSpeed += Time.deltaTime;
     }
 
     //void SetForce(bool _isDigging)
