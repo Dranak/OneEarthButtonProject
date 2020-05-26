@@ -12,19 +12,19 @@ public class WormHead : WormBody
     public WormBody PrefabWormBody;
     public int NumberOfParts;
     public float OffsetBodyPart = 5f;
-    
+
     private List<WormBody> _wormBodies;
     public Vector3 StartPosition { get; set; }
     public float DistanceFromStart { get { return Vector3.Distance(StartPosition, transform.position); } }
     public LineRenderer Line;
-   
+
     PolygonCollider2D _collider;
 
     public float Speed { get; set; }
     public float TimeToIncreaseSpeed { get; set; }
     public float MaxSpeed { get; set; }
     public float ValueIncreaseSpeed { get; set; }
-    float _chronoIncreaseSpeed =0f;
+    float _chronoIncreaseSpeed = 0f;
     public float VelocityRising { get; set; }
     public float VelocityDig { get; set; }
 
@@ -43,12 +43,12 @@ public class WormHead : WormBody
 
     void Start()
     {
-       
+
         _collider = GetComponent<PolygonCollider2D>();
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-      
+        UpdateCollider();
     }
 
     void Update()
@@ -100,11 +100,11 @@ public class WormHead : WormBody
 
         SpawnableObject spawnableObject = collision.gameObject.GetComponent<SpawnableObject>();
 
-        if(spawnableObject is Obstacle)
+        if (spawnableObject is Obstacle)
         {
             CallBackDead();
         }
-        else if( spawnableObject is Collectible)
+        else if (spawnableObject is Collectible)
         {
             CallBackPoint((spawnableObject as Collectible).collectibleParameters);
             BlocManager.Instance.PoolOut(spawnableObject);
@@ -119,7 +119,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-       // UpdateCollider();
+
     }
 
     float Accelerate(AnimationCurve curve, float maxVelocity, float time, float duration)
@@ -162,19 +162,34 @@ public class WormHead : WormBody
         List<Vector2> upperPoints = new List<Vector2>();
         List<Vector2> downerPoint = new List<Vector2>();
         float halfWidth = Line.startWidth / 2f;
-        foreach(WormBody wormBody in _wormBodies)
+        Vector2 upPoint = transform.position;
+        Vector2 downPoint = transform.position;
+        upPoint.y -= halfWidth + transform.parent.position.y;
+        downPoint.y += halfWidth - transform.parent.position.y;
+        upperPoints.Add(new Vector2(transform.position.x + halfWidth, transform.position.y - transform.parent.position.y));
+        upperPoints.Add(upPoint);
+
+        downerPoint.Add(downPoint);
+
+        foreach (WormBody wormBody in _wormBodies)
         {
-            Vector2 upPoint = wormBody.transform.position;
-            Vector2 downPoint = wormBody.transform.position;
-            upPoint.y -= halfWidth;
-            downPoint.y += halfWidth;
+            upPoint = wormBody.transform.position;
+            downPoint = wormBody.transform.position;
+            upPoint.y -= halfWidth + transform.parent.position.y;
+            downPoint.y += halfWidth - transform.parent.position.y;
             upperPoints.Add(upPoint);
+            if(wormBody == _wormBodies.Last())
+            {
+                upperPoints.Add(new Vector2(wormBody.transform.position.x - halfWidth, transform.position.y - transform.parent.position.y));
+            }
+
             downerPoint.Add(downPoint);
         }
 
         colliderPoints.AddRange(upperPoints);
         downerPoint.Reverse();
         colliderPoints.AddRange(downerPoint);
+        colliderPoints.ForEach(cp => transform.parent.InverseTransformPoint(cp));
         _collider.SetPath(0, colliderPoints);
 
 
@@ -182,14 +197,16 @@ public class WormHead : WormBody
 
     void IncreaseSpeed()
     {
-      
-        if(_chronoIncreaseSpeed >= TimeToIncreaseSpeed)
-        {
-            Speed += ValueIncreaseSpeed;
-            Mathf.Min(Speed, MaxSpeed);
-            _chronoIncreaseSpeed = 0f;
-        }
 
+        if (Speed < MaxSpeed)
+        {
+            if (_chronoIncreaseSpeed >= TimeToIncreaseSpeed)
+            {
+                Speed += ValueIncreaseSpeed;
+                Speed = Mathf.Min(Speed, MaxSpeed);
+                _chronoIncreaseSpeed = 0f;
+            }
+        }
         _chronoIncreaseSpeed += Time.deltaTime;
     }
 
