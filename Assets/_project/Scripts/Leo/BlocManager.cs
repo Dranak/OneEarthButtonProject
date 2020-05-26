@@ -19,7 +19,7 @@ public class BlocManager : MonoBehaviour
 
     [SerializeField]
     PoolersCreator spawnablesPools; // spawnables pools parent
-    List<GameObject>[] spawnablePoolsObjects; // lists of objects within the pools (spawnables only)
+    //List<GameObject>[] spawnablePoolsObjects; // lists of objects within the pools (spawnables only) // -> moved to PoolersCreator / Editor
     [SerializeField][HideInInspector]
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
@@ -41,14 +41,14 @@ public class BlocManager : MonoBehaviour
 
             currentWPMax = currentBlocMax;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
-            SetSpawnablesPools();
+            //SetSpawnablesPools(); // -> moved to PoolersCreator / Editor
             Instance = this;
         }
         else
             Destroy(this);
     }
 
-    void SetSpawnablesPools()
+    /*void SetSpawnablesPools()
     {
         System.Array.Resize(ref spawnablePoolsObjects, spawnablesPools.transform.childCount);
         int counter = 0;
@@ -57,7 +57,7 @@ public class BlocManager : MonoBehaviour
             spawnablePoolsObjects[counter] = poolC.Cast<Transform>().Select(w => w.gameObject).ToList();
             ++counter;
         }
-    }
+    }*/
     void SetPoolersHierarchy(in Transform poolsParent, in BlocsStorageScriptableObject _blocsStorage)
     {
         if (poolsParent.childCount != _blocsStorage.obstaclesPrefabs.Count)
@@ -131,15 +131,41 @@ public class BlocManager : MonoBehaviour
     }
     void SpawnablesSpawn(Bloc chosenBloc)
     {
+        Vector2Int blocYRange = chosenBloc.blocYRange;
+        float randomY = 0;
+        if (blocYRange != Vector2Int.zero) randomY = Random.Range(((Vector2)blocYRange).x, ((Vector2)blocYRange).y);
+        List<SpawnableObject> blocSpList = new List<SpawnableObject>();
         foreach (Spawnable spawnable in chosenBloc.spawnlablesParams)
         {
             // Spawn Obstacle
             GameObject spawnableSpawned;
-            List<GameObject> thisSpawnablesPool = spawnablePoolsObjects[spawnable.SpawnablePrefabIndex]; //spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
-            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, 0), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
+            List<GameObject> thisSpawnablesPool = spawnablesPools.spawnablePoolsObjects[spawnable.SpawnablePrefabIndex].objectPool; //spawnablesPools.transform.GetChild(spawnable.SpawnablePrefabIndex).Cast<Transform>().Select(w => w.gameObject).ToList(); // get all spawnables (activated or not)
+            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMax, randomY), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
             var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
             spawnableObj.SetSpawnable(spawnable);
             SpawnablePlacing(spawnableObj); // adjust position
+            blocSpList.Add(spawnableObj);
+        }
+        // Bloc-wise offsets
+        Vector4 globalOffset = chosenBloc.globalOffsetRange;
+        Vector2Int globalRotOffset = chosenBloc.globalRotationOffsetRange;
+        if (globalOffset != Vector4.zero)
+        {
+            foreach (SpawnableObject spawnable in blocSpList)
+            {
+                spawnable.transform.localPosition += (Vector3)new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
+            }
+        }
+        if (globalRotOffset != Vector2Int.zero)
+        {
+            foreach (SpawnableObject spawnable in blocSpList)
+            {
+                int rotOffsetMin = globalRotOffset.x;
+                if (rotOffsetMin > 0) rotOffsetMin = 0;
+                spawnable.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin)*22.5f);
+                if (spawnable is Obstacle)
+                    spawnable.objectBody.localPosition += spawnable.transform.position - spawnable.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+            }
         }
     }
     void ObstaclesSpawn(Bloc generatedBloc, out int _blockLength, in int obstaclesXGap, in float XGapRandomization, int lowBound = 9, int highBound = 0, SeriesType seriesType = SeriesType.MIX)
@@ -332,16 +358,29 @@ public class BlocManager : MonoBehaviour
     {
         var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
+
         if (spawnableParams is ObstacleSpawnable)
         {
-            spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset;
-            spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, (spawnableParams as ObstacleSpawnable).BodyRotation);
+            spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, (spawnableParams as ObstacleSpawnable).BodyRotation); // body rotation
+            spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset; // body offsetting (fixing rotation offset)
+            // random rotation offset
+            if ((spawnableParams as ObstacleSpawnable).RotationOffsetRange != Vector2Int.zero)
+            {
+                int rotOffsetMin = (spawnableParams as ObstacleSpawnable).RotationOffsetRange.x;
+                if (rotOffsetMin > 0) rotOffsetMin = 0;
+                spawnableToPlace.objectBody.Rotate(Vector3.back, (Random.Range((spawnableParams as ObstacleSpawnable).RotationOffsetRange.x - rotOffsetMin, (spawnableParams as ObstacleSpawnable).RotationOffsetRange.y - rotOffsetMin) + rotOffsetMin)*22.5f);
+                spawnableToPlace.objectBody.localPosition += spawnableToPlace.transform.position - spawnableToPlace.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+            }
         }
         else
         {
             var randomRot = Random.Range(0, 16);
             spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, 22.5f * randomRot);
         }
+
+        // random position offset
+        if (spawnableParams.OffsetXRange != Vector2Int.zero)
+            spawnableToPlace.transform.localPosition += (Vector3)new Vector2(Random.Range(spawnableParams.OffsetXRange.x, spawnableParams.OffsetXRange.y), Random.Range(spawnableParams.OffsetYRange.x, spawnableParams.OffsetYRange.y));
     }
     void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
     {
@@ -397,7 +436,7 @@ public class BlocManager : MonoBehaviour
     {
         toPoolOut.SetActive(false);
     }
-    public void PoolOut (SpawnableObject toPoolOut)
+    public void PoolOut (in SpawnableObject toPoolOut)
     {
         PoolOut(toPoolOut.gameObject);
         toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool

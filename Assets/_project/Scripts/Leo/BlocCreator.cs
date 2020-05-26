@@ -20,6 +20,8 @@ public class BlocCreator : MonoBehaviour
     [HideInInspector] public int selectedPrefabIndex = 0;
     [HideInInspector] public float maxIntersectionVolume = 0;
     [HideInInspector] public List<string> blocNames; // available blocs names
+    [HideInInspector] public string blocName = "Enter Bloc Name"; // bloc name to store
+    [HideInInspector] public Bloc currentBlocSelection = null;
 
     public GameObject SelectedPrefab
     {

@@ -9,13 +9,14 @@ public class PoolersEditor : Editor
     private void OnEnable()
     {
         pC = target as PoolersCreator;
+        EditorUtility.SetDirty(pC.gameObject);
     }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         serializedObject.Update();
         GUI.color = Color.green;
-        if (GUILayout.Button("Create sub-Pools from Scriptable"))
+        if (GUILayout.Button("Create sub-Pools from Scriptable, and generate array of pools"))
         {
             // destroy all previous obj if any
             while (pC.transform.childCount > 0)
@@ -27,13 +28,14 @@ public class PoolersEditor : Editor
             {
                 var pool = new GameObject(spawnablePrefab.name + "_T");
                 pool.transform.SetParent(pC.transform);
-                for (int i = 0; i < pC.poolsSize; ++i)
+                for (int i = 0; i < pC.poolsSize * (1 + System.Convert.ToInt32(spawnablePrefab.name.Contains("bread"))*(pC.breadPoolMult-1)); ++i)
                 {
                     GameObject spawnableObj = PrefabUtility.InstantiatePrefab(spawnablePrefab, pool.transform) as GameObject;
                     spawnableObj.name += i;
                     spawnableObj.SetActive(false);
                 }
             }
+            pC.SetSpawnablesPools();
         }
     }
 }

@@ -29,6 +29,12 @@ public class BlocEditor : Editor
         var scriptObject = bc.gameObject;
         editorPS = PhysicsSceneExtensions2D.GetPhysicsScene2D(scriptObject.scene);
         scriptableProp = serializedObject.FindProperty("blocsScriptable");
+        if (bc.currentBlocSelection != null)
+        {
+            blocYRange = bc.currentBlocSelection.blocYRange;
+            gOffset = bc.currentBlocSelection.globalOffsetRange;
+            rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
+        }
         EditorUtility.SetDirty(bc.blocsScriptable);
     }
 
@@ -50,7 +56,7 @@ public class BlocEditor : Editor
         }
     }
 
-    string blocName = "Enter Bloc Name"; // bloc name to store
+    //string blocName = "Enter Bloc Name"; // bloc name to store
     int selectedName = 0;
     Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY; // bloc area to store
 
@@ -105,22 +111,22 @@ public class BlocEditor : Editor
         GUILayout.Label("MISC PARAMETERS:", GUILayout.MaxWidth(250));
         if (GUILayout.Button("Reset Misc", GUILayout.MaxWidth(100)))
         {
-            blocYRange = Vector2.zero;
+            blocYRange = Vector2Int.zero;
             gOffset = Vector4.zero;
             rotOff = Vector2.zero;
         }
         EditorGUILayout.EndHorizontal();
+
         // Bloc Y Range parameter
         GUILayout.Space(6);
         MinMaxIntSliderGUI("Bloc Y Range", ref blocYRange.x, ref blocYRange.y, -9, 9);
         GUILayout.Space(3);
         // Global offset parameters
-        MinMaxIntSliderGUI("Global Obs X Offset" , ref gOffset.x, ref gOffset.y, -6, 6);
+        MinMaxIntSliderGUI("Global Obs X Offset", ref gOffset.x, ref gOffset.y, -6, 6);
         MinMaxIntSliderGUI("Global Obs Y Offset", ref gOffset.w, ref gOffset.z, -9, 9);
         GUILayout.Space(3);
         // Global Rotation parameter
         MinMaxIntSliderGUI("Global Rotation Offset", ref rotOff.x, ref rotOff.y, -16, 16);
-
         GUILayout.Space(8);
 
         // BLOC SAVING
@@ -128,23 +134,25 @@ public class BlocEditor : Editor
         GUILayout.Space(6);
         GetSavedBlocsNames();
         EditorGUI.BeginChangeCheck();
-        blocName = EditorGUILayout.TextField("Bloc Name : ", blocName);
+        bc.blocName = EditorGUILayout.TextField("Bloc Name : ", bc.blocName);
         if (EditorGUI.EndChangeCheck())
         {
-            if (bc.blocNames.Contains(blocName))
-                selectedName = bc.blocNames.IndexOf(blocName);
+            if (bc.blocNames.Contains(bc.blocName))
+            {
+                selectedName = bc.blocNames.IndexOf(bc.blocName);
+            }
         }
         EditorGUI.BeginChangeCheck();
         selectedName = EditorGUILayout.Popup("Available Blocs Selection : ", selectedName, bc.blocNames.ToArray());
         if (EditorGUI.EndChangeCheck())
         {
-            blocName = bc.blocNames[selectedName];
+            bc.blocName = bc.blocNames[selectedName];
         }
 
         blocArea = (Bloc.BlocArea)EditorGUILayout.EnumPopup("Bloc Area : ", blocArea);
         GUILayout.Space(8);
         var scriptableStoredBlocs = bc.blocsScriptable.storedBlocs;
-        var presavedBloc = scriptableStoredBlocs.FirstOrDefault(b => b.blocName == blocName); // is there a block with that name saved already ?
+        bc.currentBlocSelection = scriptableStoredBlocs.FirstOrDefault(b => b.blocName == bc.blocName); // is there a block with that name saved already ?
 
         EditorGUI.BeginDisabledGroup(bc.rootTransform.childCount == 0 || (stamp.transform.parent == bc.rootTransform && bc.rootTransform.childCount == 1));
         if (GUILayout.Button("Wipe all obstacles"))
@@ -154,25 +162,25 @@ public class BlocEditor : Editor
         GUILayout.Space(6);
         EditorGUI.EndDisabledGroup();
 
-        EditorGUI.BeginDisabledGroup(presavedBloc == null);
+        EditorGUI.BeginDisabledGroup(bc.currentBlocSelection == null);
         GUI.backgroundColor = Color.cyan;
         if (GUILayout.Button("Load existing Bloc"))
         {
             // load bloc parameters
-            LoadBlocParameters(presavedBloc);
-            LoadSpawnablesFromBloc(presavedBloc);
+            LoadBlocParameters(bc.currentBlocSelection);
+            LoadSpawnablesFromBloc(bc.currentBlocSelection);
         }
         GUILayout.Space(6);
         GUI.backgroundColor = Color.red;
         if (GUILayout.Button("Delete existing bloc"))
         {
             DestroyAllRootSpawnables(); // destroy all root objects
-            scriptableStoredBlocs.Remove(presavedBloc);
+            scriptableStoredBlocs.Remove(bc.currentBlocSelection);
             //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
         GUILayout.Space(8);
-        EditorGUI.BeginDisabledGroup(blocName == "Enter Bloc Name");
+        EditorGUI.BeginDisabledGroup(bc.blocName == "Enter Bloc Name");
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
@@ -191,7 +199,7 @@ public class BlocEditor : Editor
                     obsRightBoundX += spawnableObject.Size.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, blocName, spawnables);
+            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, spawnables);
 
             // set misc parameters
             if (blocYRange != Vector2.zero)
@@ -207,15 +215,15 @@ public class BlocEditor : Editor
                 newBloc.globalRotationOffsetRange = new Vector2Int((int)rotOff.x, (int)rotOff.y);
             }
 
-            if (presavedBloc != null)
+            if (bc.currentBlocSelection != null)
             {
-                scriptableStoredBlocs[scriptableStoredBlocs.IndexOf(presavedBloc)] = newBloc;
+                scriptableStoredBlocs[scriptableStoredBlocs.IndexOf(bc.currentBlocSelection)] = newBloc;
             }
             else
             {
                 bc.blocsScriptable.storedBlocs.Add(newBloc);
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
-                selectedName = bc.blocNames.IndexOf(blocName);  // set pop field as equal to the new bloc name
+                selectedName = bc.blocNames.IndexOf(bc.blocName);  // set pop field as equal to the new bloc name
             }
             //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
