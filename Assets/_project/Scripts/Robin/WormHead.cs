@@ -39,7 +39,7 @@ public class WormHead : WormBody
     private bool IsDigging = false;
 
     public Action CallBackDead;
-    public Action<CollectibleSpawnable> CallBackPoint;
+    public Action<Collectible> CallBackPoint;
 
     void Start()
     {
@@ -102,7 +102,7 @@ public class WormHead : WormBody
     {
 
         SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
-       
+
         if(spawnableObject)
         {
             if (spawnableObject is Obstacle)
@@ -117,7 +117,7 @@ public class WormHead : WormBody
                 BlocManager.Instance.PoolOut(spawnableObject);
             }
         }
-       
+
 
     }
 
@@ -128,7 +128,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-        
+
 
     }
 
@@ -263,5 +263,3 @@ public class WormHead : WormBody
     //}
 
 }
-
-

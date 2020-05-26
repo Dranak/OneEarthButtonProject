@@ -9,7 +9,7 @@ public class PoolersEditor : Editor
     private void OnEnable()
     {
         pC = target as PoolersCreator;
-        EditorUtility.SetDirty(pC.gameObject);
+        //EditorUtility.SetDirty(pC.gameObject);
     }
     public override void OnInspectorGUI()
     {
