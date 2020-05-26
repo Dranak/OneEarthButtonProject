@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
     {
         if (!collectible.IsEggShell)
         {
-            ScoreTextFB.text = collectible.PointGain.ToString();
+            ScoreTextFB.text ="+" +collectible.PointGain.ToString();
 
 
             Score += collectible.PointGain;
@@ -143,20 +143,20 @@ public class Player : MonoBehaviour
             {
                 case 1:
                     Score += 20;
-                    ScoreTextFB.text = "20";
+                    ScoreTextFB.text = "+20";
                     break;
                 case 2:
                     Score += 50;
-                    ScoreTextFB.text = "50";
+                    ScoreTextFB.text = "+50";
                     break;
                 case 3:
                     Score += 100;
-                    ScoreTextFB.text = "100";
+                    ScoreTextFB.text = "+100";
                     break;
             }
         }
         //ScoreTextFB.enabled = true;
-        StartCoroutine(WaitSecond(ScoreTextFB, 1));
+        StartCoroutine(WaitSecond(ScoreTextFB, .4f));
     }
 
     IEnumerator WaitSecond(TextMeshProUGUI text, float time)
@@ -165,7 +165,9 @@ public class Player : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
-        text.ClearMesh();
+        ScoreTextFB.text = "";
+        // text.ClearMesh();
+
         //text.enabled = false;
 
 

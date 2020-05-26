@@ -113,7 +113,7 @@ public class WormHead : WormBody
             else if (spawnableObject is Collectible)
             {
                 Debug.Log("Eat "+spawnableObject.name);
-                CallBackPoint((spawnableObject as Collectible).collectibleParameters);
+                CallBackPoint((spawnableObject as Collectible));
                 BlocManager.Instance.PoolOut(spawnableObject);
             }
         }
