@@ -18,8 +18,8 @@ MonoBehaviour:
     blocCount: 6
     blocLength: 21
     blocYRange: {x: 0, y: 3}
-    globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
-    globalRotationOffsetRange: {x: 0, y: 0}
+    globalOffsetRange: {x: -1, y: 1, z: 1, w: 0}
+    globalRotationOffsetRange: {x: -2, y: 2}
     spawnlablesParams:
     - id: 0
     - id: 1
@@ -54,13 +54,13 @@ MonoBehaviour:
       data:
         Tag: obstacle_can
         BlocPosition: {x: 19, y: -7}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
+        OffsetXRange: {x: 0, y: 5}
+        OffsetYRange: {x: -2, y: 0}
         SpawnablePrefabIndex: 0
         BodyRotation: 315
         BoundsSize: {x: 1.9681149, y: 1.9759707}
         BodyOffset: {x: -0.11784935, y: 0.6992502}
-        RotationOffsetRange: {x: 0, y: 0}
+        RotationOffsetRange: {x: -16, y: 16}
         ObsKind: 0
     00000002:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
