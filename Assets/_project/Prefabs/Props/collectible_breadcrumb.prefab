@@ -267,6 +267,26 @@ PrefabInstance:
       propertyPath: Size.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: collectibleParameters.PointGain
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: collectibleParameters.IsEggShell
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: IsEggShell
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: PointGain
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Sprite

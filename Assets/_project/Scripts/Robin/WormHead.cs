@@ -39,7 +39,7 @@ public class WormHead : WormBody
     private bool IsDigging = false;
 
     public Action CallBackDead;
-    public Action<CollectibleSpawnable> CallBackPoint;
+    public Action<Collectible> CallBackPoint;
 
     void Start()
     {
@@ -106,7 +106,7 @@ public class WormHead : WormBody
         }
         else if (spawnableObject is Collectible)
         {
-            CallBackPoint((spawnableObject as Collectible).collectibleParameters);
+            CallBackPoint(spawnableObject as Collectible);
             BlocManager.Instance.PoolOut(spawnableObject);
         }
 
