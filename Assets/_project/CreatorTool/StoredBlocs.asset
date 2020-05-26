@@ -15,8 +15,11 @@ MonoBehaviour:
   storedBlocs:
   - blocName: test
     blockArea: 0
-    blocCount: 5
+    blocCount: 6
     blocLength: 21
+    blocYRange: {x: 0, y: 3}
+    globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
+    globalRotationOffsetRange: {x: 0, y: 0}
     spawnlablesParams:
     - id: 0
     - id: 1

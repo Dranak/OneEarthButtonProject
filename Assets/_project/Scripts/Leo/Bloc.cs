@@ -11,12 +11,9 @@ public class Bloc
         blocName = _blocName;
         spawnlablesParams = _spawnables;
 
-        if (_blocYRange != Vector2Int.zero)
-            blocYRange = _blocYRange;
-        if (_globalOffsetRange != Vector4.zero)
-            globalOffsetRange = _globalOffsetRange;
-        if (_globalRotationOffsetRange != Vector2Int.zero)
-            globalRotationOffsetRange = _globalRotationOffsetRange;
+        blocYRange = _blocYRange;
+        globalOffsetRange = _globalOffsetRange;
+        globalRotationOffsetRange = _globalRotationOffsetRange;
     }
     public enum BlocArea
     {
@@ -30,9 +27,9 @@ public class Bloc
     public BlocArea blockArea;
     public int blocCount, blocLength;
     // offset ranges
-    public Vector2Int? blocYRange = null;
-    public Vector4? globalOffsetRange = null;
-    public Vector2Int? globalRotationOffsetRange = null;
+    [SerializeField] public Vector2Int blocYRange;
+    [SerializeField] public Vector4 globalOffsetRange;
+    [SerializeField] public Vector2Int globalRotationOffsetRange;
 
     [SerializeReference] public Spawnable[] spawnlablesParams = new Spawnable[0];
 }
