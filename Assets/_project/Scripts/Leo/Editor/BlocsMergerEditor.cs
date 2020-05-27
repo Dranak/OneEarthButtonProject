@@ -20,7 +20,7 @@ public class BlocsMergerEditor : Editor
         serializedObject.Update();
         mergedBlocName = EditorGUILayout.TextField("Bloc Name : ", mergedBlocName);
         GUI.color = Color.green;
-        EditorGUI.BeginDisabledGroup(bM.blocsToMerge.Count == 0 || mergedBlocName == "new bloc name" || mergedBlocName == "");
+        EditorGUI.BeginDisabledGroup(bM.blocsToMerge.Count < 2 || mergedBlocName == "new bloc name" || mergedBlocName == "");
         if (GUILayout.Button("Create Merged Scriptable"))
         {
             bM.mergedBloc.obstaclesPrefabs = bM.blocsToMerge[0].obstaclesPrefabs; // always the same prefabs ! warning

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 258554111502040705}
   - component: {fileID: 4827286703594951646}
   m_Layer: 0
-  m_Name: ScriptableB_Merger
+  m_Name: BlocsMerger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blocsToMerge:
-  - {fileID: 11400000, guid: 778e3cd807a9e4c40b34e26fbc46db3a, type: 2}
-  - {fileID: 11400000, guid: 5e171dadeb595b848bc419318c96a13a, type: 2}
+  - {fileID: 11400000, guid: 6bc5e95a9ed86884fbb22def1f2bd51c, type: 2}
+  - {fileID: 11400000, guid: 587d0d283c8409e48bab5c9a55ff3fcc, type: 2}
   mergedBlocPath: Assets/_project/CreatorTool/LD/
   mergedBloc: {fileID: 0}
