@@ -51,8 +51,7 @@ SpriteAtlas:
     - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
-    - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
-    totalSpriteSurfaceArea: 1854498
+    totalSpriteSurfaceArea: 1846398
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -65,7 +64,6 @@ SpriteAtlas:
   - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
   - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
   - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
-  - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
   m_PackedSpriteNamesToIndex:
   - Bouteille_cassee_2
   - Bouteille_cassee_0
@@ -76,6 +74,5 @@ SpriteAtlas:
   - Canette_0
   - Canette_1
   - Canette_2
-  - Eggshell
   m_Tag: spawnables
   m_IsVariant: 0
