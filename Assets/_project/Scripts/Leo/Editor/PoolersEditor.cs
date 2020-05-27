@@ -9,13 +9,13 @@ public class PoolersEditor : Editor
     private void OnEnable()
     {
         pC = target as PoolersCreator;
-        //EditorUtility.SetDirty(pC.gameObject);
     }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         serializedObject.Update();
         GUI.color = Color.green;
+        EditorGUI.BeginDisabledGroup(!pC.selectedBlocsScriptable);
         if (GUILayout.Button("Create sub-Pools from Scriptable, and generate array of pools"))
         {
             // destroy all previous obj if any
@@ -37,5 +37,6 @@ public class PoolersEditor : Editor
             }
             pC.SetSpawnablesPools();
         }
+        EditorGUI.EndDisabledGroup();
     }
 }
