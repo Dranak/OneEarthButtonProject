@@ -15,8 +15,8 @@ MonoBehaviour:
   storedBlocs:
   - blocName: test
     blockArea: 0
-    blocCount: 16
-    blocLength: 29
+    blocCount: 19
+    blocLength: 35
     blocYRange: {x: 0, y: 3}
     globalOffsetRange: {x: -1, y: 1, z: 1, w: 0}
     globalRotationOffsetRange: {x: -2, y: 2}
@@ -36,6 +36,9 @@ MonoBehaviour:
     - id: 12
     - id: 13
     - id: 14
+    - id: 15
+    - id: 16
+    - id: 17
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -181,3 +184,37 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+    0000000F:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_circle
+        BlocPosition: {x: 32, y: -2}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 5
+        BodyRotation: 0
+        BoundsSize: {x: 3, y: 3}
+        BodyOffset: {x: 0, y: 0}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000010:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: collectible_apple
+        BlocPosition: {x: 33, y: -8}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 3
+    00000011:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_pen
+        BlocPosition: {x: 17, y: -3}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 4
+        BodyRotation: 326.25
+        BoundsSize: {x: 1.161911, y: 1.6784344}
+        BodyOffset: {x: -0.08929825, y: 0.11573315}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
