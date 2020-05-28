@@ -45,11 +45,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
         type: 3}
-      propertyPath: obstacleParameters.BoundsSize.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
-        type: 3}
       propertyPath: Size.x
       value: 3
       objectReference: {fileID: 0}
@@ -57,6 +52,21 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacleParameters.BoundsSize.x
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: obstacleParameters.BoundsSize.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: obstacleParameters.BodyOffset.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533492011121324645, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: obstacleParameters.BodyOffset.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1012906314991533173, guid: fe1ce22affbca9d43822e666f1c921be,
         type: 3}

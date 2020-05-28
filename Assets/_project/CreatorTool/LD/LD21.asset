@@ -34,6 +34,7 @@ MonoBehaviour:
     - id: 10
     - id: 11
     - id: 12
+    - id: 13
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -52,9 +53,9 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
-        BodyRotation: 67.49999
+        BodyRotation: 0
         BoundsSize: {x: 3, y: 3}
-        BodyOffset: {x: 1.9138489, y: -0.58055973}
+        BodyOffset: {x: 1.5, y: 1.5}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     00000001:
@@ -173,3 +174,16 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
+    0000000D:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: 
+        BlocPosition: {x: 0, y: 0}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 0
+        BoundsSize: {x: 1, y: 2}
+        BodyOffset: {x: 0, y: 0}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0

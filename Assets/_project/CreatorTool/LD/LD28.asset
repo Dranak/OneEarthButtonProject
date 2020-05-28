@@ -82,9 +82,9 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
-        BodyRotation: 281.25
+        BodyRotation: 0
         BoundsSize: {x: 3, y: 3}
-        BodyOffset: {x: -0.45984268, y: 2.3117938}
+        BodyOffset: {x: 1.5, y: 1.5}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     00000003:

@@ -15,7 +15,7 @@ MonoBehaviour:
   storedBlocs:
   - blocName: LD25
     blockArea: 0
-    blocCount: 18
+    blocCount: 19
     blocLength: 88
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -39,6 +39,7 @@ MonoBehaviour:
     - id: 15
     - id: 16
     - id: 17
+    - id: 18
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -57,9 +58,9 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
-        BodyRotation: 337.5
+        BodyRotation: 0
         BoundsSize: {x: 3, y: 3}
-        BodyOffset: {x: -0.5805596, y: 1.0861509}
+        BodyOffset: {x: 1.5, y: 1.5}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     00000001:
@@ -228,3 +229,16 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
+    00000012:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: 
+        BlocPosition: {x: 0, y: 0}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 0
+        BoundsSize: {x: 1, y: 2}
+        BodyOffset: {x: 0, y: 0}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0

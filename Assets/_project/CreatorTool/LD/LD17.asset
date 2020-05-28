@@ -15,7 +15,7 @@ MonoBehaviour:
   storedBlocs:
   - blocName: LD17
     blockArea: 0
-    blocCount: 19
+    blocCount: 18
     blocLength: 88
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +161,8 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
         BodyRotation: 0
-        BoundsSize: {x: 2.0111122, y: 1.0944448}
-        BodyOffset: {x: 0, y: 0}
+        BoundsSize: {x: 3, y: 3}
+        BodyOffset: {x: 1.5, y: 1.5}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000C:
