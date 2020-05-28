@@ -349,10 +349,8 @@ public class BlocManager : MonoBehaviour
         var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
 
-        if (spawnableParams is ObstacleSpawnable && spawnableToPlace.Size.x != spawnableToPlace.Size.y) // Rotation setup only for long Obstacles, otherwise random rotation
+        if (spawnableParams is ObstacleSpawnable && spawnableToPlace.Size.x != spawnableToPlace.Size.y) // Rotation range setup only for long Obstacles, otherwise random rotation
         {
-            spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, (spawnableParams as ObstacleSpawnable).BodyRotation); // body rotation
-            spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset; // body offsetting (fixing rotation offset)
             // random rotation offset
             if ((spawnableParams as ObstacleSpawnable).RotationOffsetRange != Vector2Int.zero)
             {
