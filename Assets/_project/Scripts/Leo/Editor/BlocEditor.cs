@@ -312,11 +312,11 @@ public class BlocEditor : Editor
             var spawnableType = spawnableParameters.GetType();
             if (typeof(ObstacleSpawnable) == spawnableType)
             {
-                (spawnable as Obstacle).SetObstacle(new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), obstacleIndex, offset, obsRectBounds, rotation);
+                (spawnable as Obstacle).SetObstacle(g.transform.localPosition, obstacleIndex, offset, obsRectBounds, rotation);
             }
             else if (typeof(CollectibleSpawnable) == spawnableType)
             {
-                (spawnable as Collectible).SetCollectible(new Vector2Int((int)g.transform.localPosition.x, (int)g.transform.localPosition.y), obstacleIndex);
+                (spawnable as Collectible).SetCollectible(g.transform.localPosition, obstacleIndex);
             }
         }
     }
@@ -357,7 +357,7 @@ public class BlocEditor : Editor
             var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
             Undo.RegisterCreatedObjectUndo(g, "ReStamp");
             var gT = g.transform;
-            gT.localPosition = (Vector2)spawnable.BlocPosition;
+            gT.localPosition = spawnable.BlocPosition;
             var bodyT = gT.GetChild(0);
             if (spawnable is ObstacleSpawnable)
                 bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
