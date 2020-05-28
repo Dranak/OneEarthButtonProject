@@ -120,10 +120,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 4
-        BodyRotation: 33.75
         BoundsSize: {x: 1.1679592, y: 1.6815214}
-        BodyOffset: {x: 0.99711037, y: -0.057110786}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     00000009:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
@@ -141,10 +138,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 1
-        BodyRotation: 258.75
         BoundsSize: {x: 4.017235, y: 1.4577574}
-        BodyOffset: {x: 0.1559639, y: 1.485702}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000B:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
@@ -154,10 +148,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 0
-        BodyRotation: 315
         BoundsSize: {x: 1.9681139, y: 1.9759707}
-        BodyOffset: {x: -0.11785126, y: 0.6992502}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000C:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
@@ -167,10 +158,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 4
-        BodyRotation: 67.49999
         BoundsSize: {x: 1.8467274, y: 0.84353983}
-        BodyOffset: {x: 1.7650576, y: -0.095243454}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000D:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
@@ -180,10 +168,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
-        BodyRotation: 0
         BoundsSize: {x: 1.8467274, y: 0.84353983}
-        BodyOffset: {x: 0, y: 0}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000E:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
@@ -193,10 +178,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 5
-        BodyRotation: 0
         BoundsSize: {x: 1.8467274, y: 0.84353983}
-        BodyOffset: {x: 0, y: 0}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
     0000000F:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
@@ -214,8 +196,5 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 4
-        BodyRotation: 281.25
         BoundsSize: {x: 1.9451294, y: 0.5342541}
-        BodyOffset: {x: -0.016231537, y: 0.22454453}
-        RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
