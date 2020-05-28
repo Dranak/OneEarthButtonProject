@@ -51,31 +51,55 @@ SpriteAtlas:
     - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
-    - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
-    totalSpriteSurfaceArea: 1854498
+    - {fileID: 5471478226518786627, guid: 54551e1f15c7a304b8666dbdc3e6cc96, type: 3}
+    - {fileID: 847505926424270503, guid: 54551e1f15c7a304b8666dbdc3e6cc96, type: 3}
+    - {fileID: 43226203873635761, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
+    - {fileID: -2091964953667161442, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
+    - {fileID: -4981867654178296933, guid: f01875da5319759438468f027269b375, type: 3}
+    - {fileID: 5773722506178961019, guid: f01875da5319759438468f027269b375, type: 3}
+    - {fileID: -414479616469554613, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
+    - {fileID: 7392132609631509024, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
+    - {fileID: 7145536800334388871, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
+    totalSpriteSurfaceArea: 2076134
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
   - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
   - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+  - {fileID: 43226203873635761, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
+  - {fileID: -2091964953667161442, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
   - {fileID: 4428431818956017365, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
   - {fileID: 7880480322225668665, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
   - {fileID: -8070191969714574970, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
+  - {fileID: -4981867654178296933, guid: f01875da5319759438468f027269b375, type: 3}
+  - {fileID: 5773722506178961019, guid: f01875da5319759438468f027269b375, type: 3}
   - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
   - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
   - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
-  - {fileID: 21300000, guid: 8d13343b5df988843a0644ea25b1a345, type: 3}
+  - {fileID: 5471478226518786627, guid: 54551e1f15c7a304b8666dbdc3e6cc96, type: 3}
+  - {fileID: 847505926424270503, guid: 54551e1f15c7a304b8666dbdc3e6cc96, type: 3}
+  - {fileID: 7392132609631509024, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
+  - {fileID: -414479616469554613, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
+  - {fileID: 7145536800334388871, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
   m_PackedSpriteNamesToIndex:
   - Bouteille_cassee_2
   - Bouteille_cassee_0
   - Bouteille_cassee_1
+  - Pain_0
+  - Pain_1
   - Bouteille_1
   - Bouteille_0
   - Bouteille_2
+  - Pomme_0
+  - Pomme_1
   - Canette_0
   - Canette_1
   - Canette_2
-  - Eggshell
+  - Coquille_0
+  - Coquille_1
+  - Stylo_1
+  - Stylo_0
+  - Stylo_2
   m_Tag: spawnables
   m_IsVariant: 0
