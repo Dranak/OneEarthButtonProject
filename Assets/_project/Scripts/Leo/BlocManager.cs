@@ -48,16 +48,6 @@ public class BlocManager : MonoBehaviour
             Destroy(this);
     }
 
-    /*void SetSpawnablesPools()
-    {
-        System.Array.Resize(ref spawnablePoolsObjects, spawnablesPools.transform.childCount);
-        int counter = 0;
-        foreach (Transform poolC in spawnablesPools.transform)
-        {
-            spawnablePoolsObjects[counter] = poolC.Cast<Transform>().Select(w => w.gameObject).ToList();
-            ++counter;
-        }
-    }*/
     void SetPoolersHierarchy(in Transform poolsParent, in BlocsStorageScriptableObject _blocsStorage)
     {
         if (poolsParent.childCount != _blocsStorage.obstaclesPrefabs.Count)
@@ -359,7 +349,7 @@ public class BlocManager : MonoBehaviour
         var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
 
-        if (spawnableParams is ObstacleSpawnable)
+        if (spawnableParams is ObstacleSpawnable && spawnableToPlace.Size.x != spawnableToPlace.Size.y) // Rotation setup only for long Obstacles, otherwise random rotation
         {
             spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, (spawnableParams as ObstacleSpawnable).BodyRotation); // body rotation
             spawnableToPlace.objectBody.localPosition = (spawnableParams as ObstacleSpawnable).BodyOffset; // body offsetting (fixing rotation offset)
@@ -372,7 +362,7 @@ public class BlocManager : MonoBehaviour
                 spawnableToPlace.objectBody.localPosition += spawnableToPlace.transform.position - spawnableToPlace.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
             }
         }
-        else
+        else // Random rotation
         {
             var randomRot = Random.Range(0, 16);
             spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, 22.5f * randomRot);
