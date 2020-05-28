@@ -35,6 +35,11 @@ public class BlocEditor : Editor
             gOffset = bc.currentBlocSelection.globalOffsetRange;
             rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
         }
+
+        GetSavedBlocsNames();
+        if (!bc.blocNames.Contains(bc.blocName))
+            bc.blocName = "Enter Bloc Name";
+
         EditorUtility.SetDirty(bc.blocsScriptable);
     }
 
@@ -57,7 +62,7 @@ public class BlocEditor : Editor
     }
 
     //string blocName = "Enter Bloc Name"; // bloc name to store
-    int selectedName = 0;
+    int selectedName = -1;
     Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY; // bloc area to store
 
     Vector2 blocYRange;
@@ -137,9 +142,12 @@ public class BlocEditor : Editor
         bc.blocName = EditorGUILayout.TextField("Bloc Name : ", bc.blocName);
         if (EditorGUI.EndChangeCheck())
         {
-            if (bc.blocNames.Contains(bc.blocName))
+            if (bc.blocName != "")
             {
-                selectedName = bc.blocNames.IndexOf(bc.blocName);
+                if (bc.blocNames.Contains(bc.blocName))
+                {
+                    selectedName = bc.blocNames.IndexOf(bc.blocName);
+                }
             }
         }
         EditorGUI.BeginChangeCheck();
@@ -180,7 +188,7 @@ public class BlocEditor : Editor
         }
         EditorGUI.EndDisabledGroup();
         GUILayout.Space(8);
-        EditorGUI.BeginDisabledGroup(bc.blocName == "Enter Bloc Name");
+        EditorGUI.BeginDisabledGroup(bc.blocName == "Enter Bloc Name" || bc.blocName == "");
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
@@ -225,7 +233,8 @@ public class BlocEditor : Editor
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(bc.blocName);  // set pop field as equal to the new bloc name
             }
-            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
+            // AssetDatabase.SaveAssets();
+            // AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
     }
