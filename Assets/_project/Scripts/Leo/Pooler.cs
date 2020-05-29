@@ -14,7 +14,7 @@ public class Pooler : MonoBehaviour
         if (other.tag == "BlocPoolerTrigger")
         {
             BlocManager.Instance.NewBloc();
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject); // still needed to reset eggshell series
             //GameManager.Instance.Player.WormHead.Speed = Mathf.Min(GameManager.Instance.Player.WormHead.Speed + 0.25f, 10); // increment speed function
         }
     }

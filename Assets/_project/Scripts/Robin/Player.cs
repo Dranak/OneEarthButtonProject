@@ -46,8 +46,6 @@ public class Player : MonoBehaviour
     public AnimationCurve AccelerationCurveRising;
 
 
-
-
     void Start()
     {
         SetupWorm();
