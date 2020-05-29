@@ -6,10 +6,10 @@ public class Collectible : SpawnableObject
     public int PointGain;
     public bool IsEggShell;
 
-    public void SetCollectible(in Vector2 _blocPos, in int _prefabIndex) // + new parameters?
+    public void SetCollectible(in Vector2 _blocPos, in int _prefabIndex, in int _eggshellId = -1)
     {
         base.SetSpawnable(collectibleParameters, _blocPos, _prefabIndex);
-        // + new parameters?
+        collectibleParameters.eggShellIndex = _eggshellId;
     }
 
     private void OnEnable()

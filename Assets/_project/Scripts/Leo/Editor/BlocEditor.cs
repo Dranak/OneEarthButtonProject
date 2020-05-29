@@ -68,6 +68,7 @@ public class BlocEditor : Editor
     Vector2 blocYRange;
     Vector4 gOffset;
     Vector2 rotOff;
+    int selectedEggshellId = 0;
 
     public override void OnInspectorGUI()
     {
@@ -109,6 +110,20 @@ public class BlocEditor : Editor
                 CreateNewStamp();
             }
             GUILayout.Space(16);
+        }
+
+        // EGGSHGELL PARAMETER
+        var selectedSpawnable = bc.SelectedPrefab.GetComponent<SpawnableObject>();
+        if (selectedSpawnable is Collectible)
+        {
+            if (selectedSpawnable.name.Contains("eggshell"))
+            {
+                if (selectedEggshellId < 0) selectedEggshellId = 0;
+                selectedEggshellId = EditorGUILayout.IntField("Eggshell ID", selectedEggshellId);
+                GUILayout.Space(6);
+            }
+            else
+                selectedEggshellId = -1;
         }
 
         // ADDITIONAL BLOC PARAMETERS
@@ -325,7 +340,7 @@ public class BlocEditor : Editor
             }
             else if (typeof(CollectibleSpawnable) == spawnableType)
             {
-                (spawnable as Collectible).SetCollectible(g.transform.localPosition, obstacleIndex);
+                (spawnable as Collectible).SetCollectible(g.transform.localPosition, obstacleIndex, selectedEggshellId);
             }
         }
     }
