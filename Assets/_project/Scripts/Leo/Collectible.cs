@@ -14,7 +14,6 @@ public class Collectible : SpawnableObject
 
     private void OnEnable()
     {
-
     }
 
     public override void GetSpawnable(out Spawnable collectibleSpawnable)

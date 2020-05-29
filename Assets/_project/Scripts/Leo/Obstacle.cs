@@ -22,8 +22,6 @@ public class Obstacle : SpawnableObject
 
     private void OnEnable()
     {
-        objectBody.localRotation = Quaternion.Euler(0, 0, obstacleParameters.BodyRotation);
-        objectBody.localPosition = obstacleParameters.BodyOffset;
     }
 
     public override void GetSpawnable(out Spawnable obstacleSpawnable)
