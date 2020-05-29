@@ -207,10 +207,11 @@ public class BlocEditor : Editor
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Save Bloc to Scriptable"))
         {
-            var spawnableObjects = bc.rootTransform.GetComponentsInChildren<SpawnableObject>().ToArray();
+            var spawnableObjects = bc.rootTransform.GetComponentsInChildren<SpawnableObject>().ToList();
+            spawnableObjects.Remove(spawnableObjects.FirstOrDefault(s => s.transform.parent.name.Contains("Stamp")));
             Spawnable[] spawnables = spawnableObjects.Select(o => o.GetSpawnable()).ToArray();
             int blocLength = 0;
-            for(int i = 0; i < spawnableObjects.Length; ++i)
+            for(int i = 0; i < spawnableObjects.Count; ++i)
             {
                 var spawnableObject = spawnableObjects[i];
                 var spawnable = spawnables[i];
