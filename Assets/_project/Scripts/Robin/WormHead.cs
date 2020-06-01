@@ -37,7 +37,7 @@ public class WormHead : WormBody
     public AnimationCurve AccelerationCurveDig;
 
     private bool IsDigging = false;
-   
+
     public Action CallBackDead;
     public Action<Collectible> CallBackPoint;
 
@@ -70,7 +70,7 @@ public class WormHead : WormBody
 
     private void FixedUpdate()
     {
-        
+
         SetForce(IsDigging);
 
     }
@@ -100,7 +100,6 @@ public class WormHead : WormBody
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
 
         if(spawnableObject)
@@ -112,13 +111,20 @@ public class WormHead : WormBody
             }
             else if (spawnableObject is Collectible)
             {
-                //Debug.Log("Eat "+spawnableObject.name);
+                Debug.Log("Ate " + spawnableObject.name);
                 CallBackPoint((spawnableObject as Collectible));
                 BlocManager.Instance.PoolOut(spawnableObject);
             }
         }
+    }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "BlocPoolerTrigger")
+        {
+            // reset egg shells series (_streakEggShell)
+            Destroy(collision.gameObject); // not needed any more
+        }
     }
 
     void UpdateLineRenderer()
