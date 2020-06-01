@@ -18,9 +18,10 @@ public class Player : MonoBehaviour
     public float StepDistanceScoreIncrease;
 
     public int UndergroundBonus { get; set; } = 1;
+    private float _currentStateDistance ;
     public int Score { get; set; } = 0;
 
-    private int _lastMultiplicator = 1;
+
     private float _chronosUndergroundBonus = 0f;
     private int _streakEggShell = 0;
     [Space]
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _currentStateDistance = StepDistanceScoreIncrease;
         SetupWorm();
 
     }
@@ -82,15 +84,19 @@ public class Player : MonoBehaviour
     {
         if (WormHead.transform.position.y < WormHead.StartPosition.y)
         {
-            int multiplicator = (int)WormHead.DistanceFromStart / (int)StepDistanceScoreIncrease;
-            int tempBonus = UndergroundBonus * (int)multiplicator;
-
-            if (multiplicator > _lastMultiplicator)
+            Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
+           
+            if (WormHead.DistanceFromStart >= _currentStateDistance)
             {
-                UndergroundBonus *= multiplicator;
-                _lastMultiplicator = multiplicator;
+                _currentStateDistance += StepDistanceScoreIncrease;
+                UndergroundBonus += 1;
 
+
+                Debug.Log("UndergroundBonus: " + UndergroundBonus);
             }
+            
+
+
             _chronosUndergroundBonus += Time.deltaTime;
 
             if (_chronosUndergroundBonus >= 1f)
@@ -125,7 +131,7 @@ public class Player : MonoBehaviour
     {
         if (!collectible.IsEggShell)
         {
-            ScoreTextFB.text ="+" +collectible.PointGain.ToString();
+            //ScoreTextFB.text = "+" + collectible.PointGain.ToString();
 
 
             Score += collectible.PointGain;
@@ -138,7 +144,7 @@ public class Player : MonoBehaviour
         else if (collectible.IsEggShell)
         {
             ++_streakEggShell;
-            Debug.Log("toot");
+
             switch (_streakEggShell)
             {
                 case 1:

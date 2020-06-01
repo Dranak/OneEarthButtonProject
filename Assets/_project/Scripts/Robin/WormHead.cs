@@ -37,7 +37,7 @@ public class WormHead : WormBody
     public AnimationCurve AccelerationCurveDig;
 
     private bool IsDigging = false;
-
+   
     public Action CallBackDead;
     public Action<Collectible> CallBackPoint;
 
@@ -48,7 +48,7 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-        //UpdateCollider();
+       // UpdateCollider();
     }
 
     void Update()
@@ -70,7 +70,7 @@ public class WormHead : WormBody
 
     private void FixedUpdate()
     {
-       // UpdateCollider();
+        
         SetForce(IsDigging);
 
     }
@@ -78,7 +78,7 @@ public class WormHead : WormBody
     void SetForce(bool _isDigging)
     {
         Rigidbody.velocity = new Vector2(Vector2.right.x * Speed, Rigidbody.velocity.y);
-        Debug.Log("Speed: " + Speed);
+        //Debug.Log("Speed: " + Speed);
 
         if (_isDigging)
         {
@@ -107,12 +107,12 @@ public class WormHead : WormBody
         {
             if (spawnableObject is Obstacle)
             {
-                Debug.Log("Dead by " + spawnableObject.name);
+                //Debug.Log("Dead by " + spawnableObject.name);
                 CallBackDead();
             }
             else if (spawnableObject is Collectible)
             {
-                Debug.Log("Eat "+spawnableObject.name);
+                //Debug.Log("Eat "+spawnableObject.name);
                 CallBackPoint((spawnableObject as Collectible));
                 BlocManager.Instance.PoolOut(spawnableObject);
             }
@@ -128,7 +128,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-
+       // UpdateCollider();
 
     }
 
@@ -181,16 +181,16 @@ public class WormHead : WormBody
 
         downerPoint.Add(downPoint);
 
-        foreach (WormBody wormBody in _wormBodies)
+        for (int index = 0; index < Line.positionCount; ++index)
         {
-            upPoint = wormBody.transform.position;
-            downPoint = wormBody.transform.position;
+             upPoint = Line.GetPosition(index);
+            downPoint = Line.GetPosition(index);
             upPoint.y -= halfWidth + transform.parent.position.y;
             downPoint.y += halfWidth - transform.parent.position.y;
             upperPoints.Add(upPoint);
-            if(wormBody == _wormBodies.Last())
+            if(index == Line.positionCount-1)
             {
-                upperPoints.Add(new Vector2(wormBody.transform.position.x - halfWidth, transform.position.y - transform.parent.position.y));
+                upperPoints.Add(new Vector2(Line.GetPosition(index).x - halfWidth, transform.position.y - transform.parent.position.y));
             }
 
             downerPoint.Add(downPoint);

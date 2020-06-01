@@ -55,4 +55,6 @@ public class WormBody : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 180f);
         }
     }
+
+
 }
