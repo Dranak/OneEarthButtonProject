@@ -16,14 +16,18 @@ public class Player : MonoBehaviour
     [Header("Scoring")]
     [Space]
     public float StepDistanceScoreIncrease;
-
-    public int UndergroundBonus { get; set; } = 1;
-    private float _currentStateDistance ;
+    public int UndergroundBonus;
+    public int MaxBonusUndergroundBonus;
+    public int EggShellStreakOne;
+    public int EggShellStreakTwo;
+    public int EggShellStreakThird;
+    private float _currentStateDistance;
     public int Score { get; set; } = 0;
 
 
     private float _chronosUndergroundBonus = 0f;
     private int _streakEggShell = 0;
+    private int _lastIndexEggShell;
     [Space]
 
     [Header("Motion")]
@@ -83,30 +87,33 @@ public class Player : MonoBehaviour
         if (WormHead.transform.position.y < WormHead.StartPosition.y)
         {
             Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
-           
-            if (WormHead.DistanceFromStart >= _currentStateDistance)
+            if(UndergroundBonus < MaxBonusUndergroundBonus)
             {
-                _currentStateDistance += StepDistanceScoreIncrease;
-                UndergroundBonus += 1;
+                if (WormHead.DistanceFromStart >= _currentStateDistance)
+                {
+                    _currentStateDistance += StepDistanceScoreIncrease;
+                    UndergroundBonus += 1;
 
 
-                Debug.Log("UndergroundBonus: " + UndergroundBonus);
+                    Debug.Log("UndergroundBonus: " + UndergroundBonus);
+                }
+
+
+
+                _chronosUndergroundBonus += Time.deltaTime;
+
+                if (_chronosUndergroundBonus >= 1f)
+                {
+                    Score += UndergroundBonus;
+                    _chronosUndergroundBonus = 0f;
+                }
             }
-            
-
-
-            _chronosUndergroundBonus += Time.deltaTime;
-
-            if (_chronosUndergroundBonus >= 1f)
+            else
             {
-                Score += UndergroundBonus;
                 _chronosUndergroundBonus = 0f;
             }
         }
-        else
-        {
-            _chronosUndergroundBonus = 0f;
-        }
+          
     }
 
     void SetupWorm()
@@ -127,35 +134,41 @@ public class Player : MonoBehaviour
 
     void GetPoint(Collectible collectible)
     {
-        if (!collectible.IsEggShell)
+        if (collectible.collectibleParameters.EggShellIndex == -1)
         {
-            //ScoreTextFB.text = "+" + collectible.PointGain.ToString();
-
-
+            ScoreTextFB.text = "+" + collectible.PointGain.ToString();
             Score += collectible.PointGain;
 
         }
-        else if (!collectible.IsEggShell && _streakEggShell > 0)
+        else if (collectible.collectibleParameters.EggShellIndex == -1 && _streakEggShell > 0)
         {
             _streakEggShell = 0;
+
+            ScoreTextFB.text = "+" + collectible.PointGain.ToString();
+            Score += collectible.PointGain;
         }
-        else if (collectible.IsEggShell)
+        else if (collectible.collectibleParameters.EggShellIndex > -1)
         {
+            if (collectible.collectibleParameters.EggShellIndex != _lastIndexEggShell)
+            {
+                _streakEggShell = 0;
+                _lastIndexEggShell = collectible.collectibleParameters.EggShellIndex;
+            }
             ++_streakEggShell;
 
             switch (_streakEggShell)
             {
                 case 1:
-                    Score += 20;
-                    ScoreTextFB.text = "+20";
+                    Score += EggShellStreakOne;
+                    ScoreTextFB.text = "+"+ EggShellStreakOne;
                     break;
                 case 2:
-                    Score += 50;
-                    ScoreTextFB.text = "+50";
+                    Score += EggShellStreakTwo;
+                    ScoreTextFB.text = "+" + EggShellStreakTwo;
                     break;
                 case 3:
-                    Score += 100;
-                    ScoreTextFB.text = "+100";
+                    Score += EggShellStreakThird;
+                    ScoreTextFB.text = "+" + EggShellStreakThird;
                     break;
             }
         }

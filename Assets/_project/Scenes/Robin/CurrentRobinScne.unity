@@ -1149,7 +1149,7 @@ PrefabInstance:
       objectReference: {fileID: 1228969166}
     - target: {fileID: 1863196710, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4505670463351821051, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
@@ -1161,6 +1161,31 @@ PrefabInstance:
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 1116990868}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: UndergroundBonus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: MaxBonusUndergroundBonus
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: EggShellStreakOne
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: EggShellStreakTwo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: EggShellStreakThird
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4505670463351821053, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1219,7 +1244,7 @@ PrefabInstance:
     - target: {fileID: 7494857936003936520, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}
