@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
 
     private float _chronosUndergroundBonus = 0f;
-    private int _streakEggShell = 0;
+    public int StreakEggShell { get; set; } = 0;
     private int _lastIndexEggShell;
     [Space]
 
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
     {
         if (WormHead.transform.position.y < WormHead.StartPosition.y)
         {
-            Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
+            //Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
             if(UndergroundBonus < MaxBonusUndergroundBonus)
             {
                 if (WormHead.DistanceFromStart >= _currentStateDistance)
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
                     UndergroundBonus += 1;
 
 
-                    Debug.Log("UndergroundBonus: " + UndergroundBonus);
+                    //Debug.Log("UndergroundBonus: " + UndergroundBonus);
                 }
 
 
@@ -140,9 +140,9 @@ public class Player : MonoBehaviour
             Score += collectible.PointGain;
 
         }
-        else if (collectible.collectibleParameters.EggShellIndex == -1 && _streakEggShell > 0)
+        else if (collectible.collectibleParameters.EggShellIndex == -1 && StreakEggShell > 0)
         {
-            _streakEggShell = 0;
+            StreakEggShell = 0;
 
             ScoreTextFB.text = "+" + collectible.PointGain.ToString();
             Score += collectible.PointGain;
@@ -151,12 +151,12 @@ public class Player : MonoBehaviour
         {
             if (collectible.collectibleParameters.EggShellIndex != _lastIndexEggShell)
             {
-                _streakEggShell = 0;
+                StreakEggShell = 0;
                 _lastIndexEggShell = collectible.collectibleParameters.EggShellIndex;
             }
-            ++_streakEggShell;
+            ++StreakEggShell;
 
-            switch (_streakEggShell)
+            switch (StreakEggShell)
             {
                 case 1:
                     Score += EggShellStreakOne;
