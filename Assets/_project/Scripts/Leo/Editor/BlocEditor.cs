@@ -90,6 +90,7 @@ public class BlocEditor : Editor
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
+                AssetDatabase.Refresh();
                 EditorUtility.SetDirty(bc.blocsScriptable);
             }
         }
@@ -199,7 +200,7 @@ public class BlocEditor : Editor
         {
             DestroyAllRootSpawnables(); // destroy all root objects
             scriptableStoredBlocs.Remove(bc.currentBlocSelection);
-            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
         GUILayout.Space(8);
@@ -249,8 +250,8 @@ public class BlocEditor : Editor
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(bc.blocName);  // set pop field as equal to the new bloc name
             }
-            // AssetDatabase.SaveAssets();
-            // AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
     }

@@ -15,7 +15,8 @@ public class Pooler : MonoBehaviour
         {
             BlocManager.Instance.NewBloc();
             //Destroy(other.gameObject); // still needed to reset eggshell series
-            //GameManager.Instance.Player.WormHead.Speed = Mathf.Min(GameManager.Instance.Player.WormHead.Speed + 0.25f, 10); // increment speed function
+
+            // Add background transition here if needed
         }
     }
 }
