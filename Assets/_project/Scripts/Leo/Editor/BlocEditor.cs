@@ -36,11 +36,9 @@ public class BlocEditor : Editor
             rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
         }
 
-        GetSavedBlocsNames();
-        if (!bc.blocNames.Contains(bc.blocName))
-            bc.blocName = "Enter Bloc Name";
-
         EditorUtility.SetDirty(bc.blocsScriptable);
+        GetSavedBlocsNames();
+        RefreshBlocName();
     }
 
     private void OnDisable()
@@ -90,8 +88,13 @@ public class BlocEditor : Editor
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
-                AssetDatabase.Refresh();
+
                 EditorUtility.SetDirty(bc.blocsScriptable);
+
+                GetSavedBlocsNames();
+                RefreshBlocName();
+
+                //AssetDatabase.Refresh();
             }
         }
 
@@ -274,6 +277,18 @@ public class BlocEditor : Editor
     void GetSavedBlocsNames()
     {
         bc.blocNames = bc.blocsScriptable.storedBlocs.Select(w => w.blocName).ToList();
+    }
+    void RefreshBlocName()
+    {
+        if (bc.blocNames.Count == 0)
+        {
+            bc.blocName = "Enter Bloc Name";
+        }
+        else
+        {
+            bc.blocName = bc.blocNames[0];
+            selectedName = 0;
+        }
     }
 
     GameObject dummy = null;
