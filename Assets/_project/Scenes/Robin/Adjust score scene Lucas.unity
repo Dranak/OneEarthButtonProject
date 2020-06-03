@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 5395711807198110215, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.2799997
+      value: 5.3924904
       objectReference: {fileID: 0}
     - target: {fileID: 5395711807198110215, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
@@ -317,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 5395711808331540021, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.2799997
+      value: 5.3924904
       objectReference: {fileID: 0}
     - target: {fileID: 5395711808331540021, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
@@ -1185,6 +1185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EggShellStreakThird
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: MaxSpeed
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4505670463351821053, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
