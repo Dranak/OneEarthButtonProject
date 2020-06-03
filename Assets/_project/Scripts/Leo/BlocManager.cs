@@ -19,12 +19,14 @@ public class BlocManager : MonoBehaviour
 
     [SerializeField]
     PoolersCreator spawnablesPools; // spawnables pools parent
-    //List<GameObject>[] spawnablePoolsObjects; // lists of objects within the pools (spawnables only) // -> moved to PoolersCreator / Editor
-    [SerializeField][HideInInspector]
+    [SerializeField, HideInInspector]
     List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
     [SerializeField]
     Transform spawnablesAnchor;
+
+    public Transform backObjAnchor;
+    [SerializeField, HideInInspector] List<GameObject> backObjPool;
 
     // bloc generation
     public int currentBlocMax;
@@ -41,7 +43,8 @@ public class BlocManager : MonoBehaviour
 
             currentWPMax = currentBlocMax;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
-            //SetSpawnablesPools(); // -> moved to PoolersCreator / Editor
+            AddToPool(backObjAnchor, ref backObjPool, false, false);
+            AddToPool(spawnablesAnchor, ref backObjPool, true, false); // back objects in the Spawnables on start are also part of the pool
             Instance = this;
         }
         else
@@ -58,7 +61,7 @@ public class BlocManager : MonoBehaviour
             pool.SetSiblingIndex(_blocsStorage.obstaclesPrefabs.FindIndex(p => p.name == poolPrefabName));
         }
     }
-    void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false)
+    void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false, bool isObstacle = true)
     {
         foreach (Transform child in parent)
         {
@@ -66,8 +69,11 @@ public class BlocManager : MonoBehaviour
             if (!letActive)
                 child.gameObject.SetActive(false);
         }
-        Vector2 obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().Size;
-        obstaclePoolsDic.Add(obstaclesSize, pool);
+        if (isObstacle)
+        {
+            Vector2 obstaclesSize = parent.GetChild(0).GetComponent<Obstacle>().Size;
+            obstaclePoolsDic.Add(obstaclesSize, pool);
+        }
     }
 
     void Start()
@@ -407,6 +413,43 @@ public class BlocManager : MonoBehaviour
         GameObject pooledIn;
         currentWPMax += 6;
         PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
+        // Also pool in background objects
+        WPObjects(in currentWPMax);
+    }
+    bool isBack = false;
+    void WPObjects(in int thisWPX)
+    {
+        int objectCount = Random.Range(3, 6);
+        List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
+        List<GameObject> pooledInList = new List<GameObject>();
+
+        for (int i = 0; i < objectCount; ++i)
+        {
+            GameObject pooledIn;
+            var thisX = xPoss[Random.Range(0, xPoss.Count)];
+            xPoss.Remove(thisX);
+            PoolIn(ref backObjPool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+
+            pooledInList.Add(pooledIn);
+            pooledIn.transform.localPosition += Vector3.up * 0.278f;
+        }
+
+        pooledInList = pooledInList.OrderBy(x => x.transform.localPosition.x).ToList(); // order the objects list from left to right
+        foreach (GameObject pooledIn in pooledInList)
+        {
+            var renderer = pooledIn.GetComponent<SpriteRenderer>();
+            if (isBack) // second or every second object => goes to the back
+            {
+                renderer.sortingOrder = -1;
+                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+            }
+            else
+            {
+                renderer.sortingOrder = 1;
+                renderer.color = Color.white;
+            }
+            isBack = !isBack;
+        }
     }
     #endregion
 
@@ -426,9 +469,11 @@ public class BlocManager : MonoBehaviour
         pooledInObj = objectToPoolIn;
     }
     // objects no longer being seen are pooled out (deactivated)
-    public void PoolOut(GameObject toPoolOut) // for WPapers only
+    public void PoolOut(GameObject toPoolOut, in Transform _parent = null) // for WPapers only
     {
         toPoolOut.SetActive(false);
+        if (_parent) // background objects
+            toPoolOut.transform.parent = _parent;
     }
     public void PoolOut (in SpawnableObject toPoolOut)
     {

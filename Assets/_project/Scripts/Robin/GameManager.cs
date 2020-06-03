@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
     [HideInInspector] public float savedStartingOffset;
     [SerializeField] GameObject unPoolerLeft, poolerRight;
+    [SerializeField] SpriteAtlas backObjAtlas;
 
     private void Awake()
     {

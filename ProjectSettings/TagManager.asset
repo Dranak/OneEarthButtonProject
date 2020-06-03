@@ -9,6 +9,7 @@ TagManager:
   - BlocPoolerTrigger
   - WPUnPoolerTrigger
   - Collectible
+  - BackObj
   layers:
   - Default
   - TransparentFX

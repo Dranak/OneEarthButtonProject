@@ -21,5 +21,9 @@ public class UnPooler : MonoBehaviour
         {
             blocManager.PoolOut(other.transform.GetComponentInParent<SpawnableObject>());
         }
+        if (tag == "BackObj")
+        {
+            blocManager.PoolOut(other.transform.parent.gameObject, blocManager.backObjAnchor);
+        }
     }
 }
