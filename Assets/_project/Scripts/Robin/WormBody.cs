@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class WormBody : MonoBehaviour
 {
 
     public WormBody Target { get; set; }
-
+    public Action<Collision2D> GetRekt;
     //public CircleCollider2D Collider { get; set; }
     //public TrailRenderer Trail { get; set; } // LEGACY
     public Rigidbody2D Rigidbody { get; set; }
@@ -56,5 +57,21 @@ public class WormBody : MonoBehaviour
         }
     }
 
+    
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GetRekt(collision);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BlocPoolerTrigger"))
+        {
+            // reset egg shells series (_streakEggShell)
+            GameManager.Instance.Player.StreakEggShell = 0;
+
+            Destroy(collision.gameObject); // not needed any more
+        }
+    }
 }

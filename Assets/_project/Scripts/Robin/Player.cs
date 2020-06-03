@@ -87,33 +87,34 @@ public class Player : MonoBehaviour
         if (WormHead.transform.position.y < WormHead.StartPosition.y)
         {
             //Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
-            if(UndergroundBonus < MaxBonusUndergroundBonus)
+
+            if (WormHead.DistanceFromStart >= _currentStateDistance && UndergroundBonus<MaxBonusUndergroundBonus)
             {
-                if (WormHead.DistanceFromStart >= _currentStateDistance)
-                {
-                    _currentStateDistance += StepDistanceScoreIncrease;
-                    UndergroundBonus += 1;
+                _currentStateDistance += StepDistanceScoreIncrease;
+                UndergroundBonus += 1;
 
 
-                    //Debug.Log("UndergroundBonus: " + UndergroundBonus);
-                }
-
-
-
-                _chronosUndergroundBonus += Time.deltaTime;
-
-                if (_chronosUndergroundBonus >= 1f)
-                {
-                    Score += UndergroundBonus;
-                    _chronosUndergroundBonus = 0f;
-                }
+                Debug.Log("UndergroundBonus: " + UndergroundBonus);
             }
-            else
+
+
+
+            _chronosUndergroundBonus += Time.deltaTime;
+
+            if (_chronosUndergroundBonus >= 1f)
             {
+                Score += UndergroundBonus;
                 _chronosUndergroundBonus = 0f;
             }
+
+
         }
-          
+        else
+        {
+            _chronosUndergroundBonus = 0f;
+        }
+
+
     }
 
     void SetupWorm()
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
             {
                 case 1:
                     Score += EggShellStreakOne;
-                    ScoreTextFB.text = "+"+ EggShellStreakOne;
+                    ScoreTextFB.text = "+" + EggShellStreakOne;
                     break;
                 case 2:
                     Score += EggShellStreakTwo;

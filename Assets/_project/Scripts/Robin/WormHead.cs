@@ -41,6 +41,7 @@ public class WormHead : WormBody
     public Action CallBackDead;
     public Action<Collectible> CallBackPoint;
 
+    
     void Start()
     {
 
@@ -48,7 +49,7 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-       // UpdateCollider();
+        // UpdateCollider();
     }
 
     void Update()
@@ -98,36 +99,8 @@ public class WormHead : WormBody
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
 
-        if(spawnableObject)
-        {
-            if (spawnableObject is Obstacle)
-            {
-                //Debug.Log("Dead by " + spawnableObject.name);
-                CallBackDead();
-            }
-            else if (spawnableObject is Collectible)
-            {
-                Debug.Log("Ate " + spawnableObject.name);
-                CallBackPoint((spawnableObject as Collectible));
-                BlocManager.Instance.PoolOut(spawnableObject);
-            }
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "BlocPoolerTrigger")
-        {
-            // reset egg shells series (_streakEggShell)
-            GameManager.Instance.Player.StreakEggShell = 0;
-            Debug.Log("STARFOULAH");
-            Destroy(collision.gameObject); // not needed any more
-        }
-    }
 
     void UpdateLineRenderer()
     {
@@ -136,7 +109,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-       // UpdateCollider();
+        // UpdateCollider();
 
     }
 
@@ -164,7 +137,7 @@ public class WormHead : WormBody
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
             _wormBodies[i].Trail.enabled = false;
-
+            _wormBodies[i].GetRekt = GetRekt;
             if (i > 0)
                 _wormBodies.Last().SetTarget(_wormBodies[i - 1]);
             else
@@ -172,6 +145,9 @@ public class WormHead : WormBody
         }
         _wormBodies.Last().Trail.enabled = true;
         _wormBodies.Last().GetComponent<SpriteRenderer>().enabled = true;
+       
+           
+        
     }
 
     void UpdateCollider()
@@ -191,12 +167,12 @@ public class WormHead : WormBody
 
         for (int index = 0; index < Line.positionCount; ++index)
         {
-             upPoint = Line.GetPosition(index);
+            upPoint = Line.GetPosition(index);
             downPoint = Line.GetPosition(index);
             upPoint.y -= halfWidth + transform.parent.position.y;
             downPoint.y += halfWidth - transform.parent.position.y;
             upperPoints.Add(upPoint);
-            if(index == Line.positionCount-1)
+            if (index == Line.positionCount - 1)
             {
                 upperPoints.Add(new Vector2(Line.GetPosition(index).x - halfWidth, transform.position.y - transform.parent.position.y));
             }
@@ -228,6 +204,36 @@ public class WormHead : WormBody
         _chronoIncreaseSpeed += Time.deltaTime;
     }
 
+
+    public void GetRekt(Collision2D collision)
+    {
+      
+        
+            SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
+
+            if (spawnableObject)
+            {
+                if (spawnableObject is Obstacle)
+                {
+                    //Debug.Log("Dead by " + spawnableObject.name);
+                    CallBackDead();
+                }
+                else if (spawnableObject is Collectible)
+                {
+                    Debug.Log("Ate " + spawnableObject.name);
+                    CallBackPoint((spawnableObject as Collectible));
+                    BlocManager.Instance.PoolOut(spawnableObject);
+                }
+            }
+        
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GetRekt(collision);
+    }
     //void SetForce(bool _isDigging)
     //{
     //    Rigidbody.velocity = Vector2.right * Speed;

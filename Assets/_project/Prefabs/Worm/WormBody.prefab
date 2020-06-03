@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4516079124152242864}
   - component: {fileID: -1560266077247555116}
   - component: {fileID: 4887695271528778166}
+  - component: {fileID: 9068640087572226472}
   m_Layer: 8
   m_Name: WormBody
   m_TagString: Untagged
@@ -118,6 +119,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &9068640087572226472
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516079124152242867}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &5946280277607891901
 GameObject:
   m_ObjectHideFlags: 0
