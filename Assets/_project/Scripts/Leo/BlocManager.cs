@@ -75,13 +75,14 @@ public class BlocManager : MonoBehaviour
         NewBloc();
         //NewRandomBloc(); // first bloc to be created (after the empty starting bloc)
     }
-
+    Bloc randomBloc;
+    public void ChoseNextBloc()
+    {
+        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
+    }
     public void NewBloc(int obstaclesXGap = 3)
     {
-        var randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
-        //var gapRandomization = randomBloc.blocYRange;
-        //var rotRandomization = randomBloc.globalRotationOffsetRange;
-        //var globalOffsetR = randomBloc.globalOffsetRange;
+        ChoseNextBloc();
 
         SpawnablesSpawn(randomBloc);
 
@@ -93,7 +94,6 @@ public class BlocManager : MonoBehaviour
 
         currentBlocMax += obstaclesXGap; // blocs gap ? AFTER BLOCK
     }
-
     public void NewRandomBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
     {
         Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
@@ -118,6 +118,10 @@ public class BlocManager : MonoBehaviour
         SIDEWAYS,
         VERTICAL,
         MIX
+    }
+    void SpawnablesSpawn(Bloc chosenBloc, int xPos)
+    {
+
     }
     void SpawnablesSpawn(Bloc chosenBloc)
     {

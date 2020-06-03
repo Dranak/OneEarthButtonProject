@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   useGrid: 1
-  selectedPrefabIndex: 2
+  selectedPrefabIndex: 0
   maxIntersectionVolume: 0
   blocNames:
   - test
