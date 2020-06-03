@@ -203,7 +203,7 @@ public class BlocEditor : Editor
         {
             DestroyAllRootSpawnables(); // destroy all root objects
             scriptableStoredBlocs.Remove(bc.currentBlocSelection);
-            bc.currentBlocSelection = null;
+            GetSavedBlocsNames();
             RefreshBlocName();
             //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
