@@ -205,7 +205,7 @@ public class BlocEditor : Editor
             scriptableStoredBlocs.Remove(bc.currentBlocSelection);
             GetSavedBlocsNames();
             RefreshBlocName();
-            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets(); //AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
         GUILayout.Space(8);
@@ -255,7 +255,7 @@ public class BlocEditor : Editor
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(bc.blocName);  // set pop field as equal to the new bloc name
             }
-            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets(); //AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
     }
@@ -287,8 +287,15 @@ public class BlocEditor : Editor
         }
         else
         {
-            bc.blocName = bc.blocNames[0];
-            selectedName = 0;
+            if (!bc.blocNames.Contains(bc.blocName))
+            {
+                bc.blocName = bc.blocNames[0];
+                selectedName = 0;
+            }
+            else
+            {
+                selectedName = bc.blocNames.IndexOf(bc.blocName);
+            }
         }
     }
 
