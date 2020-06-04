@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -955,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 5395711807198110215, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.158355
+      value: 6.1656046
       objectReference: {fileID: 0}
     - target: {fileID: 5395711807198110215, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
@@ -980,7 +980,7 @@ PrefabInstance:
     - target: {fileID: 5395711808331540021, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.158355
+      value: 6.1656046
       objectReference: {fileID: 0}
     - target: {fileID: 5395711808331540021, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
@@ -7686,12 +7686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820840844}
     m_Modifications:
-    - target: {fileID: 2241690315074600428, guid: d005505b5aa82d847aab30596d161dbc,
-        type: 3}
-      propertyPath: selectedBlocsScriptable
-      value: 
-      objectReference: {fileID: 11400000, guid: 778e3cd807a9e4c40b34e26fbc46db3a,
-        type: 2}
     - target: {fileID: 6845382093940408361, guid: d005505b5aa82d847aab30596d161dbc,
         type: 3}
       propertyPath: m_RootOrder

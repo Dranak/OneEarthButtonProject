@@ -13,10 +13,7 @@ public class Pooler : MonoBehaviour
     {
         if (other.tag == "BlocPoolerTrigger")
         {
-            BlocManager.Instance.NewBloc();
-            //Destroy(other.gameObject); // still needed to reset eggshell series
-
-            // Add background transition here if needed
+            //BlocManager.Instance.NewBloc(); // not needed here anymore
         }
     }
 }
