@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 626be762bbbc9654c94758b07b5877be, type: 3}
-  m_Name: LD48
+  m_Name: LD50
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD48
+  - blocName: LD50
     blockArea: 0
-    blocCount: 16
+    blocCount: 15
     blocLength: 93
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -35,7 +35,6 @@ MonoBehaviour:
     - id: 11
     - id: 12
     - id: 13
-    - id: 14
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -49,96 +48,96 @@ MonoBehaviour:
     00000000:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Tag: obstacle_bottle
-        BlocPosition: {x: 0, y: -3}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 1
-        BodyRotation: 247.50002
-        BoundsSize: {x: 3.8949175, y: 2.14438}
-        BodyOffset: {x: 0.3207605, y: 2.1910338}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000001:
-      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: collectible_apple
-        BlocPosition: {x: 12, y: -2}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 3
-        EggShellIndex: -1
-    00000002:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: obstacle_circle
-        BlocPosition: {x: 33, y: -7}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 5
-        BodyRotation: 0
-        BoundsSize: {x: 3.8949175, y: 2.14438}
-        BodyOffset: {x: 1.5, y: 1.5}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000003:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: obstacle_circle
-        BlocPosition: {x: 80, y: -5}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 5
-        BodyRotation: 0
-        BoundsSize: {x: 3.8949175, y: 2.14438}
-        BodyOffset: {x: 1.5, y: 1.5}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000004:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
         Tag: obstacle_can
-        BlocPosition: {x: 53, y: -2}
+        BlocPosition: {x: 0, y: -7}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 0
-        BodyRotation: 56.249996
-        BoundsSize: {x: 2.0766754, y: 1.8005891}
-        BodyOffset: {x: 1.5533562, y: -0.10945606}
+        BodyRotation: 303.75
+        BoundsSize: {x: 2.0781262, y: 1.8114026}
+        BodyOffset: {x: -0.11413789, y: 0.8498211}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
+    00000001:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_bottle
+        BlocPosition: {x: 33, y: -4}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 1
+        BodyRotation: 22.5
+        BoundsSize: {x: 2.1142044, y: 3.9061882}
+        BodyOffset: {x: 1.2377415, y: -0.06283569}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000002:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: collectible_eggshell
+        BlocPosition: {x: 23, y: -4}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 2
+        EggShellIndex: 1
+    00000003:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: collectible_eggshell
+        BlocPosition: {x: 34, y: -7}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 2
+        EggShellIndex: 1
+    00000004:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: collectible_eggshell
+        BlocPosition: {x: 44, y: -4}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 2
+        EggShellIndex: 1
     00000005:
-      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Tag: collectible_eggshell
-        BlocPosition: {x: 25, y: -8}
+        Tag: obstacle_circle
+        BlocPosition: {x: 75, y: -9}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 2
-        EggShellIndex: 1
+        SpawnablePrefabIndex: 5
+        BodyRotation: 0
+        BoundsSize: {x: 2.1142044, y: 3.9061882}
+        BodyOffset: {x: 1.5, y: 1.5}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
     00000006:
-      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Tag: collectible_eggshell
-        BlocPosition: {x: 34, y: -9}
+        Tag: obstacle_pen
+        BlocPosition: {x: 91, y: -2}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 2
-        EggShellIndex: 1
+        SpawnablePrefabIndex: 4
+        BodyRotation: 247.50002
+        BoundsSize: {x: 1.8467331, y: 0.8435397}
+        BodyOffset: {x: 0.0816803, y: 0.93878317}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
     00000007:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Tag: collectible_eggshell
-        BlocPosition: {x: 43, y: -8}
+        Tag: collectible_breadcrumb
+        BlocPosition: {x: 67.5, y: -4}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 2
-        EggShellIndex: 1
+        SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000008:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 69, y: -5.5}
+        BlocPosition: {x: 71, y: -4}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
@@ -147,7 +146,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 72, y: -4}
+        BlocPosition: {x: 74.5, y: -4}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
@@ -156,7 +155,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 75.5, y: -2.5}
+        BlocPosition: {x: 79, y: -5}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
@@ -165,7 +164,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 80, y: -1}
+        BlocPosition: {x: 81.5, y: -7}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
@@ -174,7 +173,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 85, y: -1}
+        BlocPosition: {x: 84.5, y: -8}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
@@ -183,16 +182,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
-        BlocPosition: {x: 88.5, y: -3}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 6
-        EggShellIndex: -1
-    0000000E:
-      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: collectible_breadcrumb
-        BlocPosition: {x: 92.5, y: -4.5}
+        BlocPosition: {x: 88, y: -8}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
