@@ -285,7 +285,7 @@ PrefabInstance:
     - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: PointGain
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3018955264390912844, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}

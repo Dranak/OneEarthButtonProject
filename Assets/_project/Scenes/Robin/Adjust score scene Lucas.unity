@@ -146,6 +146,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 561782606071325740, guid: 48793bd3335eeb845a49011e4c22bd5d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4468566142770328383, guid: 48793bd3335eeb845a49011e4c22bd5d,
         type: 3}
       propertyPath: m_Sprite
@@ -1189,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 4505670463351821052, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: MaxSpeed
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4505670463351821053, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
