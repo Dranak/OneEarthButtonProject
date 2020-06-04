@@ -78,7 +78,8 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        NewBloc();
+        ChoseNextBloc();
+        //NewBloc(); // create and siplay a whole bloc at once
         //NewRandomBloc(); // first bloc to be created (after the empty starting bloc)
     }
     Bloc randomBloc;
@@ -125,11 +126,11 @@ public class BlocManager : MonoBehaviour
         VERTICAL,
         MIX
     }
-    void SpawnablesSpawn(Bloc chosenBloc, int xPos)
+    void SpawnablesSpawn(in Bloc chosenBloc, int xPos)
     {
 
     }
-    void SpawnablesSpawn(Bloc chosenBloc)
+    void SpawnablesSpawn(in Bloc chosenBloc)
     {
         Vector2Int blocYRange = chosenBloc.blocYRange;
         float randomY = 0;
@@ -419,7 +420,7 @@ public class BlocManager : MonoBehaviour
     bool isBack = false;
     void WPObjects(in int thisWPX)
     {
-        int objectCount = Random.Range(3, 6);
+        int objectCount = Random.Range(3, 7);
         List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
         List<GameObject> pooledInList = new List<GameObject>();
 
@@ -432,12 +433,27 @@ public class BlocManager : MonoBehaviour
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
+            /*var renderer = pooledIn.GetComponent<SpriteRenderer>();
+            if (thisX % 2 == 0)
+            {
+                renderer.sortingOrder = -1;
+                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+            }
+            else
+            {
+                renderer.sortingOrder = 1;
+                renderer.color = Color.white;
+            }*/
         }
 
         pooledInList = pooledInList.OrderBy(x => x.transform.localPosition.x).ToList(); // order the objects list from left to right
         foreach (GameObject pooledIn in pooledInList)
         {
             var renderer = pooledIn.GetComponent<SpriteRenderer>();
+
+            if (pooledIn.transform.localPosition.x % 2 != 0) // put to back if even
+                isBack = true;
+
             if (isBack) // second or every second object => goes to the back
             {
                 renderer.sortingOrder = -1;
