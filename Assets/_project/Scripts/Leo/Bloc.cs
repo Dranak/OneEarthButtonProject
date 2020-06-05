@@ -3,7 +3,7 @@
 [System.Serializable]
 public class Bloc
 {
-    public Bloc(in BlocArea _blockArea, in int _blocCount, in int _blocLength, in string _blocName = "", Spawnable[] _spawnables = null, in Vector2Int _blocYRange = new Vector2Int(), in Vector4 _globalOffsetRange = new Vector4(), in Vector2Int _globalRotationOffsetRange = new Vector2Int())
+    public Bloc(BlocArea _blockArea, int _blocCount, int _blocLength, string _blocName = "", Spawnable[] _spawnables = null, Vector2Int _blocYRange = new Vector2Int(), Vector4 _globalOffsetRange = new Vector4(), Vector2Int _globalRotationOffsetRange = new Vector2Int())
     {
         blockArea = _blockArea;
         blocCount = _blocCount;
@@ -32,4 +32,18 @@ public class Bloc
     [SerializeField] public Vector2Int globalRotationOffsetRange;
 
     [SerializeReference] public Spawnable[] spawnlablesParams = new Spawnable[0];
+
+    public Bloc Clone()
+    {
+        Bloc other = new Bloc(blockArea, blocCount, blocLength, blocName, spawnlablesParams, blocYRange, globalOffsetRange, globalRotationOffsetRange);
+        //(Bloc)this.MemberwiseClone();
+        /*other.blocName = String.Copy(blocName);
+        other.blockArea = (BlocArea)((int)blockArea);
+        other.blocCount = blocCount;
+        other.blocLength = blocLength;
+        other.blocYRange = blocYRange;
+        other.globalOffsetRange = globalOffsetRange;
+        other.globalRotationOffsetRange = globalRotationOffsetRange;*/
+        return other;
+    }
 }

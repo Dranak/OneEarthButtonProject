@@ -90,7 +90,7 @@ public class BlocManager : MonoBehaviour
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
-        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
+        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
         currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max
         randomizedSortedBloc = new List<Spawnable>();
 
@@ -100,8 +100,6 @@ public class BlocManager : MonoBehaviour
 
         foreach (Spawnable spawnable in randomBloc.spawnlablesParams)
         {
-            // add this bloc pre spacing
-            spawnable.BlocPosition += new Vector2(prespacing, 0);
             // spawnable self random position
             if (spawnable.OffsetXRange != Vector2Int.zero)
                 spawnable.BlocPosition += new Vector2(Random.Range(spawnable.OffsetXRange.x, spawnable.OffsetXRange.y), Random.Range(spawnable.OffsetYRange.x, spawnable.OffsetYRange.y));
