@@ -111,9 +111,9 @@ public class BlocManager : MonoBehaviour
         Vector4 globalOffset = randomBloc.globalOffsetRange;
         if (globalOffset != Vector4.zero)
         {
-            foreach (Spawnable spawnable in randomizedSortedBloc)
+            foreach (ObstacleSpawnable obstacle in randomizedSortedBloc)
             {
-                spawnable.BlocPosition += new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
+                obstacle.BlocPosition += new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
             }
         }
 
@@ -182,7 +182,7 @@ public class BlocManager : MonoBehaviour
             PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMin, blocRandomY), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
             var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
 
-            // limit X bloc position between 0 (bloc start), and blocLength (Bloc End) // also prevent obstacles from going out of bounds (0; -9)
+            // limit X spawnamble position between 0 (bloc start), and blocLength (Bloc End) // also prevent spawnables from going out of Y bounds (0; -9)
             var spawnableObjWidth = spawnableObj.Size.x;
             if (spawnableObj is Obstacle) spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
             spawnable.BlocPosition = new Vector2(Mathf.Clamp(spawnable.BlocPosition.x, 0, randomBloc.blocLength - spawnableObjWidth), Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
@@ -192,19 +192,19 @@ public class BlocManager : MonoBehaviour
             blocSpList.Add(spawnableObj);
         }
 
-        // global random rotation
+        // global random rotation (only for long obstacles)
         Vector2Int globalRotOffset = randomBloc.globalRotationOffsetRange;
         if (globalRotOffset != Vector2Int.zero)
         {
-            foreach (SpawnableObject spawnable in blocSpList)
+            foreach (Obstacle obstacle in blocSpList)
             {
-                if (spawnable is Obstacle && spawnable.Size.x != spawnable.Size.y)
+                if (obstacle.Size.x != obstacle.Size.y)
                 {
                     int rotOffsetMin = globalRotOffset.x;
                     if (rotOffsetMin > 0) rotOffsetMin = 0;
 
-                    spawnable.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin) * 22.5f);
-                    spawnable.objectBody.localPosition += spawnable.transform.position - spawnable.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+                    obstacle.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin) * 22.5f);
+                    obstacle.objectBody.localPosition += obstacle.transform.position - obstacle.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
                 }
             }
         }
