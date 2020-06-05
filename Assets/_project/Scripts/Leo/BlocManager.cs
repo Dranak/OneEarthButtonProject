@@ -29,7 +29,7 @@ public class BlocManager : MonoBehaviour
     [SerializeField, HideInInspector] List<GameObject> backObjPool;
 
     // bloc generation
-    public int currentBlocMax;
+    public int currentBlocMax, currentBlocMin;
     int currentWPMax;
     List<Bloc> allBlocs;
 
@@ -41,7 +41,7 @@ public class BlocManager : MonoBehaviour
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
-            currentWPMax = currentBlocMax;
+            currentWPMax = currentBlocMax - 3; // wallpapers are centered (and 6 int large)
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             AddToPool(backObjAnchor, ref backObjPool, false, false);
             AddToPool(spawnablesAnchor, ref backObjPool, true, false); // back objects in the Spawnables on start are also part of the pool
@@ -78,17 +78,56 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        NewBloc();
+        ChooseBloc(0);
+        //NewBloc(); // create and siplay a whole bloc at once
         //NewRandomBloc(); // first bloc to be created (after the empty starting bloc)
     }
+
     Bloc randomBloc;
-    public void ChoseNextBloc()
+    float blocRandomY;
+    List<Spawnable> randomizedSortedBloc;
+    public void ChooseBloc(int prespacing = 3) // spacing is 3 by default
     {
+        currentBlocMax += prespacing; // add the spacing before this bloc
+        currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
         randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
+        currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max
+        randomizedSortedBloc = new List<Spawnable>();
+
+        // random Y pos for the bloc
+        blocRandomY = 0;
+        if (randomBloc.blocYRange != Vector2Int.zero) blocRandomY = Random.Range(((Vector2)randomBloc.blocYRange).x, ((Vector2)randomBloc.blocYRange).y);
+
+        foreach (Spawnable spawnable in randomBloc.spawnlablesParams)
+        {
+            // add this bloc pre spacing
+            spawnable.BlocPosition += new Vector2(prespacing, 0);
+            // spawnable self random position
+            if (spawnable.OffsetXRange != Vector2Int.zero)
+                spawnable.BlocPosition += new Vector2(Random.Range(spawnable.OffsetXRange.x, spawnable.OffsetXRange.y), Random.Range(spawnable.OffsetYRange.x, spawnable.OffsetYRange.y));
+            // add to list to be sorted
+            randomizedSortedBloc.Add(spawnable);
+        }
+
+        // Bloc-wise offsets (position)
+        Vector4 globalOffset = randomBloc.globalOffsetRange;
+        if (globalOffset != Vector4.zero)
+        {
+            foreach (Spawnable spawnable in randomizedSortedBloc)
+            {
+                spawnable.BlocPosition += new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
+            }
+        }
+
+        // sort the list by X pos
+        randomizedSortedBloc = randomizedSortedBloc.OrderBy(x => x.BlocPosition.x).ToList();
+
+        // spawn pooler trigger to reset the egg count?
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
     }
     public void NewBloc(int obstaclesXGap = 3)
     {
-        ChoseNextBloc();
+        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
 
         SpawnablesSpawn(randomBloc);
 
@@ -125,11 +164,53 @@ public class BlocManager : MonoBehaviour
         VERTICAL,
         MIX
     }
-    void SpawnablesSpawn(Bloc chosenBloc, int xPos)
+    void SpawnablesSpawn(in float posX) // per WP spawnables spawn
     {
+        int rangeToRemove = 0;
+        List<SpawnableObject> blocSpList = new List<SpawnableObject>();
 
+        foreach (Spawnable spawnable in randomizedSortedBloc)
+        {
+            if (spawnable.BlocPosition.x + currentBlocMin >= posX)
+            { // stop and clear from list when no more spawnables in the spawn range
+                randomizedSortedBloc.RemoveRange(0, rangeToRemove); // clearing all spawnables to be spawned from list (performances)
+                return;
+            }
+
+            ++rangeToRemove;
+
+            GameObject spawnableSpawned;
+            List<GameObject> thisSpawnablesPool = spawnablesPools.spawnablePoolsObjects[spawnable.SpawnablePrefabIndex].objectPool;
+            PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMin, blocRandomY), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
+            var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
+            spawnableObj.SetSpawnable(spawnable);
+            SpawnablePlacing(spawnableObj); // adjust position
+            blocSpList.Add(spawnableObj);
+        }
+        // global random rotation
+        Vector2Int globalRotOffset = randomBloc.globalRotationOffsetRange;
+        if (globalRotOffset != Vector2Int.zero)
+        {
+            foreach (SpawnableObject spawnable in blocSpList)
+            {
+                if (spawnable is Obstacle && spawnable.Size.x != spawnable.Size.y)
+                {
+                    int rotOffsetMin = globalRotOffset.x;
+                    if (rotOffsetMin > 0) rotOffsetMin = 0;
+
+                    spawnable.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin) * 22.5f);
+                    spawnable.objectBody.localPosition += spawnable.transform.position - spawnable.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+                }
+            }
+        }
+
+        if (posX >= currentBlocMax) // choose the next bloc if we're near the bloc end
+        {
+            ChooseBloc();
+            SpawnablesSpawn(posX);
+        }
     }
-    void SpawnablesSpawn(Bloc chosenBloc)
+    void SpawnablesSpawn(in Bloc chosenBloc)
     {
         Vector2Int blocYRange = chosenBloc.blocYRange;
         float randomY = 0;
@@ -156,15 +237,18 @@ public class BlocManager : MonoBehaviour
                 spawnable.transform.localPosition += (Vector3)new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
             }
         }
+        // global random rotation
         if (globalRotOffset != Vector2Int.zero)
         {
             foreach (SpawnableObject spawnable in blocSpList)
             {
-                int rotOffsetMin = globalRotOffset.x;
-                if (rotOffsetMin > 0) rotOffsetMin = 0;
-                spawnable.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin)*22.5f);
-                if (spawnable is Obstacle)
+                if (spawnable is Obstacle && spawnable.Size.x != spawnable.Size.y) // only long obstacles need to be affected by random rotation
+                {
+                    int rotOffsetMin = globalRotOffset.x;
+                    if (rotOffsetMin > 0) rotOffsetMin = 0;
+                    spawnable.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin) * 22.5f);
                     spawnable.objectBody.localPosition += spawnable.transform.position - spawnable.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+                }
             }
         }
     }
@@ -372,15 +456,15 @@ public class BlocManager : MonoBehaviour
                 spawnableToPlace.objectBody.localPosition += spawnableToPlace.transform.position - spawnableToPlace.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
             }
         }
-        else // Random rotation
+        else // Random rotation for squared spawnables
         {
             var randomRot = Random.Range(0, 16);
             spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, 22.5f * randomRot);
         }
 
-        // random position offset
-        if (spawnableParams.OffsetXRange != Vector2Int.zero)
-            spawnableToPlace.transform.localPosition += (Vector3)new Vector2(Random.Range(spawnableParams.OffsetXRange.x, spawnableParams.OffsetXRange.y), Random.Range(spawnableParams.OffsetYRange.x, spawnableParams.OffsetYRange.y));
+        // random position offset // moved to bloc choice
+        /*if (spawnableParams.OffsetXRange != Vector2Int.zero)
+            spawnableToPlace.transform.localPosition += (Vector3)new Vector2(Random.Range(spawnableParams.OffsetXRange.x, spawnableParams.OffsetXRange.y), Random.Range(spawnableParams.OffsetYRange.x, spawnableParams.OffsetYRange.y));*/
     }
     void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
     {
@@ -415,11 +499,13 @@ public class BlocManager : MonoBehaviour
         PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
         // Also pool in background objects
         WPObjects(in currentWPMax);
+        // Also pool in spawnables
+        SpawnablesSpawn(currentWPMax + 3);
     }
     bool isBack = false;
     void WPObjects(in int thisWPX)
     {
-        int objectCount = Random.Range(3, 6);
+        int objectCount = Random.Range(3, 7);
         List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
         List<GameObject> pooledInList = new List<GameObject>();
 
@@ -432,12 +518,27 @@ public class BlocManager : MonoBehaviour
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
+            /*var renderer = pooledIn.GetComponent<SpriteRenderer>();
+            if (thisX % 2 == 0)
+            {
+                renderer.sortingOrder = -1;
+                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+            }
+            else
+            {
+                renderer.sortingOrder = 1;
+                renderer.color = Color.white;
+            }*/
         }
 
         pooledInList = pooledInList.OrderBy(x => x.transform.localPosition.x).ToList(); // order the objects list from left to right
         foreach (GameObject pooledIn in pooledInList)
         {
             var renderer = pooledIn.GetComponent<SpriteRenderer>();
+
+            if (pooledIn.transform.localPosition.x % 2 != 0) // put to back if even
+                isBack = true;
+
             if (isBack) // second or every second object => goes to the back
             {
                 renderer.sortingOrder = -1;

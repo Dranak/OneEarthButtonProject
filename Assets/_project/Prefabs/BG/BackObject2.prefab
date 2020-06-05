@@ -12,11 +12,6 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 3.77
       objectReference: {fileID: 0}
-    - target: {fileID: 1476085987651857263, guid: d72430b0b91a28849994b8638487fe83,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4935133829767972908, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_LocalRotation.x

@@ -18,7 +18,7 @@ public class BlocsMergerEditor : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        mergedBlocName = EditorGUILayout.TextField("Bloc Name : ", mergedBlocName);
+        mergedBlocName = EditorGUILayout.TextField("Blocs Scriptable Name : ", mergedBlocName);
         GUI.color = Color.green;
         EditorGUI.BeginDisabledGroup(bM.blocsToMerge.Count < 2 || mergedBlocName == "new bloc name" || mergedBlocName == "");
         if (GUILayout.Button("Create Merged Scriptable"))
