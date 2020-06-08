@@ -518,6 +518,8 @@ public class BlocManager : MonoBehaviour
         SpawnablesSpawn(currentWPMax + 3);
     }
     bool isBack = false;
+    int previousFrontSo = 3;
+    float previousFrontPos = 0;
     void WPObjects(in int thisWPX)
     {
         int objectCount = Random.Range(3, 7);
@@ -533,17 +535,6 @@ public class BlocManager : MonoBehaviour
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
-            /*var renderer = pooledIn.GetComponent<SpriteRenderer>();
-            if (thisX % 2 == 0)
-            {
-                renderer.sortingOrder = -1;
-                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
-            }
-            else
-            {
-                renderer.sortingOrder = 1;
-                renderer.color = Color.white;
-            }*/
         }
 
         pooledInList = pooledInList.OrderBy(x => x.transform.localPosition.x).ToList(); // order the objects list from left to right
@@ -561,8 +552,29 @@ public class BlocManager : MonoBehaviour
             }
             else
             {
-                renderer.sortingOrder = 1;
+                var thisFrontPos = pooledIn.transform.position.x;
+                if (previousFrontPos > thisFrontPos)
+                {
+                    if (previousFrontSo > 1)
+                        --previousFrontSo;
+                    else // bring to the back, too many objects are touching in a row (3)
+                    {
+                        previousFrontSo = 3; // reset front objects sorting order
+                        renderer.sortingOrder = -1;
+                        renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+                        continue;
+                    }
+                }
+                else
+                    previousFrontSo = 3; // reset front objects sorting order
+
+                renderer.sortingOrder = previousFrontSo;
                 renderer.color = Color.white;
+
+                // calculating this sprite right bound world pos to be next previousFrontPos
+                var sprite = renderer.sprite;
+                var visibleWidth = sprite.bounds.size.x * (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
+                previousFrontPos = thisFrontPos + visibleWidth;
             }
             isBack = !isBack;
         }
