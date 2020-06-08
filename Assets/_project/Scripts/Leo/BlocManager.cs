@@ -93,6 +93,7 @@ public class BlocManager : MonoBehaviour
         randomBloc = allBlocs[Random.Range(0, allBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
         currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max, not working for X random
         randomizedSortedBloc = new List<Spawnable>();
+        Debug.Log("Choosed Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
 
         // random Y pos for the bloc
         blocRandomY = 0;
@@ -182,14 +183,23 @@ public class BlocManager : MonoBehaviour
             PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMin, blocRandomY), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
             var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
 
-            // limit X spawnamble position between 0 (bloc start), and blocLength (Bloc End) // also prevent spawnables from going out of Y bounds (0; -9)
-            var spawnableObjWidth = spawnableObj.Size.x;
-            if (spawnableObj is Obstacle) spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
-            spawnable.BlocPosition = new Vector2(Mathf.Clamp(spawnable.BlocPosition.x, 0, randomBloc.blocLength - spawnableObjWidth), Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
+            // prevent spawnables from going out of Y bounds (0; -9)
+            spawnable.BlocPosition = new Vector2(spawnable.BlocPosition.x, Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
 
             spawnableObj.SetSpawnable(spawnable);
             SpawnablePlacing(spawnableObj); // adjust position
             blocSpList.Add(spawnableObj);
+
+            // increment bloc max if object goes above it
+            var spawnableObjWidth = spawnableObj.Size.x;
+            if (spawnableObj is Obstacle && (spawnableObj.Size.x != spawnableObj.Size.y))
+                spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
+            var spawnableDisplacement = spawnableObjWidth + spawnable.BlocPosition.x - randomBloc.blocLength;
+            if (spawnableDisplacement > 0)
+            {
+                currentBlocMax += Mathf.CeilToInt(spawnableDisplacement);
+                Debug.Log("Choosed Bloc Max override : " + currentBlocMax);
+            }
         }
 
         // global random rotation (only for long obstacles)
