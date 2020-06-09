@@ -34,11 +34,13 @@ public class BlocEditor : Editor
             blocYRange = bc.currentBlocSelection.blocYRange;
             gOffset = bc.currentBlocSelection.globalOffsetRange;
             rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
+            selectedBlocDifficulty = (int)bc.currentBlocSelection.blocDifficulty;
         }
 
-        EditorUtility.SetDirty(bc.blocsScriptable);
         GetSavedBlocsNames();
-        RefreshBlocName();
+        RefreshBlocNameAndDiff();
+
+        EditorUtility.SetDirty(bc.blocsScriptable);
     }
 
     private void OnDisable()
@@ -69,6 +71,7 @@ public class BlocEditor : Editor
     Vector4 gOffset;
     Vector2 rotOff;
     int selectedEggshellId = 0;
+    int selectedBlocDifficulty;
 
     public override void OnInspectorGUI()
     {
@@ -94,7 +97,7 @@ public class BlocEditor : Editor
                 EditorUtility.SetDirty(bc.blocsScriptable);
 
                 GetSavedBlocsNames();
-                RefreshBlocName();
+                RefreshBlocNameAndDiff();
 
                 AssetDatabase.Refresh();
             }
@@ -116,6 +119,12 @@ public class BlocEditor : Editor
                 CreateNewStamp();
             }
             GUILayout.Space(16);
+        }
+
+        // BLOC DIFFICULTY PARAMETER
+        if (bc.currentBlocSelection != null)
+        {
+            selectedBlocDifficulty = EditorGUILayout.IntField("Bloc Difficulty", selectedBlocDifficulty);
         }
 
         // EGGSHGELL PARAMETER
@@ -206,7 +215,7 @@ public class BlocEditor : Editor
             DestroyAllRootSpawnables(); // destroy all root objects
             scriptableStoredBlocs.Remove(bc.currentBlocSelection);
             GetSavedBlocsNames();
-            RefreshBlocName();
+            RefreshBlocNameAndDiff();
             AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
@@ -231,7 +240,7 @@ public class BlocEditor : Editor
                     obsRightBoundX += spawnableObject.Size.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, spawnables);
+            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, (uint)selectedBlocDifficulty, spawnables);
 
             // set misc parameters
             if (blocYRange != Vector2.zero)
@@ -281,11 +290,12 @@ public class BlocEditor : Editor
     {
         bc.blocNames = bc.blocsScriptable.storedBlocs.Select(w => w.blocName).ToList();
     }
-    void RefreshBlocName()
+    void RefreshBlocNameAndDiff()
     {
         if (bc.blocNames.Count == 0)
         {
             bc.blocName = "Enter Bloc Name";
+            selectedBlocDifficulty = 0;
         }
         else
         {
@@ -293,10 +303,12 @@ public class BlocEditor : Editor
             {
                 bc.blocName = bc.blocNames[0];
                 selectedName = 0;
+                selectedBlocDifficulty = 0;
             }
             else
             {
                 selectedName = bc.blocNames.IndexOf(bc.blocName);
+                selectedBlocDifficulty = (int)bc.currentBlocSelection.blocDifficulty;
             }
         }
     }
@@ -307,6 +319,7 @@ public class BlocEditor : Editor
         blocYRange = selectedBloc.blocYRange;
         gOffset = selectedBloc.globalOffsetRange;
         rotOff = selectedBloc.globalRotationOffsetRange;
+        selectedBlocDifficulty = (int)selectedBloc.blocDifficulty;
     }
     void LoadSpawnablesFromBloc(Bloc selectedBloc)
     {

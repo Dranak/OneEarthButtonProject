@@ -66,7 +66,7 @@ MonoBehaviour:
   backObjAnchor: {fileID: 561782606071325740}
   backObjPool: []
   currentBlocMax: 21
-  currentBlocMin: 0
+  currentBlocMin: 21
 --- !u!1 &5633448737910605982
 GameObject:
   m_ObjectHideFlags: 0
