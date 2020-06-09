@@ -15,7 +15,7 @@ MonoBehaviour:
   storedBlocs:
   - blocName: LD21
     blockArea: 0
-    blocCount: 13
+    blocCount: 14
     blocLength: 65
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_apple
-        BlocPosition: {x: 27, y: -8}
+        BlocPosition: {x: 29, y: -8}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
