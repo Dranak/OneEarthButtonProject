@@ -573,7 +573,7 @@ public class BlocManager : MonoBehaviour
 
                 // calculating this sprite right bound world pos to be next previousFrontPos
                 var sprite = renderer.sprite;
-                var visibleWidth = sprite.bounds.size.x * (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
+                var visibleWidth = sprite.bounds.size.x; //* (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
                 previousFrontPos = thisFrontPos + visibleWidth;
             }
             isBack = !isBack;
