@@ -15,7 +15,7 @@ MonoBehaviour:
   storedBlocs:
   - blocName: LD49
     blockArea: 0
-    blocCount: 21
+    blocCount: 22
     blocLength: 101
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -41,6 +41,7 @@ MonoBehaviour:
     - id: 17
     - id: 18
     - id: 19
+    - id: 20
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -249,5 +250,18 @@ MonoBehaviour:
         BodyRotation: 236.25002
         BoundsSize: {x: 2.0766754, y: 1.8005893}
         BodyOffset: {x: 0.5233154, y: 1.9100449}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000014:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_pen
+        BlocPosition: {x: 71, y: -1}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 4
+        BodyRotation: 213.75002
+        BoundsSize: {x: 1.1679535, y: 1.6815207}
+        BodyOffset: {x: 0.1708479, y: 1.7386315}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0

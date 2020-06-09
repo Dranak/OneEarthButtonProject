@@ -16,7 +16,7 @@ MonoBehaviour:
   - blocName: LD3
     blockArea: 0
     blocCount: 15
-    blocLength: 79
+    blocLength: 85
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}
@@ -88,19 +88,6 @@ MonoBehaviour:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_pen
-        BlocPosition: {x: 60, y: -2}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 4
-        BodyRotation: 326.25
-        BoundsSize: {x: 1.161911, y: 1.6784344}
-        BodyOffset: {x: -0.08929825, y: 0.11573315}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000004:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: obstacle_pen
         BlocPosition: {x: 84, y: -6}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
@@ -110,7 +97,7 @@ MonoBehaviour:
         BodyOffset: {x: 0.6575165, y: -0.037387848}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
-    00000005:
+    00000004:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_apple
@@ -119,7 +106,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
         EggShellIndex: -1
-    00000006:
+    00000005:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
@@ -128,7 +115,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
         EggShellIndex: -1
-    00000007:
+    00000006:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
@@ -137,7 +124,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
         EggShellIndex: -1
-    00000008:
+    00000007:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
@@ -146,7 +133,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
         EggShellIndex: -1
-    00000009:
+    00000008:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
@@ -155,7 +142,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
         EggShellIndex: -1
-    0000000A:
+    00000009:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_breadcrumb
@@ -164,7 +151,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
         EggShellIndex: -1
-    0000000B:
+    0000000A:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_eggshell
@@ -173,7 +160,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 2
         EggShellIndex: 1
-    0000000C:
+    0000000B:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_eggshell
@@ -182,7 +169,7 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 2
         EggShellIndex: 1
-    0000000D:
+    0000000C:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_eggshell
@@ -191,3 +178,16 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 2
         EggShellIndex: 1
+    0000000D:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_pen
+        BlocPosition: {x: 66, y: -1}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 4
+        BodyRotation: 315
+        BoundsSize: {x: 1.4495697, y: 1.4456407}
+        BodyOffset: {x: -0.07463837, y: 0.14534974}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0

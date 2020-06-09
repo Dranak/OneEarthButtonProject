@@ -15,8 +15,8 @@ MonoBehaviour:
   storedBlocs:
   - blocName: LD40
     blockArea: 0
-    blocCount: 22
-    blocLength: 81
+    blocCount: 23
+    blocLength: 100
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}
@@ -42,6 +42,7 @@ MonoBehaviour:
     - id: 18
     - id: 19
     - id: 20
+    - id: 21
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -226,19 +227,6 @@ MonoBehaviour:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_pen
-        BlocPosition: {x: 80, y: -2}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 4
-        BodyRotation: 22.5
-        BoundsSize: {x: 0.8590851, y: 1.8488531}
-        BodyOffset: {x: 0.6575165, y: -0.037387848}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000013:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
-        Tag: obstacle_pen
         BlocPosition: {x: 49, y: -9}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
@@ -248,7 +236,7 @@ MonoBehaviour:
         BodyOffset: {x: 1.8995857, y: -0.08820534}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
-    00000014:
+    00000013:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_circle
@@ -259,5 +247,31 @@ MonoBehaviour:
         BodyRotation: 0
         BoundsSize: {x: 1.9440536, y: 0.5157404}
         BodyOffset: {x: 1.5, y: 1.5}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000014:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_bottle
+        BlocPosition: {x: 97, y: -2}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 1
+        BodyRotation: 326.25
+        BoundsSize: {x: 2.7529678, y: 3.6229193}
+        BodyOffset: {x: -0.063568115, y: 0.47323024}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000015:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_pen
+        BlocPosition: {x: 81, y: -4}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 4
+        BodyRotation: 67.49999
+        BoundsSize: {x: 1.8467331, y: 0.8435397}
+        BodyOffset: {x: 1.7650604, y: -0.095243454}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
