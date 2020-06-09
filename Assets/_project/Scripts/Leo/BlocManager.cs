@@ -29,7 +29,7 @@ public class BlocManager : MonoBehaviour
     [SerializeField, HideInInspector] List<GameObject> backObjPool;
 
     // bloc generation
-    public int currentBlocMax, currentBlocMin;
+    [SerializeField] int currentBlocMax, currentBlocMin;
     int currentWPMax;
     List<Bloc> allBlocs;
 
@@ -51,16 +51,6 @@ public class BlocManager : MonoBehaviour
             Destroy(this);
     }
 
-    void SetPoolersHierarchy(in Transform poolsParent, in BlocsStorageScriptableObject _blocsStorage)
-    {
-        if (poolsParent.childCount != _blocsStorage.obstaclesPrefabs.Count)
-            return;
-        foreach (Transform pool in poolsParent)
-        {
-            var poolPrefabName = pool.GetChild(0).name;
-            pool.SetSiblingIndex(_blocsStorage.obstaclesPrefabs.FindIndex(p => p.name == poolPrefabName));
-        }
-    }
     void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false, bool isObstacle = true)
     {
         foreach (Transform child in parent)
@@ -79,13 +69,16 @@ public class BlocManager : MonoBehaviour
     void Start()
     {
         ChooseBloc(0);
-        //NewBloc(); // create and siplay a whole bloc at once
-        //NewRandomBloc(); // first bloc to be created (after the empty starting bloc)
+        //NewBloc(); // create and siplay a whole bloc at once // LEGACY
+        //NewRandomBloc(); // first bloc to be created (after the empty starting bloc) // LEGACY
     }
+
+#region procedural
 
     Bloc randomBloc;
     float blocRandomY;
     List<Spawnable> randomizedSortedBloc;
+
     public void ChooseBloc(int prespacing = 3) // spacing is 3 by default
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
@@ -124,45 +117,7 @@ public class BlocManager : MonoBehaviour
         // spawn pooler trigger to reset the egg count?
         Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
     }
-    public void NewBloc(int obstaclesXGap = 3)
-    {
-        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
 
-        SpawnablesSpawn(randomBloc);
-
-        // incremement X position where to spawn next bloc
-        currentBlocMax += randomBloc.blocLength;
-
-        // spawn pooler trigger that will spawn another obstacle
-        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
-
-        currentBlocMax += obstaclesXGap; // blocs gap ? AFTER BLOCK
-    }
-    public void NewRandomBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
-    {
-        Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
-
-        var gapRandomization = 0.25f; // gap randomization percentage -/+ (ceil rounded)
-        ObstaclesSpawn(createdBloc, out blockLength, in obstaclesXGap, in gapRandomization);
-
-        // incremement X position where to spawn next bloc
-        currentBlocMax += blockLength;
-
-        // spawn pooler trigger that will spawn another obstacle
-        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
-
-        currentBlocMax += obstaclesXGap * 2; // blocs gap ? AFTER BLOCK
-    }
-
-    #region procedural
-
-    enum SeriesType
-    {
-        HORIZONTAL = 0,
-        SIDEWAYS,
-        VERTICAL,
-        MIX
-    }
     void SpawnablesSpawn(in float posX) // per WP spawnables spawn
     {
         int rangeToRemove = 0;
@@ -224,6 +179,45 @@ public class BlocManager : MonoBehaviour
             ChooseBloc();
             SpawnablesSpawn(posX);
         }
+    }
+
+#region LEGACY
+    public void NewBloc(int obstaclesXGap = 3)
+    {
+        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)];
+
+        SpawnablesSpawn(randomBloc);
+
+        // incremement X position where to spawn next bloc
+        currentBlocMax += randomBloc.blocLength;
+
+        // spawn pooler trigger that will spawn another obstacle
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
+
+        currentBlocMax += obstaclesXGap; // blocs gap ? AFTER BLOCK
+    }
+    public void NewRandomBloc(Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY, int blocCount = 3, int obstaclesXGap = 3, int blockLength = 0)
+    {
+        Bloc createdBloc = new Bloc(blocArea, blocCount, blockLength); // classic bloc with basic parameters (area determining the environment, and width)
+
+        var gapRandomization = 0.25f; // gap randomization percentage -/+ (ceil rounded)
+        ObstaclesSpawn(createdBloc, out blockLength, in obstaclesXGap, in gapRandomization);
+
+        // incremement X position where to spawn next bloc
+        currentBlocMax += blockLength;
+
+        // spawn pooler trigger that will spawn another obstacle
+        Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
+
+        currentBlocMax += obstaclesXGap * 2; // blocs gap ? AFTER BLOCK
+    }
+
+    enum SeriesType
+    {
+        HORIZONTAL = 0,
+        SIDEWAYS,
+        VERTICAL,
+        MIX
     }
     void SpawnablesSpawn(in Bloc chosenBloc)
     {
@@ -399,6 +393,30 @@ public class BlocManager : MonoBehaviour
 
         _blockLength = currentBlocLength;
     }
+    void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
+    {
+        obstacleToPlace.transform.localPosition = new Vector2(xCoord, -yCoord);
+        var obstacleObject = obstacleToPlace.GetComponent<Obstacle>();
+        var obstacleBody = obstacleObject.objectBody;
+
+        Vector2 obstacleOffset = Vector2.zero;
+        switch (obstacleObject.obstacleRotation) // Rotates then adds position offset
+        {
+            case Obstacle.ObstacleRotation.HORIZONTAL:
+                obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
+                obstacleOffset = Vector2.up * obstacleObject.Size.x;
+                break;
+            case Obstacle.ObstacleRotation.SIDEWAYS:
+                var backOrForth = Random.Range(0, 2) * 2 - 1;
+                obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
+                if (backOrForth < 0)
+                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.Size.y);
+                else
+                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.Size.x);
+                break;
+        }
+        obstacleBody.transform.localPosition = obstacleOffset;
+    }
     #region OBSTACLES_CALCULS
     float SidewaysH(in Vector2 obstacleSize)
     {
@@ -445,13 +463,14 @@ public class BlocManager : MonoBehaviour
                 }
             }
         }
-        foreach(int y in toRemove)
+        foreach (int y in toRemove)
         {
             possCopy.Remove(y);
         }
         return possCopy;
     }
     #endregion
+#endregion
 
     void SpawnablePlacing(in SpawnableObject spawnableToPlace)
     {
@@ -481,30 +500,7 @@ public class BlocManager : MonoBehaviour
         /*if (spawnableParams.OffsetXRange != Vector2Int.zero)
             spawnableToPlace.transform.localPosition += (Vector3)new Vector2(Random.Range(spawnableParams.OffsetXRange.x, spawnableParams.OffsetXRange.y), Random.Range(spawnableParams.OffsetYRange.x, spawnableParams.OffsetYRange.y));*/
     }
-    void ObstaclePlacing(in GameObject obstacleToPlace, in int xCoord, in int yCoord)
-    {
-        obstacleToPlace.transform.localPosition = new Vector2(xCoord, -yCoord);
-        var obstacleObject = obstacleToPlace.GetComponent<Obstacle>();
-        var obstacleBody = obstacleObject.objectBody;
 
-        Vector2 obstacleOffset = Vector2.zero;
-        switch (obstacleObject.obstacleRotation) // Rotates then adds position offset
-        {
-            case Obstacle.ObstacleRotation.HORIZONTAL:
-                obstacleBody.transform.localEulerAngles = Vector3.forward * -90;
-                obstacleOffset = Vector2.up * obstacleObject.Size.x;
-                break;
-            case Obstacle.ObstacleRotation.SIDEWAYS:
-                var backOrForth = Random.Range(0, 2) * 2 - 1;
-                obstacleBody.transform.localEulerAngles = Vector3.back * 45 * backOrForth;
-                if (backOrForth < 0)
-                    obstacleOffset = Vector2.right * HypotenusHalfAntecedent(obstacleObject.Size.y);
-                else
-                    obstacleOffset = Vector2.up * HypotenusHalfAntecedent(obstacleObject.Size.x);
-                break;
-        }
-        obstacleBody.transform.localPosition = obstacleOffset;
-    }
     // Spawns WPapers
     public void NewWP(Transform toUnpool)
     {
@@ -579,9 +575,9 @@ public class BlocManager : MonoBehaviour
             isBack = !isBack;
         }
     }
-    #endregion
+#endregion
 
-    #region pool
+#region pool
     // objects to appear next are pooled in (activated)
     public void PoolIn(ref List<GameObject> pool, Vector2 toPosition, out GameObject pooledInObj, Transform parent = null)
     {
@@ -597,16 +593,16 @@ public class BlocManager : MonoBehaviour
         pooledInObj = objectToPoolIn;
     }
     // objects no longer being seen are pooled out (deactivated)
-    public void PoolOut(GameObject toPoolOut, in Transform _parent = null) // for WPapers only
+    public void PoolOut(GameObject toPoolOut, in Transform _parent = null) // for WPapers and background objects
     {
         toPoolOut.SetActive(false);
         if (_parent) // background objects
             toPoolOut.transform.parent = _parent;
     }
-    public void PoolOut (in SpawnableObject toPoolOut)
+    public void PoolOut (in SpawnableObject toPoolOut) // for spawnables
     {
         PoolOut(toPoolOut.gameObject);
         toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool
     }
-    #endregion
+#endregion
 }

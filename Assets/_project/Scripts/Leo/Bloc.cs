@@ -36,14 +36,6 @@ public class Bloc
     public Bloc Clone()
     {
         Bloc other = new Bloc(blockArea, blocCount, blocLength, blocName, spawnlablesParams, blocYRange, globalOffsetRange, globalRotationOffsetRange);
-        //(Bloc)this.MemberwiseClone();
-        /*other.blocName = String.Copy(blocName);
-        other.blockArea = (BlocArea)((int)blockArea);
-        other.blocCount = blocCount;
-        other.blocLength = blocLength;
-        other.blocYRange = blocYRange;
-        other.globalOffsetRange = globalOffsetRange;
-        other.globalRotationOffsetRange = globalRotationOffsetRange;*/
         return other;
     }
 }
