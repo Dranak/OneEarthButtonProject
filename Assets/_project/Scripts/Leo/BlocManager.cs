@@ -93,6 +93,7 @@ public class BlocManager : MonoBehaviour
         randomBloc = allBlocs[Random.Range(0, allBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
         currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max, not working for X random
         randomizedSortedBloc = new List<Spawnable>();
+        Debug.Log("Choosed Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
 
         // random Y pos for the bloc
         blocRandomY = 0;
@@ -182,14 +183,23 @@ public class BlocManager : MonoBehaviour
             PoolIn(ref thisSpawnablesPool, new Vector2(currentBlocMin, blocRandomY), out spawnableSpawned, spawnablesAnchor); // pool in the first inactive spawnable from the pool
             var spawnableObj = spawnableSpawned.GetComponent<SpawnableObject>();
 
-            // limit X spawnamble position between 0 (bloc start), and blocLength (Bloc End) // also prevent spawnables from going out of Y bounds (0; -9)
-            var spawnableObjWidth = spawnableObj.Size.x;
-            if (spawnableObj is Obstacle) spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
-            spawnable.BlocPosition = new Vector2(Mathf.Clamp(spawnable.BlocPosition.x, 0, randomBloc.blocLength - spawnableObjWidth), Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
+            // prevent spawnables from going out of Y bounds (0; -9)
+            spawnable.BlocPosition = new Vector2(spawnable.BlocPosition.x, Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
 
             spawnableObj.SetSpawnable(spawnable);
             SpawnablePlacing(spawnableObj); // adjust position
             blocSpList.Add(spawnableObj);
+
+            // increment bloc max if object goes above it
+            var spawnableObjWidth = spawnableObj.Size.x;
+            if (spawnableObj is Obstacle && (spawnableObj.Size.x != spawnableObj.Size.y))
+                spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
+            var spawnableDisplacement = spawnableObjWidth + spawnable.BlocPosition.x - randomBloc.blocLength;
+            if (spawnableDisplacement > 0)
+            {
+                currentBlocMax += Mathf.CeilToInt(spawnableDisplacement);
+                Debug.Log("Choosed Bloc Max override : " + currentBlocMax);
+            }
         }
 
         // global random rotation (only for long obstacles)
@@ -508,6 +518,8 @@ public class BlocManager : MonoBehaviour
         SpawnablesSpawn(currentWPMax + 3);
     }
     bool isBack = false;
+    int previousFrontSo = 3;
+    float previousFrontPos = 0;
     void WPObjects(in int thisWPX)
     {
         int objectCount = Random.Range(3, 7);
@@ -523,17 +535,6 @@ public class BlocManager : MonoBehaviour
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
-            /*var renderer = pooledIn.GetComponent<SpriteRenderer>();
-            if (thisX % 2 == 0)
-            {
-                renderer.sortingOrder = -1;
-                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
-            }
-            else
-            {
-                renderer.sortingOrder = 1;
-                renderer.color = Color.white;
-            }*/
         }
 
         pooledInList = pooledInList.OrderBy(x => x.transform.localPosition.x).ToList(); // order the objects list from left to right
@@ -551,8 +552,29 @@ public class BlocManager : MonoBehaviour
             }
             else
             {
-                renderer.sortingOrder = 1;
+                var thisFrontPos = pooledIn.transform.position.x;
+                if (previousFrontPos > thisFrontPos)
+                {
+                    if (previousFrontSo > 1)
+                        --previousFrontSo;
+                    else // bring to the back, too many objects are touching in a row (3)
+                    {
+                        previousFrontSo = 3; // reset front objects sorting order
+                        renderer.sortingOrder = -1;
+                        renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+                        continue;
+                    }
+                }
+                else
+                    previousFrontSo = 3; // reset front objects sorting order
+
+                renderer.sortingOrder = previousFrontSo;
                 renderer.color = Color.white;
+
+                // calculating this sprite right bound world pos to be next previousFrontPos
+                var sprite = renderer.sprite;
+                var visibleWidth = sprite.bounds.size.x * (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
+                previousFrontPos = thisFrontPos + visibleWidth;
             }
             isBack = !isBack;
         }
