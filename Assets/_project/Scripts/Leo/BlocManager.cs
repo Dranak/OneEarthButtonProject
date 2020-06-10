@@ -86,7 +86,7 @@ public class BlocManager : MonoBehaviour
         randomBloc = allBlocs[Random.Range(0, allBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
         currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max, not working for X random
         randomizedSortedBloc = new List<Spawnable>();
-        Debug.Log("Choosed Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
+        Debug.Log("Choosen Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
 
         // random Y pos for the bloc
         blocRandomY = 0;
@@ -122,13 +122,14 @@ public class BlocManager : MonoBehaviour
     {
         int rangeToRemove = 0;
         List<SpawnableObject> blocSpList = new List<SpawnableObject>();
+        float blocDisplacement = 0;
 
         foreach (Spawnable spawnable in randomizedSortedBloc)
         {
             if (spawnable.BlocPosition.x + currentBlocMin >= posX)
             { // stop and clear from list when no more spawnables in the spawn range
                 randomizedSortedBloc.RemoveRange(0, rangeToRemove); // clearing all spawnables to be spawned from list (performances)
-                return;
+                break;
             }
 
             ++rangeToRemove;
@@ -150,8 +151,9 @@ public class BlocManager : MonoBehaviour
             if (spawnableObj is Obstacle && (spawnableObj.Size.x != spawnableObj.Size.y))
                 spawnableObjWidth = (spawnableObj.GetSpawnable() as ObstacleSpawnable).BoundsSize.x;
             var spawnableDisplacement = spawnableObjWidth + spawnable.BlocPosition.x - randomBloc.blocLength;
-            if (spawnableDisplacement > 0)
+            if (spawnableDisplacement > blocDisplacement)
             {
+                blocDisplacement = spawnableDisplacement;
                 currentBlocMax += Mathf.CeilToInt(spawnableDisplacement);
                 Debug.Log("Choosed Bloc Max override : " + currentBlocMax);
             }
@@ -169,15 +171,17 @@ public class BlocManager : MonoBehaviour
                     if (rotOffsetMin > 0) rotOffsetMin = 0;
 
                     obstacle.objectBody.Rotate(Vector3.back, (Random.Range((globalRotOffset).x - rotOffsetMin, (globalRotOffset).y - rotOffsetMin) + rotOffsetMin) * 22.5f);
-                    obstacle.objectBody.localPosition += obstacle.transform.position - obstacle.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
+                    // recalculate and assign body offset and bounds size
+                    var fixedColliderBounds = obstacle.objectBody.gameObject.GetBoxColliderFixedBounds();
+                    obstacle.objectBody.localPosition += obstacle.transform.position - fixedColliderBounds.min;
                 }
             }
         }
 
-        if (posX >= currentBlocMax) // choose the next bloc if we're near the bloc end
+        if (posX >= currentBlocMax) // choose the next bloc if we're at the bloc end (latest wp pooling)
         {
             ChooseBloc();
-            SpawnablesSpawn(posX);
+            //SpawnablesSpawn(posX);
         }
     }
 
