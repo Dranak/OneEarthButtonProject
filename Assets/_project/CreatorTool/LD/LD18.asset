@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: LD18
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD18
+  - blocDifficulty: 2
+    blocName: LD18
     blockArea: 0
-    blocCount: 14
-    blocLength: 41
+    blocCount: 15
+    blocLength: 39
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}
@@ -53,6 +54,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000001:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -61,6 +63,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000002:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -69,6 +72,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000003:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -77,6 +81,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000004:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -85,6 +90,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000005:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -93,6 +99,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000006:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -101,6 +108,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000007:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -109,6 +117,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000008:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -117,6 +126,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
+        EggShellIndex: -1
     00000009:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -173,7 +183,7 @@ MonoBehaviour:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_bottle
-        BlocPosition: {x: 39, y: -4}
+        BlocPosition: {x: 37.09381, y: -4}
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 1

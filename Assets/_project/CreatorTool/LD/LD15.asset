@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LD15
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD15
+  - blocDifficulty: 2
+    blocName: LD15
     blockArea: 0
     blocCount: 17
     blocLength: 37
@@ -55,6 +56,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000001:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -63,6 +65,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000002:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -71,6 +74,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000003:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -79,6 +83,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000004:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -87,6 +92,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000005:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -95,6 +101,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000006:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -103,6 +110,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000007:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -111,6 +119,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     00000008:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -145,6 +154,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     0000000B:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -153,6 +163,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     0000000C:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -161,6 +172,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     0000000D:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -169,6 +181,7 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
     0000000E:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:

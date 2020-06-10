@@ -60,10 +60,16 @@ SpriteAtlas:
     - {fileID: -414479616469554613, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
     - {fileID: 7392132609631509024, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
     - {fileID: 7145536800334388871, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
-    totalSpriteSurfaceArea: 2076134
+    - {fileID: -1851672414279508749, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+    - {fileID: 8058684107584073667, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+    - {fileID: 1954399890376994909, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+    totalSpriteSurfaceArea: 3108974
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 8058684107584073667, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+  - {fileID: -1851672414279508749, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+  - {fileID: 1954399890376994909, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
   - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
   - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
   - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
@@ -83,6 +89,9 @@ SpriteAtlas:
   - {fileID: -414479616469554613, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
   - {fileID: 7145536800334388871, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Enjoliveur_1
+  - Enjoliveur_0
+  - Enjoliveur_2
   - Bouteille_cassee_2
   - Bouteille_cassee_0
   - Bouteille_cassee_1

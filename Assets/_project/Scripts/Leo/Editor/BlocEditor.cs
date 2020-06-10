@@ -34,11 +34,13 @@ public class BlocEditor : Editor
             blocYRange = bc.currentBlocSelection.blocYRange;
             gOffset = bc.currentBlocSelection.globalOffsetRange;
             rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
+            selectedBlocDifficulty = (int)bc.currentBlocSelection.blocDifficulty;
         }
 
-        EditorUtility.SetDirty(bc.blocsScriptable);
         GetSavedBlocsNames();
-        RefreshBlocName();
+        RefreshBlocNameAndDiff();
+
+        EditorUtility.SetDirty(bc.blocsScriptable);
     }
 
     private void OnDisable()
@@ -59,7 +61,9 @@ public class BlocEditor : Editor
         }
     }
 
-    //string blocName = "Enter Bloc Name"; // bloc name to store
+
+#region INSPECTOR_SETUP
+
     int selectedName = -1;
     Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY; // bloc area to store
 
@@ -67,6 +71,7 @@ public class BlocEditor : Editor
     Vector4 gOffset;
     Vector2 rotOff;
     int selectedEggshellId = 0;
+    int selectedBlocDifficulty;
 
     public override void OnInspectorGUI()
     {
@@ -92,7 +97,7 @@ public class BlocEditor : Editor
                 EditorUtility.SetDirty(bc.blocsScriptable);
 
                 GetSavedBlocsNames();
-                RefreshBlocName();
+                RefreshBlocNameAndDiff();
 
                 AssetDatabase.Refresh();
             }
@@ -114,6 +119,12 @@ public class BlocEditor : Editor
                 CreateNewStamp();
             }
             GUILayout.Space(16);
+        }
+
+        // BLOC DIFFICULTY PARAMETER
+        if (bc.currentBlocSelection != null)
+        {
+            selectedBlocDifficulty = EditorGUILayout.IntField("Bloc Difficulty", selectedBlocDifficulty);
         }
 
         // EGGSHGELL PARAMETER
@@ -204,7 +215,7 @@ public class BlocEditor : Editor
             DestroyAllRootSpawnables(); // destroy all root objects
             scriptableStoredBlocs.Remove(bc.currentBlocSelection);
             GetSavedBlocsNames();
-            RefreshBlocName();
+            RefreshBlocNameAndDiff();
             AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
@@ -229,7 +240,7 @@ public class BlocEditor : Editor
                     obsRightBoundX += spawnableObject.Size.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, spawnables);
+            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, (uint)selectedBlocDifficulty, spawnables);
 
             // set misc parameters
             if (blocYRange != Vector2.zero)
@@ -279,11 +290,12 @@ public class BlocEditor : Editor
     {
         bc.blocNames = bc.blocsScriptable.storedBlocs.Select(w => w.blocName).ToList();
     }
-    void RefreshBlocName()
+    void RefreshBlocNameAndDiff()
     {
         if (bc.blocNames.Count == 0)
         {
             bc.blocName = "Enter Bloc Name";
+            selectedBlocDifficulty = 0;
         }
         else
         {
@@ -291,14 +303,82 @@ public class BlocEditor : Editor
             {
                 bc.blocName = bc.blocNames[0];
                 selectedName = 0;
+                selectedBlocDifficulty = 0;
             }
             else
             {
                 selectedName = bc.blocNames.IndexOf(bc.blocName);
+                selectedBlocDifficulty = (int)bc.currentBlocSelection.blocDifficulty;
             }
         }
     }
 
+    #region BLOC_SETUP
+    void LoadBlocParameters(Bloc selectedBloc)
+    {
+        blocYRange = selectedBloc.blocYRange;
+        gOffset = selectedBloc.globalOffsetRange;
+        rotOff = selectedBloc.globalRotationOffsetRange;
+        selectedBlocDifficulty = (int)selectedBloc.blocDifficulty;
+    }
+    void LoadSpawnablesFromBloc(Bloc selectedBloc)
+    {
+        if (bc.rootTransform == null)
+        {
+            Debug.LogError("Can't spawn bloc without a root Transform");
+            return;
+        }
+        if (!(bc.rootTransform.childCount == 0 || (stamp.transform.parent == bc.rootTransform && bc.rootTransform.childCount == 1)))
+            DestroyAllRootSpawnables(); // destroy all root objects
+        foreach (Spawnable spawnable in selectedBloc.spawnlablesParams)
+        {
+            var prefab = bc.blocsScriptable.obstaclesPrefabs[spawnable.SpawnablePrefabIndex];
+            var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
+            Undo.RegisterCreatedObjectUndo(g, "ReStamp");
+            var gT = g.transform;
+            gT.localPosition = spawnable.BlocPosition;
+            var bodyT = gT.GetChild(0);
+            if (spawnable is ObstacleSpawnable)
+                bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
+
+            var spawnableObj = gT.GetComponentInChildren<SpawnableObject>();
+            //Type spawnableType = spawnableObj.GetSpawnable().GetType();
+
+            if (spawnableObj is Obstacle)
+            {
+                bodyT.rotation = Quaternion.Euler(0, 0, (spawnable as ObstacleSpawnable).BodyRotation);
+                (spawnableObj as Obstacle).obstacleParameters = (ObstacleSpawnable)spawnable;
+            }
+            else if (spawnableObj is Collectible)
+            {
+                (spawnableObj as Collectible).collectibleParameters = (CollectibleSpawnable)spawnable;
+            }
+        }
+    }
+    void DestroyAllRootSpawnables()
+    {
+        GameObject[] toDestroy = new GameObject[bc.rootTransform.childCount];
+        int c = 0;
+        foreach (Transform childT in bc.rootTransform)
+        {
+            if (childT.gameObject != stamp)
+            {
+                toDestroy[c] = childT.gameObject;
+                ++c;
+            }
+        }
+
+        foreach (GameObject spn in toDestroy)
+        {
+            if (spn != null)
+                Undo.DestroyObjectImmediate(spn);
+        }
+    }
+    #endregion
+
+    #endregion
+
+#region STAMPING
     GameObject dummy = null;
     SpawnableObject dummySpawnable = null;
     Transform spnBodyT;
@@ -370,81 +450,6 @@ public class BlocEditor : Editor
         }
     }
 
-    Bounds dummyBounds;
-    void RotateStamp(Vector2 delta)
-    {
-        if (dummy.GetComponent<SpawnableObject>().GetType() == typeof(Obstacle))
-        {
-            spnBodyT.Rotate(Vector3.back, delta.y);
-            dummyBounds = spnBodyT.gameObject.GetBoxColliderFixedBounds();
-            Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
-            spnBodyT.localPosition += (Vector3)dummyOffset;
-        }
-    }
-
-    void LoadBlocParameters(Bloc selectedBloc)
-    {
-        if (selectedBloc.blocYRange != null)
-            blocYRange = (Vector2)selectedBloc.blocYRange;
-        if (selectedBloc.globalOffsetRange != null)
-            gOffset = (Vector4)selectedBloc.globalOffsetRange;
-        if (selectedBloc.globalRotationOffsetRange != null)
-            rotOff = (Vector2)selectedBloc.globalRotationOffsetRange;
-    }
-    void LoadSpawnablesFromBloc(Bloc selectedBloc)
-    {
-        if (bc.rootTransform == null)
-        {
-            Debug.LogError("Can't spawn bloc without a root Transform");
-            return;
-        }
-        if (!(bc.rootTransform.childCount == 0 || (stamp.transform.parent == bc.rootTransform && bc.rootTransform.childCount == 1)))
-            DestroyAllRootSpawnables(); // destroy all root objects
-        foreach (Spawnable spawnable in selectedBloc.spawnlablesParams)
-        {
-            var prefab = bc.blocsScriptable.obstaclesPrefabs[spawnable.SpawnablePrefabIndex];
-            var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
-            Undo.RegisterCreatedObjectUndo(g, "ReStamp");
-            var gT = g.transform;
-            gT.localPosition = spawnable.BlocPosition;
-            var bodyT = gT.GetChild(0);
-            if (spawnable is ObstacleSpawnable)
-                bodyT.localPosition = (spawnable as ObstacleSpawnable).BodyOffset;
-
-            var spawnableObj = gT.GetComponentInChildren<SpawnableObject>();
-            //Type spawnableType = spawnableObj.GetSpawnable().GetType();
-            
-            if (spawnableObj is Obstacle)
-            {
-                bodyT.rotation = Quaternion.Euler(0, 0, (spawnable as ObstacleSpawnable).BodyRotation);
-                (spawnableObj as Obstacle).obstacleParameters = (ObstacleSpawnable)spawnable;
-            }
-            else if (spawnableObj is Collectible)
-            {
-                (spawnableObj as Collectible).collectibleParameters = (CollectibleSpawnable)spawnable;
-            }
-        }
-    }
-    void DestroyAllRootSpawnables()
-    {
-        GameObject[] toDestroy = new GameObject[bc.rootTransform.childCount];
-        int c = 0;
-        foreach(Transform childT in bc.rootTransform)
-        {
-            if (childT.gameObject != stamp)
-            {
-                toDestroy[c] = childT.gameObject;
-                ++c;
-            }
-        }
-
-        foreach (GameObject spn in toDestroy)
-        {
-            if (spn != null)
-                Undo.DestroyObjectImmediate(spn);
-        }
-    }
-
     int GetIndexFromPrefabList(in List<GameObject> prefabList, in GameObject chosenObject)
     {
         var chosenPrefabParent = PrefabUtility.GetCorrespondingObjectFromSource(chosenObject);
@@ -455,6 +460,7 @@ public class BlocEditor : Editor
         else return indexFound;
     }
 
+    #region OnScene_Stamp_Editor
     private void OnSceneGUI()
     {
         if (Event.current.type == EventType.MouseMove)
@@ -567,7 +573,7 @@ public class BlocEditor : Editor
             {
                 spnBodyRenderer.color = Color.red;
                 canPlaceStamp = false;
-                //dummy.SetActive(false);
+                //dummy.SetActive(false); // LEGACY : replaced by red color stamp when not able to stamp
             }
         }
         /*foreach (var b in overlaps)
@@ -585,14 +591,19 @@ public class BlocEditor : Editor
             }
         }*/
     }
-    /*
-    Bounds Intersection(Bounds A, Bounds B)
+
+    Bounds dummyBounds;
+    void RotateStamp(Vector2 delta)
     {
-        var min = new Vector3(Mathf.Max(A.min.x, B.min.x), Mathf.Max(A.min.y, B.min.y), Mathf.Max(A.min.z, B.min.z));
-        var max = new Vector3(Mathf.Min(A.max.x, B.max.x), Mathf.Min(A.max.y, B.max.y), Mathf.Min(A.max.z, B.max.z));
-        return new Bounds(Vector3.Lerp(min, max, 0.5f), max - min);
+        if (dummy.GetComponent<SpawnableObject>().GetType() == typeof(Obstacle))
+        {
+            spnBodyT.Rotate(Vector3.back, delta.y);
+            dummyBounds = spnBodyT.gameObject.GetBoxColliderFixedBounds();
+            Vector2 dummyOffset = stamp.transform.position - dummyBounds.min;
+            spnBodyT.localPosition += (Vector3)dummyOffset;
+        }
     }
-    */
+
     void DrawEraser(Vector3 center)
     {
         erase.Clear();
@@ -609,6 +620,19 @@ public class BlocEditor : Editor
             erase.Add(overlappedGameObjects[i]);
         }
     }
+    #endregion
 
-    public override bool RequiresConstantRepaint() { return true; }
+#endregion
+
+    // LEGACY
+    /*
+    Bounds Intersection(Bounds A, Bounds B)
+    {
+        var min = new Vector3(Mathf.Max(A.min.x, B.min.x), Mathf.Max(A.min.y, B.min.y), Mathf.Max(A.min.z, B.min.z));
+        var max = new Vector3(Mathf.Min(A.max.x, B.max.x), Mathf.Min(A.max.y, B.max.y), Mathf.Min(A.max.z, B.max.z));
+        return new Bounds(Vector3.Lerp(min, max, 0.5f), max - min);
+    }
+    */
+
+    //public override bool RequiresConstantRepaint() { return true; }
 }

@@ -57,7 +57,6 @@ MonoBehaviour:
   - {fileID: 4130807427446064719}
   - {fileID: 4130807427738294705}
   - {fileID: 4130807428685078130}
-  - {fileID: 0}
   blocPoolerPrefab: {fileID: 7353677466778788323, guid: 7811791c3533ef24c95cc8e8303c6d7f,
     type: 3}
   spawnablesPools: {fileID: 0}
@@ -67,6 +66,7 @@ MonoBehaviour:
   backObjAnchor: {fileID: 561782606071325740}
   backObjPool: []
   currentBlocMax: 21
+  currentBlocMin: 21
 --- !u!1 &5633448737910605982
 GameObject:
   m_ObjectHideFlags: 0

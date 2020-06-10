@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LD52
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD52
+  - blocDifficulty: 2
+    blocName: LD52
     blockArea: 0
-    blocCount: 19
+    blocCount: 20
     blocLength: 84
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
@@ -39,6 +40,7 @@ MonoBehaviour:
     - id: 15
     - id: 16
     - id: 17
+    - id: 18
   obstaclesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
@@ -233,5 +235,18 @@ MonoBehaviour:
         BodyRotation: 67.49999
         BoundsSize: {x: 1.8467278, y: 0.8435402}
         BodyOffset: {x: 1.7650576, y: -0.095243454}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0
+    00000012:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_can
+        BlocPosition: {x: 54, y: -1}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 247.50002
+        BoundsSize: {x: 2.105585, y: 1.5992241}
+        BodyOffset: {x: 0.33135414, y: 1.6960778}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0

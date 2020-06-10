@@ -11,9 +11,6 @@ public class Pooler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "BlocPoolerTrigger")
-        {
-            //BlocManager.Instance.NewBloc(); // not needed here anymore
-        }
+
     }
 }

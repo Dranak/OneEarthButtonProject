@@ -53,9 +53,8 @@ MonoBehaviour:
     OffsetXRange: {x: 0, y: 0}
     OffsetYRange: {x: 0, y: 0}
     SpawnablePrefabIndex: 0
-    eggShellIndex: -1
+    EggShellIndex: -1
   PointGain: 0
-  IsEggShell: 1
 --- !u!1 &1223918551996689868
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +391,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

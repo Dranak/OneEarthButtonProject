@@ -4,7 +4,6 @@ public class Collectible : SpawnableObject
 {
     public CollectibleSpawnable collectibleParameters;
     public int PointGain;
-    public bool IsEggShell;
 
     public void SetCollectible(in Vector2 _blocPos, in int _prefabIndex, in int _eggshellId = -1)
     {
