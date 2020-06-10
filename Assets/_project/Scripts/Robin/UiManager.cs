@@ -14,9 +14,8 @@ public class UiManager : MonoBehaviour
     private void Awake()
     {
         Instance = Instance ?? this;
-        DontDestroyOnLoad(MainMenu.gameObject);
-        DontDestroyOnLoad(MainMenu.gameObject);
-        DontDestroyOnLoad(MainMenu.gameObject);
+        DontDestroyOnLoad(this);
+  
     }
 
 
@@ -30,10 +29,12 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         MainMenu.gameObject.SetActive(false);
-        if (DeathMenu.gameObject.activeSelf)
+        if (DeathMenu.gameObject.activeInHierarchy)
+        {
             DeathMenu.gameObject.SetActive(false);
+        }
 
-       
+
         MainMenu.Play();
        
     }
@@ -42,8 +43,11 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.State = State.InMenu;
-        if (DeathMenu.gameObject.activeSelf)
+        if (DeathMenu.gameObject.activeInHierarchy)
+        {
             DeathMenu.gameObject.SetActive(false);
+        }
+
 
         MainMenu.gameObject.SetActive(true);
     }

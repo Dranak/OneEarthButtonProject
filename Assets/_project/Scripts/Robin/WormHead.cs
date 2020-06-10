@@ -189,7 +189,7 @@ public class WormHead : WormBody
     {
         if (collider.CompareTag("Collectible"))
         {
-            Collectible collectible = GetComponent<Collectible>();
+            Collectible collectible = collider.GetComponentInParent<Collectible>();
             Debug.Log("Ate " + collectible.name);
             CallBackPoint(collectible);
 
