@@ -125,6 +125,7 @@ public class BlocEditor : Editor
         if (bc.currentBlocSelection != null)
         {
             selectedBlocDifficulty = EditorGUILayout.IntField("Bloc Difficulty", selectedBlocDifficulty);
+            if (selectedBlocDifficulty < 0) selectedBlocDifficulty = 0;
         }
 
         // EGGSHGELL PARAMETER

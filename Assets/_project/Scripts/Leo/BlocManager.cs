@@ -32,6 +32,7 @@ public class BlocManager : MonoBehaviour
     [SerializeField] int currentBlocMax, currentBlocMin;
     int currentWPMax;
     List<Bloc> allBlocs;
+    List<List<Bloc>> allBlocsRanked;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class BlocManager : MonoBehaviour
 
             currentWPMax = currentBlocMax - 3; // wallpapers are centered (and 6 int large)
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
+            RankBlocs();
             AddToPool(backObjAnchor, ref backObjPool, false, false);
             AddToPool(spawnablesAnchor, ref backObjPool, true, false); // back objects in the Spawnables on start are also part of the pool
             Instance = this;
@@ -66,6 +68,21 @@ public class BlocManager : MonoBehaviour
         }
     }
 
+    void RankBlocs()
+    {
+        allBlocsRanked = new List<List<Bloc>>();
+        foreach(Bloc bloc in allBlocs)
+        {
+            var blocDiff = bloc.blocDifficulty;
+            if (allBlocsRanked.Count <= blocDiff)
+            {
+                for (int i = (int)blocDiff - allBlocsRanked.Count; i >= 0; --i)
+                    allBlocsRanked.Add(new List<Bloc>());
+            }
+            allBlocsRanked[(int)blocDiff].Add(bloc);
+        }
+    }
+
     void Start()
     {
         ChooseBloc(0);
@@ -78,12 +95,17 @@ public class BlocManager : MonoBehaviour
     Bloc randomBloc;
     float blocRandomY;
     List<Spawnable> randomizedSortedBloc;
+    int currentBlocDiff = 0;
 
     public void ChooseBloc(int prespacing = 3) // spacing is 3 by default
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
-        randomBloc = allBlocs[Random.Range(0, allBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
+
+        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.WormHead.DistanceFromStart / 1000) % (allBlocsRanked.Count));
+        var sortedBlocs = allBlocsRanked[currentBlocDiff];
+        randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
+
         currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max, not working for X random
         randomizedSortedBloc = new List<Spawnable>();
         Debug.Log("Choosen Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
@@ -181,7 +203,6 @@ public class BlocManager : MonoBehaviour
         if (posX >= currentBlocMax) // choose the next bloc if we're at the bloc end (latest wp pooling)
         {
             ChooseBloc();
-            //SpawnablesSpawn(posX);
         }
     }
 
@@ -517,6 +538,7 @@ public class BlocManager : MonoBehaviour
         // Also pool in spawnables
         SpawnablesSpawn(currentWPMax + 3);
     }
+
     bool isBack = false;
     int previousFrontSo = 3;
     float previousFrontPos = 0;

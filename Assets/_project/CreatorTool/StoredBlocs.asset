@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StoredBlocs
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocDifficulty: 1
-    blocName: test
+  - blocName: test
+    blocDifficulty: 1
     blockArea: 0
     blocCount: 17
     blocLength: 31

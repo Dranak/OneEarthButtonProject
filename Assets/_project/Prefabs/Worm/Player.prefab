@@ -254,22 +254,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!58 &1863196710
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6899084866020784597}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4888889
 --- !u!1 &4505670463351821051
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +266,7 @@ GameObject:
   - component: {fileID: 4505670463351821052}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,6 +302,11 @@ MonoBehaviour:
   ScoreText: {fileID: 0}
   ScoreTextFB: {fileID: 1606105478}
   StepDistanceScoreIncrease: 100
+  UndergroundBonus: 0
+  MaxBonusUndergroundBonus: 0
+  EggShellStreakOne: 0
+  EggShellStreakTwo: 0
+  EggShellStreakThird: 0
   SpeedRight: 8
   TimeToIncreaseSpeed: 5
   MaxSpeed: 15
@@ -374,6 +363,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &1863196710
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899084866020784597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4888889
 --- !u!1001 &2141755345
 PrefabInstance:
   m_ObjectHideFlags: 0
