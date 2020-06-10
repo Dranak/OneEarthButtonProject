@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(PolygonCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class WormHead : WormBody
 {
     [Header("Body")]
@@ -13,12 +13,17 @@ public class WormHead : WormBody
     public int NumberOfParts;
     public float OffsetBodyPart = 5f;
 
+    public List<Face> AllFaces { get; set; } = new List<Face>();
+
+    private Face _lastFace;
+    [Space]
+
     private List<WormBody> _wormBodies;
     public Vector3 StartPosition { get; set; }
     public float DistanceFromStart { get { return Vector3.Distance(StartPosition, transform.position); } }
     public LineRenderer Line;
 
-    PolygonCollider2D _collider;
+
 
     public float Speed { get; set; }
     public float TimeToIncreaseSpeed { get; set; }
@@ -41,45 +46,55 @@ public class WormHead : WormBody
     public Action CallBackDead;
     public Action<Collectible> CallBackPoint;
 
-    
+    protected override void Awake()
+    {
+        base.Awake();
+        AllFaces = GetComponentsInChildren<Face>().ToList();
+        _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
+    }
+
     void Start()
     {
-
-        _collider = GetComponent<PolygonCollider2D>();
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-        // UpdateCollider();
+
     }
 
     void Update()
     {
-        IncreaseSpeed();
         UpdateLineRenderer();
-
-        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
+        if (GameManager.Instance.State == State.Play)
         {
-            IsDigging = true;
-        }
-        else
-        {
-            IsDigging = false;
+            IncreaseSpeed();
+           
 
+            if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
+            {
+                IsDigging = true;
+            }
+            else
+            {
+                IsDigging = false;
+
+            }
         }
+
 
     }
 
     private void FixedUpdate()
     {
-
-        SetForce(IsDigging);
-
+        if (GameManager.Instance.State == State.Play)
+        {
+            SetForce(IsDigging);
+        }
     }
 
     void SetForce(bool _isDigging)
     {
         Rigidbody.velocity = new Vector2(Vector2.right.x * Speed, Rigidbody.velocity.y);
-        //Debug.Log("Speed: " + Speed);
+
 
         if (_isDigging)
         {
@@ -109,7 +124,7 @@ public class WormHead : WormBody
         {
             Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
-        // UpdateCollider();
+
 
     }
 
@@ -124,9 +139,7 @@ public class WormHead : WormBody
 
     float GetAngleToRotate(float startAngleRotate, float endAngleRotate, float duration, float chrono)
     {
-
         float scaleTimeRotate = chrono / duration;
-
         return Mathf.Lerp(startAngleRotate, endAngleRotate, scaleTimeRotate);
     }
 
@@ -137,7 +150,7 @@ public class WormHead : WormBody
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
             _wormBodies[i].Trail.enabled = false;
-            _wormBodies[i].GetRekt = GetRekt;
+            //_wormBodies[i].GetRekt = GetRekt;
             if (i > 0)
                 _wormBodies.Last().SetTarget(_wormBodies[i - 1]);
             else
@@ -145,49 +158,8 @@ public class WormHead : WormBody
         }
         _wormBodies.Last().Trail.enabled = true;
         _wormBodies.Last().GetComponent<SpriteRenderer>().enabled = true;
-       
-           
-        
     }
 
-    void UpdateCollider()
-    {
-        List<Vector2> colliderPoints = new List<Vector2>();
-        List<Vector2> upperPoints = new List<Vector2>();
-        List<Vector2> downerPoint = new List<Vector2>();
-        float halfWidth = Line.startWidth / 2f;
-        Vector2 upPoint = transform.position;
-        Vector2 downPoint = transform.position;
-        upPoint.y -= halfWidth + transform.parent.position.y;
-        downPoint.y += halfWidth - transform.parent.position.y;
-        upperPoints.Add(new Vector2(transform.position.x + halfWidth, transform.position.y - transform.parent.position.y));
-        upperPoints.Add(upPoint);
-
-        downerPoint.Add(downPoint);
-
-        for (int index = 0; index < Line.positionCount; ++index)
-        {
-            upPoint = Line.GetPosition(index);
-            downPoint = Line.GetPosition(index);
-            upPoint.y -= halfWidth + transform.parent.position.y;
-            downPoint.y += halfWidth - transform.parent.position.y;
-            upperPoints.Add(upPoint);
-            if (index == Line.positionCount - 1)
-            {
-                upperPoints.Add(new Vector2(Line.GetPosition(index).x - halfWidth, transform.position.y - transform.parent.position.y));
-            }
-
-            downerPoint.Add(downPoint);
-        }
-
-        colliderPoints.AddRange(upperPoints);
-        downerPoint.Reverse();
-        colliderPoints.AddRange(downerPoint);
-        colliderPoints.ForEach(cp => transform.parent.InverseTransformPoint(cp));
-        _collider.SetPath(0, colliderPoints);
-
-
-    }
 
     void IncreaseSpeed()
     {
@@ -204,76 +176,120 @@ public class WormHead : WormBody
         _chronoIncreaseSpeed += Time.deltaTime;
     }
 
-
-    public void GetRekt(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-      
-        
-            SpawnableObject spawnableObject = collision.gameObject.GetComponentInParent<SpawnableObject>();
+        if (collision.collider.CompareTag("Death"))
+        {
+            Debug.Log("Dead by " + collision.gameObject.name);
+            CallBackDead();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Collectible"))
+        {
+            Collectible collectible = GetComponent<Collectible>();
+            Debug.Log("Ate " + collectible.name);
+            CallBackPoint(collectible);
+
+            BlocManager.Instance.PoolOut(collectible);
+        }
+        else if (collider.CompareTag("BlocPoolerTrigger"))
+        {
+            // reset egg shells series (_streakEggShell)
+            GameManager.Instance.Player.StreakEggShell = 0;
+
+            Destroy(collider.gameObject); // not needed any more
+        }
+    }
+
+    void Sight()
+    {
+
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.right, 2f);
+
+        if (hit2D)
+        {
+            SpawnableObject spawnableObject = hit2D.transform.gameObject.GetComponent<SpawnableObject>();
 
             if (spawnableObject)
             {
                 if (spawnableObject is Obstacle)
                 {
-                    //Debug.Log("Dead by " + spawnableObject.name);
-                    CallBackDead();
+                    _lastFace.gameObject.SetActive(false);
+                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Fear).FirstOrDefault();
+                    _lastFace.gameObject.SetActive(true);
+
                 }
                 else if (spawnableObject is Collectible)
                 {
-                    Debug.Log("Ate " + spawnableObject.name);
-                    CallBackPoint((spawnableObject as Collectible));
-                    BlocManager.Instance.PoolOut(spawnableObject);
+                    _lastFace.gameObject.SetActive(false);
+                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Happy).FirstOrDefault();
+                    _lastFace.gameObject.SetActive(true);
+                }
+
+
+            }
+            else
+            {
+                if (_lastFace.FaceType == FeelType.Fear)
+                {
+                    _lastFace.gameObject.SetActive(false);
+                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Sweat).FirstOrDefault();
+                    _lastFace.gameObject.SetActive(true);
+                }
+                else
+                {
+                    _lastFace.gameObject.SetActive(false);
+                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
+                    _lastFace.gameObject.SetActive(true);
                 }
             }
-        
+        }
     }
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GetRekt(collision);
-    }
-    //void SetForce(bool _isDigging)
+    //LEGACY
+    //void UpdateCollider()
     //{
-    //    Rigidbody.velocity = Vector2.right * Speed;
+    //    List<Vector2> colliderPoints = new List<Vector2>();
+    //    List<Vector2> upperPoints = new List<Vector2>();
+    //    List<Vector2> downerPoint = new List<Vector2>();
+    //    float halfWidth = Line.startWidth / 2f;
+    //    Vector2 upPoint = transform.position;
+    //    Vector2 downPoint = transform.position;
+    //    upPoint.y -= halfWidth + transform.parent.position.y;
+    //    downPoint.y += halfWidth - transform.parent.position.y;
+    //    upperPoints.Add(new Vector2(transform.position.x + halfWidth, transform.position.y - transform.parent.position.y));
+    //    upperPoints.Add(upPoint);
 
-    //    if (_isDigging)
+    //    downerPoint.Add(downPoint);
+
+    //    for (int index = 0; index < Line.positionCount; ++index)
     //    {
-    //        _chronoRotateRising = 0f;
-    //        if (_chronoRotateDig <= DurationRotateDig)
+    //        upPoint = Line.GetPosition(index);
+    //        downPoint = Line.GetPosition(index);
+    //        upPoint.y -= halfWidth + transform.parent.position.y;
+    //        downPoint.y += halfWidth - transform.parent.position.y;
+    //        upperPoints.Add(upPoint);
+    //        if (index == Line.positionCount - 1)
     //        {
-    //            Rigidbody.MoveRotation(-GetAngleToRotate(MinAngleDig, MaxAngleDig, DurationRotateDig, _chronoRotateDig));
-    //            _chronoRotateDig += Time.fixedDeltaTime;
+    //            upperPoints.Add(new Vector2(Line.GetPosition(index).x - halfWidth, transform.position.y - transform.parent.position.y));
     //        }
 
-    //        velocity = VelocityDig;
-    //        //timeacceleratioDig += Time.fixedDeltaTime;
-    //    }
-    //    else
-    //    {
-    //        //timeacceleratioDig = 0f;
-    //        _chronoRotateDig = 0f;
-
-    //        if (Rigidbody.position.y < StartPosition.y)
-    //        {
-    //            if (_chronoRotateRising == 0)
-    //                _startAngleRising = Rigidbody.rotation;
-
-    //            Rigidbody.MoveRotation(GetAngleToRotate(_startAngleRising, MaxAngleRising, DurationRotateRising, _chronoRotateRising));
-    //            //timeaccelerationRising += Time.fixedDeltaTime;
-    //            _chronoRotateRising += Time.fixedDeltaTime;
-    //            velocity = VelocityRising;
-    //        }
-    //        else
-    //        {
-    //            velocity = 0f;
-    //        }
+    //        downerPoint.Add(downPoint);
     //    }
 
-    //    Rigidbody.velocity = (Vector2)(transform.right * velocity) + (Vector2.right * Speed);
+    //    colliderPoints.AddRange(upperPoints);
+    //    downerPoint.Reverse();
+    //    colliderPoints.AddRange(downerPoint);
+    //    colliderPoints.ForEach(cp => transform.parent.InverseTransformPoint(cp));
+
 
 
     //}
+
 
 }

@@ -6,10 +6,10 @@ using UnityEngine.U2D;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    public State State = State.InMenu;
     public Player Player;
    
-    public GameObject DeathCanvas;
+   
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
     [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
         VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
       
-        DontDestroyOnLoad(DeathCanvas);
+       
     }
 
     void Start()
@@ -37,7 +37,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        switch (State)
+        {
+            case State.Play:
+                Time.timeScale = 1f;
+                break;
+            case State.InMenu:
+                Time.timeScale = 0f;
+                break;
+            case State.Dead:
+                Time.timeScale = 0f;
+                UiManager.Instance.Death();
+                break;
+            case State.Pause:
+                break;
+        }
+
     }
 
     public void BGWPSetup()
@@ -55,5 +70,15 @@ public class GameManager : MonoBehaviour
         poolerRight.SetActive(true);
     }
 
-    
+
+}
+
+
+public enum State
+{
+    Play,
+    InMenu,
+    Dead,
+    Pause,
+
 }

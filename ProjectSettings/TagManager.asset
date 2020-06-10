@@ -10,6 +10,7 @@ TagManager:
   - WPUnPoolerTrigger
   - Collectible
   - BackObj
+  - Face
   layers:
   - Default
   - TransparentFX

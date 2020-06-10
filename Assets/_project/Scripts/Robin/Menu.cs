@@ -16,7 +16,7 @@ public class Menu : MonoBehaviour
     public void Replay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameManager.Instance.DeathCanvas.SetActive(false);
+        //GameManager.Instance.DeathCanvas.SetActive(false);
     }
 
     public void Pause()

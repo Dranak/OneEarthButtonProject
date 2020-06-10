@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     [Space]
     public WormHead WormHead;
     const int detph = 9;
-    public TextMeshProUGUI ScoreText;
+   
     public TextMeshProUGUI ScoreTextFB;
     [Space]
+  
     [Header("Scoring")]
     [Space]
     public float StepDistanceScoreIncrease;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     public int EggShellStreakOne;
     public int EggShellStreakTwo;
     public int EggShellStreakThird;
+
     private float _currentStateDistance;
     public int Score { get; set; } = 0;
 
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         GainPointUnderground();
-        ScoreText.text = Score.ToString();
+        UiManager.Instance.GameMenu.ScoreText.text = Score.ToString();
     }
 
     void SetVelocityFromSpeed()
@@ -129,8 +131,9 @@ public class Player : MonoBehaviour
 
     void YourAreDead()
     {
-        Time.timeScale = 0f;
-        GameManager.Instance.DeathCanvas.gameObject?.SetActive(true);
+        GameManager.Instance.State = State.Dead;
+
+      
     }
 
     void GetPoint(Collectible collectible)
