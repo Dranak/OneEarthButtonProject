@@ -150,7 +150,6 @@ public class WormHead : WormBody
         {
             _wormBodies.Add(Instantiate(PrefabWormBody, transform.position + Vector3.left * (i + 1) * OffsetBodyPart, Quaternion.identity));
             _wormBodies[i].Trail.enabled = false;
-            //_wormBodies[i].GetRekt = GetRekt;
             if (i > 0)
                 _wormBodies.Last().SetTarget(_wormBodies[i - 1]);
             else
@@ -189,7 +188,7 @@ public class WormHead : WormBody
     {
         if (collider.CompareTag("Collectible"))
         {
-            Collectible collectible = collider.GetComponentInParent<Collectible>();
+            Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
             Debug.Log("Ate " + collectible.name);
             CallBackPoint(collectible);
 
@@ -199,7 +198,6 @@ public class WormHead : WormBody
         {
             // reset egg shells series (_streakEggShell)
             GameManager.Instance.Player.StreakEggShell = 0;
-
             Destroy(collider.gameObject); // not needed any more
         }
     }

@@ -102,7 +102,7 @@ public class BlocManager : MonoBehaviour
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
 
-        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.WormHead.DistanceFromStart / 1000) % (allBlocsRanked.Count));
+        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 1000) % (allBlocsRanked.Count));
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
 
@@ -541,6 +541,7 @@ public class BlocManager : MonoBehaviour
 
     bool isBack = false;
     int previousFrontSo = 3;
+    int previousBackSo = 0;
     float previousFrontPos = 0;
     void WPObjects(in int thisWPX)
     {
@@ -567,22 +568,25 @@ public class BlocManager : MonoBehaviour
             if (pooledIn.transform.localPosition.x % 2 != 0) // put to back if even
                 isBack = true;
 
+
+            var thisFrontPos = pooledIn.transform.position.x;
             if (isBack) // second or every second object => goes to the back
             {
-                renderer.sortingOrder = -1;
+                renderer.sortingOrder = --previousBackSo;
                 renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
             }
-            else
+            else // front obj
             {
-                var thisFrontPos = pooledIn.transform.position.x;
-                if (previousFrontPos > thisFrontPos)
+                previousBackSo = 0; // back sorting order reset to minimum
+
+                if (previousFrontPos > thisFrontPos) // this front obj touches the previous front obj
                 {
                     if (previousFrontSo > 1)
                         --previousFrontSo;
                     else // bring to the back, too many objects are touching in a row (3)
                     {
                         previousFrontSo = 3; // reset front objects sorting order
-                        renderer.sortingOrder = -1;
+                        renderer.sortingOrder = --previousBackSo;
                         renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
                         continue;
                     }
@@ -593,11 +597,12 @@ public class BlocManager : MonoBehaviour
                 renderer.sortingOrder = previousFrontSo;
                 renderer.color = Color.white;
 
-                // calculating this sprite right bound world pos to be next previousFrontPos
+                // calculating this sprite right bound world pos to be next previous Pos
                 var sprite = renderer.sprite;
                 var visibleWidth = sprite.bounds.size.x; //* (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
                 previousFrontPos = thisFrontPos + visibleWidth;
             }
+
             isBack = !isBack;
         }
     }
