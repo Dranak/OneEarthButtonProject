@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LD2
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD2
+  - blocDifficulty: 2
+    blocName: LD2
     blockArea: 0
     blocCount: 18
     blocLength: 98

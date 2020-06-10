@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LD32
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD32
+  - blocDifficulty: 1
+    blocName: LD32
     blockArea: 0
     blocCount: 59
     blocLength: 77
@@ -573,19 +574,6 @@ MonoBehaviour:
     00000035:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
-        Tag: obstacle_can
-        BlocPosition: {x: 11, y: -7}
-        OffsetXRange: {x: 0, y: 0}
-        OffsetYRange: {x: 0, y: 0}
-        SpawnablePrefabIndex: 0
-        BodyRotation: 337.5
-        BoundsSize: {x: 1.5992241, y: 2.1055856}
-        BodyOffset: {x: -0.096853256, y: 0.33135653}
-        RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
-    00000036:
-      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
-      data:
         Tag: obstacle_pen
         BlocPosition: {x: 29, y: -8}
         OffsetXRange: {x: 0, y: 0}
@@ -596,7 +584,7 @@ MonoBehaviour:
         BodyOffset: {x: 1.7650566, y: -0.095243454}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
-    00000037:
+    00000036:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_bottle
@@ -609,7 +597,7 @@ MonoBehaviour:
         BodyOffset: {x: 3.3337975, y: 2.6041818}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
-    00000038:
+    00000037:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: obstacle_can
@@ -622,7 +610,7 @@ MonoBehaviour:
         BodyOffset: {x: -0.11413574, y: 0.8498211}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
-    00000039:
+    00000038:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
         Tag: collectible_apple
@@ -631,3 +619,16 @@ MonoBehaviour:
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 3
         EggShellIndex: -1
+    00000039:
+      type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: obstacle_can
+        BlocPosition: {x: 13, y: -9}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 0
+        BodyRotation: 315
+        BoundsSize: {x: 1.9681139, y: 1.9759707}
+        BodyOffset: {x: -0.11785126, y: 0.6992502}
+        RotationOffsetRange: {x: 0, y: 0}
+        ObsKind: 0

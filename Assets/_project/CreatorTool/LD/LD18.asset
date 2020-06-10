@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: LD18
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD18
+  - blocDifficulty: 2
+    blocName: LD18
     blockArea: 0
-    blocCount: 14
-    blocLength: 41
+    blocCount: 15
+    blocLength: 39
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}

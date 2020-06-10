@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LD28
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocName: LD28
+  - blocDifficulty: 1
+    blocName: LD28
     blockArea: 0
-    blocCount: 17
+    blocCount: 18
     blocLength: 96
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
