@@ -24,8 +24,8 @@ public class Bloc
         TOWNTRY
     }
 
-    public uint blocDifficulty = 0;
     public string blocName;
+    public uint blocDifficulty = 0;
     public BlocArea blockArea;
     public int blocCount, blocLength;
     // offset ranges
