@@ -52,6 +52,14 @@ public class Player : MonoBehaviour
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
 
+    // bloc name the worm is moving through
+    public string playingBlocName { get; set; }
+    GameLogin gameLogin;
+
+    private void Awake()
+    {
+        gameLogin = GetComponent<GameLogin>();
+    }
 
     void Start()
     {
@@ -129,11 +137,11 @@ public class Player : MonoBehaviour
 
     }
 
-    void YourAreDead()
+    void YourAreDead(Obstacle obstacleTouched)
     {
+        gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.State = State.Dead;
 
-      
     }
 
     void GetPoint(Collectible collectible)

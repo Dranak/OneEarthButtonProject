@@ -43,7 +43,7 @@ public class WormHead : WormBody
 
     private bool IsDigging = false;
 
-    public Action CallBackDead;
+    public Action<Obstacle> CallBackDead;
     public Action<Collectible> CallBackPoint;
 
     protected override void Awake()
@@ -180,7 +180,7 @@ public class WormHead : WormBody
         if (collision.collider.CompareTag("Death"))
         {
             Debug.Log("Dead by " + collision.gameObject.name);
-            CallBackDead();
+            CallBackDead(collision.transform.parent.GetComponent<Obstacle>());
         }
     }
 
@@ -198,6 +198,7 @@ public class WormHead : WormBody
         {
             // reset egg shells series (_streakEggShell)
             GameManager.Instance.Player.StreakEggShell = 0;
+            GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more
         }
     }

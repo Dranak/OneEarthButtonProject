@@ -86,13 +86,14 @@ public class BlocManager : MonoBehaviour
     void Start()
     {
         ChooseBloc(0);
+        GameManager.Instance.Player.playingBlocName = randomBloc.blocName;
         //NewBloc(); // create and siplay a whole bloc at once // LEGACY
         //NewRandomBloc(); // first bloc to be created (after the empty starting bloc) // LEGACY
     }
 
 #region procedural
 
-    Bloc randomBloc;
+    public Bloc randomBloc { get; private set; }
     float blocRandomY;
     List<Spawnable> randomizedSortedBloc;
     int currentBlocDiff = 0;
