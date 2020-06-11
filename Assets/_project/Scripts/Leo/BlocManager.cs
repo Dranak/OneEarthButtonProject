@@ -29,7 +29,8 @@ public class BlocManager : MonoBehaviour
     [SerializeField, HideInInspector] List<GameObject> backObjPool;
 
     // bloc generation
-    [SerializeField] int currentBlocMax, currentBlocMin;
+    [SerializeField] int currentBlocMax;
+    public int currentBlocMin { get; private set; }
     int currentWPMax;
     List<Bloc> allBlocs;
     List<List<Bloc>> allBlocsRanked;
@@ -42,7 +43,7 @@ public class BlocManager : MonoBehaviour
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
-            currentWPMax = currentBlocMax - 3; // wallpapers are centered (and 6 int large)
+            currentWPMax = (int)wpPool[wpPool.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             RankBlocs();
             AddToPool(backObjAnchor, ref backObjPool, false, false);
@@ -95,7 +96,7 @@ public class BlocManager : MonoBehaviour
 
     public Bloc randomBloc { get; private set; }
     float blocRandomY;
-    List<Spawnable> randomizedSortedBloc;
+    List<Spawnable> randomizedSortedBloc = null;
     int currentBlocDiff = 0;
 
     public void ChooseBloc(int prespacing = 3) // spacing is 3 by default

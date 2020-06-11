@@ -29,6 +29,8 @@ public class MainMenu : MonoBehaviour
         PlayButton.interactable = false;
         SkinButton.interactable = false;
         SettingButton.interactable = false;
+
+        StartCoroutine(GameManager.Instance.cameraDecentering());
     }
 
   

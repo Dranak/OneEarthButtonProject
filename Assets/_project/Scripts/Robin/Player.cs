@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        //float distance = Vector3.Distance(Grass.position, BedRock.position);
         WormHead.VelocityDig = detph / SpeedDig;
         WormHead.VelocityRising = detph / SpeedRising;
         WormHead.Speed = SpeedRight;

@@ -25,9 +25,24 @@ public class GameManager : MonoBehaviour
         cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
-        VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
-      
-       
+        //VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
+    }
+
+    public IEnumerator cameraDecentering()
+    {
+        var framingTransposer = VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>();
+        var endWormPos = BlocManager.Instance.currentBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
+        var wormHeadT = Player.WormHead.transform;
+
+        while (true)
+        {
+            var newScreenX = Mathf.Lerp(0.5f, savedStartingOffset, wormHeadT.position.x / endWormPos);
+            if (newScreenX <= savedStartingOffset)
+                break;
+            framingTransposer.m_ScreenX = newScreenX;
+            yield return new WaitForFixedUpdate();
+        }
+        framingTransposer.m_ScreenX = savedStartingOffset;
     }
 
     void Start()
