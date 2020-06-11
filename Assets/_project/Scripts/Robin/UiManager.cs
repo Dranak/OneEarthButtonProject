@@ -15,7 +15,7 @@ public class UiManager : MonoBehaviour
     {
         Instance = Instance ?? this;
         DontDestroyOnLoad(this);
-  
+
     }
 
 
@@ -27,7 +27,6 @@ public class UiManager : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         MainMenu.gameObject.SetActive(false);
         if (DeathMenu.gameObject.activeInHierarchy)
         {
@@ -36,13 +35,15 @@ public class UiManager : MonoBehaviour
 
 
         MainMenu.Play();
-       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    
+
     }
 
     public void GoMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.Instance.State = State.InMenu;
+        GameManager.Instance.SetState(State.InMenu);
         if (DeathMenu.gameObject.activeInHierarchy)
         {
             DeathMenu.gameObject.SetActive(false);
@@ -50,12 +51,16 @@ public class UiManager : MonoBehaviour
 
 
         MainMenu.gameObject.SetActive(true);
+        MainMenu.PlayButton.interactable = true;
+        MainMenu.SkinButton.interactable = true;
+        MainMenu.SettingButton.interactable = true;
+
     }
 
 
     public void Death()
     {
-        
+
         DeathMenu.gameObject.SetActive(true);
     }
 
@@ -69,7 +74,7 @@ public class UiManager : MonoBehaviour
 
 
     public void Pause()
-    { 
+    {
         Time.timeScale = 0;
     }
 
@@ -80,7 +85,7 @@ public class UiManager : MonoBehaviour
 
     public void AudioMenu()
     {
-       
+
         //Time.timeScale = 0;
     }
 }

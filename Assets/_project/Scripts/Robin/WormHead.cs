@@ -197,6 +197,7 @@ public class WormHead : WormBody
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
             // reset egg shells series (_streakEggShell)
+            Debug.Log("Reset Egg shell Index: " + GameManager.Instance.Player.StreakEggShell);
             GameManager.Instance.Player.StreakEggShell = 0;
             Destroy(collider.gameObject); // not needed any more
         }

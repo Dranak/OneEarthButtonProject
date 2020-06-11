@@ -9,10 +9,20 @@ public class MainMenu : MonoBehaviour
     public Button SkinButton;
     public Button SettingButton;
 
+    public void Start()
+    {
+        if(GameManager.Instance.State == State.Play)
+        {
+            gameObject.SetActive(false);
+            Play();
+        }
+        
+    }
+
     public void Play()
     {
         Debug.Log("Play");
-        GameManager.Instance.State = State.Play;
+        GameManager.Instance.SetState(State.Play);
       
         UiManager.Instance.GameMenu.gameObject.SetActive(true);
         
@@ -21,16 +31,9 @@ public class MainMenu : MonoBehaviour
         SettingButton.interactable = false;
     }
 
-    private void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
-    }
+  
 
-    private void OnEnable()
-    {
-        PlayButton.interactable = true;
-        SkinButton.interactable = true;
-        SettingButton.interactable = true;
-    }
 
+
+    
 }
