@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
    
     public TextMeshProUGUI ScoreTextFB;
     [Space]
-  
+
     [Header("Scoring")]
     [Space]
+    public float TimeDisplayFeedBackScore = 0.1f;
     public float StepDistanceScoreIncrease;
     public int UndergroundBonus;
     public int MaxBonusUndergroundBonus;
@@ -52,14 +53,6 @@ public class Player : MonoBehaviour
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
 
-    // bloc name the worm is moving through
-    public string playingBlocName { get; set; }
-    GameLogin gameLogin;
-
-    private void Awake()
-    {
-        gameLogin = GetComponent<GameLogin>();
-    }
 
     void Start()
     {
@@ -137,15 +130,22 @@ public class Player : MonoBehaviour
 
     }
 
-    void YourAreDead(Obstacle obstacleTouched)
+    void YourAreDead()
     {
-        gameLogin.OnGameOver(this, obstacleTouched);
-        GameManager.Instance.State = State.Dead;
+        GameManager.Instance.SetState(State.Dead);
 
+      
     }
 
     void GetPoint(Collectible collectible)
     {
+        Debug.Log("#-------------------#" +
+            "\nEggShellIndex " + collectible.collectibleParameters.EggShellIndex
+            + "\nStreakEggShell " + StreakEggShell
+            + "\nPointGain " + collectible.PointGain
+            + "\n#-------------------#");
+
+
         if (collectible.collectibleParameters.EggShellIndex == -1)
         {
             ScoreTextFB.text = "+" + collectible.PointGain.ToString();
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
             }
         }
         //ScoreTextFB.enabled = true;
-        StartCoroutine(WaitSecond(ScoreTextFB, .4f));
+        StartCoroutine(WaitSecond(ScoreTextFB, TimeDisplayFeedBackScore));
     }
 
     IEnumerator WaitSecond(TextMeshProUGUI text, float time)

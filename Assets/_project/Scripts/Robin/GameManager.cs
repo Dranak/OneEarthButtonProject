@@ -6,7 +6,7 @@ using UnityEngine.U2D;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public State State = State.InMenu;
+    public State State;
     public Player Player;
    
    
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = Instance ?? this; // Nice compact way ! (Rob)
+
         camera = Camera.main;
         cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
@@ -31,7 +32,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1f;
+        if(State == State.Play)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            State = State.InMenu;
+            Time.timeScale = 0f;
+        }
+        
         
     }
 
@@ -40,19 +50,42 @@ public class GameManager : MonoBehaviour
         switch (State)
         {
             case State.Play:
+               
+                break;
+            case State.InMenu:
+               
+                break;
+            case State.Dead:
+            
+                break;
+            case State.Pause:
+                break;
+        }
+
+    }
+
+    public void SetState(State state)
+    {
+        State = state;
+        switch (state)
+        {
+            case State.Play:
                 Time.timeScale = 1f;
+                UiManager.Instance.MainMenu.PlayButton.interactable = false;
+                UiManager.Instance.MainMenu.SkinButton.interactable = false;
+                UiManager.Instance.MainMenu.SettingButton.interactable = false;
                 break;
             case State.InMenu:
                 Time.timeScale = 0f;
                 break;
             case State.Dead:
+              
                 Time.timeScale = 0f;
                 UiManager.Instance.Death();
                 break;
             case State.Pause:
                 break;
         }
-
     }
 
     public void BGWPSetup()
