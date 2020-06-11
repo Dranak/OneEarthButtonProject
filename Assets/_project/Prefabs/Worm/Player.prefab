@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WormHead: {fileID: 6017596611329487561}
   ScoreTextFB: {fileID: 6266745551958645295}
+  TimeDisplayFeedBackScore: 0.1
   StepDistanceScoreIncrease: 100
   UndergroundBonus: 1
   MaxBonusUndergroundBonus: 10
@@ -484,6 +485,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  gameLogin: {fileID: 7335535775157314802}
 --- !u!114 &7335535775157314802
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
 
+    [Header("Analytics")]
+    [SerializeField] GameLogin gameLogin;
+    public string playingBlocName { get; set; }
 
     void Start()
     {
@@ -130,8 +133,9 @@ public class Player : MonoBehaviour
 
     }
 
-    void YourAreDead()
+    void YourAreDead(Obstacle obstacleTouched)
     {
+        gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
 
       
