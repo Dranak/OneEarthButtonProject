@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class GameManager : MonoBehaviour
    
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
-    [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
+    [SerializeField] CinemachineVirtualCamera VCam;
+    //CinemachineFramingTransposer framingTransposer;
     [HideInInspector] public float savedStartingOffset;
     [SerializeField] GameObject unPoolerLeft, poolerRight;
     [SerializeField] SpriteAtlas backObjAtlas;
@@ -25,12 +27,15 @@ public class GameManager : MonoBehaviour
         cameraHalfWidth = camera.orthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
-        //VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
+
+        float twoRatioBias = (2 - camera.aspect);
+        VCam.m_Lens.OrthographicSize += twoRatioBias * 3 / 2; // resize cam based on ratio
+        VCam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += twoRatioBias * 0.15f;
     }
 
     public IEnumerator cameraDecentering()
     {
-        var framingTransposer = VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>();
+        var framingTransposer = VCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         var endWormPos = BlocManager.Instance.currentBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
         var wormHeadT = Player.WormHead.transform;
 

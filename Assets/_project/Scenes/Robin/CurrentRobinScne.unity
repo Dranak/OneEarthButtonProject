@@ -1005,11 +1005,6 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 16151
       objectReference: {fileID: 0}
-    - target: {fileID: 5395711807198110214, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
-        type: 3}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5395711807198110215, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
