@@ -3,31 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public State State;
     public Player Player;
-   
-   
+    
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
     [SerializeField] CinemachineVirtualCamera VCam;
-    //CinemachineFramingTransposer framingTransposer;
+    CinemachineFramingTransposer framingTransposer;
     [HideInInspector] public float savedStartingOffset;
     [SerializeField] GameObject unPoolerLeft, poolerRight;
     [SerializeField] SpriteAtlas backObjAtlas;
 
     private void Awake()
     {
-        Instance = Instance ?? this; // Nice compact way ! (Rob)
+        if (!Instance)
+            Instance = this;
+        else
+            Destroy(gameObject);
 
+        GameManagerSetup();
+    }
+
+    // starting values
+    public void GameManagerSetup()
+    {
         camera = Camera.main;
 
         float twoRatioBias = 2 - camera.aspect;
         VCam.m_Lens.OrthographicSize += Mathf.Sign(twoRatioBias) * Mathf.Pow(twoRatioBias, 2) * 4.5f; // resize cam based on ratio
-        VCam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += twoRatioBias * 0.15f;
+        framingTransposer = VCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        framingTransposer.m_ScreenY += twoRatioBias * 0.15f;
 
         // camera offset saving
         cameraHalfWidth = VCam.m_Lens.OrthographicSize * camera.aspect;
@@ -37,8 +47,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator cameraDecentering()
     {
-        var framingTransposer = VCam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        var endWormPos = BlocManager.Instance.currentBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
+        var endWormPos = BlocManager.Instance.startingBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
         var wormHeadT = Player.WormHead.transform;
 
         while (true)
@@ -101,7 +110,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0f;
                 break;
             case State.Dead:
-              
+                Player.StreakEggShell = 0;
                 Time.timeScale = 0f;
                 UiManager.Instance.Death();
                 break;
@@ -126,8 +135,6 @@ public class GameManager : MonoBehaviour
         unPoolerLeft.SetActive(true);
         poolerRight.SetActive(true);
     }
-
-
 }
 
 

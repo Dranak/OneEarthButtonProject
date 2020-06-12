@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
+
     public MainMenu MainMenu;
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
+    string thisSceneName;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        Instance = Instance ?? this;
-        DontDestroyOnLoad(this);
-
+        if (!Instance)
+        {
+            Instance = this;
+            thisSceneName = SceneManager.GetActiveScene().name;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
     }
 
 
@@ -27,21 +34,27 @@ public class UiManager : MonoBehaviour
 
     public void Replay()
     {
-        MainMenu.gameObject.SetActive(false);
         if (DeathMenu.gameObject.activeInHierarchy)
         {
             DeathMenu.gameObject.SetActive(false);
         }
 
+        MainMenu.group.alpha = 0; // hide main menu
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene(thisSceneName);
+    }
 
-        MainMenu.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    
-
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (thisSceneName == scene.name)
+            MainMenu.Play();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void GoMainMenu()
     {
+        MainMenu.group.alpha = 1; // unhide main menu
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.SetState(State.InMenu);
         if (DeathMenu.gameObject.activeInHierarchy)
@@ -49,29 +62,17 @@ public class UiManager : MonoBehaviour
             DeathMenu.gameObject.SetActive(false);
         }
 
-
-        MainMenu.gameObject.SetActive(true);
+        //MainMenu.gameObject.SetActive(true);
         MainMenu.PlayButton.interactable = true;
         MainMenu.SkinButton.interactable = true;
         MainMenu.SettingButton.interactable = true;
-
     }
 
 
     public void Death()
     {
-
         DeathMenu.gameObject.SetActive(true);
     }
-
-
-
-
-
-
-
-
-
 
     public void Pause()
     {

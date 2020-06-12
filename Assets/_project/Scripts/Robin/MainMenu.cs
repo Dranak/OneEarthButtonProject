@@ -8,15 +8,10 @@ public class MainMenu : MonoBehaviour
     public Button PlayButton;
     public Button SkinButton;
     public Button SettingButton;
+    public CanvasGroup group;
 
     public void Start()
-    {
-        if(GameManager.Instance.State == State.Play)
-        {
-            gameObject.SetActive(false);
-            Play();
-        }
-        
+    {   
     }
 
     public void Play()
@@ -32,10 +27,4 @@ public class MainMenu : MonoBehaviour
 
         StartCoroutine(GameManager.Instance.cameraDecentering());
     }
-
-  
-
-
-
-    
 }
