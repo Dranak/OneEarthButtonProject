@@ -29,8 +29,8 @@ public class BlocManager : MonoBehaviour
     [SerializeField, HideInInspector] List<GameObject> backObjPool;
 
     // bloc generation
-    [SerializeField] int currentBlocMax;
-    public int currentBlocMin { get; private set; }
+    public int startingBlocMin { get; private set; } = 33;
+    int currentBlocMax, currentBlocMin;
     int currentWPMax;
     List<Bloc> allBlocs;
     List<List<Bloc>> allBlocsRanked;
@@ -44,6 +44,7 @@ public class BlocManager : MonoBehaviour
             //AddToPool(strawsPoolT, ref strawsPool);
 
             currentWPMax = (int)wpPool[wpPool.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
+            currentBlocMax = startingBlocMin;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             RankBlocs();
             AddToPool(backObjAnchor, ref backObjPool, false, false);

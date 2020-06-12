@@ -31,7 +31,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 180
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -45,9 +45,9 @@ ScriptedImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
     normalMap: 0
     textureFormat: 0
     maxTextureSize: 0
@@ -87,18 +87,18 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Clin d'oeil yeux Anime 3
+  - name: Calque 18
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 191
-      y: 154
-      width: 57
-      height: 23
-    spriteID: 4617d893e28001640acf634300077d71
+      x: 171
+      y: 339
+      width: 28
+      height: 11
+    spriteID: e97639644e1e05a4e8a6fa76f4ec5594
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -108,7 +108,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 95, y: 37}
+    uvTransform: {x: 46, y: 210}
+  - name: Calque 17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 436
+      width: 28
+      height: 15
+    spriteID: 3e84f1f5ee82f6f4bb3c97b2447fc467
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 30, y: 319}
   - name: Calque 16
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -116,11 +138,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 171
-      y: 368
-      width: 38
-      height: 21
-    spriteID: 4cb02680c54d1514f9a650b0a7638f4f
+      x: 225
+      y: 136
+      width: 10
+      height: 10
+    spriteID: b0672d2caf3b6924ebd8ea1740a17052
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -130,74 +152,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 59, y: 247}
-  - name: Clin d'oeil yeux Anime 2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 171
-      y: 296
-      width: 58
-      height: 32
-    spriteID: e5e1de2488239224c8f935b1734c8fa4
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 76, y: 181}
-  - name: Clin d'oeil yeux Anime 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 171
-      y: 248
-      width: 58
-      height: 40
-    spriteID: b6876f4f51e3add4e9f5031351582f3f
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 76, y: 135}
-  - name: Pupille
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 171
-      y: 336
-      width: 38
-      height: 24
-    spriteID: 286cc5ceee89d624f853abdcb2f17bba
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 59, y: 218}
-  - name: yeux normaux
+    uvTransform: {x: 85, y: 4}
+  - name: Calque 15
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -205,10 +161,98 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 191
+      y: 407
+      width: 30
+      height: 18
+    spriteID: 9536b9df53c2f6e4fa22182a4bfcfcd3
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 68, y: 278}
+  - name: Calque 14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 207
+      y: 339
+      width: 11
+      height: 9
+    spriteID: df379992594ff6d4b801699de692c300
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 95, y: 218}
+  - name: Calque 13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 42
+      y: 436
+      width: 35
+      height: 23
+    spriteID: 455788be08be9a343ac76c39160f40fa
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -53, y: 321}
+  - name: Calque 12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 187
       y: 104
+      width: 38
+      height: 24
+    spriteID: 538ba0a310350944a9f47d1854293163
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 75, y: -14}
+  - name: Calque 11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 191
+      y: 359
       width: 58
-      height: 42
-    spriteID: a2e9e475710622e42953eef837867bdd
+      height: 40
+    spriteID: 8fd17be04178f7c48b49976016be03ff
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -218,8 +262,74 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 96, y: -8}
-  - name: Sleep mouth Anime 1
+    uvTransform: {x: 96, y: 246}
+  - name: Calque 10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 225
+      y: 154
+      width: 10
+      height: 10
+    spriteID: 85de94ae2423ba348a5d84bff4bb438e
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 85, y: 22}
+  - name: Calque 9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 187
+      y: 136
+      width: 30
+      height: 29
+    spriteID: 563a7c9029a2f124da1fa6e1b9936bb2
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 64, y: 11}
+  - name: Calque 8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 233
+      y: 104
+      width: 11
+      height: 12
+    spriteID: cbecdfe7c7fab3e48b0b93703993a65b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 121, y: -14}
+  - name: Calque 7
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -227,10 +337,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 357
-      width: 74
-      height: 76
-    spriteID: da6e6996e966c2c40a3aa0560e757e3b
+      y: 436
+      width: 30
+      height: 29
+    spriteID: fc01f49023665e2449df00c30de71fde
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -240,19 +350,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -94, y: 317}
-  - name: Sleep mouth Anime 2
+    uvTransform: {x: -91, y: 324}
+  - name: Calque 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 268
-      width: 78
-      height: 81
-    spriteID: c0b8264c08990a94691d920f89e821e4
+      x: 229
+      y: 407
+      width: 12
+      height: 10
+    spriteID: 0e04f9b776377b44bb34e35afa71f72e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -262,8 +372,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -92, y: 231}
-  - name: Sleep mouth Anime 3
+    uvTransform: {x: 94, y: 330}
+  - name: Anime 4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 85
+      y: 436
+      width: 33
+      height: 22
+    spriteID: e0c0a90dadef5d04b8a4dd21d418174f
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -38, y: 367}
+  - name: anime 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -271,10 +403,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 171
-      y: 191
+      y: 282
       width: 67
       height: 49
-    spriteID: 887d461bb95fb054e922b33f308b2e0f
+    spriteID: a5d9c0ae52a50b745a3132d9361d3547
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -284,51 +416,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 71, y: 136}
-  - name: Sleep mouth Anime 4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 217
-      y: 336
-      width: 33
-      height: 22
-    spriteID: 152b3a2a34f3fdc42abce199d39d5cff
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 94, y: 267}
-  - name: Sleep mouth Anime 5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 237
-      y: 296
-      width: 12
-      height: 10
-    spriteID: c478e3902622aec448ba58ebd065469c
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 102, y: 219}
+    uvTransform: {x: 71, y: 227}
   - name: Smile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -336,11 +424,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 441
+      x: 114
+      y: 359
       width: 69
       height: 66
-    spriteID: 486bce7bd56c8bf4abdf438298c42ecc
+    spriteID: 88f491c4205de4f4b8e0a2056ed00f4e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -350,7 +438,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -94, y: 393}
+    uvTransform: {x: 16, y: 311}
   - name: Goute d'eau
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -359,10 +447,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 191
+      y: 359
       width: 102
       height: 69
-    spriteID: c693858551d365f46a22b0c9a39d67e0
+    spriteID: ae8fedb81450d0e488fb931f806f2f06
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -372,19 +460,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -60, y: 114}
-  - name: Scream Anime 1
+    uvTransform: {x: -60, y: 282}
+  - name: Bouche deux
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 191
+      x: 187
       y: 4
       width: 49
       height: 92
-    spriteID: 26088e462ff18634d8477d0b4f443a55
+    spriteID: e1e4b89958f7f6e44937ebff5be2f96a
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -394,19 +482,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 81, y: -16}
-  - name: Scream Anime 2
+    uvTransform: {x: 77, y: -16}
+  - name: Bouche deux_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 114
-      y: 191
+      x: 171
+      y: 182
       width: 49
       height: 92
-    spriteID: d02a322583135b04491873ac7068a322
+    spriteID: f89ba4f77256da048a87410beb4abc8d
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -416,7 +504,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2, y: 171}
+    uvTransform: {x: 59, y: 162}
   - name: Calque 19
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -425,10 +513,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 179
-      height: 179
-    spriteID: 9561b88c84bfa0b428f8a0f7c9192d99
+      y: 182
+      width: 159
+      height: 169
+    spriteID: 1905da64415f6ab46af3759221aaa2f6
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -438,7 +526,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 2, y: 180}
+  - name: Calque 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 175
+      height: 170
+    spriteID: b58358cbc83cd0849b742532a1a712be
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: -1}
   platformSettings: []
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
@@ -472,13 +582,41 @@ ScriptedImporter:
     spriteID: 00000000000000000000000000000000
     layerID: 62
     mosaicPosition: {x: 0, y: 0}
-  - name: Clin d'oeil yeux Anime 3
-    spriteName: Clin d'oeil yeux Anime 3
-    isGroup: 0
+  - name: yteux Anime 3
+    spriteName: 
+    isGroup: 1
     parentIndex: 1
-    spriteID: 4617d893e28001640acf634300077d71
+    spriteID: 00000000000000000000000000000000
     layerID: 61
-    mosaicPosition: {x: 191, y: 154}
+    mosaicPosition: {x: 0, y: 0}
+  - name: Yeuxw gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 2
+    spriteID: 00000000000000000000000000000000
+    layerID: 60
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 18
+    spriteName: Calque 18
+    isGroup: 0
+    parentIndex: 3
+    spriteID: e97639644e1e05a4e8a6fa76f4ec5594
+    layerID: 59
+    mosaicPosition: {x: 171, y: 339}
+  - name: Yeux droite
+    spriteName: 
+    isGroup: 1
+    parentIndex: 2
+    spriteID: 00000000000000000000000000000000
+    layerID: 57
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 17
+    spriteName: Calque 17
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 3e84f1f5ee82f6f4bb3c97b2447fc467
+    layerID: 56
+    mosaicPosition: {x: 126, y: 436}
   - name: yteux Anime 2
     spriteName: 
     isGroup: 1
@@ -489,24 +627,45 @@ ScriptedImporter:
   - name: Yeuwx gauche
     spriteName: 
     isGroup: 1
-    parentIndex: 3
+    parentIndex: 7
     spriteID: 00000000000000000000000000000000
     layerID: 52
     mosaicPosition: {x: 0, y: 0}
   - name: Calque 16
     spriteName: Calque 16
     isGroup: 0
-    parentIndex: 4
-    spriteID: 4cb02680c54d1514f9a650b0a7638f4f
+    parentIndex: 8
+    spriteID: b0672d2caf3b6924ebd8ea1740a17052
     layerID: 51
-    mosaicPosition: {x: 171, y: 368}
-  - name: Clin d'oeil yeux Anime 2
-    spriteName: Clin d'oeil yeux Anime 2
+    mosaicPosition: {x: 225, y: 136}
+  - name: Calque 15
+    spriteName: Calque 15
     isGroup: 0
-    parentIndex: 4
-    spriteID: e5e1de2488239224c8f935b1734c8fa4
+    parentIndex: 8
+    spriteID: 9536b9df53c2f6e4fa22182a4bfcfcd3
     layerID: 50
-    mosaicPosition: {x: 171, y: 296}
+    mosaicPosition: {x: 191, y: 407}
+  - name: Yeux droite
+    spriteName: 
+    isGroup: 1
+    parentIndex: 7
+    spriteID: 00000000000000000000000000000000
+    layerID: 48
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 14
+    spriteName: Calque 14
+    isGroup: 0
+    parentIndex: 11
+    spriteID: df379992594ff6d4b801699de692c300
+    layerID: 47
+    mosaicPosition: {x: 207, y: 339}
+  - name: Calque 13
+    spriteName: Calque 13
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 455788be08be9a343ac76c39160f40fa
+    layerID: 46
+    mosaicPosition: {x: 42, y: 436}
   - name: yteux Anime 1
     spriteName: 
     isGroup: 1
@@ -517,17 +676,31 @@ ScriptedImporter:
   - name: Groupe 2
     spriteName: 
     isGroup: 1
-    parentIndex: 7
+    parentIndex: 14
     spriteID: 00000000000000000000000000000000
     layerID: 42
     mosaicPosition: {x: 0, y: 0}
-  - name: Clin d'oeil yeux Anime 1
-    spriteName: Clin d'oeil yeux Anime 1
+  - name: Calque 12
+    spriteName: Calque 12
     isGroup: 0
-    parentIndex: 8
-    spriteID: b6876f4f51e3add4e9f5031351582f3f
+    parentIndex: 15
+    spriteID: 538ba0a310350944a9f47d1854293163
+    layerID: 41
+    mosaicPosition: {x: 187, y: 104}
+  - name: Calque 11
+    spriteName: Calque 11
+    isGroup: 0
+    parentIndex: 15
+    spriteID: 8fd17be04178f7c48b49976016be03ff
     layerID: 40
-    mosaicPosition: {x: 171, y: 248}
+    mosaicPosition: {x: 191, y: 359}
+  - name: Groupe 1
+    spriteName: 
+    isGroup: 1
+    parentIndex: 14
+    spriteID: 00000000000000000000000000000000
+    layerID: 38
+    mosaicPosition: {x: 0, y: 0}
   - name: yteux Normal
     spriteName: 
     isGroup: 1
@@ -538,24 +711,45 @@ ScriptedImporter:
   - name: Groupe 2
     spriteName: 
     isGroup: 1
-    parentIndex: 10
+    parentIndex: 19
     spriteID: 00000000000000000000000000000000
     layerID: 34
     mosaicPosition: {x: 0, y: 0}
-  - name: Pupille
-    spriteName: Pupille
+  - name: Calque 10
+    spriteName: Calque 10
     isGroup: 0
-    parentIndex: 11
-    spriteID: 286cc5ceee89d624f853abdcb2f17bba
+    parentIndex: 20
+    spriteID: 85de94ae2423ba348a5d84bff4bb438e
     layerID: 33
-    mosaicPosition: {x: 171, y: 336}
-  - name: yeux normaux
-    spriteName: yeux normaux
+    mosaicPosition: {x: 225, y: 154}
+  - name: Calque 9
+    spriteName: Calque 9
     isGroup: 0
-    parentIndex: 11
-    spriteID: a2e9e475710622e42953eef837867bdd
+    parentIndex: 20
+    spriteID: 563a7c9029a2f124da1fa6e1b9936bb2
     layerID: 32
-    mosaicPosition: {x: 191, y: 104}
+    mosaicPosition: {x: 187, y: 136}
+  - name: Groupe 1
+    spriteName: 
+    isGroup: 1
+    parentIndex: 19
+    spriteID: 00000000000000000000000000000000
+    layerID: 30
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 8
+    spriteName: Calque 8
+    isGroup: 0
+    parentIndex: 23
+    spriteID: cbecdfe7c7fab3e48b0b93703993a65b
+    layerID: 29
+    mosaicPosition: {x: 233, y: 104}
+  - name: Calque 7
+    spriteName: Calque 7
+    isGroup: 0
+    parentIndex: 23
+    spriteID: fc01f49023665e2449df00c30de71fde
+    layerID: 28
+    mosaicPosition: {x: 4, y: 436}
   - name: Bouche
     spriteName: 
     isGroup: 1
@@ -566,86 +760,79 @@ ScriptedImporter:
   - name: sleep Anime
     spriteName: 
     isGroup: 1
-    parentIndex: 14
+    parentIndex: 26
     spriteID: 00000000000000000000000000000000
     layerID: 23
     mosaicPosition: {x: 0, y: 0}
-  - name: Sleep mouth Anime 1
-    spriteName: Sleep mouth Anime 1
+  - name: Calque 2
+    spriteName: Calque 2
     isGroup: 0
-    parentIndex: 15
-    spriteID: da6e6996e966c2c40a3aa0560e757e3b
-    layerID: 22
-    mosaicPosition: {x: 4, y: 357}
-  - name: Sleep mouth Anime 2
-    spriteName: Sleep mouth Anime 2
-    isGroup: 0
-    parentIndex: 15
-    spriteID: c0b8264c08990a94691d920f89e821e4
-    layerID: 18
-    mosaicPosition: {x: 4, y: 268}
-  - name: Sleep mouth Anime 3
-    spriteName: Sleep mouth Anime 3
-    isGroup: 0
-    parentIndex: 15
-    spriteID: 887d461bb95fb054e922b33f308b2e0f
-    layerID: 12
-    mosaicPosition: {x: 171, y: 191}
-  - name: Sleep mouth Anime 4
-    spriteName: Sleep mouth Anime 4
-    isGroup: 0
-    parentIndex: 15
-    spriteID: 152b3a2a34f3fdc42abce199d39d5cff
-    layerID: 13
-    mosaicPosition: {x: 217, y: 336}
-  - name: Sleep mouth Anime 5
-    spriteName: Sleep mouth Anime 5
-    isGroup: 0
-    parentIndex: 15
-    spriteID: c478e3902622aec448ba58ebd065469c
+    parentIndex: 27
+    spriteID: 0e04f9b776377b44bb34e35afa71f72e
     layerID: 14
-    mosaicPosition: {x: 237, y: 296}
+    mosaicPosition: {x: 229, y: 407}
+  - name: Anime 4
+    spriteName: Anime 4
+    isGroup: 0
+    parentIndex: 27
+    spriteID: e0c0a90dadef5d04b8a4dd21d418174f
+    layerID: 13
+    mosaicPosition: {x: 85, y: 436}
+  - name: anime 3
+    spriteName: anime 3
+    isGroup: 0
+    parentIndex: 27
+    spriteID: a5d9c0ae52a50b745a3132d9361d3547
+    layerID: 12
+    mosaicPosition: {x: 171, y: 282}
   - name: Smile
     spriteName: Smile
     isGroup: 0
-    parentIndex: 14
-    spriteID: 486bce7bd56c8bf4abdf438298c42ecc
+    parentIndex: 26
+    spriteID: 88f491c4205de4f4b8e0a2056ed00f4e
     layerID: 10
-    mosaicPosition: {x: 4, y: 441}
+    mosaicPosition: {x: 114, y: 359}
   - name: Goute d'eau
     spriteName: Goute d'eau
     isGroup: 0
-    parentIndex: 14
-    spriteID: c693858551d365f46a22b0c9a39d67e0
+    parentIndex: 26
+    spriteID: ae8fedb81450d0e488fb931f806f2f06
     layerID: 9
-    mosaicPosition: {x: 4, y: 191}
+    mosaicPosition: {x: 4, y: 359}
   - name: Bouche deux Anime
     spriteName: 
     isGroup: 1
-    parentIndex: 14
+    parentIndex: 26
     spriteID: 00000000000000000000000000000000
     layerID: 8
     mosaicPosition: {x: 0, y: 0}
-  - name: Scream Anime 1
-    spriteName: Scream Anime 1
+  - name: Bouche deux
+    spriteName: Bouche deux
     isGroup: 0
-    parentIndex: 23
-    spriteID: 26088e462ff18634d8477d0b4f443a55
+    parentIndex: 33
+    spriteID: e1e4b89958f7f6e44937ebff5be2f96a
     layerID: 7
-    mosaicPosition: {x: 191, y: 4}
-  - name: Scream Anime 2
-    spriteName: Scream Anime 2
+    mosaicPosition: {x: 187, y: 4}
+  - name: Bouche deux
+    spriteName: Bouche deux_1
     isGroup: 0
-    parentIndex: 23
-    spriteID: d02a322583135b04491873ac7068a322
+    parentIndex: 33
+    spriteID: f89ba4f77256da048a87410beb4abc8d
     layerID: 6
-    mosaicPosition: {x: 114, y: 191}
+    mosaicPosition: {x: 171, y: 182}
   - name: Calque 19
     spriteName: Calque 19
     isGroup: 0
     parentIndex: -1
-    spriteID: 9561b88c84bfa0b428f8a0f7c9192d99
+    spriteID: 1905da64415f6ab46af3759221aaa2f6
     layerID: 65
+    mosaicPosition: {x: 4, y: 182}
+  - name: Calque 1
+    spriteName: Calque 1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b58358cbc83cd0849b742532a1a712be
+    layerID: 2
     mosaicPosition: {x: 4, y: 4}
   characterData:
     bones: []

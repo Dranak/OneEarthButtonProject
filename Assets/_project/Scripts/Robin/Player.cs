@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [Space]
     public WormHead WormHead;
     const int detph = 9;
-   
+
     public TextMeshProUGUI ScoreTextFB;
     [Space]
 
@@ -134,10 +134,10 @@ public class Player : MonoBehaviour
 
     void YourAreDead(Obstacle obstacleTouched)
     {
-       // gameLogin.OnGameOver(this, obstacleTouched);
+        gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
 
-      
+
     }
 
     void GetPoint(Collectible collectible)
