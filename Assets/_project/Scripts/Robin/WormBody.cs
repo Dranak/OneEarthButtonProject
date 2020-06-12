@@ -11,6 +11,7 @@ public class WormBody : MonoBehaviour
     public Rigidbody2D Rigidbody { get; set; }
     public ParticleSystemRenderer Trail { get; set; }
     public float Damping;
+    public Transform Anchor;
 
     protected virtual void Awake()
     {

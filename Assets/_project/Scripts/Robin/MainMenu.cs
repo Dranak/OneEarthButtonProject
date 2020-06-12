@@ -11,11 +11,12 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
-        if(GameManager.Instance.State == State.Play)
-        {
-            gameObject.SetActive(false);
-            Play();
-        }
+        //if(GameManager.Instance.State == State.Play)
+        //{
+        //    Play();
+        //    gameObject.SetActive(false);
+          
+        //}
         
     }
 
@@ -29,6 +30,8 @@ public class MainMenu : MonoBehaviour
         PlayButton.interactable = false;
         SkinButton.interactable = false;
         SettingButton.interactable = false;
+
+        StartCoroutine(GameManager.Instance.cameraDecentering());
     }
 
   

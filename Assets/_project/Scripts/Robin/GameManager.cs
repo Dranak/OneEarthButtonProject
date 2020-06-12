@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class GameManager : MonoBehaviour
    
     [HideInInspector] public Camera camera;
     [HideInInspector] public float cameraHalfWidth;
-    [SerializeField] Cinemachine.CinemachineVirtualCamera VCam;
+    [SerializeField] CinemachineVirtualCamera VCam;
+    //CinemachineFramingTransposer framingTransposer;
     [HideInInspector] public float savedStartingOffset;
     [SerializeField] GameObject unPoolerLeft, poolerRight;
     [SerializeField] SpriteAtlas backObjAtlas;
@@ -22,12 +24,32 @@ public class GameManager : MonoBehaviour
         Instance = Instance ?? this; // Nice compact way ! (Rob)
 
         camera = Camera.main;
-        cameraHalfWidth = camera.orthographicSize * camera.aspect;
+
+        float twoRatioBias = 2 - camera.aspect;
+        VCam.m_Lens.OrthographicSize += Mathf.Sign(twoRatioBias) * Mathf.Pow(twoRatioBias, 2) * 4.5f; // resize cam based on ratio
+        VCam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += twoRatioBias * 0.15f;
+
+        // camera offset saving
+        cameraHalfWidth = VCam.m_Lens.OrthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
-        VCam.GetCinemachineComponent<Cinemachine.CinemachineFramingTransposer>().m_ScreenX = savedStartingOffset;
-      
-       
+    }
+
+    public IEnumerator cameraDecentering()
+    {
+        var framingTransposer = VCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        var endWormPos = BlocManager.Instance.currentBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
+        var wormHeadT = Player.WormHead.transform;
+
+        while (true)
+        {
+            var newScreenX = Mathf.Lerp(0.5f, savedStartingOffset, wormHeadT.position.x / endWormPos);
+            if (newScreenX <= savedStartingOffset)
+                break;
+            framingTransposer.m_ScreenX = newScreenX;
+            yield return new WaitForFixedUpdate();
+        }
+        framingTransposer.m_ScreenX = savedStartingOffset;
     }
 
     void Start()
@@ -90,14 +112,16 @@ public class GameManager : MonoBehaviour
 
     public void BGWPSetup()
     {
+        /*
+        var WPpool = BlocManager.Instance.wpPool;
         // DISABLES EXTRA USELESS BACKGROUND WP DEPENDING ON ASPECT RATIO
-        var firstWpRightBoundPos = BlocManager.Instance.wpPool[0].transform.position.x + 3;
+        var lastWpLeftBoundPos = WPpool[WPpool.Count - 1].transform.position.x - 3;
         // comparing the WP right bound to the camera left bound
-        if (firstWpRightBoundPos < savedStartingOffset * camera.aspect - cameraHalfWidth)
+        if (cameraHalfWidth < lastWpLeftBoundPos)
         {
-            BlocManager.Instance.wpPool[0].SetActive(false);
+             WPpool[WPpool.Count - 1].SetActive(false);
         }
-
+        */
         // enables camera unpooler bounds
         unPoolerLeft.SetActive(true);
         poolerRight.SetActive(true);

@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
     public float AccelerationTimeRising;
     public AnimationCurve AccelerationCurveRising;
 
+    [Header("Analytics")]
+    [SerializeField] GameLogin gameLogin;
+    public string playingBlocName { get; set; }
 
     void Start()
     {
@@ -69,7 +72,6 @@ public class Player : MonoBehaviour
 
     void SetVelocityFromSpeed()
     {
-        //float distance = Vector3.Distance(Grass.position, BedRock.position);
         WormHead.VelocityDig = detph / SpeedDig;
         WormHead.VelocityRising = detph / SpeedRising;
         WormHead.Speed = SpeedRight;
@@ -130,8 +132,9 @@ public class Player : MonoBehaviour
 
     }
 
-    void YourAreDead()
+    void YourAreDead(Obstacle obstacleTouched)
     {
+       // gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
 
       

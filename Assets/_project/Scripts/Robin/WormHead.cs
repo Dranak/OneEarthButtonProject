@@ -43,7 +43,7 @@ public class WormHead : WormBody
 
     private bool IsDigging = false;
 
-    public Action CallBackDead;
+    public Action<Obstacle> CallBackDead;
     public Action<Collectible> CallBackPoint;
 
     protected override void Awake()
@@ -58,6 +58,7 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
+      
 
     }
 
@@ -67,8 +68,7 @@ public class WormHead : WormBody
         if (GameManager.Instance.State == State.Play)
         {
             IncreaseSpeed();
-           
-
+      
             if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
             {
                 IsDigging = true;
@@ -119,12 +119,15 @@ public class WormHead : WormBody
 
     void UpdateLineRenderer()
     {
-        Line.SetPosition(0, transform.position);
+        Line.SetPosition(0, Anchor.position);
+        //Line.SetPosition(1, _wormBodies.First().transform.position);
         for (int index = 0; index < _wormBodies.Count; ++index)
         {
-            Line.SetPosition(index + 1, _wormBodies[index].transform.position);
+           
+            Line.SetPosition(index + 1,  _wormBodies[index].Anchor.position);
         }
-
+        //Line.SetPosition(inde)
+        
 
     }
 
@@ -180,7 +183,7 @@ public class WormHead : WormBody
         if (collision.collider.CompareTag("Death"))
         {
             Debug.Log("Dead by " + collision.gameObject.name);
-            CallBackDead();
+            CallBackDead(collision.transform.parent.GetComponent<Obstacle>());
         }
     }
 
@@ -199,6 +202,7 @@ public class WormHead : WormBody
             // reset egg shells series (_streakEggShell)
             Debug.Log("Reset Egg shell Index: " + GameManager.Instance.Player.StreakEggShell);
             GameManager.Instance.Player.StreakEggShell = 0;
+            GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more
         }
     }

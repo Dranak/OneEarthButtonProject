@@ -4,7 +4,7 @@ public class UnPooler : MonoBehaviour
 {
     BlocManager blocManager;
 
-    private void Awake()
+    private void Start()
     {
         blocManager = BlocManager.Instance;
         transform.localPosition = Vector2.left * GetComponentInParent<Camera>().orthographicSize * GetComponentInParent<Camera>().aspect + Vector2.left * 0.5f;

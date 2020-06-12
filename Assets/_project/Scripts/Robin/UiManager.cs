@@ -27,7 +27,6 @@ public class UiManager : MonoBehaviour
 
     public void Replay()
     {
-        MainMenu.gameObject.SetActive(false);
         if (DeathMenu.gameObject.activeInHierarchy)
         {
             DeathMenu.gameObject.SetActive(false);
@@ -35,8 +34,9 @@ public class UiManager : MonoBehaviour
 
 
         MainMenu.Play();
+        MainMenu.gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    
+
 
     }
 
