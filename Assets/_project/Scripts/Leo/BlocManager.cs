@@ -570,7 +570,6 @@ public class BlocManager : MonoBehaviour
             if (pooledIn.transform.localPosition.x % 2 != 0) // put to back if even
                 isBack = true;
 
-
             var thisFrontPos = pooledIn.transform.position.x;
             if (isBack) // second or every second object => goes to the back
             {

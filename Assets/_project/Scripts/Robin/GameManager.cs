@@ -24,13 +24,15 @@ public class GameManager : MonoBehaviour
         Instance = Instance ?? this; // Nice compact way ! (Rob)
 
         camera = Camera.main;
-        cameraHalfWidth = camera.orthographicSize * camera.aspect;
+
+        float twoRatioBias = 2 - camera.aspect;
+        VCam.m_Lens.OrthographicSize += Mathf.Sign(twoRatioBias) * Mathf.Pow(twoRatioBias, 2) * 4.5f; // resize cam based on ratio
+        VCam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += twoRatioBias * 0.15f;
+
+        // camera offset saving
+        cameraHalfWidth = VCam.m_Lens.OrthographicSize * camera.aspect;
         var camUnitsWidth = cameraHalfWidth * 2;
         savedStartingOffset = (camUnitsWidth - 15) / camUnitsWidth; // offset for seeing 15 units after the worm's head
-
-        float twoRatioBias = (2 - camera.aspect);
-        VCam.m_Lens.OrthographicSize += twoRatioBias * 3 / 2; // resize cam based on ratio
-        VCam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += twoRatioBias * 0.15f;
     }
 
     public IEnumerator cameraDecentering()
@@ -110,14 +112,16 @@ public class GameManager : MonoBehaviour
 
     public void BGWPSetup()
     {
+        /*
+        var WPpool = BlocManager.Instance.wpPool;
         // DISABLES EXTRA USELESS BACKGROUND WP DEPENDING ON ASPECT RATIO
-        var firstWpRightBoundPos = BlocManager.Instance.wpPool[0].transform.position.x + 3;
+        var lastWpLeftBoundPos = WPpool[WPpool.Count - 1].transform.position.x - 3;
         // comparing the WP right bound to the camera left bound
-        if (firstWpRightBoundPos < savedStartingOffset * camera.aspect - cameraHalfWidth)
+        if (cameraHalfWidth < lastWpLeftBoundPos)
         {
-            BlocManager.Instance.wpPool[0].SetActive(false);
+             WPpool[WPpool.Count - 1].SetActive(false);
         }
-
+        */
         // enables camera unpooler bounds
         unPoolerLeft.SetActive(true);
         poolerRight.SetActive(true);
