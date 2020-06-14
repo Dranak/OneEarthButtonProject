@@ -67,6 +67,7 @@ public class WormHead : WormBody
         UpdateLineRenderer();
         if (GameManager.Instance.State == State.Play)
         {
+            Sight();
             IncreaseSpeed();
       
             if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
@@ -124,10 +125,11 @@ public class WormHead : WormBody
         for (int index = 0; index < _wormBodies.Count; ++index)
         {
            
-            Line.SetPosition(index + 1,  _wormBodies[index].Anchor.position);
+            Line.SetPosition(index + 1,  _wormBodies[index].transform.position);
         }
+        Line.SetPosition(_wormBodies.Count, _wormBodies.Last().Anchor.position);
         //Line.SetPosition(inde)
-        
+
 
     }
 
@@ -214,7 +216,7 @@ public class WormHead : WormBody
 
         if (hit2D)
         {
-            SpawnableObject spawnableObject = hit2D.transform.gameObject.GetComponent<SpawnableObject>();
+            SpawnableObject spawnableObject = hit2D.transform.parent.gameObject.GetComponent<SpawnableObject>();
 
             if (spawnableObject)
             {

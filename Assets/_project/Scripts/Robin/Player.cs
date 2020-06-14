@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         {
             //Debug.Log("DistanceFromStart: " + WormHead.DistanceFromStart);
 
-            if (WormHead.DistanceFromStart >= _currentStateDistance && UndergroundBonus<MaxBonusUndergroundBonus)
+            if (WormHead.DistanceFromStart >= _currentStateDistance && UndergroundBonus < MaxBonusUndergroundBonus)
             {
                 _currentStateDistance += StepDistanceScoreIncrease;
                 UndergroundBonus += 1;
@@ -182,8 +182,20 @@ public class Player : MonoBehaviour
                     ScoreTextFB.text = "+" + EggShellStreakTwo;
                     break;
                 case 3:
+                    Debug.Log("Streak Completed" +
+        "\nEggShellIndex " + collectible.collectibleParameters.EggShellIndex
+        + "\nStreakEggShell " + StreakEggShell
+        + "\nPointGain " + collectible.PointGain
+        + "\n#-------------------#");
                     Score += EggShellStreakThird;
                     ScoreTextFB.text = "+" + EggShellStreakThird;
+                    StreakEggShell = 0;
+
+                
+                    break;
+                default:
+                    Debug.Log("I don't know what to do");
+                    StreakEggShell = 0;
                     break;
             }
         }
