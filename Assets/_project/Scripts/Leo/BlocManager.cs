@@ -25,8 +25,8 @@ public class BlocManager : MonoBehaviour
     [SerializeField]
     Transform spawnablesAnchor;
 
-    public Transform backObjAnchor;
-    [SerializeField, HideInInspector] List<GameObject> backObjPool;
+    public Transform backTreesAnchor, backRocksAnchor, backBushesAnchor;
+    [SerializeField, HideInInspector] List<GameObject> backTreesPool, backRocksPool, backBushesPool;
 
     // bloc generation
     public int startingBlocMin { get; private set; } = 33;
@@ -47,21 +47,31 @@ public class BlocManager : MonoBehaviour
             currentBlocMax = startingBlocMin;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             RankBlocs();
-            AddToPool(backObjAnchor, ref backObjPool, false, false);
-            AddToPool(spawnablesAnchor, ref backObjPool, true, false); // back objects in the Spawnables on start are also part of the pool
+            // add trees to pool
+            AddToPool(backTreesAnchor, ref backTreesPool, false, false);
+            AddToPool(spawnablesAnchor, ref backTreesPool, true, false, "Tree"); // back objects in the Spawnables on start are also part of the pool
+            // add rocks to pool
+            AddToPool(backRocksAnchor, ref backRocksPool, false, false);
+            AddToPool(spawnablesAnchor, ref backRocksPool, true, false, "Rock"); // back objects in the Spawnables on start are also part of the pool
+            // add bushed to pool
+            AddToPool(backBushesAnchor, ref backBushesPool, false, false);
+            AddToPool(spawnablesAnchor, ref backBushesPool, true, false, "Bush"); // back objects in the Spawnables on start are also part of the pool
+
             Instance = this;
         }
         else
             Destroy(this);
     }
 
-    void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false, bool isObstacle = true)
+    void AddToPool(Transform parent, ref List<GameObject> pool, bool letActive = false, bool isObstacle = true, string nameCheck = "")
     {
         foreach (Transform child in parent)
         {
-            pool.Add(child.gameObject);
-            if (!letActive)
-                child.gameObject.SetActive(false);
+            if (child.name.Contains(nameCheck))
+            {
+                pool.Add(child.gameObject);
+                child.gameObject.SetActive(letActive);
+            }
         }
         if (isObstacle)
         {
@@ -544,11 +554,20 @@ public class BlocManager : MonoBehaviour
 
     bool isBack = false;
     int previousFrontSo = 3;
-    int previousBackSo = 0;
+    int previousBackSo = -1;
     float previousFrontPos = 0;
     void WPObjects(in int thisWPX)
     {
-        int objectCount = Random.Range(3, 7);
+        WPTrees(thisWPX);
+        if (Random.Range(0, 2) == 0)
+            WPRocks(thisWPX);
+        if (Random.Range(0, 2) == 0)
+            WPBushes(thisWPX);
+    }
+
+    void WPTrees(in int thisWPX)
+    {
+        int objectCount = Random.Range(2, 5);
         List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
         List<GameObject> pooledInList = new List<GameObject>();
 
@@ -557,7 +576,7 @@ public class BlocManager : MonoBehaviour
             GameObject pooledIn;
             var thisX = xPoss[Random.Range(0, xPoss.Count)];
             xPoss.Remove(thisX);
-            PoolIn(ref backObjPool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+            PoolIn(ref backTreesPool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
@@ -579,7 +598,7 @@ public class BlocManager : MonoBehaviour
             }
             else // front obj
             {
-                previousBackSo = 0; // back sorting order reset to minimum
+                previousBackSo = -1; // back sorting order reset to minimum
 
                 if (previousFrontPos > thisFrontPos) // this front obj touches the previous front obj
                 {
@@ -601,16 +620,46 @@ public class BlocManager : MonoBehaviour
 
                 // calculating this sprite right bound world pos to be next previous Pos
                 var sprite = renderer.sprite;
-                var visibleWidth = sprite.bounds.size.x; //* (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width); // visible width = world size of pixels within the sprite borders (green box in editor)
+                var visibleWidth = (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width) * sprite.bounds.size.x; // visible width = world width of pixels within the sprite borders (green box in editor)
                 previousFrontPos = thisFrontPos + visibleWidth;
             }
-
             isBack = !isBack;
         }
     }
-#endregion
 
-#region pool
+    float previousRockPos = 0;
+    void WPRocks(in int thisWPX)
+    {
+        GameObject pooledIn;
+        WPSingle(thisWPX, ref backRocksPool, out pooledIn, ref previousRockPos, 0);
+        pooledIn.transform.localPosition += Vector3.up * 0.5f;
+    }
+
+    float previousBushPos = 0;
+    void WPBushes(in int thisWPX)
+    {
+        GameObject pooledIn;
+        WPSingle(thisWPX, ref backBushesPool, out pooledIn, ref previousBushPos, 5);
+        pooledIn.transform.localPosition += Vector3.up * 0.15f;
+    }
+
+    void WPSingle(in int thisWPX, ref List<GameObject> pool, out GameObject pooledIn, ref float previousObjPos, in int defaultSortingOrder)
+    {
+        var thisX = Random.Range(0, 5);
+        PoolIn(ref pool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+
+        var renderer = pooledIn.GetComponent<SpriteRenderer>();
+
+        var thisFrontPos = pooledIn.transform.position.x;
+        if (thisFrontPos < previousObjPos)
+            renderer.sortingOrder = defaultSortingOrder - 1;
+
+        previousObjPos = thisFrontPos + renderer.sprite.bounds.size.x;
+    }
+
+    #endregion
+
+    #region pool
     // objects to appear next are pooled in (activated)
     public void PoolIn(ref List<GameObject> pool, Vector2 toPosition, out GameObject pooledInObj, Transform parent = null)
     {

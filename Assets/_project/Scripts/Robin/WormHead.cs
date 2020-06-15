@@ -43,7 +43,7 @@ public class WormHead : WormBody
 
     private bool IsDigging = false;
 
-    public Action<Obstacle> CallBackDead;
+    public Action<Obstacle, Player> CallBackDead;
     public Action<Collectible> CallBackPoint;
 
     protected override void Awake()
@@ -185,7 +185,7 @@ public class WormHead : WormBody
         if (collision.collider.CompareTag("Death"))
         {
             Debug.Log("Dead by " + collision.gameObject.name);
-            CallBackDead(collision.transform.parent.GetComponent<Obstacle>());
+            CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), GameManager.Instance.Player);
         }
     }
 

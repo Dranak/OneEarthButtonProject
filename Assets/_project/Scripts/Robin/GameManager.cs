@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
                 UiManager.Instance.MainMenu.PlayButton.interactable = false;
                 UiManager.Instance.MainMenu.SkinButton.interactable = false;
                 UiManager.Instance.MainMenu.SettingButton.interactable = false;
+                ++UiManager.Instance.SessionGameCount;
                 break;
             case State.InMenu:
                 Time.timeScale = 0f;
@@ -112,6 +113,8 @@ public class GameManager : MonoBehaviour
             case State.Dead:
                 Player.StreakEggShell = 0;
                 Time.timeScale = 0f;
+                if (UiManager.Instance.BestSessionScore < Player.Score)
+                    UiManager.Instance.BestSessionScore = Player.Score;
                 UiManager.Instance.Death();
                 break;
             case State.Pause:

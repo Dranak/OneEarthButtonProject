@@ -17,14 +17,25 @@ public class GameLogin : MonoBehaviour
             // player info
             { "deathLevel", _player.playingBlocName },
             { "ecoPoints", _player.Score },
-            { "playerPosition",  playerPos},
-            { "speedVector", playerSpeed}, // won't work
+            { "playerXPosition",  playerPos.x},
+            { "playerYPosition", playerPos.y},
+            { "lateralSpeed", playerSpeed.x}, // won't work?
 
             // obstacle info
             { "obstacleName", _obsParams.Tag},
 
             // general info stacked
             { "Death Info", new DeathInfo(playerPos, obstaclePos, _obstacle.Size, playerSpeed, _player.playingBlocName, _obsParams.Tag, _obsParams.BodyRotation, _player.Score) }
+        });
+    }
+
+    public void OnSessionOver(Player _player)
+    {
+        Analytics.CustomEvent("sessionEnd", new Dictionary<string, object>
+        {
+            { "GamesPlayed", UiManager.Instance.SessionGameCount },
+            { "BestSessionScore", UiManager.Instance.BestSessionScore },
+            { "SessionTotalOfStrikes", UiManager.Instance.SessionStrikesTotal }
         });
     }
 }
