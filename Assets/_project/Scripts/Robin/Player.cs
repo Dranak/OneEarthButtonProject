@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
     void YourAreDead(Obstacle obstacleTouched)
     {
-        if (!Application.isEditor)
+        if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
     }
