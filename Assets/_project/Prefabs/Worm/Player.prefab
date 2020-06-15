@@ -161,6 +161,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1677485549021696420, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1677485549167700566, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
       propertyPath: m_Sprite
@@ -315,6 +320,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728284, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
@@ -365,6 +375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677485550737107806, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1677485550737107807, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
