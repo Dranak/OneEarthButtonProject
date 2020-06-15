@@ -194,7 +194,7 @@ public class WormHead : WormBody
         if (collider.CompareTag("Collectible"))
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
-            Debug.Log("Ate " + collectible.name);
+            Debug.Log("Ate " + collectible.name +" id " + collectible.gameObject.GetInstanceID());
             CallBackPoint(collectible);
 
             BlocManager.Instance.PoolOut(collectible);
@@ -202,7 +202,7 @@ public class WormHead : WormBody
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
             // reset egg shells series (_streakEggShell)
-            Debug.Log("Reset Egg shell Index: " + GameManager.Instance.Player.StreakEggShell);
+            Debug.Log("Reset StreakEggShell: " + GameManager.Instance.Player.StreakEggShell);
             GameManager.Instance.Player.StreakEggShell = 0;
             GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more

@@ -141,11 +141,7 @@ public class Player : MonoBehaviour
 
     void GetPoint(Collectible collectible)
     {
-        Debug.Log("#-------------------#" +
-            "\nEggShellIndex " + collectible.collectibleParameters.EggShellIndex
-            + "\nStreakEggShell " + StreakEggShell
-            + "\nPointGain " + collectible.PointGain
-            + "\n#-------------------#");
+
 
 
         if (collectible.collectibleParameters.EggShellIndex == -1)
@@ -154,13 +150,13 @@ public class Player : MonoBehaviour
             Score += collectible.PointGain;
 
         }
-        else if (collectible.collectibleParameters.EggShellIndex == -1 && StreakEggShell > 0)
-        {
-            StreakEggShell = 0;
+        //else if (collectible.collectibleParameters.EggShellIndex == -1 && StreakEggShell > 0)
+        //{
+        //    StreakEggShell = 0;
 
-            ScoreTextFB.text = "+" + collectible.PointGain.ToString();
-            Score += collectible.PointGain;
-        }
+        //    ScoreTextFB.text = "+" + collectible.PointGain.ToString();
+        //    Score += collectible.PointGain;
+        //}
         else if (collectible.collectibleParameters.EggShellIndex > -1)
         {
             if (collectible.collectibleParameters.EggShellIndex != _lastIndexEggShell)
@@ -170,6 +166,10 @@ public class Player : MonoBehaviour
             }
             ++StreakEggShell;
 
+            Debug.Log("EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+         + "StreakEggShell " + StreakEggShell);
+
+            Debug.Log("Point Before: " + Score);
             switch (StreakEggShell)
             {
                 case 1:
@@ -181,11 +181,8 @@ public class Player : MonoBehaviour
                     ScoreTextFB.text = "+" + EggShellStreakTwo;
                     break;
                 case 3:
-                    Debug.Log("Streak Completed" +
-        "\nEggShellIndex " + collectible.collectibleParameters.EggShellIndex
-        + "\nStreakEggShell " + StreakEggShell
-        + "\nPointGain " + collectible.PointGain
-        + "\n#-------------------#");
+                    Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+            + "StreakEggShell " + StreakEggShell);
                     Score += EggShellStreakThird;
                     ScoreTextFB.text = "+" + EggShellStreakThird;
                     StreakEggShell = 0;
@@ -197,6 +194,7 @@ public class Player : MonoBehaviour
                     StreakEggShell = 0;
                     break;
             }
+            Debug.Log("Point After: " + Score);
         }
         //ScoreTextFB.enabled = true;
         StartCoroutine(WaitSecond(ScoreTextFB, TimeDisplayFeedBackScore));
@@ -216,5 +214,7 @@ public class Player : MonoBehaviour
 
     }
 
+
+    
 
 }
