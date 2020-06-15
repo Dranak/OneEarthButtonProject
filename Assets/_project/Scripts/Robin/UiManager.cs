@@ -12,6 +12,10 @@ public class UiManager : MonoBehaviour
     public DeathMenu DeathMenu;
     string thisSceneName;
 
+    public int SessionGameCount { get; set; } = 0;
+    public int BestSessionScore { get; set; } = 0;
+    public int SessionStrikesTotal { get; set; } = 0; // total ammount of eggshells strike during session
+
     // Start is called before the first frame update
     private void Awake()
     {

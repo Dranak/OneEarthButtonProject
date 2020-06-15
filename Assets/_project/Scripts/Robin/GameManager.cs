@@ -112,6 +112,8 @@ public class GameManager : MonoBehaviour
             case State.Dead:
                 Player.StreakEggShell = 0;
                 Time.timeScale = 0f;
+                if (UiManager.Instance.BestSessionScore < Player.Score)
+                    UiManager.Instance.BestSessionScore = Player.Score;
                 UiManager.Instance.Death();
                 break;
             case State.Pause:

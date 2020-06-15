@@ -9,8 +9,10 @@ TagManager:
   - BlocPoolerTrigger
   - WPUnPoolerTrigger
   - Collectible
-  - BackObj
   - Face
+  - BackRock
+  - BackTree
+  - BackBush
   layers:
   - Default
   - TransparentFX

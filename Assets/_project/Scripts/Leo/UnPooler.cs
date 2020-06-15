@@ -21,9 +21,18 @@ public class UnPooler : MonoBehaviour
         {
             blocManager.PoolOut(other.transform.GetComponentInParent<SpawnableObject>());
         }
-        if (tag == "BackObj")
+
+        if (tag == "BackTree")
         {
-            blocManager.PoolOut(other.transform.parent.gameObject, blocManager.backObjAnchor);
+            blocManager.PoolOut(other.transform.parent.gameObject, blocManager.backTreesAnchor);
+        }
+        if (tag == "BackRock")
+        {
+            blocManager.PoolOut(other.transform.parent.gameObject, blocManager.backRocksAnchor);
+        }
+        if (tag == "BackBush")
+        {
+            blocManager.PoolOut(other.transform.parent.gameObject, blocManager.backBushesAnchor);
         }
     }
 }

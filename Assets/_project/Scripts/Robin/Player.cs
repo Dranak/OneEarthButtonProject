@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     private float _currentStateDistance;
     public int Score { get; set; } = 0;
 
-
     private float _chronosUndergroundBonus = 0f;
     public int StreakEggShell { get; set; } = 0;
     private int _lastIndexEggShell;
@@ -132,10 +131,11 @@ public class Player : MonoBehaviour
 
     }
 
-    void YourAreDead(Obstacle obstacleTouched)
+    void YourAreDead(Obstacle obstacleTouched, Player player)
     {
+        ++UiManager.Instance.SessionGameCount;
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
-            gameLogin.OnGameOver(this, obstacleTouched);
+            gameLogin.OnGameOver(player, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
     }
 
@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
                     Score += EggShellStreakThird;
                     ScoreTextFB.text = "+" + EggShellStreakThird;
                     StreakEggShell = 0;
-
+                ++UiManager.Instance.SessionStrikesTotal;
                 
                     break;
                 default:
@@ -214,6 +214,11 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnApplicationQuit()
+    {
+        if (UiManager.Instance.SessionGameCount > 0)
+            gameLogin.OnSessionOver(this);
+    }
 
     
 

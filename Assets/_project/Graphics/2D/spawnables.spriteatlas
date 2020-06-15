@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 2
+      filterMode: 0
       generateMipMaps: 1
       readable: 0
       crunchedCompression: 0
@@ -45,9 +45,9 @@ SpriteAtlas:
     - {fileID: 7880480322225668665, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
     - {fileID: 4428431818956017365, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
     - {fileID: -8070191969714574970, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
-    - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
-    - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
-    - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
+    - {fileID: 8058684107584073667, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+    - {fileID: -1851672414279508749, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
+    - {fileID: 1954399890376994909, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
     - {fileID: 7412932181412912914, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: 6856912315251224540, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
     - {fileID: -6701165256158451158, guid: 863a9efaceae6ad46857ab904b0cbc0a, type: 3}
@@ -60,19 +60,13 @@ SpriteAtlas:
     - {fileID: -414479616469554613, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
     - {fileID: 7392132609631509024, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
     - {fileID: 7145536800334388871, guid: 7395e37f8ab5a34489f9db231acb8dbe, type: 3}
-    - {fileID: -1851672414279508749, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
-    - {fileID: 8058684107584073667, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
-    - {fileID: 1954399890376994909, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
-    totalSpriteSurfaceArea: 3108974
+    totalSpriteSurfaceArea: 2122436
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 8058684107584073667, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
   - {fileID: -1851672414279508749, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
   - {fileID: 1954399890376994909, guid: 250506373ce34fc4699fac20aff7c1f0, type: 3}
-  - {fileID: 4049553276299754278, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
-  - {fileID: 529039185457481909, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
-  - {fileID: 4580340340603276380, guid: 34fc23090ada5fd41972626e7fa7df8a, type: 3}
   - {fileID: 43226203873635761, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
   - {fileID: -2091964953667161442, guid: e225d249f28108940a13bb9cd65f24f5, type: 3}
   - {fileID: 4428431818956017365, guid: ef641f6aeead0944d8891fd7e957e5ec, type: 3}
@@ -92,9 +86,6 @@ SpriteAtlas:
   - Enjoliveur_1
   - Enjoliveur_0
   - Enjoliveur_2
-  - Bouteille_cassee_2
-  - Bouteille_cassee_0
-  - Bouteille_cassee_1
   - Pain_0
   - Pain_1
   - Bouteille_1
