@@ -134,10 +134,9 @@ public class Player : MonoBehaviour
 
     void YourAreDead(Obstacle obstacleTouched)
     {
-        gameLogin.OnGameOver(this, obstacleTouched);
+        if (!Application.isEditor)
+            gameLogin.OnGameOver(this, obstacleTouched);
         GameManager.Instance.SetState(State.Dead);
-
-
     }
 
     void GetPoint(Collectible collectible)
