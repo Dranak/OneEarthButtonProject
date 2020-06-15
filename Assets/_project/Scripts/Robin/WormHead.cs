@@ -62,6 +62,7 @@ public class WormHead : WormBody
 
     }
 
+    bool touchingInput = false;
     void Update()
     {
         UpdateLineRenderer();
@@ -69,19 +70,41 @@ public class WormHead : WormBody
         {
             Sight();
             IncreaseSpeed();
-      
-            if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
-            {
-                IsDigging = true;
-            }
-            else
-            {
-                IsDigging = false;
 
+            touchingInput = false;
+
+#if UNITY_EDITOR
+            if (Input.GetKey(KeyCode.Space))
+            {
+                touchingInput = true;
             }
+#endif
+#if UNITY_STANDALONE
+            if (Input.GetKey(KeyCode.Space))
+            {
+                touchingInput = true;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                touchingInput = true;
+            }
+#endif
+
+#if UNITY_IOS
+            if (Input.touchCount > 0)
+            {
+                touchingInput = true;
+            }
+#endif
+#if UNITY_ANDROID
+            if (Input.touchCount > 0)
+            {
+                touchingInput = true;
+            }
+#endif
+
+            IsDigging = touchingInput;
         }
-
-
     }
 
     private void FixedUpdate()

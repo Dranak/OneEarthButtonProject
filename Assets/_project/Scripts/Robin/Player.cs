@@ -217,7 +217,8 @@ public class Player : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        gameLogin.OnSessionOver(this);
+        if (UiManager.Instance.SessionGameCount > 0)
+            gameLogin.OnSessionOver(this);
     }
 
 }

@@ -3433,41 +3433,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017596610294172742, guid: 377730f41a5a5c14c9d64792ea2bf922,
-        type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -3524,12 +3489,12 @@ PrefabInstance:
     - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0.06111145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.9714298
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
@@ -3585,6 +3550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[5].y
       value: 5.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596612072157082, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}

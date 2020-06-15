@@ -45,16 +45,37 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 68fa3486f249ab145b8cc8efa553cc6a, type: 3}
     - {fileID: 21300000, guid: 8fba3fcd6a746484499e9c3b001cfc04, type: 3}
     - {fileID: 21300000, guid: e93359dcab4770647823dcebda480e89, type: 3}
-    totalSpriteSurfaceArea: 677846
+    - {fileID: 21300000, guid: 8d987ad5c92d979469dcf5c94bc3c21b, type: 3}
+    - {fileID: 21300000, guid: b27b7df16a768d743a610b0a1eb894e6, type: 3}
+    - {fileID: 21300000, guid: 0678d6abb225d6943a70c3b885930bb6, type: 3}
+    - {fileID: 21300000, guid: d4a6eb0325129eb4cbac852efa6ebd1b, type: 3}
+    - {fileID: 21300000, guid: 7f690e0f38a79334693fc01c76650255, type: 3}
+    - {fileID: 21300000, guid: 95c8621ff9a836c4386f29ebd25567f3, type: 3}
+    - {fileID: 21300000, guid: 940ada01cd4d28740af195ca8a3dbecd, type: 3}
+    totalSpriteSurfaceArea: 3767070
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 940ada01cd4d28740af195ca8a3dbecd, type: 3}
+  - {fileID: 21300000, guid: b27b7df16a768d743a610b0a1eb894e6, type: 3}
+  - {fileID: 21300000, guid: d4a6eb0325129eb4cbac852efa6ebd1b, type: 3}
+  - {fileID: 21300000, guid: 8d987ad5c92d979469dcf5c94bc3c21b, type: 3}
   - {fileID: 21300000, guid: 68fa3486f249ab145b8cc8efa553cc6a, type: 3}
+  - {fileID: 21300000, guid: 0678d6abb225d6943a70c3b885930bb6, type: 3}
   - {fileID: 21300000, guid: e93359dcab4770647823dcebda480e89, type: 3}
   - {fileID: 21300000, guid: 8fba3fcd6a746484499e9c3b001cfc04, type: 3}
+  - {fileID: 21300000, guid: 7f690e0f38a79334693fc01c76650255, type: 3}
+  - {fileID: 21300000, guid: 95c8621ff9a836c4386f29ebd25567f3, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Rocher 4
+  - Buisson 1
+  - Rocher 1
+  - Buisson 2
   - Arbre1
+  - buisson 3
   - Arbre3
   - Arbre2
+  - Rocher 2
+  - Rocher 3
   m_Tag: ParallaxObj
   m_IsVariant: 0
