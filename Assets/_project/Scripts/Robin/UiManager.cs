@@ -72,21 +72,17 @@ public class UiManager : MonoBehaviour
         MainMenu.SettingButton.interactable = true;
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
     public void Death()
     {
         DeathMenu.gameObject.SetActive(true);
     }
 
-    public void Pause()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void UnPause()
-    {
-        Time.timeScale = 1;
-    }
+   
 
     public void AudioMenu()
     {

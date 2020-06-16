@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     [Space]
     public WormHead WormHead;
     const int detph = 9;
-
+    [Tooltip("Distance detection of the obstacle or collectible to change face")]
+    public float FieldOfView;
     public TextMeshProUGUI ScoreTextFB;
     [Space]
 
@@ -101,8 +102,6 @@ public class Player : MonoBehaviour
                 Debug.Log("UndergroundBonus: " + UndergroundBonus);
             }
 
-
-
             _chronosUndergroundBonus += Time.deltaTime;
 
             if (_chronosUndergroundBonus >= 1f)
@@ -124,7 +123,7 @@ public class Player : MonoBehaviour
     void SetupWorm()
     {
         SetVelocityFromSpeed();
-
+        WormHead.FieldOfView = FieldOfView;
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
 
@@ -141,9 +140,6 @@ public class Player : MonoBehaviour
 
     void GetPoint(Collectible collectible)
     {
-
-
-
         if (collectible.collectibleParameters.EggShellIndex == -1)
         {
             ScoreTextFB.text = "+" + collectible.PointGain.ToString();
@@ -197,10 +193,10 @@ public class Player : MonoBehaviour
             Debug.Log("Point After: " + Score);
         }
         //ScoreTextFB.enabled = true;
-        StartCoroutine(WaitSecond(ScoreTextFB, TimeDisplayFeedBackScore));
+        StartCoroutine(DisplayText(ScoreTextFB, TimeDisplayFeedBackScore));
     }
 
-    IEnumerator WaitSecond(TextMeshProUGUI text, float time)
+    IEnumerator DisplayText(TextMeshProUGUI text, float time)
     {
 
 

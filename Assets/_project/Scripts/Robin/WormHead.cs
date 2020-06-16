@@ -22,8 +22,8 @@ public class WormHead : WormBody
     public Vector3 StartPosition { get; set; }
     public float DistanceFromStart { get { return Vector3.Distance(StartPosition, transform.position); } }
     public LineRenderer Line;
-
-
+    public LayerMask LayerMaskSpawnables;
+    public float FieldOfView { get; set; }
 
     public float Speed { get; set; }
     public float TimeToIncreaseSpeed { get; set; }
@@ -50,7 +50,9 @@ public class WormHead : WormBody
     {
         base.Awake();
         AllFaces = GetComponentsInChildren<Face>().ToList();
+     
         _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
+        AllFaces.Where(f => f != _lastFace).ToList().ForEach(f => f.gameObject.SetActive(false));
     }
 
     void Start()
@@ -58,7 +60,7 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-      
+
 
     }
 
@@ -147,8 +149,8 @@ public class WormHead : WormBody
         //Line.SetPosition(1, _wormBodies.First().transform.position);
         for (int index = 0; index < _wormBodies.Count; ++index)
         {
-           
-            Line.SetPosition(index + 1,  _wormBodies[index].transform.position);
+
+            Line.SetPosition(index + 1, _wormBodies[index].transform.position);
         }
         Line.SetPosition(_wormBodies.Count, _wormBodies.Last().Anchor.position);
         //Line.SetPosition(inde)
@@ -217,7 +219,7 @@ public class WormHead : WormBody
         if (collider.CompareTag("Collectible"))
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
-            Debug.Log("Ate " + collectible.name +" id " + collectible.gameObject.GetInstanceID());
+            Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
             CallBackPoint(collectible);
 
             BlocManager.Instance.PoolOut(collectible);
@@ -235,7 +237,7 @@ public class WormHead : WormBody
     void Sight()
     {
 
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.right, 2f);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.right, FieldOfView, LayerMaskSpawnables.value);
 
         if (hit2D)
         {
@@ -274,6 +276,16 @@ public class WormHead : WormBody
                     _lastFace.gameObject.SetActive(true);
                 }
             }
+        }
+        else
+        {
+            if(_lastFace.FaceType != FeelType.Normal)
+            {
+                _lastFace.gameObject.SetActive(false);
+                _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
+                _lastFace.gameObject.SetActive(true);
+            }
+           
         }
     }
 
