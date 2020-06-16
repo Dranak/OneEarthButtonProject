@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     const int detph = 9;
     [Tooltip("Distance detection of the obstacle or collectible to change face")]
     public float FieldOfView;
+    public float TimeFaceDisplayed;
     public TextMeshProUGUI ScoreTextFB;
     [Space]
 
@@ -124,6 +125,7 @@ public class Player : MonoBehaviour
     {
         SetVelocityFromSpeed();
         WormHead.FieldOfView = FieldOfView;
+        WormHead.TimeFaceDisplayed = TimeFaceDisplayed;
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
 

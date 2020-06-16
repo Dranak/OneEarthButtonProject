@@ -16,6 +16,8 @@ public class WormHead : WormBody
     public List<Face> AllFaces { get; set; } = new List<Face>();
 
     private Face _lastFace;
+    public float TimeFaceDisplayed { get; set; }
+    private float _chronoFaceDisplayed = 0f;
     [Space]
 
     private List<WormBody> _wormBodies;
@@ -45,6 +47,8 @@ public class WormHead : WormBody
 
     public Action<Obstacle, Player> CallBackDead;
     public Action<Collectible> CallBackPoint;
+
+    private string _lastNameCollectible = String.Empty;
 
     protected override void Awake()
     {
@@ -219,10 +223,17 @@ public class WormHead : WormBody
         if (collider.CompareTag("Collectible"))
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
-            Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
-            CallBackPoint(collectible);
+            if (_lastNameCollectible != collectible.name)
+            {
+                _lastNameCollectible = collectible.name;
+                BlocManager.Instance.PoolOut(collectible);
+                Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
+                CallBackPoint(collectible);
+                
+            }
+          
 
-            BlocManager.Instance.PoolOut(collectible);
+            
         }
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
@@ -261,7 +272,12 @@ public class WormHead : WormBody
 
 
             }
-            else
+           
+        }
+        else
+        {
+            _chronoFaceDisplayed += Time.deltaTime;
+            if(_chronoFaceDisplayed>= TimeFaceDisplayed)
             {
                 if (_lastFace.FaceType == FeelType.Fear)
                 {
@@ -275,17 +291,10 @@ public class WormHead : WormBody
                     _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
                     _lastFace.gameObject.SetActive(true);
                 }
+                _chronoFaceDisplayed = 0f;
+
             }
-        }
-        else
-        {
-            if(_lastFace.FaceType != FeelType.Normal)
-            {
-                _lastFace.gameObject.SetActive(false);
-                _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
-                _lastFace.gameObject.SetActive(true);
-            }
-           
+
         }
     }
 
