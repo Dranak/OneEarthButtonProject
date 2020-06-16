@@ -56,7 +56,7 @@ MonoBehaviour:
   EggShellStreakThird: 100
   SpeedRight: 8
   TimeToIncreaseSpeed: 5
-  MaxSpeed: 15
+  MaxSpeed: 17
   ValueIncreaseSpeed: 0.8
   SpeedDig: 0.5
   AccelerationTimeDig: 0.6
