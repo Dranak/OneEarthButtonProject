@@ -288,10 +288,11 @@ MonoBehaviour:
   blocName: test
   currentBlocSelection:
     blocName: test
+    blocDifficulty: 1
     blockArea: 0
-    blocCount: 18
+    blocCount: 17
     blocLength: 31
-    blocYRange: {x: 0, y: 0}
+    blocYRange: {x: -2, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}
     spawnlablesParams:

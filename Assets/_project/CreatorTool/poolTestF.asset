@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedBlocs:
   - blocName: LD1
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 16
     blocLength: 87
@@ -37,6 +38,7 @@ MonoBehaviour:
     - id: 13
     - id: 14
   - blocName: LD43
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 83
@@ -61,6 +63,7 @@ MonoBehaviour:
     - id: 29
     - id: 30
   - blocName: LD44
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 32
     blocLength: 47
@@ -100,6 +103,7 @@ MonoBehaviour:
     - id: 60
     - id: 61
   - blocName: LD45
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 88
@@ -124,6 +128,7 @@ MonoBehaviour:
     - id: 76
     - id: 77
   - blocName: LD47
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 15
     blocLength: 87
@@ -146,6 +151,7 @@ MonoBehaviour:
     - id: 90
     - id: 91
   - blocName: LD48
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 16
     blocLength: 93
@@ -169,6 +175,7 @@ MonoBehaviour:
     - id: 105
     - id: 106
   - blocName: LD49
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 21
     blocLength: 101
@@ -197,6 +204,7 @@ MonoBehaviour:
     - id: 125
     - id: 126
   - blocName: LD50
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 15
     blocLength: 93
@@ -219,6 +227,7 @@ MonoBehaviour:
     - id: 139
     - id: 140
   - blocName: LD51
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 92
@@ -243,6 +252,7 @@ MonoBehaviour:
     - id: 155
     - id: 156
   - blocName: LD52
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 19
     blocLength: 84
@@ -269,6 +279,7 @@ MonoBehaviour:
     - id: 173
     - id: 174
   - blocName: LD53
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 21
     blocLength: 72
@@ -297,6 +308,7 @@ MonoBehaviour:
     - id: 193
     - id: 194
   - blocName: LD54
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 34
     blocLength: 55

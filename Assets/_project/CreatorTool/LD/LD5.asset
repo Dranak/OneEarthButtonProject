@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LD5
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocDifficulty: 1
-    blocName: LD5
+  - blocName: LD5
+    blocDifficulty: 1
     blockArea: 0
     blocCount: 14
     blocLength: 98

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LD42
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocDifficulty: 3
-    blocName: LD42
+  - blocName: LD42
+    blocDifficulty: 3
     blockArea: 0
     blocCount: 16
     blocLength: 76

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LD60
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocDifficulty: 1
-    blocName: LD60
+  - blocName: LD60
+    blocDifficulty: 1
     blockArea: 0
     blocCount: 15
     blocLength: 99
