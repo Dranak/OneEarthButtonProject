@@ -123,8 +123,7 @@ public class WormHead : WormBody
 
     void SetForce(bool _isDigging)
     {
-        Rigidbody.velocity = new Vector2(Vector2.right.x * Speed, Rigidbody.velocity.y);
-
+        Rigidbody.velocity = new Vector2(Speed, Rigidbody.velocity.y);
 
         if (_isDigging)
         {
