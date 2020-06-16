@@ -893,7 +893,7 @@ MonoBehaviour:
     - id: 589
     - id: 590
   - blocName: LD33
-    blocDifficulty: 3
+    blocDifficulty: 2
     blockArea: 0
     blocCount: 35
     blocLength: 56
