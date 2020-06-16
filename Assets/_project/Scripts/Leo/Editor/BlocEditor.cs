@@ -99,7 +99,7 @@ public class BlocEditor : Editor
                 GetSavedBlocsNames();
                 RefreshBlocNameAndDiff();
 
-                AssetDatabase.Refresh();
+                //AssetDatabase.Refresh();
             }
         }
 
@@ -241,7 +241,7 @@ public class BlocEditor : Editor
                     obsRightBoundX += spawnableObject.Size.x;
                 if (obsRightBoundX > blocLength) blocLength = Mathf.CeilToInt(obsRightBoundX);
             }
-            Bloc newBloc = new Bloc(blocArea, bc.rootTransform.childCount, blocLength, bc.blocName, (uint)selectedBlocDifficulty, spawnables);
+            Bloc newBloc = new Bloc(blocArea, blocLength, spawnables.Length, bc.blocName, (uint)selectedBlocDifficulty, spawnables);
 
             // set misc parameters
             if (blocYRange != Vector2.zero)
@@ -267,7 +267,7 @@ public class BlocEditor : Editor
                 bc.blocNames.Add(newBloc.blocName); // add bloc name to list of names
                 selectedName = bc.blocNames.IndexOf(bc.blocName);  // set pop field as equal to the new bloc name
             }
-            AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
+            //AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         }
         EditorGUI.EndDisabledGroup();
     }

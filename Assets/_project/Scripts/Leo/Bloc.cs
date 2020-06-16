@@ -3,7 +3,7 @@
 [System.Serializable]
 public class Bloc
 {
-    public Bloc(BlocArea _blockArea, int _blocCount, int _blocLength, string _blocName = "", uint _blocDifficulty = 0, Spawnable[] _spawnables = null, Vector2Int _blocYRange = new Vector2Int(), Vector4 _globalOffsetRange = new Vector4(), Vector2Int _globalRotationOffsetRange = new Vector2Int())
+    public Bloc(BlocArea _blockArea, int _blocLength, int _blocCount, string _blocName = "", uint _blocDifficulty = 0, Spawnable[] _spawnables = null, Vector2Int _blocYRange = new Vector2Int(), Vector4 _globalOffsetRange = new Vector4(), Vector2Int _globalRotationOffsetRange = new Vector2Int())
     {
         blockArea = _blockArea;
         blocCount = _blocCount;
@@ -37,7 +37,7 @@ public class Bloc
 
     public Bloc Clone()
     {
-        Bloc other = new Bloc(blockArea, blocCount, blocLength, blocName, blocDifficulty, spawnlablesParams, blocYRange, globalOffsetRange, globalRotationOffsetRange);
+        Bloc other = new Bloc(blockArea, blocLength, blocCount, blocName, blocDifficulty, spawnlablesParams, blocYRange, globalOffsetRange, globalRotationOffsetRange);
         return other;
     }
 }
