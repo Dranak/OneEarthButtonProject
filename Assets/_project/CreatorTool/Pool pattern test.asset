@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedBlocs:
   - blocName: LD43
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 83
@@ -38,6 +39,7 @@ MonoBehaviour:
     - id: 14
     - id: 15
   - blocName: LD44
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 32
     blocLength: 47
@@ -77,6 +79,7 @@ MonoBehaviour:
     - id: 45
     - id: 46
   - blocName: LD45
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 88
@@ -101,6 +104,7 @@ MonoBehaviour:
     - id: 61
     - id: 62
   - blocName: LD1
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 16
     blocLength: 87
@@ -125,6 +129,7 @@ MonoBehaviour:
     - id: 77
     - id: 78
   - blocName: LD47
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 15
     blocLength: 87
@@ -147,6 +152,7 @@ MonoBehaviour:
     - id: 91
     - id: 92
   - blocName: LD48
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 16
     blocLength: 93
@@ -170,6 +176,7 @@ MonoBehaviour:
     - id: 106
     - id: 107
   - blocName: LD49
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 21
     blocLength: 101
@@ -198,6 +205,7 @@ MonoBehaviour:
     - id: 126
     - id: 127
   - blocName: LD50
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 15
     blocLength: 93
@@ -220,6 +228,7 @@ MonoBehaviour:
     - id: 140
     - id: 141
   - blocName: LD51
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 17
     blocLength: 92
@@ -244,6 +253,7 @@ MonoBehaviour:
     - id: 156
     - id: 157
   - blocName: LD52
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 19
     blocLength: 84
@@ -270,6 +280,7 @@ MonoBehaviour:
     - id: 174
     - id: 175
   - blocName: LD53
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 21
     blocLength: 72
@@ -298,6 +309,7 @@ MonoBehaviour:
     - id: 194
     - id: 195
   - blocName: LD54
+    blocDifficulty: 0
     blockArea: 0
     blocCount: 34
     blocLength: 55
@@ -342,10 +354,10 @@ MonoBehaviour:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
   - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-  - {fileID: 3377678760059438315, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
+  - {fileID: 3247205805265120649, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
-  - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
+  - {fileID: 3247205805265120649, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   references:
     version: 1
     00000000:

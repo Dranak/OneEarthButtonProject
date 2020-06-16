@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LD1
   m_EditorClassIdentifier: 
   storedBlocs:
-  - blocDifficulty: 2
-    blocName: LD1
+  - blocName: LD1
+    blocDifficulty: 2
     blockArea: 0
     blocCount: 17
     blocLength: 87
@@ -42,10 +42,10 @@ MonoBehaviour:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
   - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-  - {fileID: 3377678760059438315, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
+  - {fileID: 3247205805265120649, guid: fc634049c5fa15942b2fa9cdc8ce1818, type: 3}
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
-  - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
+  - {fileID: 3247205805265120649, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
   references:
     version: 1
     00000000:
