@@ -23,10 +23,10 @@ public class GameLogin : MonoBehaviour
 
             // obstacle info
             { "obstacleName", _obsParams.Tag},
-            { "obstacle Y Pos", _obstacle.transform.position.y }
+            { "obstacle Y Pos", _obstacle.transform.position.y },
 
             // general info stacked
-            //{ "Death Info", new DeathInfo(playerPos, obstaclePos, _obstacle.Size, playerSpeed, _player.playingBlocName, _obsParams.Tag, _obsParams.BodyRotation, _player.Score) }
+            { "Death Info", new DeathInfo(playerPos, obstaclePos, _obstacle.Size, playerSpeed, _player.playingBlocName, _obsParams.Tag, _obsParams.BodyRotation, _player.Score) }
         });
     }
 
