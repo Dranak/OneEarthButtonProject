@@ -42,6 +42,14 @@ public class UiManager : MonoBehaviour
         {
             DeathMenu.gameObject.SetActive(false);
         }
+        if (GameMenu.gameObject.activeInHierarchy)
+        {
+            GameMenu.gameObject.SetActive(false);
+        }
+        if (MainMenu.gameObject.activeInHierarchy)
+        {
+            GameMenu.gameObject.SetActive(false);
+        }
 
         MainMenu.group.alpha = 0; // hide main menu
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -79,6 +87,10 @@ public class UiManager : MonoBehaviour
 
     public void Death()
     {
+        if (GameMenu.gameObject.activeInHierarchy)
+        {
+            GameMenu.gameObject.SetActive(false);
+        }
         DeathMenu.gameObject.SetActive(true);
     }
 
