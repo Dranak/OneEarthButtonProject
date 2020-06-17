@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private float _chronosUndergroundBonus = 0f;
     public int StreakEggShell { get; set; } = 0;
-    private int _lastIndexEggShell;
+    public int LastIndexEggShell { get; set; }
     [Space]
 
     [Header("Motion")]
@@ -157,10 +157,10 @@ public class Player : MonoBehaviour
         //}
         else if (collectible.collectibleParameters.EggShellIndex > -1)
         {
-            if (collectible.collectibleParameters.EggShellIndex != _lastIndexEggShell)
+            if (collectible.collectibleParameters.EggShellIndex != LastIndexEggShell)
             {
                 StreakEggShell = 0;
-                _lastIndexEggShell = collectible.collectibleParameters.EggShellIndex;
+                LastIndexEggShell = collectible.collectibleParameters.EggShellIndex;
             }
             ++StreakEggShell;
 

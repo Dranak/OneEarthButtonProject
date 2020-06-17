@@ -54,7 +54,7 @@ public class WormHead : WormBody
     {
         base.Awake();
         AllFaces = GetComponentsInChildren<Face>().ToList();
-     
+
         _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
         AllFaces.Where(f => f != _lastFace).ToList().ForEach(f => f.gameObject.SetActive(false));
     }
@@ -222,17 +222,23 @@ public class WormHead : WormBody
         if (collider.CompareTag("Collectible"))
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
-            if (_lastNameCollectible != collectible.name)
+
+            if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == GameManager.Instance.Player.LastIndexEggShell)
+            {
+                BlocManager.Instance.PoolOut(collectible);
+
+            }
+            else
             {
                 _lastNameCollectible = collectible.name;
                 BlocManager.Instance.PoolOut(collectible);
                 Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
                 CallBackPoint(collectible);
-                
             }
           
 
-            
+
+
         }
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
@@ -271,12 +277,12 @@ public class WormHead : WormBody
 
 
             }
-           
+
         }
         else
         {
             _chronoFaceDisplayed += Time.deltaTime;
-            if(_chronoFaceDisplayed>= TimeFaceDisplayed)
+            if (_chronoFaceDisplayed >= TimeFaceDisplayed)
             {
                 if (_lastFace.FaceType == FeelType.Fear)
                 {
