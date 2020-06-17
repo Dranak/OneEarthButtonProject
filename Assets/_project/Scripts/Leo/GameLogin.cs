@@ -7,10 +7,12 @@ public class GameLogin : MonoBehaviour
     public void OnGameOver(Player _player, Obstacle _obstacle)
     {
         var _obsParams = (ObstacleSpawnable)_obstacle.GetSpawnable();
+        var obstaclePos = (Vector2)_obstacle.transform.position;
 
         var playerPos = (Vector2)_player.WormHead.transform.position;
-        var playerSpeed = _player.WormHead.Rigidbody.velocity;
-        var obstaclePos = (Vector2)_obstacle.transform.position;
+        var playerLateralSpeed = _player.WormHead.Speed;
+        var warpedAngle = _player.WormHead.transform.rotation.eulerAngles.z;
+        if (warpedAngle > 180) warpedAngle -= 360;
 
         Analytics.CustomEvent("gameOver", new Dictionary<string, object>
         {
@@ -19,13 +21,15 @@ public class GameLogin : MonoBehaviour
             { "ecoPoints", _player.Score },
             { "playerXPosition",  playerPos.x},
             { "playerYPosition", playerPos.y},
-            { "lateralSpeed", playerSpeed.x}, // won't work?
+            { "lateralSpeed", playerLateralSpeed },
+            { "player Rotation",  warpedAngle},
 
             // obstacle info
             { "obstacleName", _obsParams.Tag},
+            { "obstacle Y Pos", _obstacle.transform.position.y },
 
             // general info stacked
-            { "Death Info", new DeathInfo(playerPos, obstaclePos, _obstacle.Size, playerSpeed, _player.playingBlocName, _obsParams.Tag, _obsParams.BodyRotation, _player.Score) }
+            { "Death Info", new DeathInfo(playerPos, obstaclePos, _obstacle.Size, warpedAngle, playerLateralSpeed, _player.playingBlocName, _obsParams.Tag, _obsParams.BodyRotation, _player.Score) }
         });
     }
 
@@ -42,19 +46,20 @@ public class GameLogin : MonoBehaviour
 
 struct DeathInfo
 {
-    public DeathInfo(Vector2 plyPos, Vector2 obsPos, Vector2 obsSize, Vector2 speed, string bloc, string obsName, float obsRot, int _score)
+    public DeathInfo(Vector2 plyPos, Vector2 obsPos, Vector2 obsSize, float rotation, float latSpeed, string bloc, string obsName, float obsRot, int _score)
     {
         playerPosition = plyPos;
         obstaclePos = obsPos;
         obstacleSize = obsSize;
-        speedVector = speed;
+        playerRotation = rotation;
+        lateralSpeed = latSpeed;
         blocName = bloc;
         obstacleName = obsName;
         obstacleRotation = obsRot;
         score = _score;
     }
-    Vector2 playerPosition, obstaclePos, obstacleSize, speedVector;
+    Vector2 playerPosition, obstaclePos, obstacleSize;
     string blocName, obstacleName;
-    float obstacleRotation;
+    float playerRotation, lateralSpeed, obstacleRotation;
     int score;
 }
