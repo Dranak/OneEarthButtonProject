@@ -2903,6 +2903,46 @@ PrefabInstance:
       propertyPath: TimeDisplayFeedBackScore
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].time
+      value: 0.7313843
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].value
+      value: 0.9976349
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].time
+      value: 0.44318637
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].value
+      value: 0.49850178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: SpeedRising
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: SpeedDig
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].time
+      value: 0.7374878
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].value
+      value: 0.9976425
+      objectReference: {fileID: 0}
     - target: {fileID: 6017596612072157082, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_IsActive
