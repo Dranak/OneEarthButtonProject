@@ -2882,6 +2882,11 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[5].y
       value: 5.75
       objectReference: {fileID: 0}
+    - target: {fileID: 6017596611329487562, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6017596611329487563, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Sprite
