@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         GainPointUnderground();
+        Debug.LogWarning("Actual worm speed: " + WormHead.Rigidbody.velocity.x);
         UiManager.Instance.GameMenu.ScoreText.text = Score.ToString();
     }
 
