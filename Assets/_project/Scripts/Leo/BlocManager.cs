@@ -111,21 +111,19 @@ public class BlocManager : MonoBehaviour
 
     List<GameObject> wpPool;
     int currentBlocAreaIdx = 0;
-    bool hasChosenArea = false;
 
     public void ChooseBloc(int prespacing = 6) // spacing is 6 by default
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
 
+        var previousBlocDiff = currentBlocDiff;
         currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 1000) % (allBlocsRanked.Count));
-        if (currentBlocDiff == 0)
+        if (previousBlocDiff != currentBlocDiff && currentBlocDiff == 0)
         {
-            if (!hasChosenArea)
-                WallpaperChoice(++currentBlocAreaIdx % 2);
+            currentBlocAreaIdx = (currentBlocAreaIdx + 1) % 2;
+            WallpaperChoice(currentBlocAreaIdx);
         }
-        else
-            hasChosenArea = false;
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
 
@@ -172,7 +170,6 @@ public class BlocManager : MonoBehaviour
         {
             wpPool = wpPoolLight;
         }
-        hasChosenArea = true;
     }
 
     void SpawnablesSpawn(in float posX) // per WP spawnables spawn
@@ -567,7 +564,7 @@ public class BlocManager : MonoBehaviour
         PoolOut(toUnpool.parent.gameObject);
         GameObject pooledIn;
         currentWPMax += 6;
-        PoolIn(ref wpPoolDark, Vector3.right * currentWPMax, out pooledIn, transform);
+        PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
         // Also pool in background objects
         WPObjects(in currentWPMax);
         // Also pool in spawnables
