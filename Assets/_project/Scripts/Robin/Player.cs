@@ -34,6 +34,14 @@ public class Player : MonoBehaviour
     public int LastIndexEggShell { get; set; }
     [Space]
 
+    [Header("Level System")]
+    public TextAsset LevelData;
+    
+    public int CurrentLevelPlayer { get;set; }
+    public int NeededXp { get; set; }
+    public int NextLevelPlayer { get;set; }
+    public int CurrentXp { get;set; }
+
     [Header("Motion")]
     [Space]
 
