@@ -49,7 +49,7 @@ MonoBehaviour:
   FieldOfView: 10
   TimeFaceDisplayed: 0.5
   ScoreTextFB: {fileID: 6266745551958645295}
-  TimeDisplayFeedBackScore: 0.1
+  TimeDisplayFeedBackScore: 0.25
   StepDistanceScoreIncrease: 100
   UndergroundBonus: 1
   MaxBonusUndergroundBonus: 10
@@ -60,7 +60,7 @@ MonoBehaviour:
   TimeToIncreaseSpeed: 5
   MaxSpeed: 17
   ValueIncreaseSpeed: 0.8
-  SpeedDig: 0.5
+  SpeedDig: 0.48
   AccelerationTimeDig: 0.6
   AccelerationCurveDig:
     serializedVersion: 2
@@ -75,8 +75,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.7374878
+      value: 0.9976425
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SpeedRising: 0.8
+  SpeedRising: 0.77
   AccelerationTimeRising: 0.8
   AccelerationCurveRising:
     serializedVersion: 2
@@ -101,8 +101,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.49807224
-      value: 0.49378678
+      time: 0.44318637
+      value: 0.49850178
       inSlope: 2.2052038
       outSlope: 2.2052038
       tangentMode: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.21636876
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.7313843
+      value: 0.9976349
       inSlope: 0.016124343
       outSlope: 0.016124343
       tangentMode: 0
