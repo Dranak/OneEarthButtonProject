@@ -8,22 +8,18 @@ public class BlocManager : MonoBehaviour
 
     [Header("Blocs")]
 
-    [SerializeField]
-    Bloc.BlocArea startingBlocKind = 0;
-    public List<GameObject> wpPool;
-    [SerializeField]
-    GameObject blocPoolerPrefab;
+    [SerializeField] Bloc.BlocArea startingBlocKind = 0;
+    [SerializeField] Transform wpDarkT, wpLightT;
+    [SerializeField, HideInInspector] List<GameObject> wpPoolDark, wpPoolLight;
+    [SerializeField] GameObject blocPoolerPrefab;
 
     [Space]
     [Header("Obstacles")]
 
-    [SerializeField]
-    PoolersCreator spawnablesPools; // spawnables pools parent
-    [SerializeField, HideInInspector]
-    List<GameObject> cansPool, bottlesPool; // used only for the dictionary
+    [SerializeField] PoolersCreator spawnablesPools; // spawnables pools parent
+    [SerializeField, HideInInspector] List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
-    [SerializeField]
-    Transform spawnablesAnchor;
+    [SerializeField] Transform spawnablesAnchor;
 
     public Transform backTreesAnchor, backRocksAnchor, backBushesAnchor;
     [SerializeField, HideInInspector] List<GameObject> backTreesPool, backRocksPool, backBushesPool;
@@ -43,7 +39,9 @@ public class BlocManager : MonoBehaviour
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
-            currentWPMax = (int)wpPool[wpPool.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
+            AddToPool(wpDarkT, ref wpPoolDark, true, false);
+            AddToPool(wpLightT, ref wpPoolLight, false, false);
+            currentWPMax = (int)wpPoolDark[wpPoolDark.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
             currentBlocMax = startingBlocMin;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             RankBlocs();
@@ -97,6 +95,7 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
+        WallpaperChoice(0);
         ChooseBloc(0);
         GameManager.Instance.Player.playingBlocName = randomBloc.blocName;
         //NewBloc(); // create and siplay a whole bloc at once // LEGACY
@@ -110,12 +109,23 @@ public class BlocManager : MonoBehaviour
     List<Spawnable> randomizedSortedBloc = null;
     int currentBlocDiff = 0;
 
+    List<GameObject> wpPool;
+    int currentBlocAreaIdx = 0;
+    bool hasChosenArea = false;
+
     public void ChooseBloc(int prespacing = 6) // spacing is 6 by default
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
 
         currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 1000) % (allBlocsRanked.Count));
+        if (currentBlocDiff == 0)
+        {
+            if (!hasChosenArea)
+                WallpaperChoice(++currentBlocAreaIdx % 2);
+        }
+        else
+            hasChosenArea = false;
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
 
@@ -151,6 +161,18 @@ public class BlocManager : MonoBehaviour
 
         // spawn pooler trigger to reset the egg count?
         Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
+    }
+    void WallpaperChoice(int choiceIndex)
+    {
+        if (choiceIndex == 0)
+        {
+            wpPool = wpPoolDark;
+        }
+        else if (choiceIndex == 1)
+        {
+            wpPool = wpPoolLight;
+        }
+        hasChosenArea = true;
     }
 
     void SpawnablesSpawn(in float posX) // per WP spawnables spawn
@@ -545,7 +567,7 @@ public class BlocManager : MonoBehaviour
         PoolOut(toUnpool.parent.gameObject);
         GameObject pooledIn;
         currentWPMax += 6;
-        PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
+        PoolIn(ref wpPoolDark, Vector3.right * currentWPMax, out pooledIn, transform);
         // Also pool in background objects
         WPObjects(in currentWPMax);
         // Also pool in spawnables
