@@ -18,10 +18,9 @@ public class Bloc
     }
     public enum BlocArea
     {
-        COUNTRY = 0,
-        TOWN,
-        COUNTOWN,
-        TOWNTRY
+        GLOBAL = 0,
+        FOREST,
+        COUNTRY
     }
 
     public string blocName;
