@@ -586,6 +586,16 @@ public class BlocManager : MonoBehaviour
 
     void WPTrees(in int thisWPX)
     {
+        switch (currentBlocAreaIdx)
+        {
+            case 0:
+
+                break;
+            case 1:
+                
+                break;
+        }
+
         int objectCount = Random.Range(2, 5);
         List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
         List<GameObject> pooledInList = new List<GameObject>();
