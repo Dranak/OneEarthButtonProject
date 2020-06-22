@@ -578,7 +578,7 @@ public class BlocManager : MonoBehaviour
     void WPObjects(in int thisWPX)
     {
         WPTrees(thisWPX);
-        if (Random.Range(0, 2) == 0)
+        if (currentBlocAreaIdx == 0 && Random.Range(0, 2) == 0) // Rocks in forest only, 50% of time
             WPRocks(thisWPX);
         if (Random.Range(0, 2) == 0)
             WPBushes(thisWPX);
@@ -586,19 +586,21 @@ public class BlocManager : MonoBehaviour
 
     void WPTrees(in int thisWPX)
     {
+        int objectCount = -1;
+        List<int> xPoss = null;
+        List<GameObject> pooledInList = new List<GameObject>();
+
         switch (currentBlocAreaIdx)
         {
-            case 0:
-
+            case 0: // Forest
+                objectCount = Random.Range(2, 5);
+                xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
                 break;
-            case 1:
-                
+            case 1: // Country
+                objectCount = Random.Range(1, 4);
+                xPoss = new List<int> { 1, 3, 5 };
                 break;
         }
-
-        int objectCount = Random.Range(2, 5);
-        List<int> xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
-        List<GameObject> pooledInList = new List<GameObject>();
 
         for (int i = 0; i < objectCount; ++i)
         {
@@ -616,14 +618,19 @@ public class BlocManager : MonoBehaviour
         {
             var renderer = pooledIn.GetComponent<SpriteRenderer>();
 
-            if (pooledIn.transform.localPosition.x % 2 != 0) // put to back if even
+            if (pooledIn.transform.localPosition.x % 2 != 0 && currentBlocAreaIdx == 0) // put to back if even
                 isBack = true;
 
             var thisFrontPos = pooledIn.transform.position.x;
             if (isBack) // second or every second object => goes to the back
             {
                 renderer.sortingOrder = --previousBackSo;
-                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+                if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
+                else
+                {
+                    renderer.color = Color.white;
+                    // load far tree texture
+                }
             }
             else // front obj
             {
@@ -637,7 +644,8 @@ public class BlocManager : MonoBehaviour
                     {
                         previousFrontSo = 3; // reset front objects sorting order
                         renderer.sortingOrder = --previousBackSo;
-                        renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+                        if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
+                        // load far tree texture
                         continue;
                     }
                 }
