@@ -118,7 +118,7 @@ public class BlocManager : MonoBehaviour
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
 
         var previousBlocDiff = currentBlocDiff;
-        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 1000) % (allBlocsRanked.Count));
+        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 500) % (allBlocsRanked.Count));
         if (previousBlocDiff != currentBlocDiff && currentBlocDiff == 0)
         {
             currentBlocAreaIdx = (currentBlocAreaIdx + 1) % 2;
