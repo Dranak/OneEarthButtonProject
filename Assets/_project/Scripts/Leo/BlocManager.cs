@@ -112,7 +112,7 @@ public class BlocManager : MonoBehaviour
     List<GameObject> wpPool;
     int currentBlocAreaIdx = 0;
 
-    public void ChooseBloc(int prespacing = 6) // spacing is 6 by default
+    public void ChooseBloc(int prespacing = 8) // spacing is 8 by default
     {
         currentBlocMax += prespacing; // add the spacing before this bloc
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width

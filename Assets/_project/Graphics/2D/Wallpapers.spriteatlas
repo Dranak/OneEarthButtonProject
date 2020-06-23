@@ -54,9 +54,15 @@ SpriteAtlas:
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 6b10880831a0d154da7b6e76cbc0a3ed, type: 3}
-    - {fileID: 2800000, guid: f303c4611b0b7e640b0e30b61e4b9350, type: 3}
-    totalSpriteSurfaceArea: 4471200
+    - {fileID: -2219185653765410688, guid: 6b10880831a0d154da7b6e76cbc0a3ed, type: 3}
+    - {fileID: -4699232639020960709, guid: 6b10880831a0d154da7b6e76cbc0a3ed, type: 3}
+    - {fileID: 2834935465363365892, guid: f303c4611b0b7e640b0e30b61e4b9350, type: 3}
+    - {fileID: 4620326022785713166, guid: f303c4611b0b7e640b0e30b61e4b9350, type: 3}
+    - {fileID: -8356574619916222909, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
+    - {fileID: -2376628659512759953, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
+    - {fileID: -7602822217062503205, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+    - {fileID: -2033436180783701622, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+    totalSpriteSurfaceArea: 8942400
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -64,10 +70,18 @@ SpriteAtlas:
   - {fileID: 2834935465363365892, guid: f303c4611b0b7e640b0e30b61e4b9350, type: 3}
   - {fileID: -2219185653765410688, guid: 6b10880831a0d154da7b6e76cbc0a3ed, type: 3}
   - {fileID: -4699232639020960709, guid: 6b10880831a0d154da7b6e76cbc0a3ed, type: 3}
+  - {fileID: -2033436180783701622, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+  - {fileID: -7602822217062503205, guid: 706be2b8334944e41ba1b39246935e89, type: 3}
+  - {fileID: -8356574619916222909, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
+  - {fileID: -2376628659512759953, guid: b6bf95d957c4c624894f38bf7d4513f3, type: 3}
   m_PackedSpriteNamesToIndex:
   - Wallpaper_Clear_2_1
   - Wallpaper_Clear_2_0
   - Wallpaper_Clear_1_0
   - Wallpaper_Clear_1_1
+  - Wallpaper_Ver_2_1
+  - Wallpaper_Ver_2_0
+  - Wallpaper_Ver_1_0
+  - Wallpaper_Ver_1_1
   m_Tag: Wallpapers
   m_IsVariant: 0
