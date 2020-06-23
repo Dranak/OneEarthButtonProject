@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4088682344488346274
+--- !u!1001 &528032497286018459
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,12 +10,12 @@ PrefabInstance:
     - target: {fileID: 1476085987651857263, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_Offset.x
-      value: 3.26
+      value: 1.85
       objectReference: {fileID: 0}
-    - target: {fileID: 1476085987651857263, guid: d72430b0b91a28849994b8638487fe83,
+    - target: {fileID: 4197432646331664004, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5
+      propertyPath: parallaxLevel
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4935133829767972908, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 4935133829767972908, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4935133829767972908, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
@@ -75,25 +75,18 @@ PrefabInstance:
     - target: {fileID: 4936404182209830018, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_Name
-      value: BackRock
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779026040954923443, guid: d72430b0b91a28849994b8638487fe83,
-        type: 3}
-      propertyPath: m_TagString
-      value: BackRock
+      value: BackTree_Far
       objectReference: {fileID: 0}
     - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d4a6eb0325129eb4cbac852efa6ebd1b,
+      objectReference: {fileID: 21300000, guid: 8ccde6cec5e8660469fd0077607144ec,
         type: 3}
     - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1961032916919041515, guid: d72430b0b91a28849994b8638487fe83, type: 3}
-    - {fileID: 4197432646331664004, guid: d72430b0b91a28849994b8638487fe83, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d72430b0b91a28849994b8638487fe83, type: 3}

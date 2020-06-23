@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4935133829767972908}
   - component: {fileID: 6023274422533407824}
+  - component: {fileID: 4197432646331664004}
   m_Layer: 0
   m_Name: BackTree
   m_TagString: Untagged
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4197432646331664004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936404182209830018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60e0a2479a41ab47a6a9b57c8391c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteR: {fileID: 6023274422533407824}
+  parallaxLevel: 1
 --- !u!1 &5779026040954923443
 GameObject:
   m_ObjectHideFlags: 0

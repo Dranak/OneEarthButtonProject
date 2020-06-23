@@ -14,15 +14,15 @@ public class BlocManager : MonoBehaviour
     [SerializeField] GameObject blocPoolerPrefab;
 
     [Space]
-    [Header("Obstacles")]
+    [Header("Spawnables")]
 
     [SerializeField] PoolersCreator spawnablesPools; // spawnables pools parent
     [SerializeField, HideInInspector] List<GameObject> cansPool, bottlesPool; // used only for the dictionary
     Dictionary<Vector2, List<GameObject>> obstaclePoolsDic = new Dictionary<Vector2, List<GameObject>>(); // only for total randomizer
     [SerializeField] Transform spawnablesAnchor;
 
-    public Transform backTreesAnchor, backRocksAnchor, backBushesAnchor;
-    [SerializeField, HideInInspector] List<GameObject> backTreesPool, backRocksPool, backBushesPool;
+    public Transform backTreesAnchor, backRocksAnchor, backBushesAnchor, backTreesFarAnchor;
+    [SerializeField, HideInInspector] List<GameObject> backTreesPool, backRocksPool, backBushesPool, backTreesFarPool;
 
     // bloc generation
     public int startingBlocMin { get; private set; } = 33;
@@ -51,9 +51,12 @@ public class BlocManager : MonoBehaviour
             // add rocks to pool
             AddToPool(backRocksAnchor, ref backRocksPool, false, false);
             AddToPool(spawnablesAnchor, ref backRocksPool, true, false, "Rock"); // back objects in the Spawnables on start are also part of the pool
-            // add bushed to pool
+            // add bushes to pool
             AddToPool(backBushesAnchor, ref backBushesPool, false, false);
             AddToPool(spawnablesAnchor, ref backBushesPool, true, false, "Bush"); // back objects in the Spawnables on start are also part of the pool
+            // add far trees to pool
+            AddToPool(backTreesFarAnchor, ref backTreesFarPool, false, false);
+            AddToPool(spawnablesAnchor, ref backTreesFarPool, true, false, "Far"); // back objects in the Spawnables on start are also part of the pool
 
             Instance = this;
         }
@@ -575,13 +578,16 @@ public class BlocManager : MonoBehaviour
     int previousFrontSo = 3;
     int previousBackSo = -1;
     float previousFrontPos = 0;
+
     void WPObjects(in int thisWPX)
     {
         WPTrees(thisWPX);
         if (currentBlocAreaIdx == 0 && Random.Range(0, 2) == 0) // Rocks in forest only, 50% of time
-            WPRocks(thisWPX);
-        if (Random.Range(0, 2) == 0)
-            WPBushes(thisWPX);
+            WPSingle(thisWPX, ref backRocksPool, 0, 0.5f);
+        if (Random.Range(0, 2) == 0)                            // Bushes, 50% of the time
+            WPSingle(thisWPX, ref backBushesPool, 5, 0.15f);
+        if (currentBlocAreaIdx == 1 && Random.Range(0, 2) == 0) // far trees only in country, 50% of the time
+            WPSingle(thisWPX, ref backTreesFarPool, -4, 0.3f);
     }
 
     void WPTrees(in int thisWPX)
@@ -597,7 +603,7 @@ public class BlocManager : MonoBehaviour
                 xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
                 break;
             case 1: // Country
-                objectCount = Random.Range(1, 4);
+                objectCount = Random.Range(1, 3);
                 xPoss = new List<int> { 1, 3, 5 };
                 break;
         }
@@ -625,12 +631,7 @@ public class BlocManager : MonoBehaviour
             if (isBack) // second or every second object => goes to the back
             {
                 renderer.sortingOrder = --previousBackSo;
-                if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
-                else
-                {
-                    renderer.color = Color.white;
-                    // load far tree texture
-                }
+                renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
             }
             else // front obj
             {
@@ -644,8 +645,7 @@ public class BlocManager : MonoBehaviour
                     {
                         previousFrontSo = 3; // reset front objects sorting order
                         renderer.sortingOrder = --previousBackSo;
-                        if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness
-                        // load far tree texture
+                        if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
                         continue;
                     }
                 }
@@ -664,34 +664,16 @@ public class BlocManager : MonoBehaviour
         }
     }
 
-    float previousRockPos = 0;
-    void WPRocks(in int thisWPX)
+    void WPSingle(in int thisWPX, ref List<GameObject> pool, in int sortingOrder, in float verticalOffset = 0)
     {
         GameObject pooledIn;
-        WPSingle(thisWPX, ref backRocksPool, out pooledIn, ref previousRockPos, 0);
-        pooledIn.transform.localPosition += Vector3.up * 0.5f;
-    }
 
-    float previousBushPos = 0;
-    void WPBushes(in int thisWPX)
-    {
-        GameObject pooledIn;
-        WPSingle(thisWPX, ref backBushesPool, out pooledIn, ref previousBushPos, 5);
-        pooledIn.transform.localPosition += Vector3.up * 0.15f;
-    }
-
-    void WPSingle(in int thisWPX, ref List<GameObject> pool, out GameObject pooledIn, ref float previousObjPos, in int defaultSortingOrder)
-    {
         var thisX = Random.Range(0, 5);
         PoolIn(ref pool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+        pooledIn.transform.localPosition += Vector3.up * verticalOffset;
 
         var renderer = pooledIn.GetComponent<SpriteRenderer>();
-
-        var thisFrontPos = pooledIn.transform.position.x;
-        if (thisFrontPos < previousObjPos)
-            renderer.sortingOrder = defaultSortingOrder - 1;
-
-        previousObjPos = thisFrontPos + renderer.sprite.bounds.size.x;
+        renderer.sortingOrder = sortingOrder;
     }
 
     #endregion

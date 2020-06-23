@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class ObjectParallax : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] SpriteRenderer spriteR;
+    [SerializeField] int parallaxLevel;
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (spriteR.sortingOrder < 0)
+        {
+            transform.position += Vector3.right * parallaxLevel * (GameManager.Instance.Player.WormHead.Speed / 2000);
+        }
     }
 }
