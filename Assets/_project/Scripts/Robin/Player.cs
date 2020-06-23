@@ -70,7 +70,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         _currentStateDistance = StepDistanceScoreIncrease;
+        //PlayerPrefs.DeleteAll();
         SetupWorm();
+        LoadData();
 
     }
 
@@ -228,6 +230,10 @@ public class Player : MonoBehaviour
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         CurrentXp = PlayerPrefs.GetInt("CurrentXp", 0);
         CurrentLevelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
+        Debug.Log("HighScore " + HighScore);
+        Debug.Log("CurrentXp " + CurrentXp);
+        Debug.Log("CurrentLevelPlayer " + CurrentLevelPlayer);
+        
         LoadDataFromFile();
 
 
@@ -239,10 +245,13 @@ public class Player : MonoBehaviour
         string contentFile = LevelData.text;
         foreach (string line in contentFile.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
         {
-            string splitLine = line.Split(',').ToString();
-            if (splitLine[0] == CurrentLevelPlayer)
+            Debug.Log("Line " + line);
+            string[] splitLine = line.Split(',');
+            Debug.Log("splitLine " + splitLine);
+            if (splitLine[0] == CurrentLevelPlayer.ToString())
             {
-                NeededXp = splitLine[1];
+                NeededXp = Int32.Parse( splitLine[1]);
+                Debug.Log("NeededXp " + NeededXp);
                 break;
             }
         }
@@ -251,6 +260,6 @@ public class Player : MonoBehaviour
     public void SaveData()
     {
         PlayerPrefs.SetInt("CurrentXp", CurrentXp);
-        PlayerPrefs.SetInt("LevelPlayer", NextLevelPlayer);
+        PlayerPrefs.SetInt("LevelPlayer", CurrentLevelPlayer);
     }
 }

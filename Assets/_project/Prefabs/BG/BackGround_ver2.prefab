@@ -80,7 +80,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8aa6fba80a8398f4298941bc74fbf2ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,8 +98,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1131974779
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2376628659512759953, guid: b6bf95d957c4c624894f38bf7d4513f3,
     type: 3}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4163451659451614815}
   - component: {fileID: 3511199194501970453}
   - component: {fileID: 6358639851623697879}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8aa6fba80a8398f4298941bc74fbf2ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -287,8 +287,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1339103087
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -8356574619916222909, guid: b6bf95d957c4c624894f38bf7d4513f3,
     type: 3}
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095891204209767739}
   - component: {fileID: 1278765860472518738}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: BedRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 6967875667472214676}
   - component: {fileID: 3139065582125163049}
   - component: {fileID: 219867485488605935}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: UnpoolerTrigger
   m_TagString: WPUnPoolerTrigger
   m_Icon: {fileID: 0}

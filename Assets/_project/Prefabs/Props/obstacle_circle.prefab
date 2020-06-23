@@ -241,6 +241,16 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 4.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6431744474850476907, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1131974779
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431744474850476907, guid: fe1ce22affbca9d43822e666f1c921be,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8768591440234397493, guid: fe1ce22affbca9d43822e666f1c921be,
         type: 3}
       propertyPath: m_Offset.x

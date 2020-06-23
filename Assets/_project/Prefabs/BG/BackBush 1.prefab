@@ -77,10 +77,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackBush 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4936404182209830018, guid: d72430b0b91a28849994b8638487fe83,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5779026040954923443, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_TagString
       value: BackBush
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779026040954923443, guid: d72430b0b91a28849994b8638487fe83,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
@@ -92,6 +102,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1339103087
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1961032916919041515, guid: d72430b0b91a28849994b8638487fe83, type: 3}

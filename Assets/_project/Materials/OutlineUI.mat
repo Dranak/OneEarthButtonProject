@@ -10,7 +10,7 @@ Material:
   m_Name: OutlineUI
   m_Shader: {fileID: -6465566751694194690, guid: e92d9625851c6cb49bea0b7081efad13,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_30714F30:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_448199B9:
         m_Texture: {fileID: 2800000, guid: dcce0a3e1ba94f44ba61bbae74e021ef, type: 3}
         m_Scale: {x: 1, y: 1}

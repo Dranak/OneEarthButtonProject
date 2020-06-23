@@ -26,7 +26,7 @@ public class SkyManager : MonoBehaviour
             _chronoCycle = 0f;
         }
         float timeOfDay = Mathf.Lerp(0f, 1f, Mathf.PingPong(scaleTime, 1f));
-        Debug.Log("TimeOfDay " + timeOfDay);
+        //Debug.Log("TimeOfDay " + timeOfDay);
         Sky.material.SetFloat("_TimeOfDay", timeOfDay);
         
     }

@@ -17,8 +17,9 @@ public class DeathMenu:MonoBehaviour
         PlayerPrefs.SetInt("HighScore", GameManager.Instance.Player.HighScore);
         int lastxp = GameManager.Instance.Player.CurrentXp;
         GameManager.Instance.Player.CurrentXp += GameManager.Instance.Player.Score;
+        Debug.Log("NeededXp: " + GameManager.Instance.Player.NeededXp);
         SetupFilling(lastxp / GameManager.Instance.Player.NeededXp);
-
+        Debug.Log("XP: " + GameManager.Instance.Player.CurrentXp);
         if(GameManager.Instance.Player.CurrentXp > GameManager.Instance.Player.NeededXp)
         {
             ++GameManager.Instance.Player.CurrentLevelPlayer;

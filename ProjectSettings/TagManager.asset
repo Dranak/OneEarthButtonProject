@@ -29,8 +29,8 @@ TagManager:
   - Trail
   - CreatorTerrain
   - UnPoolTrigger
-  - 
-  - 
+  - Exterior
+  - UnderGround
   - 
   - 
   - 
@@ -49,4 +49,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Exterior
+    uniqueID: 2955864209
+    locked: 0
+  - name: UnderGround
+    uniqueID: 3162992517
     locked: 0
