@@ -25,7 +25,7 @@ public class DeathMenu:MonoBehaviour
             GameManager.Instance.Player.CurrentXp = GameManager.Instance.Player.CurrentXp - GameManager.Instance.Player.NeededXp;
             GameManager.Instance.Player.LoadDataFromFile();
         }
-
+        GameManager.Instance.Player.SaveData();
     }
 
     void SetupFilling(float currentFilling)

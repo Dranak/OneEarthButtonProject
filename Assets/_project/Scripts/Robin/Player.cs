@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         GainPointUnderground();
-        Debug.LogWarning("Actual worm speed: " + WormHead.Rigidbody.velocity.x);
+        //Debug.LogWarning("Actual worm speed: " + WormHead.Rigidbody.velocity.x);
         UiManager.Instance.GameMenu.ScoreText.text = Score.ToString();
     }
 
@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
         string contentFile = LevelData.text;
         foreach (string line in contentFile.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
         {
-            string splitLine = line.Split(';').ToString();
+            string splitLine = line.Split(',').ToString();
             if (splitLine[0] == CurrentLevelPlayer)
             {
                 NeededXp = splitLine[1];
@@ -248,5 +248,9 @@ public class Player : MonoBehaviour
         }
     }
     
-
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("CurrentXp", CurrentXp);
+        PlayerPrefs.SetInt("LevelPlayer", NextLevelPlayer);
+    }
 }

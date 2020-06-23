@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Sky
+  m_Name: Sky
   m_Shader: {fileID: -6465566751694194690, guid: 7d491f11515c05847abced93d877f70f,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -25,11 +25,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_59D6FEAA: 0.26
+    - Vector1_59D6FEAA: 0.6
     - _TimeOfDay: 0
     m_Colors:
-    - Color_4448C529: {r: 0.3632075, g: 1, b: 0.9937646, a: 0}
-    - Color_ECF8ADFA: {r: 2.0771992, g: 0.8539598, b: 0, a: 0}
-    - Color_F90A8E1E: {r: 0.10600027, g: 0.03128337, b: 0.17924526, a: 0}
-    - Color_FE9D9CB1: {r: 0.6876557, g: 0.41304737, b: 0.9622641, a: 0}
-    - Vector2_F4C07454: {r: 0.5, g: 0, b: 0, a: 0}
+    - Color_4448C529: {r: 0.36470592, g: 0.93042946, b: 1, a: 0}
+    - Color_ECF8ADFA: {r: 3.7024722, g: 3.069752, b: 0, a: 0}
+    - Color_F90A8E1E: {r: 0.07652635, g: 0.0242969, b: 0.24528301, a: 0}
+    - Color_FE9D9CB1: {r: 0.043120332, g: 0.42485163, b: 0.5377358, a: 0}
+    - Vector2_F4C07454: {r: 0.5, g: 1.87, b: 0, a: 0}
