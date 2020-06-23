@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
 
     private float _currentStateDistance;
     public int Score { get; set; } = 0;
-
+    public int HighScore { get; set; }
     private float _chronosUndergroundBonus = 0f;
     public int StreakEggShell { get; set; } = 0;
     public int LastIndexEggShell { get; set; }
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
 
     [Header("Level System")]
     public TextAsset LevelData;
-    
+    public List<string> DataSplit { get; set; } = new List<string>();
     public int CurrentLevelPlayer { get;set; }
     public int NeededXp { get; set; }
     public int NextLevelPlayer { get;set; }
@@ -95,8 +96,6 @@ public class Player : MonoBehaviour
     }
 
 
-
-
     void GainPointUnderground()
     {
         if (WormHead.transform.position.y < WormHead.StartPosition.y)
@@ -146,6 +145,8 @@ public class Player : MonoBehaviour
         ++UiManager.Instance.SessionGameCount;
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
+        if (Score > HighScore)
+            HighScore = Score;
         GameManager.Instance.SetState(State.Dead);
     }
 
@@ -157,13 +158,7 @@ public class Player : MonoBehaviour
             Score += collectible.PointGain;
 
         }
-        //else if (collectible.collectibleParameters.EggShellIndex == -1 && StreakEggShell > 0)
-        //{
-        //    StreakEggShell = 0;
-
-        //    ScoreTextFB.text = "+" + collectible.PointGain.ToString();
-        //    Score += collectible.PointGain;
-        //}
+       
         else if (collectible.collectibleParameters.EggShellIndex > -1)
         {
             if (collectible.collectibleParameters.EggShellIndex != LastIndexEggShell)
@@ -227,6 +222,31 @@ public class Player : MonoBehaviour
             gameLogin.OnSessionOver(this);
     }
 
+
+    void LoadData()
+    {
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        CurrentXp = PlayerPrefs.GetInt("CurrentXp", 0);
+        CurrentLevelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
+        LoadDataFromFile();
+
+
+
+    }
+
+    public void LoadDataFromFile()
+    {
+        string contentFile = LevelData.text;
+        foreach (string line in contentFile.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
+        {
+            string splitLine = line.Split(';').ToString();
+            if (splitLine[0] == CurrentLevelPlayer)
+            {
+                NeededXp = splitLine[1];
+                break;
+            }
+        }
+    }
     
 
 }

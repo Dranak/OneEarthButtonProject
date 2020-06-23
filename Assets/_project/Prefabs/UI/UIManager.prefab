@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef565bd7fe2e17a48b972e9761a88b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FillingImage: {fileID: 0}
+  CurrentLevelText: {fileID: 0}
+  NextLevelText: {fileID: 0}
 --- !u!114 &5290652816156763704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,11 +278,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PreserveAspect
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6348476081728486084, guid: 39f43a3613450cd4cb1c0c77bf378932,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 6348476081728486084, guid: 39f43a3613450cd4cb1c0c77bf378932,
         type: 3}
@@ -799,7 +797,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5290652816685789336}
+      objectReference: {fileID: 5290652816156763704}
+    - target: {fileID: 1544809008846029542, guid: 2aefe5570ec09a14282b76e8cba00ca6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReplayFromPause
+      objectReference: {fileID: 0}
     - target: {fileID: 1544809008871100985, guid: 2aefe5570ec09a14282b76e8cba00ca6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -881,7 +884,7 @@ PrefabInstance:
     - target: {fileID: 2985658212587608545, guid: 03d8b4eaf3b97894cbd566e705524b2b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2985658212587608554, guid: 03d8b4eaf3b97894cbd566e705524b2b,
         type: 3}

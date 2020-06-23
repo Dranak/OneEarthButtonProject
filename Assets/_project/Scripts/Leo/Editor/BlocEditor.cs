@@ -35,6 +35,7 @@ public class BlocEditor : Editor
             gOffset = bc.currentBlocSelection.globalOffsetRange;
             rotOff = bc.currentBlocSelection.globalRotationOffsetRange;
             selectedBlocDifficulty = (int)bc.currentBlocSelection.blocDifficulty;
+            blocArea = bc.currentBlocSelection.blockArea;
         }
 
         GetSavedBlocsNames();
@@ -65,7 +66,7 @@ public class BlocEditor : Editor
 #region INSPECTOR_SETUP
 
     int selectedName = -1;
-    Bloc.BlocArea blocArea = Bloc.BlocArea.COUNTRY; // bloc area to store
+    Bloc.BlocArea blocArea = Bloc.BlocArea.GLOBAL; // bloc area to store
 
     Vector2 blocYRange;
     Vector4 gOffset;
@@ -321,6 +322,7 @@ public class BlocEditor : Editor
         gOffset = selectedBloc.globalOffsetRange;
         rotOff = selectedBloc.globalRotationOffsetRange;
         selectedBlocDifficulty = (int)selectedBloc.blocDifficulty;
+        blocArea = selectedBloc.blockArea;
     }
     void LoadSpawnablesFromBloc(Bloc selectedBloc)
     {
