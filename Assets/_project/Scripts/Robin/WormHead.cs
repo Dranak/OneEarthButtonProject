@@ -208,12 +208,34 @@ public class WormHead : WormBody
         _chronoIncreaseSpeed += Time.deltaTime;
     }
 
+    public enum Bonus
+    {
+        None = 0,
+        Shield,
+        Rage,
+        Small
+    }
+
+    [Header("Bonus")]
+    public Bonus currentBonus = 0;
+    public SpriteRenderer[] bonusRenderers;
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Death"))
         {
-            Debug.Log("Dead by " + collision.gameObject.name);
-            CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), GameManager.Instance.Player);
+            if (currentBonus == Bonus.Shield)
+            {
+                currentBonus = 0;
+            }
+            else if (currentBonus == Bonus.Rage)
+            {
+            }
+            else
+            {
+                Debug.Log("Dead by " + collision.gameObject.name);
+                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), GameManager.Instance.Player);
+            }
         }
     }
 
@@ -235,10 +257,22 @@ public class WormHead : WormBody
                 Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
                 CallBackPoint(collectible);
             }
-          
+        }
+        else if (collider.CompareTag("Bonus"))
+        {
+            switch (collider.gameObject.name)
+            {
+                case "shield":
+                    Destroy(collider.gameObject);
+                    ActivateBonus(Bonus.Shield);
+                    break;
+               case "pepper":
 
+                    break;
+                case "smaller":
 
-
+                    break;
+            }
         }
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
@@ -248,6 +282,20 @@ public class WormHead : WormBody
             GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more
         }
+    }
+
+    void ActivateBonus(Bonus bonus)
+    {
+        foreach (SpriteRenderer renderer in bonusRenderers)
+        {
+            renderer.enabled = false;
+        }
+
+        var bonusSprite = bonusRenderers[(int)bonus - 1];
+        if (bonusSprite)
+            bonusSprite.enabled = true;
+
+        currentBonus = bonus;
     }
 
     void Sight()

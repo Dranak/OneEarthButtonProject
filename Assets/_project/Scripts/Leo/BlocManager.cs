@@ -31,6 +31,11 @@ public class BlocManager : MonoBehaviour
     List<Bloc> allBlocs;
     List<List<Bloc>> allBlocsRanked;
 
+    [Space]
+    [Header("Bonuses")]
+
+    [SerializeField] GameObject[] BonusesPrefabs;
+
     private void Awake()
     {
         if (Instance == null)
@@ -125,7 +130,8 @@ public class BlocManager : MonoBehaviour
         if (previousBlocDiff != currentBlocDiff && currentBlocDiff == 0)
         {
             currentBlocAreaIdx = (currentBlocAreaIdx + 1) % 2;
-            WallpaperChoice(currentBlocAreaIdx);
+            WallpaperChoice(currentBlocAreaIdx); // get next wallpaper
+            Instantiate(BonusesPrefabs[Random.Range(0, BonusesPrefabs.Length)], new Vector2(currentBlocMax - prespacing / 2, 0), Quaternion.identity); // instantiate random Bonus
         }
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original

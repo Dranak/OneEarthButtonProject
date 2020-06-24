@@ -13,6 +13,7 @@ TagManager:
   - BackRock
   - BackTree
   - BackBush
+  - Bonus
   layers:
   - Default
   - TransparentFX
