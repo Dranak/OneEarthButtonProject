@@ -87,11 +87,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: BackRock
       objectReference: {fileID: 0}
-    - target: {fileID: 5779026040954923443, guid: d72430b0b91a28849994b8638487fe83,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6023274422533407824, guid: d72430b0b91a28849994b8638487fe83,
         type: 3}
       propertyPath: m_Sprite

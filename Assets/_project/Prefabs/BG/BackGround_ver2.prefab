@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3173959651725421524}
   - component: {fileID: 126233619321820941}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4163451659451614815}
   - component: {fileID: 3511199194501970453}
   - component: {fileID: 6358639851623697879}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095891204209767739}
   - component: {fileID: 1278765860472518738}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BedRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 6967875667472214676}
   - component: {fileID: 3139065582125163049}
   - component: {fileID: 219867485488605935}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: UnpoolerTrigger
   m_TagString: WPUnPoolerTrigger
   m_Icon: {fileID: 0}
