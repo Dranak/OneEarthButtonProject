@@ -7,6 +7,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: MinIntensity
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: DurationBlink
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: MaxIntensity
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_Color.r
+      value: 0.05724919
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 1.84
+      objectReference: {fileID: 0}
     - target: {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Name
