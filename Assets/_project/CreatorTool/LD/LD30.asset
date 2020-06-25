@@ -35,7 +35,8 @@ MonoBehaviour:
     - id: 10
     - id: 11
     - id: 12
-  obstaclesPrefabs:
+    - id: 13
+  spawnablesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
   - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
@@ -43,6 +44,9 @@ MonoBehaviour:
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
+  - {fileID: 876991834316367035, guid: c66de28affa03714daec9419dd31e4dc, type: 3}
+  - {fileID: 5907380261387261795, guid: ce161c3b802b2b34c8118521943f77cb, type: 3}
+  - {fileID: 5907380261387261795, guid: db1d45cb5ea2ae34c940970865e2e3d4, type: 3}
   references:
     version: 1
     00000000:
@@ -182,3 +186,12 @@ MonoBehaviour:
         BodyOffset: {x: 0.08166695, y: 0.9387833}
         RotationOffsetRange: {x: 0, y: 0}
         ObsKind: 0
+    0000000D:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: shield_bonus
+        BlocPosition: {x: 15, y: -6}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 7
+        EggShellIndex: -1
