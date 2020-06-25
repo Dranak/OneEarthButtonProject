@@ -273,7 +273,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectedBlocsScriptable
       value: 
-      objectReference: {fileID: 11400000, guid: d4768f3062c9c404a80515d811b3faf4,
+      objectReference: {fileID: 11400000, guid: 2f90d0c110600704295585d6b674ec51,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48793bd3335eeb845a49011e4c22bd5d, type: 3}
@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: Moon
       value: 
       objectReference: {fileID: 1177762057}
+    - target: {fileID: 1166075108, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+      propertyPath: DurationOfCycle
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2093122875, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 13.24
@@ -1209,37 +1213,37 @@ PrefabInstance:
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].time
-      value: 0.7313843
+      value: 0.9995488
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].value
-      value: 0.9976349
+      value: 0.9976368
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].time
-      value: 0.44318637
+      value: 0.41952
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].value
-      value: 0.55
+      value: 0.5570496
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: SpeedDig
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].time
-      value: 0.7374878
+      value: 1.0017499
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].value
-      value: 0.9976425
+      value: 0.9976426
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
@@ -1249,32 +1253,32 @@ PrefabInstance:
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].inSlope
-      value: -0.21897805
+      value: 0.4514499
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].outSlope
-      value: -0.21897805
+      value: 0.4514499
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[2].inWeight
-      value: 0.21148221
+      value: 0.18075505
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].inSlope
-      value: 3.1141121
+      value: 2.8875163
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].outSlope
-      value: 3.1141121
+      value: 2.8875163
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: AccelerationCurveRising.m_Curve.Array.data[1].outWeight
-      value: 0.13644816
+      value: 0.07862576
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
@@ -1284,7 +1288,27 @@ PrefabInstance:
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: SpeedRising
-      value: 0.6
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].inSlope
+      value: 2.1057103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].outSlope
+      value: 2.1057103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationCurveDig.m_Curve.Array.data[1].inWeight
+      value: 0.06134992
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: AccelerationTimeDig
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 6017596612072157082, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}

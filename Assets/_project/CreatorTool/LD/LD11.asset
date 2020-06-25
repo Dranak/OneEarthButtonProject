@@ -17,7 +17,7 @@ MonoBehaviour:
     blocDifficulty: 1
     blockArea: 0
     blocCount: 15
-    blocLength: 57
+    blocLength: 83
     blocYRange: {x: 0, y: 0}
     globalOffsetRange: {x: 0, y: 0, z: 0, w: 0}
     globalRotationOffsetRange: {x: 0, y: 0}
@@ -36,7 +36,8 @@ MonoBehaviour:
     - id: 11
     - id: 12
     - id: 13
-  obstaclesPrefabs:
+    - id: 14
+  spawnablesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
   - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
@@ -44,6 +45,9 @@ MonoBehaviour:
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
+  - {fileID: 876991834316367035, guid: c66de28affa03714daec9419dd31e4dc, type: 3}
+  - {fileID: 5907380261387261795, guid: ce161c3b802b2b34c8118521943f77cb, type: 3}
+  - {fileID: 5907380261387261795, guid: db1d45cb5ea2ae34c940970865e2e3d4, type: 3}
   references:
     version: 1
     00000000:
@@ -187,4 +191,13 @@ MonoBehaviour:
         OffsetXRange: {x: 0, y: 0}
         OffsetYRange: {x: 0, y: 0}
         SpawnablePrefabIndex: 6
+        EggShellIndex: -1
+    0000000E:
+      type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
+      data:
+        Tag: shield_bonus
+        BlocPosition: {x: 82, y: -5}
+        OffsetXRange: {x: 0, y: 0}
+        OffsetYRange: {x: 0, y: 0}
+        SpawnablePrefabIndex: 7
         EggShellIndex: -1

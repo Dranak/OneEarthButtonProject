@@ -136,8 +136,8 @@ MonoBehaviour:
   backRocksPool: []
   backBushesPool: []
   backTreesFarPool: []
-  bonusChance: 0.5
-  shieldBonusProba: 5
+  bonusChance: 0.3
+  shieldBonusProba: 4
   rageBonusProba: 1
   smallerBonusProba: 2
 --- !u!1 &5633448737910605982
@@ -6948,11 +6948,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5633448737910605980}
     m_Modifications:
-    - target: {fileID: 2241690315074600428, guid: d005505b5aa82d847aab30596d161dbc,
-        type: 3}
-      propertyPath: selectedBlocsScriptable
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6845382093940408361, guid: d005505b5aa82d847aab30596d161dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
