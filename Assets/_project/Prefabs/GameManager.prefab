@@ -136,8 +136,8 @@ MonoBehaviour:
   backRocksPool: []
   backBushesPool: []
   backTreesFarPool: []
-  bonusChance: 0.5
-  shieldBonusProba: 5
+  bonusChance: 0.3
+  shieldBonusProba: 4
   rageBonusProba: 1
   smallerBonusProba: 2
 --- !u!1 &5633448737910605982
