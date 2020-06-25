@@ -614,9 +614,9 @@ public class BlocManager : MonoBehaviour
         WPTrees(thisWPX);
         if (currentBlocAreaIdx == 0 && Random.Range(0, 2) == 0) // Rocks in forest only, 50% of time
             WPSingle(thisWPX, ref backRocksPool, 0, 0.5f);
-        if (Random.Range(0, 2) == 0)                            // Bushes, 50% of the time
+        if (Random.Range(0, 2 + 2 * currentBlocAreaIdx) == 0)   // Bushes, 50% of the time, 25% of the time in country
             WPSingle(thisWPX, ref backBushesPool, 5, 0.15f);
-        if (currentBlocAreaIdx == 1 && Random.Range(0, 2) == 0) // far trees only in country, 50% of the time
+        if (currentBlocAreaIdx == 1 && Random.Range(0, 3) == 0) // far trees only in country, 33% of the time
             WPSingle(thisWPX, ref backTreesFarPool, -4, 0.3f);
     }
 
@@ -633,7 +633,7 @@ public class BlocManager : MonoBehaviour
                 xPoss = new List<int> { 0, 1, 2, 3, 4, 5 };
                 break;
             case 1: // Country
-                objectCount = Random.Range(1, 3);
+                objectCount = Random.Range(0, 2);
                 xPoss = new List<int> { 1, 3, 5 };
                 break;
         }
@@ -665,30 +665,34 @@ public class BlocManager : MonoBehaviour
             }
             else // front obj
             {
-                previousBackSo = -1; // back sorting order reset to minimum
-
-                if (previousFrontPos > thisFrontPos) // this front obj touches the previous front obj
+                if (currentBlocAreaIdx == 0)
                 {
-                    if (previousFrontSo > 1)
-                        --previousFrontSo;
-                    else // bring to the back, too many objects are touching in a row (3)
+                    previousBackSo = -1; // back sorting order reset to minimum
+
+                    if (previousFrontPos > thisFrontPos) // this front obj touches the previous front obj
                     {
-                        previousFrontSo = 3; // reset front objects sorting order
-                        renderer.sortingOrder = --previousBackSo;
-                        if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
-                        continue;
+                        if (previousFrontSo > 1)
+                            --previousFrontSo;
+                        else // bring to the back, too many objects are touching in a row (3)
+                        {
+                            previousFrontSo = 3; // reset front objects sorting order
+                            renderer.sortingOrder = --previousBackSo;
+                            if (currentBlocAreaIdx == 0) renderer.color = Color.HSVToRGB(0, 0, 0.5f); // half brightness in the forest
+                            continue;
+                        }
                     }
+                    else
+                        previousFrontSo = 3; // reset front objects sorting order
+
+
+                    // calculating this sprite right bound world pos to be next previous Pos
+                    var sprite = renderer.sprite;
+                    var visibleWidth = (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width) * sprite.bounds.size.x; // visible width = world width of pixels within the sprite borders (green box in editor)
+                    previousFrontPos = thisFrontPos + visibleWidth;
                 }
-                else
-                    previousFrontSo = 3; // reset front objects sorting order
 
                 renderer.sortingOrder = previousFrontSo;
                 renderer.color = Color.white;
-
-                // calculating this sprite right bound world pos to be next previous Pos
-                var sprite = renderer.sprite;
-                var visibleWidth = (1 - (sprite.border.x + sprite.border.z) / sprite.texture.width) * sprite.bounds.size.x; // visible width = world width of pixels within the sprite borders (green box in editor)
-                previousFrontPos = thisFrontPos + visibleWidth;
             }
             isBack = !isBack;
         }
