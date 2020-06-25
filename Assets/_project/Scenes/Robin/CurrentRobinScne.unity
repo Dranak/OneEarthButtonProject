@@ -273,7 +273,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectedBlocsScriptable
       value: 
-      objectReference: {fileID: 11400000, guid: d4768f3062c9c404a80515d811b3faf4,
+      objectReference: {fileID: 11400000, guid: 2f90d0c110600704295585d6b674ec51,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48793bd3335eeb845a49011e4c22bd5d, type: 3}
