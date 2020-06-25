@@ -56,12 +56,13 @@ MonoBehaviour:
   EggShellStreakOne: 10
   EggShellStreakTwo: 50
   EggShellStreakThird: 100
+  LevelData: {fileID: 4900000, guid: 51e42f24284fe7e45b18823367edcf11, type: 3}
   SpeedRight: 8
   TimeToIncreaseSpeed: 5
   MaxSpeed: 17
   ValueIncreaseSpeed: 0.8
-  SpeedDig: 0.48
-  AccelerationTimeDig: 0.6
+  SpeedDig: 0.4
+  AccelerationTimeDig: 0.55
   AccelerationCurveDig:
     serializedVersion: 2
     m_Curve:
@@ -75,18 +76,18 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.7374878
-      value: 0.9976425
-      inSlope: 2
-      outSlope: 2
+      time: 1.0017499
+      value: 0.9976426
+      inSlope: 2.1057103
+      outSlope: 2.1057103
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.06134992
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SpeedRising: 0.77
+  SpeedRising: 0.75
   AccelerationTimeRising: 0.8
   AccelerationCurveRising:
     serializedVersion: 2
@@ -101,22 +102,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.44318637
-      value: 0.49850178
-      inSlope: 2.2052038
-      outSlope: 2.2052038
+      time: 0.41952
+      value: 0.5570496
+      inSlope: 2.8875163
+      outSlope: 2.8875163
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.21636876
+      inWeight: 0.07171411
+      outWeight: 0.07862576
     - serializedVersion: 3
-      time: 0.7313843
-      value: 0.9976349
-      inSlope: 0.016124343
-      outSlope: 0.016124343
+      time: 0.9995488
+      value: 0.9976368
+      inSlope: 0.4514499
+      outSlope: 0.4514499
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.27449825
+      inWeight: 0.18075505
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
