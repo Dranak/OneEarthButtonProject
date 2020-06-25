@@ -261,13 +261,14 @@ public class WormHead : WormBody
         }
         else if (collider.CompareTag("Bonus"))
         {
-            var name = collider.transform.parent.gameObject.name;
-            name = name.Substring(0, name.IndexOf("("));
+            var bonusObj = collider.transform.parent.gameObject;
+            var name = bonusObj.name;
+            name = name.Substring(0, name.IndexOf("_"));
 
             switch (name)
             {
                 case "shield":
-                    Destroy(collider.gameObject);
+                    Destroy(bonusObj);
                     ActivateBonus(Bonus.Shield);
                     break;
                case "pepper":

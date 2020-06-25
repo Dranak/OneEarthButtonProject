@@ -10,7 +10,22 @@ PrefabInstance:
     - target: {fileID: 876991834316367035, guid: c66de28affa03714daec9419dd31e4dc,
         type: 3}
       propertyPath: m_Name
-      value: shield_bonus
+      value: smaller_bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620404696141651210, guid: c66de28affa03714daec9419dd31e4dc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620404696141651210, guid: c66de28affa03714daec9419dd31e4dc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620404696141651210, guid: c66de28affa03714daec9419dd31e4dc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9464884
       objectReference: {fileID: 0}
     - target: {fileID: 8750425488910583022, guid: c66de28affa03714daec9419dd31e4dc,
         type: 3}
