@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4114b5ef253d8e42b916367045e4451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DurationBlink: 0.24
+  DurationBlink: 1.24
   Light: {fileID: 1813822607}
   MinIntensity: 1.02
   MaxIntensity: 2.98

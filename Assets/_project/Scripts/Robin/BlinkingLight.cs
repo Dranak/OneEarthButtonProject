@@ -10,12 +10,13 @@ public class BlinkingLight : MonoBehaviour
     public float MinIntensity;
     public float MaxIntensity;
     private float _chronoBlink;
+    private bool _state = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Light.intensity = MinIntensity;
-        Blink();
+        
 
     }
 
@@ -24,7 +25,7 @@ public class BlinkingLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Blink();
     }
 
     void Blink()
@@ -33,9 +34,20 @@ public class BlinkingLight : MonoBehaviour
         if (_chronoBlink >= DurationBlink)
         {
             _chronoBlink = 0f;
+            _state = !_state;
         }
         float scaledTime = _chronoBlink / DurationBlink;
-        Light.intensity = Mathf.Lerp(MinIntensity, MaxIntensity, Mathf.PingPong(scaledTime,1f));
+
+        if(!_state)
+        {
+            Light.intensity = Mathf.Lerp(MinIntensity, MaxIntensity, scaledTime);
+        }
+        else
+        {
+            Light.intensity = Mathf.Lerp(MaxIntensity, MinIntensity, scaledTime);
+        }
+       
+      
     }
 
 }

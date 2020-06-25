@@ -230,9 +230,9 @@ public class Player : MonoBehaviour
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         CurrentXp = PlayerPrefs.GetInt("CurrentXp", 0);
         CurrentLevelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
-        Debug.Log("HighScore " + HighScore);
-        Debug.Log("CurrentXp " + CurrentXp);
-        Debug.Log("CurrentLevelPlayer " + CurrentLevelPlayer);
+        //Debug.Log("HighScore " + HighScore);
+        //Debug.Log("CurrentXp " + CurrentXp);
+        //Debug.Log("CurrentLevelPlayer " + CurrentLevelPlayer);
         
         LoadDataFromFile();
 
@@ -245,13 +245,13 @@ public class Player : MonoBehaviour
         string contentFile = LevelData.text;
         foreach (string line in contentFile.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
         {
-            Debug.Log("Line " + line);
+            //Debug.Log("Line " + line);
             string[] splitLine = line.Split(',');
-            Debug.Log("splitLine " + splitLine);
+            //Debug.Log("splitLine " + splitLine);
             if (splitLine[0] == CurrentLevelPlayer.ToString())
             {
                 NeededXp = Int32.Parse( splitLine[1]);
-                Debug.Log("NeededXp " + NeededXp);
+                //Debug.Log("NeededXp " + NeededXp);
                 break;
             }
         }
