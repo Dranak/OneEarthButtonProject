@@ -34,7 +34,9 @@ public class BlocManager : MonoBehaviour
     [Space]
     [Header("Bonuses")]
 
-    [SerializeField] GameObject[] BonusesPrefabs;
+    [Range(0,1), SerializeField] float bonusChance = 1;
+    [SerializeField] int shieldBonusProba, rageBonusProba, smallerBonusProba;
+    int bonusProbaTotal;
 
     private void Awake()
     {
@@ -62,6 +64,9 @@ public class BlocManager : MonoBehaviour
             // add far trees to pool
             AddToPool(backTreesFarAnchor, ref backTreesFarPool, false, false);
             AddToPool(spawnablesAnchor, ref backTreesFarPool, true, false, "Far"); // back objects in the Spawnables on start are also part of the pool
+
+            // total probabilities of bonuses
+            bonusProbaTotal = shieldBonusProba + rageBonusProba + smallerBonusProba;
 
             Instance = this;
         }
@@ -131,7 +136,6 @@ public class BlocManager : MonoBehaviour
         {
             currentBlocAreaIdx = (currentBlocAreaIdx + 1) % 2;
             WallpaperChoice(currentBlocAreaIdx); // get next wallpaper
-            Instantiate(BonusesPrefabs[Random.Range(0, BonusesPrefabs.Length)], new Vector2(currentBlocMax - prespacing / 2, 0), Quaternion.identity); // instantiate random Bonus
         }
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
@@ -194,8 +198,28 @@ public class BlocManager : MonoBehaviour
                 randomizedSortedBloc.RemoveRange(0, rangeToRemove); // clearing all spawnables to be spawned from list (performances)
                 break;
             }
-
             ++rangeToRemove;
+
+            if (spawnable.Tag.Contains("bonus"))
+            {
+                if (Random.Range(0, 1f) < bonusChance)
+                {
+                    int poss = Random.Range(0, bonusProbaTotal);
+                    int prefabIndexIncrement = 0;
+
+                    // remplace prefab to spawn with rage or smaller bonus
+                    if (poss < rageBonusProba + smallerBonusProba)
+                    {
+                        ++prefabIndexIncrement;
+                        if (poss < smallerBonusProba)
+                            ++prefabIndexIncrement;
+                    }
+
+                    spawnable.SpawnablePrefabIndex += prefabIndexIncrement;
+                }
+                else
+                    continue; // don't spawn if random doesn't work
+            }
 
             GameObject spawnableSpawned;
             List<GameObject> thisSpawnablesPool = spawnablesPools.spawnablePoolsObjects[spawnable.SpawnablePrefabIndex].objectPool;

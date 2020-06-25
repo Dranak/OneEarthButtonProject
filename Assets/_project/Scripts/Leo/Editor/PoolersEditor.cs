@@ -24,7 +24,7 @@ public class PoolersEditor : Editor
                 Undo.DestroyObjectImmediate(pC.transform.GetChild(0).gameObject);
             }
 
-            foreach (GameObject spawnablePrefab in pC.selectedBlocsScriptable.obstaclesPrefabs)
+            foreach (GameObject spawnablePrefab in pC.selectedBlocsScriptable.spawnablesPrefabs)
             {
                 var pool = new GameObject(spawnablePrefab.name + "_T");
                 pool.transform.SetParent(pC.transform);

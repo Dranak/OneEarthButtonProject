@@ -7,5 +7,5 @@ public class BlocsStorageScriptableObject : ScriptableObject
     [SerializeField]
     public List<Bloc> storedBlocs;
     [SerializeField]
-    public List<GameObject> obstaclesPrefabs; // must be gameObject prefabs with Obstacle attached (obstacle prefabs)
+    public List<GameObject> spawnablesPrefabs; // must be gameObject prefabs with Obstacle attached (obstacle prefabs)
 }

@@ -52,10 +52,10 @@ public class BlocEditor : Editor
 
     void RefreshPaletteImages(BlocCreator bc)
     {
-        if (palleteImages == null || palleteImages.Length != bc.prefabPallete.Length)
+        if (palleteImages == null || palleteImages.Length != bc.prefabPallete.Length - 2) // don't take the last two (rage and smaller bonuses)
         {
-            palleteImages = new Texture2D[bc.prefabPallete.Length];
-            for (var i = 0; i < bc.prefabPallete.Length; i++)
+            palleteImages = new Texture2D[bc.prefabPallete.Length - 2];
+            for (var i = 0; i < bc.prefabPallete.Length - 2; i++) 
             {
                 palleteImages[i] = AssetPreview.GetAssetPreview(bc.prefabPallete[i]);
             }
@@ -335,7 +335,7 @@ public class BlocEditor : Editor
             DestroyAllRootSpawnables(); // destroy all root objects
         foreach (Spawnable spawnable in selectedBloc.spawnlablesParams)
         {
-            var prefab = bc.blocsScriptable.obstaclesPrefabs[spawnable.SpawnablePrefabIndex];
+            var prefab = bc.blocsScriptable.spawnablesPrefabs[spawnable.SpawnablePrefabIndex];
             var g = PrefabUtility.InstantiatePrefab(prefab, bc.rootTransform) as GameObject;
             Undo.RegisterCreatedObjectUndo(g, "ReStamp");
             var gT = g.transform;
@@ -436,7 +436,7 @@ public class BlocEditor : Editor
 
             var spawnable = g.GetComponent<SpawnableObject>();
             var spawnableParameters = spawnable.GetSpawnable();
-            var obstacleIndex = GetIndexFromPrefabList(bc.blocsScriptable.obstaclesPrefabs, g);
+            var obstacleIndex = GetIndexFromPrefabList(bc.blocsScriptable.spawnablesPrefabs, g);
 
             var obsRectBounds = dummyBounds.size;
             if (obsRectBounds == Vector3.zero)

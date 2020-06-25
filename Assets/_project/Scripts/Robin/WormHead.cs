@@ -226,10 +226,11 @@ public class WormHead : WormBody
         {
             if (currentBonus == Bonus.Shield)
             {
-                currentBonus = 0;
+                ActivateBonus(0);
             }
             else if (currentBonus == Bonus.Rage)
             {
+
             }
             else
             {
@@ -260,7 +261,10 @@ public class WormHead : WormBody
         }
         else if (collider.CompareTag("Bonus"))
         {
-            switch (collider.gameObject.name)
+            var name = collider.transform.parent.gameObject.name;
+            name = name.Substring(0, name.IndexOf("("));
+
+            switch (name)
             {
                 case "shield":
                     Destroy(collider.gameObject);
@@ -291,9 +295,11 @@ public class WormHead : WormBody
             renderer.enabled = false;
         }
 
-        var bonusSprite = bonusRenderers[(int)bonus - 1];
-        if (bonusSprite)
-            bonusSprite.enabled = true;
+        var bonusIdx = (int)bonus - 1;
+        if (bonusIdx > -1)
+        {
+            bonusRenderers[bonusIdx].enabled = true;
+        }
 
         currentBonus = bonus;
     }

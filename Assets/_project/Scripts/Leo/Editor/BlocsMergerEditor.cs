@@ -23,7 +23,7 @@ public class BlocsMergerEditor : Editor
         EditorGUI.BeginDisabledGroup(bM.blocsToMerge.Count < 2 || mergedBlocName == "new bloc name" || mergedBlocName == "");
         if (GUILayout.Button("Create Merged Scriptable"))
         {
-            bM.mergedBloc.obstaclesPrefabs = bM.blocsToMerge[0].obstaclesPrefabs; // always the same prefabs ! warning
+            bM.mergedBloc.spawnablesPrefabs = bM.blocsToMerge[0].spawnablesPrefabs; // always the same prefabs ! warning
             foreach (BlocsStorageScriptableObject blocsStorage in bM.blocsToMerge)
                 bM.mergedBloc.storedBlocs.AddRange(blocsStorage.storedBlocs);
             AssetDatabase.CreateAsset(bM.mergedBloc, bM.mergedBlocPath + mergedBlocName + ".asset");

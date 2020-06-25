@@ -136,8 +136,12 @@ MonoBehaviour:
   backRocksPool: []
   backBushesPool: []
   backTreesFarPool: []
+  bonusChance: 0.5
   BonusesPrefabs:
   - {fileID: 876991834316367035, guid: c66de28affa03714daec9419dd31e4dc, type: 3}
+  shieldBonusProba: 5
+  rageBonusProba: 1
+  smallerBonusProba: 2
 --- !u!1 &5633448737910605982
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,9 +33,9 @@ public class BlocCreator : MonoBehaviour
 
     public void OnValidate()
     {
-        if (prefabPallete != blocsScriptable.obstaclesPrefabs.ToArray())
+        if (prefabPallete != blocsScriptable.spawnablesPrefabs.ToArray())
         {
-            blocsScriptable.obstaclesPrefabs = prefabPallete.ToList();
+            blocsScriptable.spawnablesPrefabs = prefabPallete.ToList();
         }
     }
 }
