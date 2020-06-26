@@ -5,12 +5,13 @@ using System.Linq;
 public class BlocManager : MonoBehaviour
 {
     public static BlocManager Instance;
+    Player player;
 
     [Header("Blocs")]
 
     [SerializeField] Bloc.BlocArea startingBlocKind = 0;
-    [SerializeField] Transform wpDarkT, wpLightT;
-    [SerializeField, HideInInspector] List<GameObject> wpPoolDark, wpPoolLight;
+    [SerializeField] Transform wpT;
+    [SerializeField, HideInInspector] List<GameObject> wpPool;
     [SerializeField] GameObject blocPoolerPrefab;
 
     [Space]
@@ -42,13 +43,14 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
+            player = GameManager.Instance.Player;
+
             AddToPool(spawnablesPools.transform.GetChild(0), ref cansPool);
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
             //AddToPool(strawsPoolT, ref strawsPool);
 
-            AddToPool(wpDarkT, ref wpPoolDark, true, false);
-            AddToPool(wpLightT, ref wpPoolLight, false, false);
-            currentWPMax = (int)wpPoolDark[wpPoolDark.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
+            AddToPool(wpT, ref wpPool, true, false);
+            currentWPMax = (int)wpPool[wpPool.Count - 1].transform.position.x; // wallpapers are centered (and 6 int large)
             currentBlocMax = startingBlocMin;
             allBlocs = spawnablesPools.selectedBlocsScriptable.storedBlocs;
             RankBlocs();
@@ -108,9 +110,8 @@ public class BlocManager : MonoBehaviour
 
     void Start()
     {
-        WallpaperChoice(0);
         ChooseBloc(0);
-        GameManager.Instance.Player.playingBlocName = randomBloc.blocName;
+        player.playingBlocName = randomBloc.blocName;
         //NewBloc(); // create and siplay a whole bloc at once // LEGACY
         //NewRandomBloc(); // first bloc to be created (after the empty starting bloc) // LEGACY
     }
@@ -122,7 +123,6 @@ public class BlocManager : MonoBehaviour
     List<Spawnable> randomizedSortedBloc = null;
     int currentBlocDiff = 0;
 
-    List<GameObject> wpPool;
     int currentBlocAreaIdx = 0;
 
     public void ChooseBloc(int prespacing = 8) // spacing is 8 by default
@@ -131,11 +131,10 @@ public class BlocManager : MonoBehaviour
         currentBlocMin = currentBlocMax; // set bloc min // bloc min is the bloc max without the next bloc width
 
         var previousBlocDiff = currentBlocDiff;
-        currentBlocDiff = Mathf.FloorToInt((GameManager.Instance.Player.Score / 500) % (allBlocsRanked.Count));
+        currentBlocDiff = Mathf.FloorToInt((player.Score / 500) % (allBlocsRanked.Count));
         if (previousBlocDiff != currentBlocDiff && currentBlocDiff == 0)
         {
             currentBlocAreaIdx = (currentBlocAreaIdx + 1) % 2;
-            WallpaperChoice(currentBlocAreaIdx); // get next wallpaper
         }
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
@@ -173,17 +172,6 @@ public class BlocManager : MonoBehaviour
         // spawn pooler trigger to reset the egg count?
         Instantiate(blocPoolerPrefab, new Vector2(currentBlocMax, 0), Quaternion.identity);
     }
-    void WallpaperChoice(int choiceIndex)
-    {
-        if (choiceIndex == 0)
-        {
-            wpPool = wpPoolDark;
-        }
-        else if (choiceIndex == 1)
-        {
-            wpPool = wpPoolLight;
-        }
-    }
 
     void SpawnablesSpawn(in float posX) // per WP spawnables spawn
     {
@@ -202,20 +190,23 @@ public class BlocManager : MonoBehaviour
 
             if (spawnable.Tag.Contains("bonus"))
             {
-                if (Random.Range(0, 1f) < bonusChance)
+                if (player.WormHead.currentBonus != 0)
                 {
-                    int poss = Random.Range(0, bonusProbaTotal);
-                    int prefabIndexIncrement = 0;
-
-                    // remplace prefab to spawn with rage or smaller bonus
-                    if (poss < rageBonusProba + smallerBonusProba)
+                    if (Random.Range(0, 1f) < bonusChance)
                     {
-                        ++prefabIndexIncrement;
-                        if (poss < smallerBonusProba)
-                            ++prefabIndexIncrement;
-                    }
+                        int poss = Random.Range(0, bonusProbaTotal);
+                        int prefabIndexIncrement = 0;
 
-                    spawnable.SpawnablePrefabIndex += prefabIndexIncrement;
+                        // remplace prefab to spawn with rage or smaller bonus
+                        if (poss < rageBonusProba + smallerBonusProba)
+                        {
+                            ++prefabIndexIncrement;
+                            if (poss < smallerBonusProba)
+                                ++prefabIndexIncrement;
+                        }
+
+                        spawnable.SpawnablePrefabIndex += prefabIndexIncrement;
+                    }
                 }
                 else
                     continue; // don't spawn if random doesn't work
