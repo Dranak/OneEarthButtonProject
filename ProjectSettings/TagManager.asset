@@ -57,3 +57,6 @@ TagManager:
   - name: UnderGround
     uniqueID: 3162992517
     locked: 0
+  - name: Spawnables
+    uniqueID: 3214245239
+    locked: 0

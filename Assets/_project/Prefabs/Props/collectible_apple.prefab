@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_Color.r
@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_PointLightInnerRadius
-      value: 1.03
+      value: 0.6485353
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 1.84
+      value: 0.876925
       objectReference: {fileID: 0}
     - target: {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
