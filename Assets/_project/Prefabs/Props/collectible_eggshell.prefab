@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DurationBlink: 1.24
   Light: {fileID: 1813822607}
-  MinIntensity: 1.02
-  MaxIntensity: 3.2
+  MinIntensity: 5
+  MaxIntensity: 10
 --- !u!1 &1223918551996689868
 GameObject:
   m_ObjectHideFlags: 0

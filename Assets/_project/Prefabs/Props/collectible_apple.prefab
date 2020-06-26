@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: MinIntensity
-      value: 0.98
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: DurationBlink
@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: MaxIntensity
-      value: 4.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_RootOrder
