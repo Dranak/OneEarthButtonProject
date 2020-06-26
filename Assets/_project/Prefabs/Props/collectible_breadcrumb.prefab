@@ -28,20 +28,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 0.40939274
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.2810462
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_Intensity
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_PointLightDistance
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
