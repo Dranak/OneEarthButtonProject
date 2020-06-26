@@ -6442,6 +6442,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnablesPools
       objectReference: {fileID: 0}
+    - target: {fileID: 6845382093940408366, guid: d005505b5aa82d847aab30596d161dbc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d005505b5aa82d847aab30596d161dbc, type: 3}
 --- !u!4 &3090541176085951833 stripped

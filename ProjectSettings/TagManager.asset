@@ -60,3 +60,6 @@ TagManager:
   - name: Spawnables
     uniqueID: 3214245239
     locked: 0
+  - name: ForegroundUI
+    uniqueID: 3310937957
+    locked: 0
