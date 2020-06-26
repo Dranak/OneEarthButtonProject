@@ -19,22 +19,6 @@ PrefabInstance:
       propertyPath: DurationBlink
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.236
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.251
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_Color.r
       value: 0.05882353
