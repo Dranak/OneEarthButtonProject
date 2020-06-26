@@ -232,6 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CenterUniverse: {fileID: 0}
+  Sun: {fileID: 0}
+  Moon: {fileID: 0}
   Sky: {fileID: 2093122877}
   DurationOfCycle: 20
 --- !u!1 &1572187724
@@ -658,7 +660,7 @@ Camera:
   field of view: 150
   orthographic: 1
   orthographic size: 6
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
