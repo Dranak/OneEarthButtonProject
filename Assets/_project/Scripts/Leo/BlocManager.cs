@@ -559,6 +559,7 @@ public class BlocManager : MonoBehaviour
     {
         var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
+        float topObsPos = spawnableParams.BlocPosition.y;
 
         if (spawnableParams is ObstacleSpawnable && spawnableToPlace.Size.x != spawnableToPlace.Size.y) // Rotation range setup only for long Obstacles, otherwise random rotation
         {
@@ -573,14 +574,18 @@ public class BlocManager : MonoBehaviour
                 spawnableToPlace.objectBody.localPosition += spawnableToPlace.transform.position - spawnableToPlace.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
             }
             // deactivate over effect if object sticking out of grass
-            float topObsPos = (spawnableParams as ObstacleSpawnable).BoundsSize.y + spawnableParams.BlocPosition.y;
-            (spawnableToPlace as Obstacle).overEffect.enabled = topObsPos < -0.5f;
+            topObsPos += (spawnableParams as ObstacleSpawnable).BoundsSize.y;
         }
         else // Random rotation for squared spawnables
         {
+            if (spawnableParams is ObstacleSpawnable)
+                topObsPos += spawnableToPlace.Size.y;
             var randomRot = Random.Range(0, 16);
             spawnableToPlace.objectBody.localRotation = Quaternion.Euler(0, 0, 22.5f * randomRot);
         }
+
+        if (spawnableParams is ObstacleSpawnable)
+            (spawnableToPlace as Obstacle).overEffect.enabled = topObsPos < -0.5f;
 
         // random position offset // moved to bloc choice
         /*if (spawnableParams.OffsetXRange != Vector2Int.zero)

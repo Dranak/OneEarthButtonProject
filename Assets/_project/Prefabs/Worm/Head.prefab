@@ -42,7 +42,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
-  m_SortingOrder: 9
+  m_SortingOrder: 10
 --- !u!1 &1338244772676142878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1585,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 1964965028443353993, guid: de8035927f4aa9147b86b2e24f034e6e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1730,9 +1730,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: -1131974779
+  m_SortingLayer: 2
+  m_SortingOrder: 7
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
@@ -1808,7 +1808,7 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 90
+    numCornerVertices: 0
     numCapVertices: 90
     alignment: 0
     textureMode: 1
@@ -7007,7 +7007,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
-  m_SortingOrder: 8
+  m_SortingOrder: 9
 --- !u!1 &3982099804448264220
 GameObject:
   m_ObjectHideFlags: 0
