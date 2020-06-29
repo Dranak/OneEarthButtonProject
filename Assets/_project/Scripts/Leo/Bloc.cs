@@ -36,7 +36,12 @@ public class Bloc
 
     public Bloc Clone()
     {
-        Bloc other = new Bloc(blockArea, blocLength, blocCount, blocName, blocDifficulty, spawnlablesParams, blocYRange, globalOffsetRange, globalRotationOffsetRange);
+        var spawnablesParamsClone = new Spawnable[spawnlablesParams.Length];
+        for (int i = 0; i < spawnablesParamsClone.Length; ++i)
+        {
+            spawnablesParamsClone[i] = spawnlablesParams[i].Clone();
+        }
+        Bloc other = new Bloc(blockArea, blocLength, blocCount, blocName, blocDifficulty, spawnablesParamsClone, blocYRange, globalOffsetRange, globalRotationOffsetRange);
         return other;
     }
 }

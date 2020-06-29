@@ -102,7 +102,7 @@ MonoBehaviour:
   backRocksPool: []
   backBushesPool: []
   backTreesFarPool: []
-  bonusChance: 0.3
+  bonusChance: 0.4
   shieldBonusProba: 4
   rageBonusProba: 1
   smallerBonusProba: 2

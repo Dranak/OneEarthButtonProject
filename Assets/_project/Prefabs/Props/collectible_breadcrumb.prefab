@@ -7,18 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: MinIntensity
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: MaxIntensity
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
-      propertyPath: DurationBlink
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_Color.r
       value: 0.05882353
@@ -302,16 +290,6 @@ PrefabInstance:
         type: 3}
       propertyPath: Size.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
-        type: 3}
-      propertyPath: collectibleParameters.PointGain
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
-        type: 3}
-      propertyPath: collectibleParameters.IsEggShell
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}

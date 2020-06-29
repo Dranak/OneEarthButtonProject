@@ -190,7 +190,7 @@ public class BlocManager : MonoBehaviour
 
             if (spawnable.Tag.Contains("bonus"))
             {
-                if (player.WormHead.currentBonus != 0)
+                if (player.WormHead.currentBonus == 0)
                 {
                     if (Random.Range(0, 1f) < bonusChance)
                     {
@@ -207,9 +207,11 @@ public class BlocManager : MonoBehaviour
 
                         spawnable.SpawnablePrefabIndex += prefabIndexIncrement;
                     }
+                    else
+                        continue; // don't spawn if random doesn't work
                 }
                 else
-                    continue; // don't spawn if random doesn't work
+                    continue; // don't spawn if bonus already existing
             }
 
             GameObject spawnableSpawned;
@@ -570,6 +572,9 @@ public class BlocManager : MonoBehaviour
                 spawnableToPlace.objectBody.Rotate(Vector3.back, (Random.Range((spawnableParams as ObstacleSpawnable).RotationOffsetRange.x - rotOffsetMin, (spawnableParams as ObstacleSpawnable).RotationOffsetRange.y - rotOffsetMin) + rotOffsetMin)*22.5f);
                 spawnableToPlace.objectBody.localPosition += spawnableToPlace.transform.position - spawnableToPlace.objectBody.gameObject.GetBoxColliderFixedBounds().min; // recalculate and assign body offset
             }
+            // deactivate over effect if object sticking out of grass
+            float topObsPos = (spawnableParams as ObstacleSpawnable).BoundsSize.y + spawnableParams.BlocPosition.y;
+            (spawnableToPlace as Obstacle).overEffect.enabled = topObsPos < -0.5f;
         }
         else // Random rotation for squared spawnables
         {
@@ -729,6 +734,11 @@ public class BlocManager : MonoBehaviour
     {
         PoolOut(toPoolOut.gameObject);
         toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool
+    }
+    public void PoolOut(in Obstacle toPoolOut)
+    {
+        toPoolOut.col.enabled = true;
+        PoolOut((SpawnableObject)toPoolOut);
     }
 #endregion
 }

@@ -222,15 +222,18 @@ public class WormHead : WormBody
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Death"))
+        var col = collision.collider;
+        if (col.CompareTag("Death"))
         {
             if (currentBonus == Bonus.Shield)
             {
                 ActivateBonus(0);
+                col.enabled = false;
             }
             else if (currentBonus == Bonus.Rage)
             {
 
+                col.enabled = false;
             }
             else
             {
@@ -261,14 +264,14 @@ public class WormHead : WormBody
         }
         else if (collider.CompareTag("Bonus"))
         {
-            var bonusObj = collider.transform.parent.gameObject;
+            var bonusObj = collider.transform.parent.GetComponent<Collectible>();
             var name = bonusObj.name;
             name = name.Substring(0, name.IndexOf("_"));
 
             switch (name)
             {
                 case "shield":
-                    Destroy(bonusObj);
+                    BlocManager.Instance.PoolOut(bonusObj);
                     ActivateBonus(Bonus.Shield);
                     break;
                case "pepper":
