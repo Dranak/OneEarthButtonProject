@@ -2,6 +2,9 @@
 
 public class Obstacle : SpawnableObject
 {
+    public Collider2D col;
+    public SpriteRenderer overEffect;
+
     public enum ObstacleRotation // LEGACY
     {
         HORIZONTAL = 0,

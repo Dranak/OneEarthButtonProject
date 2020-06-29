@@ -436,7 +436,7 @@ public class BlocEditor : Editor
 
             var spawnable = g.GetComponent<SpawnableObject>();
             var spawnableParameters = spawnable.GetSpawnable();
-            var obstacleIndex = GetIndexFromPrefabList(bc.blocsScriptable.spawnablesPrefabs, g);
+            var spawnableIndex = GetIndexFromPrefabList(bc.blocsScriptable.spawnablesPrefabs, g);
 
             var obsRectBounds = dummyBounds.size;
             if (obsRectBounds == Vector3.zero)
@@ -444,11 +444,11 @@ public class BlocEditor : Editor
             var spawnableType = spawnableParameters.GetType();
             if (typeof(ObstacleSpawnable) == spawnableType)
             {
-                (spawnable as Obstacle).SetObstacle(g.transform.localPosition, obstacleIndex, offset, obsRectBounds, rotation);
+                (spawnable as Obstacle).SetObstacle(g.transform.localPosition, spawnableIndex, offset, obsRectBounds, rotation);
             }
             else if (typeof(CollectibleSpawnable) == spawnableType)
             {
-                (spawnable as Collectible).SetCollectible(g.transform.localPosition, obstacleIndex, selectedEggshellId);
+                (spawnable as Collectible).SetCollectible(g.transform.localPosition, spawnableIndex, selectedEggshellId);
             }
         }
     }

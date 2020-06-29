@@ -17,9 +17,13 @@ public class UnPooler : MonoBehaviour
         {
             blocManager.NewWP(other.transform);
         }
-        if (tag == "Death" || tag == "Collectible")
+        if (tag == "Death")
         {
-            blocManager.PoolOut(other.transform.GetComponentInParent<SpawnableObject>());
+            blocManager.PoolOut(other.transform.GetComponentInParent<Obstacle>());
+        }
+        if (tag == "Collectible")
+        {
+            blocManager.PoolOut(other.transform.GetComponentInParent<Collectible>());
         }
 
         if (tag == "BackTree")
