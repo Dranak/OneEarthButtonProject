@@ -9,15 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: MinIntensity
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: DurationBlink
-      value: 1.4
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: MaxIntensity
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1813822606, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_RootOrder
