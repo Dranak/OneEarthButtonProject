@@ -237,7 +237,7 @@ public class WormHead : WormBody
             }
             else
             {
-                Debug.Log("Dead by " + collision.gameObject.name);
+                //Debug.Log("Dead by " + collision.gameObject.name);
                 CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), GameManager.Instance.Player);
             }
         }
@@ -258,7 +258,7 @@ public class WormHead : WormBody
             {
                 _lastNameCollectible = collectible.name;
                 BlocManager.Instance.PoolOut(collectible);
-                Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
+                //Debug.Log("Ate " + collectible.name + " id " + collectible.gameObject.GetInstanceID());
                 CallBackPoint(collectible);
             }
         }
@@ -285,7 +285,7 @@ public class WormHead : WormBody
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
             // reset egg shells series (_streakEggShell)
-            Debug.Log("Reset StreakEggShell: " + GameManager.Instance.Player.StreakEggShell);
+            //Debug.Log("Reset StreakEggShell: " + GameManager.Instance.Player.StreakEggShell);
             GameManager.Instance.Player.StreakEggShell = 0;
             GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more

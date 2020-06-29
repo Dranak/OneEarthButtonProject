@@ -39,7 +39,7 @@ public class SkyManager : MonoBehaviour
 
     void RotateStar()
     {
-        Debug.Log("Angle: " + Mathf.Lerp(0, 360, _timeOfDay));
+        //Debug.Log("Angle: " + Mathf.Lerp(0, 360, _timeOfDay));
         CenterUniverse.transform.rotation = Quaternion.Euler( 0,0, Mathf.Lerp(0, 360, _timeOfDay));
         //Sun.transform.RotateAround(CenterUniverse.transform.position,Vector3.forward, Mathf.LerpAngle(0, 360, _timeOfDay));
         //Moon.transform.RotateAround(CenterUniverse.transform.position,Vector3.forward, Mathf.LerpAngle(0, 360, _timeOfDay));

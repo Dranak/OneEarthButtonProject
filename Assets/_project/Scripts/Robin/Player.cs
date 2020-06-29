@@ -39,9 +39,9 @@ public class Player : MonoBehaviour
     public TextAsset LevelData;
     public List<string> DataSplit { get; set; } = new List<string>();
     public int CurrentLevelPlayer { get;set; }
-    public int NeededXp { get; set; }
+    public float NeededXp { get; set; }
     public int NextLevelPlayer { get;set; }
-    public int CurrentXp { get;set; }
+    public float CurrentXp { get;set; }
 
     [Header("Motion")]
     [Space]
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
                 UndergroundBonus += 1;
 
 
-                Debug.Log("UndergroundBonus: " + UndergroundBonus);
+                //Debug.Log("UndergroundBonus: " + UndergroundBonus);
             }
 
             _chronosUndergroundBonus += Time.deltaTime;
@@ -170,10 +170,10 @@ public class Player : MonoBehaviour
             }
             ++StreakEggShell;
 
-            Debug.Log("EggShellIndex " + collectible.collectibleParameters.EggShellIndex
-         + "StreakEggShell " + StreakEggShell);
+         //   Debug.Log("EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+         //+ "StreakEggShell " + StreakEggShell);
 
-            Debug.Log("Point Before: " + Score);
+         //   Debug.Log("Point Before: " + Score);
             switch (StreakEggShell)
             {
                 case 1:
@@ -185,8 +185,8 @@ public class Player : MonoBehaviour
                     ScoreTextFB.text = "+" + EggShellStreakTwo;
                     break;
                 case 3:
-                    Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
-            + "StreakEggShell " + StreakEggShell);
+            //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+            //+ "StreakEggShell " + StreakEggShell);
                     Score += EggShellStreakThird;
                     ScoreTextFB.text = "+" + EggShellStreakThird;
                     StreakEggShell = 0;
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
                     StreakEggShell = 0;
                     break;
             }
-            Debug.Log("Point After: " + Score);
+            //Debug.Log("Point After: " + Score);
         }
         //ScoreTextFB.enabled = true;
         StartCoroutine(DisplayText(ScoreTextFB, TimeDisplayFeedBackScore));
@@ -225,10 +225,10 @@ public class Player : MonoBehaviour
     }
 
 
-    void LoadData()
+  public  void LoadData()
     {
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
-        CurrentXp = PlayerPrefs.GetInt("CurrentXp", 0);
+        CurrentXp = PlayerPrefs.GetFloat("CurrentXp", 0f);
         CurrentLevelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
         //Debug.Log("HighScore " + HighScore);
         //Debug.Log("CurrentXp " + CurrentXp);
@@ -259,7 +259,7 @@ public class Player : MonoBehaviour
     
     public void SaveData()
     {
-        PlayerPrefs.SetInt("CurrentXp", CurrentXp);
+        PlayerPrefs.SetFloat("CurrentXp", CurrentXp);
         PlayerPrefs.SetInt("LevelPlayer", CurrentLevelPlayer);
     }
 }
