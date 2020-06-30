@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class UiManager : MonoBehaviour
     public MainMenu MainMenu;
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
+    public EventSystem eventSystem;
     string thisSceneName;
 
     public int SessionGameCount { get; set; } = 0;

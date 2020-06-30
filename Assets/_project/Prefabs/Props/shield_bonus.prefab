@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: MinIntensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400894524, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: MaxIntensity
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_PointLightInnerRadius
-      value: 0.7
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_LightCookieSprite
@@ -18,7 +26,19 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 0.7
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9937083
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813822607, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
+      propertyPath: m_Color.b
+      value: 0.14150941
       objectReference: {fileID: 0}
     - target: {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
@@ -44,27 +64,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: acd9e6fadb6d8894a9e892870b8a7070,
+      objectReference: {fileID: 21300000, guid: 884c442f3e8b9114f8f0397f2bb47f69,
         type: 3}
     - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.12931037
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 3785798443051562484, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
@@ -74,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 5987981404753878342, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8004527374331313351, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
