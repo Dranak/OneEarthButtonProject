@@ -1265,6 +1265,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5290652816302608064, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816302608064, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816302608064, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816302608064, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816302608064, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816393610981, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816393610981, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816393610981, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816393610981, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652816393610981, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5290652816685789335, guid: 6db48104219b60f4d96ec1e6d26d25e8,
         type: 3}
       propertyPath: m_Name
@@ -1325,15 +1375,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290652816884276633, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+    - target: {fileID: 5290652817639050830, guid: 6db48104219b60f4d96ec1e6d26d25e8,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 313
+      propertyPath: m_textInfo.characterCount
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290652817735567042, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+    - target: {fileID: 5290652817639050830, guid: 6db48104219b60f4d96ec1e6d26d25e8,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 260
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652817639050830, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652817639050830, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290652817639050830, guid: 6db48104219b60f4d96ec1e6d26d25e8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290652817928002819, guid: 6db48104219b60f4d96ec1e6d26d25e8,
         type: 3}
@@ -1344,11 +1409,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637302199571811104, guid: 6db48104219b60f4d96ec1e6d26d25e8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6637302199571811132, guid: 6db48104219b60f4d96ec1e6d26d25e8,
         type: 3}
