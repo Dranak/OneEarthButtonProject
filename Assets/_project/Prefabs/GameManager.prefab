@@ -103,9 +103,9 @@ MonoBehaviour:
   backBushesPool: []
   backTreesFarPool: []
   bonusChance: 0.4
-  shieldBonusProba: 4
-  rageBonusProba: 1
-  smallerBonusProba: 2
+  shieldBonusProba: 1
+  rageBonusProba: 0
+  smallerBonusProba: 0
 --- !u!1 &5633448737910605982
 GameObject:
   m_ObjectHideFlags: 0
