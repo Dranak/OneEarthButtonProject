@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
                 case 3:
             //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
             //+ "StreakEggShell " + StreakEggShell);
-                    scoreIncrease = EggShellStreakTwo;
+                    scoreIncrease = EggShellStreakThird;
                     StreakEggShell = 0;
                     ++UiManager.Instance.SessionStrikesTotal;
                     IncreaseStatTotal("EggChains", 1);
