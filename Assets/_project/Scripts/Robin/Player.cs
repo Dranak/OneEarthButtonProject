@@ -33,6 +33,17 @@ public class Player : MonoBehaviour
     private float _chronosUndergroundBonus = 0f;
     public int StreakEggShell { get; set; } = 0;
     public int LastIndexEggShell { get; set; }
+
+    [Header("Bonus")]
+    public Bonus currentBonus = 0;
+    public SpriteRenderer[] bonusRenderers;
+    public enum Bonus
+    {
+        None = 0,
+        Shield,
+        Rage,
+        Small
+    }
     [Space]
 
     [Header("Level System")]
@@ -147,61 +158,110 @@ public class Player : MonoBehaviour
         ++UiManager.Instance.SessionGameCount;
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
+        IncreaseStatTotal("Deaths", 1);
+        IncreaseStatTotal("EcoPoints", Score);
         if (Score > HighScore)
+        {
             HighScore = Score;
+            PlayerPrefs.SetInt("HighScore", HighScore);
+        }
         GameManager.Instance.SetState(State.Dead);
     }
 
     void GetPoint(Collectible collectible)
     {
-        if (collectible.collectibleParameters.EggShellIndex == -1)
-        {
-            ScoreTextFB.text = "+" + collectible.PointGain.ToString();
-            Score += collectible.PointGain;
+        string collectibleStatName = "";
+        var collectibleParams = collectible.collectibleParameters;
 
+        var pointGain = collectible.PointGain;
+        if (pointGain > 0)
+        {
+            ScoreTextFB.text = "+" + pointGain.ToString();
+            Score += pointGain;
+            IncreaseStatTotal("EcoPoints", pointGain);
+        }
+        switch (collectibleParams.Tag)
+        {
+            case "collectible_apple":
+                collectibleStatName = "AppleCores";
+                break;
+            case "collectible_breadcrumb":
+                collectibleStatName = "BreadCrumbs";
+                break;
+            case "bonus_shield":
+                collectibleStatName = "Shields";
+                ActivateBonus(Bonus.Shield);
+                break;
+            case "bonus_rage":
+                collectibleStatName = "Angrys";
+                ActivateBonus(Bonus.Shield);
+                break;
+            case "collectible_eggshell":
+                collectibleStatName = "EggShells";
+                break;
         }
        
-        else if (collectible.collectibleParameters.EggShellIndex > -1)
+        if (collectibleParams.EggShellIndex > -1)
         {
-            if (collectible.collectibleParameters.EggShellIndex != LastIndexEggShell)
+            if (collectibleParams.EggShellIndex != LastIndexEggShell)
             {
                 StreakEggShell = 0;
-                LastIndexEggShell = collectible.collectibleParameters.EggShellIndex;
+                LastIndexEggShell = collectibleParams.EggShellIndex;
             }
             ++StreakEggShell;
 
-         //   Debug.Log("EggShellIndex " + collectible.collectibleParameters.EggShellIndex
-         //+ "StreakEggShell " + StreakEggShell);
+            //   Debug.Log("EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+            //+ "StreakEggShell " + StreakEggShell);
 
-         //   Debug.Log("Point Before: " + Score);
+            //   Debug.Log("Point Before: " + Score);
+            int scoreIncrease = 0;
             switch (StreakEggShell)
             {
                 case 1:
-                    Score += EggShellStreakOne;
-                    ScoreTextFB.text = "+" + EggShellStreakOne;
+                    scoreIncrease = EggShellStreakOne;
                     break;
                 case 2:
-                    Score += EggShellStreakTwo;
-                    ScoreTextFB.text = "+" + EggShellStreakTwo;
+                    scoreIncrease = EggShellStreakTwo;
                     break;
                 case 3:
             //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
             //+ "StreakEggShell " + StreakEggShell);
-                    Score += EggShellStreakThird;
-                    ScoreTextFB.text = "+" + EggShellStreakThird;
+                    scoreIncrease = EggShellStreakTwo;
                     StreakEggShell = 0;
-                ++UiManager.Instance.SessionStrikesTotal;
-                
+                    ++UiManager.Instance.SessionStrikesTotal;
+                    IncreaseStatTotal("EggChains", 1);
                     break;
                 default:
                     Debug.Log("I don't know what to do");
                     StreakEggShell = 0;
                     break;
             }
+            Score += scoreIncrease;
+            ScoreTextFB.text = "+" + scoreIncrease;
             //Debug.Log("Point After: " + Score);
         }
+        IncreaseStatTotal(collectibleStatName, 1); // increase this collectible stat count (total collected of this type)
         //ScoreTextFB.enabled = true;
         StartCoroutine(DisplayText(ScoreTextFB, TimeDisplayFeedBackScore));
+    }
+    public void IncreaseStatTotal(in string pref, in int increase)
+    {
+        PlayerPrefs.SetInt(pref, PlayerPrefs.GetInt(pref, 0) + increase);
+    }
+    public void ActivateBonus(Bonus bonus)
+    {
+        foreach (SpriteRenderer renderer in bonusRenderers)
+        {
+            renderer.enabled = false;
+        }
+
+        var bonusIdx = (int)bonus - 1;
+        if (bonusIdx > -1)
+        {
+            bonusRenderers[bonusIdx].enabled = true;
+        }
+
+        currentBonus = bonus;
     }
 
     IEnumerator DisplayText(TextMeshProUGUI text, float time)

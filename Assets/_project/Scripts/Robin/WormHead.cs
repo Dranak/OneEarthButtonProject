@@ -50,9 +50,11 @@ public class WormHead : WormBody
 
     private string _lastNameCollectible = String.Empty;
 
+    Player player;
     protected override void Awake()
     {
         base.Awake();
+        player = GameManager.Instance.Player;
         AllFaces = GetComponentsInChildren<Face>().ToList();
 
         _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
@@ -64,8 +66,6 @@ public class WormHead : WormBody
         SetupBody();
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-
-
     }
 
     bool touchingInput = false;
@@ -207,38 +207,25 @@ public class WormHead : WormBody
         }
         _chronoIncreaseSpeed += Time.deltaTime;
     }
-
-    public enum Bonus
-    {
-        None = 0,
-        Shield,
-        Rage,
-        Small
-    }
-
-    [Header("Bonus")]
-    public Bonus currentBonus = 0;
-    public SpriteRenderer[] bonusRenderers;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var col = collision.collider;
         if (col.CompareTag("Death"))
         {
-            if (currentBonus == Bonus.Shield)
+            if (player.currentBonus == Player.Bonus.Shield)
             {
-                ActivateBonus(0);
+                player.ActivateBonus(0);
                 col.enabled = false;
             }
-            else if (currentBonus == Bonus.Rage)
+            else if (player.currentBonus == Player.Bonus.Rage)
             {
-
                 col.enabled = false;
             }
             else
             {
                 //Debug.Log("Dead by " + collision.gameObject.name);
-                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), GameManager.Instance.Player);
+                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), player);
             }
         }
     }
@@ -249,7 +236,7 @@ public class WormHead : WormBody
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
 
-            if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == GameManager.Instance.Player.LastIndexEggShell)
+            if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == player.LastIndexEggShell)
             {
                 BlocManager.Instance.PoolOut(collectible);
 
@@ -265,47 +252,20 @@ public class WormHead : WormBody
         else if (collider.CompareTag("Bonus"))
         {
             var bonusObj = collider.transform.parent.GetComponent<Collectible>();
-            var name = bonusObj.name;
-            name = name.Substring(0, name.IndexOf("_"));
+            var name = bonusObj.collectibleParameters.Tag;
 
-            switch (name)
-            {
-                case "shield":
-                    BlocManager.Instance.PoolOut(bonusObj);
-                    ActivateBonus(Bonus.Shield);
-                    break;
-               case "pepper":
+            BlocManager.Instance.PoolOut(bonusObj);
 
-                    break;
-                case "smaller":
-
-                    break;
-            }
+            CallBackPoint(bonusObj);
         }
         else if (collider.CompareTag("BlocPoolerTrigger"))
         {
             // reset egg shells series (_streakEggShell)
-            //Debug.Log("Reset StreakEggShell: " + GameManager.Instance.Player.StreakEggShell);
-            GameManager.Instance.Player.StreakEggShell = 0;
-            GameManager.Instance.Player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
+            //Debug.Log("Reset StreakEggShell: " + player.StreakEggShell);
+            player.StreakEggShell = 0;
+            player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more
         }
-    }
-
-    void ActivateBonus(Bonus bonus)
-    {
-        foreach (SpriteRenderer renderer in bonusRenderers)
-        {
-            renderer.enabled = false;
-        }
-
-        var bonusIdx = (int)bonus - 1;
-        if (bonusIdx > -1)
-        {
-            bonusRenderers[bonusIdx].enabled = true;
-        }
-
-        currentBonus = bonus;
     }
 
     void Sight()

@@ -56,6 +56,9 @@ MonoBehaviour:
   EggShellStreakOne: 10
   EggShellStreakTwo: 50
   EggShellStreakThird: 100
+  currentBonus: 0
+  bonusRenderers:
+  - {fileID: 5783031087601717253}
   LevelData: {fileID: 4900000, guid: 51e42f24284fe7e45b18823367edcf11, type: 3}
   SpeedRight: 8
   TimeToIncreaseSpeed: 5
@@ -284,3 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &5783031087601717253 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1478333130594752530, guid: bd3dff6583a080b408eb786cd084432e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4955485730253047831}
+  m_PrefabAsset: {fileID: 0}

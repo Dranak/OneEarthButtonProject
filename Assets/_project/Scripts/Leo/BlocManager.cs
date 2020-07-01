@@ -190,7 +190,7 @@ public class BlocManager : MonoBehaviour
 
             if (spawnable.Tag.Contains("bonus"))
             {
-                if (player.WormHead.currentBonus == 0)
+                if (player.currentBonus == 0)
                 {
                     if (Random.Range(0, 1f) < bonusChance)
                     {
