@@ -9,16 +9,19 @@ public class MainMenu : MonoBehaviour
     public Button SkinButton;
     public Button SettingButton;
     public CanvasGroup group;
+    public Canvas Canvas;
 
     public void Start()
     {
+
     }
 
     public void Play()
     {
         Debug.Log("Play");
+        Canvas.renderMode = RenderMode.WorldSpace;
         GameManager.Instance.SetState(State.Play);
-
+               
         UiManager.Instance.GameMenu.gameObject.SetActive(true);
 
         PlayButton.interactable = false;
