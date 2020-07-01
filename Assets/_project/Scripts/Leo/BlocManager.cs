@@ -188,7 +188,9 @@ public class BlocManager : MonoBehaviour
             }
             ++rangeToRemove;
 
-            if (spawnable.Tag.Contains("bonus"))
+            bool isBonus = spawnable.Tag.Contains("bonus");
+
+            if (isBonus)
             {
                 if (player.currentBonus == 0)
                 {
@@ -223,7 +225,7 @@ public class BlocManager : MonoBehaviour
             spawnable.BlocPosition = new Vector2(spawnable.BlocPosition.x, Mathf.Clamp(spawnable.BlocPosition.y, -9 - blocRandomY, 0 - blocRandomY));
 
             spawnableObj.SetSpawnable(spawnable);
-            SpawnablePlacing(spawnableObj); // adjust position
+            SpawnablePlacing(spawnableObj, isBonus); // adjust position
             blocSpList.Add(spawnableObj);
 
             // increment bloc max if object goes above it
@@ -555,10 +557,12 @@ public class BlocManager : MonoBehaviour
     #endregion
 #endregion
 
-    void SpawnablePlacing(in SpawnableObject spawnableToPlace)
+    void SpawnablePlacing(in SpawnableObject spawnableToPlace, bool isBonus = false)
     {
         var spawnableParams = spawnableToPlace.GetSpawnable();
         spawnableToPlace.transform.localPosition += (Vector3)spawnableParams.BlocPosition;
+        if (isBonus)
+            return;
         float topObsPos = spawnableParams.BlocPosition.y;
 
         if (spawnableParams is ObstacleSpawnable && spawnableToPlace.Size.x != spawnableToPlace.Size.y) // Rotation range setup only for long Obstacles, otherwise random rotation

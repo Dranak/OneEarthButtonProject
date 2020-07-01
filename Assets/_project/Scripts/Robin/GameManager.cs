@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(State == State.Play)
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+        if (State == State.Play)
         {
             Time.timeScale = 1f;
         }
@@ -72,8 +74,11 @@ public class GameManager : MonoBehaviour
             State = State.InMenu;
             Time.timeScale = 0f;
         }
+    }
 
-
+    private void OnSceneUnloaded(Scene current)
+    {
+        PlayerPrefs.SetInt("HighScore", Player.HighScore);
     }
 
     void Update()

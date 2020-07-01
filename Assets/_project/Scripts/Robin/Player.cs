@@ -159,7 +159,6 @@ public class Player : MonoBehaviour
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
         IncreaseStatTotal("Deaths", 1);
-        IncreaseStatTotal("EcoPoints", Score);
         if (Score > HighScore)
         {
             HighScore = Score;
@@ -188,11 +187,11 @@ public class Player : MonoBehaviour
             case "collectible_breadcrumb":
                 collectibleStatName = "BreadCrumbs";
                 break;
-            case "bonus_shield":
+            case "shield_bonus":
                 collectibleStatName = "Shields";
                 ActivateBonus(Bonus.Shield);
                 break;
-            case "bonus_rage":
+            case "rage_bonus":
                 collectibleStatName = "Angrys";
                 ActivateBonus(Bonus.Shield);
                 break;
@@ -282,6 +281,7 @@ public class Player : MonoBehaviour
     {
         if (UiManager.Instance.SessionGameCount > 0)
             gameLogin.OnSessionOver(this);
+        PlayerPrefs.SetInt("HighScore", HighScore);
     }
 
 

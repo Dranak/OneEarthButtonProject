@@ -11,6 +11,7 @@ public class UiManager : MonoBehaviour
     public MainMenu MainMenu;
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
+    public DressingManager DressingMenu;
     public EventSystem eventSystem;
     string thisSceneName;
 
@@ -102,5 +103,11 @@ public class UiManager : MonoBehaviour
     {
 
         //Time.timeScale = 0;
+    }
+
+    public void ToDressingMenu(int menuID)
+    {
+        DressingMenu.gameObject.SetActive(true);
+        DressingMenu.SwitchMenuPanel(menuID);
     }
 }
