@@ -30,4 +30,13 @@ public class MainMenu : MonoBehaviour
 
         StartCoroutine(GameManager.Instance.cameraDecentering());
     }
+
+    public void StatsMenu()
+    {
+        UiManager.Instance.ToDressingMenu(0);
+    }
+    public void SkinsMenu()
+    {
+        UiManager.Instance.ToDressingMenu(1);
+    }
 }

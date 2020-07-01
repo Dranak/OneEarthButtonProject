@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class DressingManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI MenuTitle;
+    [SerializeField] string[] MenuTitles;
+    [SerializeField] GameObject[] menuPanels;
 
     [Header("STATS")]
     [Header("Level")]
@@ -39,5 +41,12 @@ public class DressingManager : MonoBehaviour
         shields.text = PlayerPrefs.GetInt("Shields", 0).ToString();
         angryWorms.text = PlayerPrefs.GetInt("Angrys", 0).ToString();
         deaths.text = PlayerPrefs.GetInt("Deaths", 0).ToString();
+    }
+
+    public void SwitchMenuPanel(int PanelID)
+    {
+        MenuTitle.text = MenuTitles[PanelID];
+        menuPanels[PanelID].SetActive(true);
+        menuPanels[(PanelID + 1) % 2].SetActive(false); // deactivate possibly activated panel
     }
 }

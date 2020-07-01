@@ -52,6 +52,7 @@ MonoBehaviour:
   MainMenu: {fileID: 5290652817928002816}
   GameMenu: {fileID: 2020868243}
   DeathMenu: {fileID: 2}
+  DressingMenu: {fileID: 717242685541967239}
   eventSystem: {fileID: 0}
 --- !u!1001 &1258331583695508569
 PrefabInstance:
@@ -1350,3 +1351,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6633429504397687280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &717242685541967239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6195409995794865271, guid: 946aae5b8b431394e93568a05355432f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6633429504397687280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55292287829f283408e105dcf1c684b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
