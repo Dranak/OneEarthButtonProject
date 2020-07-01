@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &27006615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27006616}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27006616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27006615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1166075107}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827154169
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +246,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2093122875}
-  - {fileID: 715924916825911387}
   - {fileID: 8090354806193135960}
+  - {fileID: 715924916825911387}
+  - {fileID: 27006616}
   m_Father: {fileID: 5395711807198110215}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -233,11 +264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d814c2c45caf08d4db996a64d8234374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterUniverse: {fileID: 0}
-  Sun: {fileID: 0}
-  Moon: {fileID: 0}
+  CenterUniverse: {fileID: 27006615}
+  Sun: {fileID: 5940164424799003706}
+  Moon: {fileID: 5193927297598834841}
   Sky: {fileID: 2093122877}
-  DurationOfCycle: 20
+  DurationOfCycle: 40
 --- !u!1 &1572187724
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093122874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 100}
+  m_LocalPosition: {x: 0, y: 5.79, z: 13.24}
   m_LocalScale: {x: 28, y: 4, z: 0}
   m_Children: []
   m_Father: {fileID: 1166075107}
@@ -440,7 +471,7 @@ Transform:
   - {fileID: 142937665398483392}
   - {fileID: 8177257016269383311}
   m_Father: {fileID: 1166075107}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2771774367229841280
 GameObject:
@@ -471,7 +502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1166075107}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8574644350286293067
 MonoBehaviour:
@@ -633,7 +664,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.5882353, a: 1}
   m_Intensity: 1.3
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 91e82eb0
@@ -652,13 +683,13 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 13.3
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapeLightFalloffSize: 15.93
+  m_ShapeLightFalloffOffset: {x: 0.27, y: 0}
   m_ShapePath:
-  - {x: -10.64455, y: -7.5914345, z: 0}
+  - {x: -11.062388, y: -7.4260926, z: 0}
   - {x: 10.926043, y: -7.5052347, z: 0}
-  - {x: 1.7826009, y: -2.1794071, z: 0}
-  - {x: -3.515605, y: -2.1716938, z: 0}
+  - {x: 1.7825978, y: -2.2756033, z: 0}
+  - {x: -2.4514647, y: -2.258873, z: 0}
 --- !u!1 &5395711807035314354
 GameObject:
   m_ObjectHideFlags: 0
