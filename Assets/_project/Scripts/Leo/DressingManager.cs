@@ -43,10 +43,21 @@ public class DressingManager : MonoBehaviour
         deaths.text = PlayerPrefs.GetInt("Deaths", 0).ToString();
     }
 
+    int selectedUIPanel = -1;
     public void SwitchMenuPanel(int PanelID)
     {
+        selectedUIPanel = PanelID;
         MenuTitle.text = MenuTitles[PanelID];
         menuPanels[PanelID].SetActive(true);
         menuPanels[(PanelID + 1) % 2].SetActive(false); // deactivate possibly activated panel
+    }
+    public void SwitchMenuPanel()
+    {
+        SwitchMenuPanel((selectedUIPanel + 1) % 2);
+    }
+    public void BackToMainMenu()
+    {
+        menuPanels[(selectedUIPanel+1)%2].SetActive(true); // activate deactivated panel
+        gameObject.SetActive(false); // deactivate main panel (dressing)
     }
 }
