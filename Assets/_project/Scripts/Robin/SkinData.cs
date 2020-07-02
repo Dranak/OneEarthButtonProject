@@ -20,9 +20,6 @@ public enum SkinType
     Bipaliul_Kewense,
     Ancestor,
     Megascolides_australis,
-    Lineus_longissimus,
-    Myth_reality,
-    Worms
-
-
+    //Lineus_longissimus,
+    Myth_reality
 }

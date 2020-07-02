@@ -31,6 +31,7 @@ public class DressingManager : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
+
         }
         else
             Destroy(gameObject);

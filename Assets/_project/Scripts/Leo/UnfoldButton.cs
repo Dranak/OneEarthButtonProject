@@ -78,7 +78,11 @@ public class UnfoldButton : MonoBehaviour
         foreach(Unfolder unfolder in unfolders)
         {
             if (!unfolder.isUnlocked)
+            {
                 unfolder.SetProgression();
+                if (unfolder.thisSkinData = UiManager.Instance.allSkins[GameManager.Instance.Player.CurrentSkinId])
+                    unfolder.SelectSkin();
+            }
         }
     }
 }

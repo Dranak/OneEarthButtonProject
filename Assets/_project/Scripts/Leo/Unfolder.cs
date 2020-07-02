@@ -32,6 +32,7 @@ public class Unfolder : MonoBehaviour
     }
     public UNLOCK_COND unlockCond = 0;
     [SerializeField] int unlockPrice = 100;
+    public SkinData thisSkinData;
 
     public void SetProgression()
     {
@@ -52,5 +53,6 @@ public class Unfolder : MonoBehaviour
         DressingManager.Instance.unfoldManager.activatedSkinUnfolder.skinBGImage.color = Color.white;
         skinBGImage.color = DressingManager.Instance.unfoldManager.selectedSkinBGColor;
         DressingManager.Instance.unfoldManager.activatedSkinUnfolder = this;
+        GameManager.Instance.Player.LoadSkin(thisSkinData);
     }
 }

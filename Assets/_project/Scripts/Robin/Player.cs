@@ -54,8 +54,9 @@ public class Player : MonoBehaviour
     public List<string> DataSplit { get; set; } = new List<string>();
     public int CurrentLevelPlayer { get; set; }
     public float NeededXp { get; set; }
-    public int NextLevelPlayer { get; set; }
-    public float CurrentXp { get; set; }
+    public int NextLevelPlayer { get;set; }
+    public float CurrentXp { get;set; }
+    public int CurrentSkinId { get; set; }
 
     [Header("Motion")]
     [Space]
@@ -95,6 +96,12 @@ public class Player : MonoBehaviour
         GainPointUnderground();
         //Debug.LogWarning("Actual worm speed: " + WormHead.Rigidbody.velocity.x);
         UiManager.Instance.GameMenu.ScoreText.text = Score.ToString();
+
+        // refresh highscore realtime
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+        }
     }
 
     void SetVelocityFromSpeed()
@@ -162,11 +169,6 @@ public class Player : MonoBehaviour
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
         IncreaseStatTotal("Deaths", 1);
-        if (Score > HighScore)
-        {
-            HighScore = Score;
-            PlayerPrefs.SetInt("HighScore", HighScore);
-        }
         GameManager.Instance.SetState(State.Dead);
     }
 
@@ -293,6 +295,7 @@ public class Player : MonoBehaviour
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         CurrentXp = PlayerPrefs.GetFloat("CurrentXp", 0f);
         CurrentLevelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
+        LoadSkin(PlayerPrefs.GetInt("SkinID", 0));
         //Debug.Log("HighScore " + HighScore);
         //Debug.Log("CurrentXp " + CurrentXp);
         //Debug.Log("CurrentLevelPlayer " + CurrentLevelPlayer);
@@ -328,12 +331,13 @@ public class Player : MonoBehaviour
 
     public void LoadSkin(SkinData skinData)
     {
-        if (WormHead)
-        {
-            WormHead.SetSkin(skinData);
-            CurrentSkin = skinData;
-        }
-
-
+        CurrentSkinId = UiManager.Instance.allSkins.IndexOf(skinData);
+        WormHead.SetSkin(skinData);
+        PlayerPrefs.SetInt("SkinID", CurrentSkinId);
+    }
+    void LoadSkin(int skinID)
+    {
+        CurrentSkinId = skinID;
+        WormHead.SetSkin(UiManager.Instance.allSkins[skinID]);
     }
 }
