@@ -60,10 +60,27 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 54804717a6b02f8489eb341777cd9921, type: 3}
     - {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
     - {fileID: 21300000, guid: 2971c1b3602fb654f8110f5f3b2affcc, type: 3}
-    totalSpriteSurfaceArea: 186814
+    - {fileID: 21300000, guid: da2b88c03d5e3ab46b775cee256280ca, type: 3}
+    - {fileID: 21300000, guid: 9e84cc7a5555a054a8093ea3ab72e281, type: 3}
+    - {fileID: 21300000, guid: 52d7f9fd49a27ab46b610f67531d3743, type: 3}
+    - {fileID: 21300000, guid: 1031639fe3774644bb5d10eab24eb80e, type: 3}
+    - {fileID: 21300000, guid: 26d7d61c59a5d9e4e95ea3bff17dcd20, type: 3}
+    - {fileID: 21300000, guid: ef4356a66b6b58445a2107c0a8d476d8, type: 3}
+    - {fileID: 21300000, guid: cd30c1e7acd26b74fa8a7ddf0fc2306f, type: 3}
+    - {fileID: 21300000, guid: e5d4f9b8cfaf2a54d9b42efad8d38889, type: 3}
+    - {fileID: 21300000, guid: 83e7e4abb113a114a9c94fc6bb6f6233, type: 3}
+    - {fileID: 21300000, guid: 5ce0497cee2b43c4e9f578c6b2b1ba6c, type: 3}
+    - {fileID: 21300000, guid: 24d7a858c8ff2c4478ff576983a7f212, type: 3}
+    - {fileID: 21300000, guid: 71c0aaad5e80f2e49b6cca552fdce08c, type: 3}
+    - {fileID: 21300000, guid: 62ee2a9f95cadd04fb5c00fa52c44b91, type: 3}
+    - {fileID: 21300000, guid: 7ad9da4a07338044a81803a9a9bb4f47, type: 3}
+    - {fileID: 21300000, guid: aecd5576b61297a4fadbf595d547ed66, type: 3}
+    - {fileID: 21300000, guid: 1fd6f7164941ebd43b5cf280342f8495, type: 3}
+    totalSpriteSurfaceArea: 705214
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: da2b88c03d5e3ab46b775cee256280ca, type: 3}
   - {fileID: 4603523345142856462, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
   - {fileID: -8544934529487123643, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
   - {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
@@ -81,8 +98,24 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f06170e2af549e84e99d694f21167bf0, type: 3}
   - {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
   - {fileID: 21300000, guid: 2971c1b3602fb654f8110f5f3b2affcc, type: 3}
+  - {fileID: 21300000, guid: 1fd6f7164941ebd43b5cf280342f8495, type: 3}
+  - {fileID: 21300000, guid: aecd5576b61297a4fadbf595d547ed66, type: 3}
+  - {fileID: 21300000, guid: ef4356a66b6b58445a2107c0a8d476d8, type: 3}
   - {fileID: 21300000, guid: 54804717a6b02f8489eb341777cd9921, type: 3}
+  - {fileID: 21300000, guid: cd30c1e7acd26b74fa8a7ddf0fc2306f, type: 3}
+  - {fileID: 21300000, guid: 24d7a858c8ff2c4478ff576983a7f212, type: 3}
+  - {fileID: 21300000, guid: e5d4f9b8cfaf2a54d9b42efad8d38889, type: 3}
+  - {fileID: 21300000, guid: 7ad9da4a07338044a81803a9a9bb4f47, type: 3}
+  - {fileID: 21300000, guid: 9e84cc7a5555a054a8093ea3ab72e281, type: 3}
+  - {fileID: 21300000, guid: 83e7e4abb113a114a9c94fc6bb6f6233, type: 3}
+  - {fileID: 21300000, guid: 26d7d61c59a5d9e4e95ea3bff17dcd20, type: 3}
+  - {fileID: 21300000, guid: 5ce0497cee2b43c4e9f578c6b2b1ba6c, type: 3}
+  - {fileID: 21300000, guid: 71c0aaad5e80f2e49b6cca552fdce08c, type: 3}
+  - {fileID: 21300000, guid: 52d7f9fd49a27ab46b610f67531d3743, type: 3}
+  - {fileID: 21300000, guid: 1031639fe3774644bb5d10eab24eb80e, type: 3}
+  - {fileID: 21300000, guid: 62ee2a9f95cadd04fb5c00fa52c44b91, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Skin Anecics Tail
   - Scream Anime 1
   - Scream Anime 2
   - Pupille
@@ -100,6 +133,21 @@ SpriteAtlas:
   - Ver 2 terre queue2
   - Test ver
   - Shield in game 2
+  - Skin Myth or Reality Body
+  - Skin Myth or Reality face
+  - Skin Bipaliul Kewense Head
   - Ver 2 terre Corps2
+  - Skin Bipaliul Kewense Eyes
+  - Skins Megascolides Australis head
+  - Skin Bipaliul Kewense Body
+  - Skin Myth or Reality head
+  - Skin Anecics Head
+  - Skins Megascolides Australis Tail
+  - Skin Bipaliul Kewense Mouth Vicieuse
+  - Skins Megascolides Australis Sun glasses
+  - Skins Megascolides Australis Body
+  - Skin Anecics Body
+  - Skin Bipaliul Kewense Tail
+  - Skin Myth or Reality Tail
   m_Tag: Worm
   m_IsVariant: 0
