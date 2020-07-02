@@ -32,7 +32,7 @@ public class Unfolder : MonoBehaviour
     }
     public UNLOCK_COND unlockCond = 0;
     [SerializeField] int unlockPrice = 100;
-    [SerializeField] SkinData thisSkinData;
+    public SkinData thisSkinData;
 
     public void SetProgression()
     {
