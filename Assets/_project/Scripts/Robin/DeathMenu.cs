@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DeathMenu:MonoBehaviour
 {
     public Image FillingImage;
+    public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI CurrentLevelText;
     public TextMeshProUGUI NextLevelText;
     public GameObject NormalPanel;
@@ -15,8 +16,15 @@ public class DeathMenu:MonoBehaviour
 
     private void OnEnable()
     {
-       
+        StartCoroutine(LerpPoint(GameManager.Instance.Player.Score, Time.unscaledTime, 2f));
+
+        ScoreText.text = GameManager.Instance.Player.Score.ToString();
+        CurrentLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer ).ToString();
+
+        NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 1).ToString();
+
         PlayerPrefs.SetInt("HighScore", GameManager.Instance.Player.HighScore);
+
         float lastxp = GameManager.Instance.Player.CurrentXp;
         GameManager.Instance.Player.CurrentXp += GameManager.Instance.Player.Score;
         Debug.Log("XP: " + GameManager.Instance.Player.CurrentXp);
@@ -52,7 +60,7 @@ public class DeathMenu:MonoBehaviour
             NormalPanel.SetActive(false);
             LevelUpPanel.SetActive(true);
 
-            CurrentLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 1).ToString();
+            CurrentLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer +1).ToString();
 
             NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 2).ToString();
 
@@ -94,4 +102,17 @@ public class DeathMenu:MonoBehaviour
         _backToNormalPanel = false;
     }
 
+    IEnumerator LerpPoint(int score,float startTime,float duration)
+    {
+        float scaleTime = 0f;
+        while (scaleTime < 1f)
+        {
+            
+            scaleTime = (Time.unscaledTime - startTime) / duration;
+
+            ScoreText.text = Mathf.Lerp(0, score, scaleTime).ToString();
+           
+            yield return null;
+        }
+    }
 }

@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
+    public SkinData DefaultSkin;
     public SkinData CurrentSkin { get; set; }
+
     const int detph = 9;
     [Tooltip("Distance detection of the obstacle or collectible to change face")]
     public float FieldOfView;
@@ -50,10 +52,10 @@ public class Player : MonoBehaviour
     [Header("Level System")]
     public TextAsset LevelData;
     public List<string> DataSplit { get; set; } = new List<string>();
-    public int CurrentLevelPlayer { get;set; }
+    public int CurrentLevelPlayer { get; set; }
     public float NeededXp { get; set; }
-    public int NextLevelPlayer { get;set; }
-    public float CurrentXp { get;set; }
+    public int NextLevelPlayer { get; set; }
+    public float CurrentXp { get; set; }
 
     [Header("Motion")]
     [Space]
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour
         WormHead.TimeFaceDisplayed = TimeFaceDisplayed;
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
-
+        LoadSkin(DefaultSkin);
 
     }
 
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
                 collectibleStatName = "EggShells";
                 break;
         }
-       
+
         if (collectibleParams.EggShellIndex > -1)
         {
             if (collectibleParams.EggShellIndex != LastIndexEggShell)
@@ -224,8 +226,8 @@ public class Player : MonoBehaviour
                     scoreIncrease = EggShellStreakTwo;
                     break;
                 case 3:
-            //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
-            //+ "StreakEggShell " + StreakEggShell);
+                    //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
+                    //+ "StreakEggShell " + StreakEggShell);
                     scoreIncrease = EggShellStreakThird;
                     StreakEggShell = 0;
                     ++UiManager.Instance.SessionStrikesTotal;
@@ -286,7 +288,7 @@ public class Player : MonoBehaviour
     }
 
 
-  public  void LoadData()
+    public void LoadData()
     {
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         CurrentXp = PlayerPrefs.GetFloat("CurrentXp", 0f);
@@ -294,7 +296,7 @@ public class Player : MonoBehaviour
         //Debug.Log("HighScore " + HighScore);
         //Debug.Log("CurrentXp " + CurrentXp);
         //Debug.Log("CurrentLevelPlayer " + CurrentLevelPlayer);
-        
+
         LoadDataFromFile();
 
 
@@ -311,22 +313,27 @@ public class Player : MonoBehaviour
             //Debug.Log("splitLine " + splitLine);
             if (splitLine[0] == CurrentLevelPlayer.ToString())
             {
-                NeededXp = Int32.Parse( splitLine[1]);
+                NeededXp = Int32.Parse(splitLine[1]);
                 //Debug.Log("NeededXp " + NeededXp);
                 break;
             }
         }
     }
-    
+
     public void SaveData()
     {
         PlayerPrefs.SetFloat("CurrentXp", CurrentXp);
         PlayerPrefs.SetInt("LevelPlayer", CurrentLevelPlayer);
     }
 
-    public void  LoadSkin(SkinData skinData)
+    public void LoadSkin(SkinData skinData)
     {
-        CurrentSkin = skinData;
-        WormHead.SetSkin(skinData);
+        if (WormHead)
+        {
+            WormHead.SetSkin(skinData);
+            CurrentSkin = skinData;
+        }
+
+
     }
 }

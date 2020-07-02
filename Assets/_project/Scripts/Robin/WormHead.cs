@@ -18,7 +18,7 @@ public class WormHead : WormBody
     public SpriteRenderer Eyes;
     public SpriteRenderer Pupil;
     public SpriteRenderer Mouth;
-    public SkinData DefaultSkin;
+   // public SkinData DefaultSkin;
 
     private FeelType _lastFace;
     private FeelType _currentFace;
@@ -75,7 +75,7 @@ public class WormHead : WormBody
         SetupBody();     
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
-        SetSkin(DefaultSkin);
+      //  SetSkin(DefaultSkin);
     }
 
     bool touchingInput = false;
