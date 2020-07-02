@@ -10,6 +10,9 @@ public class UnfoldButton : MonoBehaviour
     [HideInInspector] public Unfolder selectedUnfolder = null;
     Coroutine rollingCoroutine = null;
     [SerializeField] AnimationCurve buttonResizeCurve;
+    [SerializeField] Unfolder[] unfolders;
+    public Unfolder activatedSkinUnfolder;
+    public Color32 selectedSkinBGColor;
 
     public void Folding(Unfolder unfolder)
     {
@@ -41,7 +44,7 @@ public class UnfoldButton : MonoBehaviour
 
     void Unfold(Unfolder _selectedUnfolder)
     {
-        rollingCoroutine = StartCoroutine("RollingCoroutine", new object[3] { _selectedUnfolder, 350, true });
+        rollingCoroutine = StartCoroutine("RollingCoroutine", new object[3] { _selectedUnfolder, 350 + 100 * Convert.ToInt32(_selectedUnfolder.isUnlocked), true });
     }
 
     void Fold(Unfolder _selectedUnfolder)
@@ -68,5 +71,14 @@ public class UnfoldButton : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         //rectT.sizeDelta = new Vector2(rectT.sizeDelta.x, endingDelta);
+    }
+
+    public void UnfoldersSetup()
+    {
+        foreach(Unfolder unfolder in unfolders)
+        {
+            if (!unfolder.isUnlocked)
+                unfolder.SetProgression();
+        }
     }
 }
