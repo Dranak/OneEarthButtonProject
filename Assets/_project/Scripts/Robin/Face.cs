@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Face : MonoBehaviour
+[CreateAssetMenu(fileName = "Face", menuName = "Face")]
+public class Face : ScriptableObject
 {
     public FeelType FaceType;
-
- 
+    public Sprite Eyes;
+    public Sprite Pupil;
+    public Sprite Mouth;
+       
 }
 
 

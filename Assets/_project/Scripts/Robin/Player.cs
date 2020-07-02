@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [Header("General - Setup")]
     [Space]
     public WormHead WormHead;
+    public SkinData CurrentSkin { get; set; }
     const int detph = 9;
     [Tooltip("Distance detection of the obstacle or collectible to change face")]
     public float FieldOfView;
@@ -321,5 +322,11 @@ public class Player : MonoBehaviour
     {
         PlayerPrefs.SetFloat("CurrentXp", CurrentXp);
         PlayerPrefs.SetInt("LevelPlayer", CurrentLevelPlayer);
+    }
+
+    public void  LoadSkin(SkinData skinData)
+    {
+        CurrentSkin = skinData;
+        WormHead.SetSkin(skinData);
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class SkyManager : MonoBehaviour
 {
-    public GameObject CenterUniverse;
+   
     public Light2D Sun;
-    public Light2D Moon;
+    public Gradient Gradient;
 
     public MeshRenderer Sky;
     public float DurationOfCycle;
@@ -33,16 +33,13 @@ public class SkyManager : MonoBehaviour
         _timeOfDay = Mathf.Lerp(0f, 1f, Mathf.PingPong(_scaleTime, 1f));
         //Debug.Log("TimeOfDay " + timeOfDay);
         Sky.material.SetFloat("_TimeOfDay", _timeOfDay);
-        RotateStar();
+        LerpColorLightFromGradien();
 
     }
 
-    void RotateStar()
+    void LerpColorLightFromGradien()
     {
-        //Debug.Log("Angle: " + Mathf.Lerp(0, 360, _timeOfDay));
-        CenterUniverse.transform.rotation = Quaternion.Euler( 0,0, Mathf.Lerp(0, 360, _timeOfDay));
-        //Sun.transform.RotateAround(CenterUniverse.transform.position,Vector3.forward, Mathf.LerpAngle(0, 360, _timeOfDay));
-        //Moon.transform.RotateAround(CenterUniverse.transform.position,Vector3.forward, Mathf.LerpAngle(0, 360, _timeOfDay));
+        Sun.color = Gradient.Evaluate(_timeOfDay);
 
     }
 

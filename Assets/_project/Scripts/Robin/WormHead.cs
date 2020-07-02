@@ -13,9 +13,15 @@ public class WormHead : WormBody
     public int NumberOfParts;
     public float OffsetBodyPart = 5f;
 
-    public List<Face> AllFaces { get; set; } = new List<Face>();
 
-    private Face _lastFace;
+    public List<Face> AllFaces { get; set; } = new List<Face>();
+    public SpriteRenderer Eyes;
+    public SpriteRenderer Pupil;
+    public SpriteRenderer Mouth;
+    public SkinData DefaultSkin;
+
+    private FeelType _lastFace;
+    private FeelType _currentFace;
     public float TimeFaceDisplayed { get; set; }
     private float _chronoFaceDisplayed = 0f;
     [Space]
@@ -50,22 +56,26 @@ public class WormHead : WormBody
 
     private string _lastNameCollectible = String.Empty;
 
-    Player player;
+    Player _player;
     protected override void Awake()
     {
         base.Awake();
-        player = GameManager.Instance.Player;
-        AllFaces = GetComponentsInChildren<Face>().ToList();
+        _player = GameManager.Instance.Player;
 
-        _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
-        AllFaces.Where(f => f != _lastFace).ToList().ForEach(f => f.gameObject.SetActive(false));
+        _lastFace = FeelType.Normal;
+        _currentFace = FeelType.Normal;
+      
+
+        
+       
     }
 
     void Start()
     {
-        SetupBody();
+        SetupBody();     
         StartPosition = Rigidbody.position;
         Line.positionCount = _wormBodies.Count + 1;
+        SetSkin(DefaultSkin);
     }
 
     bool touchingInput = false;
@@ -189,7 +199,7 @@ public class WormHead : WormBody
                 _wormBodies.Last().SetTarget(this);
         }
         _wormBodies.Last().Trail.enabled = true;
-        _wormBodies.Last().GetComponent<SpriteRenderer>().enabled = true;
+        _wormBodies.Last().SpriteExtremity.enabled = true;
     }
 
 
@@ -207,25 +217,25 @@ public class WormHead : WormBody
         }
         _chronoIncreaseSpeed += Time.deltaTime;
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var col = collision.collider;
         if (col.CompareTag("Death"))
         {
-            if (player.currentBonus == Player.Bonus.Shield)
+            if (_player.currentBonus == Player.Bonus.Shield)
             {
-                player.ActivateBonus(0);
+                _player.ActivateBonus(0);
                 col.enabled = false;
             }
-            else if (player.currentBonus == Player.Bonus.Rage)
+            else if (_player.currentBonus == Player.Bonus.Rage)
             {
                 col.enabled = false;
             }
             else
             {
                 //Debug.Log("Dead by " + collision.gameObject.name);
-                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), player);
+                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), _player);
             }
         }
     }
@@ -236,7 +246,7 @@ public class WormHead : WormBody
         {
             Collectible collectible = collider.transform.parent.GetComponent<Collectible>();
 
-            if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == player.LastIndexEggShell)
+            if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == _player.LastIndexEggShell)
             {
                 BlocManager.Instance.PoolOut(collectible);
 
@@ -262,8 +272,8 @@ public class WormHead : WormBody
         {
             // reset egg shells series (_streakEggShell)
             //Debug.Log("Reset StreakEggShell: " + player.StreakEggShell);
-            player.StreakEggShell = 0;
-            player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
+            _player.StreakEggShell = 0;
+            _player.playingBlocName = BlocManager.Instance.randomBloc.blocName; // going through new bloc
             Destroy(collider.gameObject); // not needed any more
         }
     }
@@ -281,16 +291,12 @@ public class WormHead : WormBody
             {
                 if (spawnableObject is Obstacle)
                 {
-                    _lastFace.gameObject.SetActive(false);
-                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Fear).FirstOrDefault();
-                    _lastFace.gameObject.SetActive(true);
+                    SetFace(FeelType.Fear);
 
                 }
                 else if (spawnableObject is Collectible)
                 {
-                    _lastFace.gameObject.SetActive(false);
-                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Happy).FirstOrDefault();
-                    _lastFace.gameObject.SetActive(true);
+                    SetFace(FeelType.Happy);
                 }
 
 
@@ -302,17 +308,13 @@ public class WormHead : WormBody
             _chronoFaceDisplayed += Time.deltaTime;
             if (_chronoFaceDisplayed >= TimeFaceDisplayed)
             {
-                if (_lastFace.FaceType == FeelType.Fear)
+                if (_lastFace == FeelType.Fear)
                 {
-                    _lastFace.gameObject.SetActive(false);
-                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Sweat).FirstOrDefault();
-                    _lastFace.gameObject.SetActive(true);
+                    SetFace(FeelType.Sweat);
                 }
                 else
                 {
-                    _lastFace.gameObject.SetActive(false);
-                    _lastFace = AllFaces.Where(f => f.FaceType == FeelType.Normal).FirstOrDefault();
-                    _lastFace.gameObject.SetActive(true);
+                    SetFace(FeelType.Normal);
                 }
                 _chronoFaceDisplayed = 0f;
 
@@ -321,7 +323,27 @@ public class WormHead : WormBody
         }
     }
 
+    public void SetSkin(SkinData skindata)
+    {
+        SpriteExtremity.sprite = skindata.HeadSprite;
+        _wormBodies.Last().SpriteExtremity.sprite = skindata.TailSprite;
+        Line.material = skindata.BodyMaterial;
+        AllFaces = skindata.Faces;
+        SetFace(FeelType.Normal);
 
+
+    }
+
+    public void SetFace(FeelType feel )
+    {
+        _lastFace = _currentFace;
+        _currentFace = feel;
+        Face face = AllFaces.Where(f => f.FaceType == feel).FirstOrDefault();
+        Eyes.sprite = face.Eyes;
+        Pupil.sprite = face.Pupil;
+        Mouth.sprite = face.Mouth;
+        
+    }
 
     //LEGACY
     //void UpdateCollider()

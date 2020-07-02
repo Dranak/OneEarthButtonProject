@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdfaaa7c38d672439d33bc659dca33c, type: 3}
+  m_Name: NormalSkin
+  m_EditorClassIdentifier: 
+  SkinType: 0
+  HeadSprite: {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
+  TailSprite: {fileID: 21300000, guid: f029df1fe3fba4f48b034c9181507580, type: 3}
+  BodyMaterial: {fileID: 2100000, guid: 06caf1838429b8141854f8d9527c3cb6, type: 2}
+  Faces:
+  - {fileID: 11400000, guid: 8f9cbad6154332245b09be788d3a824b, type: 2}
+  - {fileID: 11400000, guid: 5ae4589987b50e84f9bbcd021246d6c2, type: 2}
+  - {fileID: 11400000, guid: 3e1b84676b823c447b2221c3022e0865, type: 2}
+  - {fileID: 11400000, guid: 9b629c3c0e0a4554696c5c78fc766976, type: 2}
+  - {fileID: 11400000, guid: b5d8052a2a359ad47b6d0e89267b8009, type: 2}

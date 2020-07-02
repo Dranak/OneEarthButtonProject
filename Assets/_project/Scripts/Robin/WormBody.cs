@@ -10,6 +10,7 @@ public class WormBody : MonoBehaviour
     public WormBody Target { get; set; }
     public Rigidbody2D Rigidbody { get; set; }
     public ParticleSystemRenderer Trail { get; set; }
+    public SpriteRenderer SpriteExtremity { get; set; }
     public float Damping;
     public Transform Anchor;
 
@@ -17,7 +18,9 @@ public class WormBody : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         Trail = GetComponentInChildren<ParticleSystemRenderer>(); // new TRAIL is a Particle System
-        
+        SpriteExtremity = GetComponent<SpriteRenderer>();
+
+
     }
 
     private void FixedUpdate()

@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &27006615
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 27006616}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &27006616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27006615}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1166075107}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827154169
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +217,7 @@ Transform:
   m_Children:
   - {fileID: 2093122875}
   - {fileID: 8090354806193135960}
-  - {fileID: 715924916825911387}
-  - {fileID: 27006616}
+  - {fileID: 142937665398483392}
   m_Father: {fileID: 5395711807198110215}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -264,11 +233,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d814c2c45caf08d4db996a64d8234374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterUniverse: {fileID: 27006615}
   Sun: {fileID: 5940164424799003706}
-  Moon: {fileID: 5193927297598834841}
+  Gradient:
+    serializedVersion: 2
+    key0: {r: 0.99181193, g: 1, b: 0.8443396, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 1, g: 0.8691558, b: 0.4198113, a: 0}
+    key3: {r: 0.85657173, g: 0.6745283, b: 1, a: 0}
+    key4: {r: 0.06848521, g: 0.21564916, b: 0.764151, a: 0}
+    key5: {r: 0.06848521, g: 0.21564916, b: 0.764151, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 23130
+    ctime2: 33539
+    ctime3: 45682
+    ctime4: 65535
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
   Sky: {fileID: 2093122877}
-  DurationOfCycle: 40
+  DurationOfCycle: 10
 --- !u!1 &1572187724
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,38 +437,6 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -20
---- !u!1 &1872757799278882388
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 715924916825911387}
-  m_Layer: 0
-  m_Name: SunMoon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &715924916825911387
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872757799278882388}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 142937665398483392}
-  - {fileID: 8177257016269383311}
-  m_Father: {fileID: 1166075107}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2771774367229841280
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +448,7 @@ GameObject:
   - component: {fileID: 8090354806193135960}
   - component: {fileID: 8574644350286293067}
   m_Layer: 0
-  m_Name: 'Global Light '
+  m_Name: Global Light underground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,79 +509,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1 &3504481616185234187
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8177257016269383311}
-  - component: {fileID: 5193927297598834841}
-  m_Layer: 0
-  m_Name: Moon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8177257016269383311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3504481616185234187}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.16, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 715924916825911387}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5193927297598834841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3504481616185234187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LightType: 1
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.53
-  m_Color: {r: 0.124332726, g: 0.06755074, b: 0.4339623, a: 1}
-  m_Intensity: 2.1
-  m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 91e82eb0
-  m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 1
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
-  m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 5.95
-  m_PointLightOuterRadius: 18.51
-  m_PointLightDistance: 6.77
-  m_PointLightQuality: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 1.23
-  m_ShapeLightFalloffOffset: {x: -1.19, y: 0.1}
-  m_ShapePath:
-  - {x: -10.64455, y: -7.5914345, z: 0}
-  - {x: 20.942417, y: -7.6387873, z: 0}
-  - {x: 5.855927, y: -5.384648, z: 0}
-  - {x: -8.616586, y: -4.8753104, z: 0}
-  - {x: -9.785023, y: -5.3430243, z: 0}
 --- !u!1 &4771130870132760227
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,8 +537,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 10.690001, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 715924916825911387}
-  m_RootOrder: 0
+  m_Father: {fileID: 1166075107}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5940164424799003706
 MonoBehaviour:
@@ -665,11 +556,11 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 0.5882353, a: 1}
-  m_Intensity: 1.3
+  m_Intensity: 3.05
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 91e82eb0
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 1
   m_ShadowIntensity: 0
@@ -678,13 +569,13 @@ MonoBehaviour:
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 5.95
   m_PointLightOuterRadius: 18.51
-  m_PointLightDistance: 6.77
+  m_PointLightDistance: 8.39
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
   m_ShapeLightFalloffSize: 15.93
-  m_ShapeLightFalloffOffset: {x: 0.27, y: 0}
+  m_ShapeLightFalloffOffset: {x: -2.23, y: 0}
   m_ShapePath:
   - {x: -11.062388, y: -7.4260926, z: 0}
   - {x: 10.926043, y: -7.5052347, z: 0}

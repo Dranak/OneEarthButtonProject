@@ -297,24 +297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2093122875, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 13.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 2093122875, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 230452997647834352, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 715924916825911387, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4206860315590997158, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -384,16 +366,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraSys
-      objectReference: {fileID: 0}
-    - target: {fileID: 8090354806193135960, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8458257326019919169, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
@@ -504,7 +476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1132403342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1263,11 +1235,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6017596610862258611, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596610862258611, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6017596611248286623, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 827154173}
+    - target: {fileID: 6017596611291418843, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611291418843, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Positions.Array.size
@@ -1358,6 +1350,12 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6017596611329487561, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: DefaultSkin
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a63f9d61e07b734b9251d6c92bfcd4c,
+        type: 2}
     - target: {fileID: 6017596611329487562, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Constraints
@@ -1392,6 +1390,16 @@ PrefabInstance:
     - target: {fileID: 6017596611365328333, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611512312649, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611512312649, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6017596611703711441, guid: 377730f41a5a5c14c9d64792ea2bf922,
@@ -1504,5 +1512,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6017596612072157092, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}
