@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef2b57f27b35b1a46b2980bbdf3b039f, type: 3}
-  m_Name: NormalFace
+  m_Name: HappyFace 1
   m_EditorClassIdentifier: 
-  FaceType: 0
-  Eyes: {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
-  Pupil: {fileID: 0}
-  Mouth: {fileID: 21300000, guid: 243b1de3d007510429c4f2f21da1e993, type: 3}
+  FaceType: 1
+  Eyes: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Pupil: {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Mouth: {fileID: 8803394450933359300, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}

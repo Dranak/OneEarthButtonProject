@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkinData
   m_EditorClassIdentifier: 
   SkinType: 3
-  HeadSprite: {fileID: 0}
-  TailSprite: {fileID: 0}
-  BodyMaterial: {fileID: 0}
+  HeadSprite: {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
+  TailSprite: {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
+  BodyMaterial: {fileID: 2100000, guid: 499a0326c8e56ce48ad2ab4cdf06247e, type: 2}
   Faces: []
