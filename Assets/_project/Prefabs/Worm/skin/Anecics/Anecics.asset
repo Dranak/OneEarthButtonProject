@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkinType: 0
   HeadSprite: {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
-  TailSprite: {fileID: 21300000, guid: da2b88c03d5e3ab46b775cee256280ca, type: 3}
+  TailSprite: {fileID: 21300000, guid: 3f344d2968331bf46b5d70ff89165c3c, type: 3}
   BodyMaterial: {fileID: 2100000, guid: 27ec52d102f0f3548a0b0556d8858c2d, type: 2}
   Faces:
   - {fileID: 11400000, guid: 8f9cbad6154332245b09be788d3a824b, type: 2}

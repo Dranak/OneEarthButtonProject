@@ -1246,7 +1246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0013427734}
+  m_AnchoredPosition: {x: 0, y: -0.0009460449}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1593774058675857176
@@ -2841,7 +2841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0013427734}
+  m_AnchoredPosition: {x: 0, y: -0.0009460449}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5233241565510487948
@@ -4073,8 +4073,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5758191010261073937}
   m_HandleRect: {fileID: 8712101207621532950}
   m_Direction: 2
-  m_Value: 1.0000031
-  m_Size: 0.67292696
+  m_Value: 1.0000023
+  m_Size: 0.6729283
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5093,8 +5093,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3576191365399997136}
   m_HandleRect: {fileID: 7162805117765695661}
   m_Direction: 2
-  m_Value: 1.0000024
-  m_Size: 0.61545277
+  m_Value: 1.0000018
+  m_Size: 0.61545396
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6301,6 +6301,12 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: e7cf2bf8deb3e3f4cbf1b6f993f107c7,
+        type: 2}
     - target: {fileID: 1895935476123943219, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_ChildControlWidth
@@ -6618,6 +6624,12 @@ PrefabInstance:
       propertyPath: isUnlocked
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a63f9d61e07b734b9251d6c92bfcd4c,
+        type: 2}
     - target: {fileID: 574698513683194091, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_IsActive
@@ -6979,6 +6991,12 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0aff9e9f94da17c4e9dd3e12fe9572b8,
+        type: 2}
     - target: {fileID: 1895935476123943219, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_ChildControlWidth
@@ -7288,6 +7306,12 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 8000
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: fcedd1fde1a2a624b88bbe961aa6e641,
+        type: 2}
     - target: {fileID: 1895935476123943219, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_ChildControlWidth
@@ -7593,6 +7617,12 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: e8dd6842de87c3b4d8e596e592854187,
+        type: 2}
     - target: {fileID: 1895935476123943219, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_ChildControlWidth
@@ -7894,6 +7924,12 @@ PrefabInstance:
       propertyPath: unlockPrice
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 410103606488005604, guid: 40cda2374bd356f4fb507aba2f916825,
+        type: 3}
+      propertyPath: thisSkinData
+      value: 
+      objectReference: {fileID: 11400000, guid: c1a1bde55368b7847a990e4ff3861f8e,
+        type: 2}
     - target: {fileID: 1895935476123943219, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_ChildControlWidth

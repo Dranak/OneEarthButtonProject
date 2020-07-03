@@ -10,10 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffdfaaa7c38d672439d33bc659dca33c, type: 3}
-  m_Name: SkinData
+  m_Name: Ancestor
   m_EditorClassIdentifier: 
   SkinType: 3
   HeadSprite: {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
   TailSprite: {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
   BodyMaterial: {fileID: 2100000, guid: 499a0326c8e56ce48ad2ab4cdf06247e, type: 2}
-  Faces: []
+  Faces:
+  - {fileID: 11400000, guid: 6c5bf19a3ae94e241b55f0043322689f, type: 2}
+  - {fileID: 11400000, guid: 2ba78253665135e48b8a9e6ea653b743, type: 2}
+  - {fileID: 11400000, guid: 37fae9e869b47cb47a9407b908ba4484, type: 2}
+  - {fileID: 11400000, guid: 6f80ab1c50ed6f343b67f0aa27777229, type: 2}
+  - {fileID: 11400000, guid: 4b821ab20e7d2be43a59500ffd7900de, type: 2}

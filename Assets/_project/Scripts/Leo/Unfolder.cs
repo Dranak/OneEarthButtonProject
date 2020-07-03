@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class Unfolder : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class Unfolder : MonoBehaviour
     public Button skinToggle;
     public Image progressionImage;
     public TextMeshProUGUI progressionText;
-    public Image skinBGImage;
     public enum UNLOCK_COND
     {
         LEVEL = 0,
@@ -33,6 +33,10 @@ public class Unfolder : MonoBehaviour
     public UNLOCK_COND unlockCond = 0;
     [SerializeField] int unlockPrice = 100;
     public SkinData thisSkinData;
+
+    [Header("Skin Preview")]
+    public Image skinBGImage;
+    public Image skinHead, skinMouth, skinEyes, skinPupils;
 
     public void SetProgression()
     {
@@ -54,5 +58,15 @@ public class Unfolder : MonoBehaviour
         skinBGImage.color = DressingManager.Instance.unfoldManager.selectedSkinBGColor;
         DressingManager.Instance.unfoldManager.activatedSkinUnfolder = this;
         GameManager.Instance.Player.LoadSkin(thisSkinData);
+    }
+    public void SetupSkinPreview()
+    {
+        skinHead.sprite = thisSkinData.HeadSprite;
+        var normalFace = thisSkinData.Faces.FirstOrDefault(w => w.name.Contains("Normal"));
+        skinMouth.sprite = normalFace.Mouth;
+        skinEyes.sprite = normalFace.Eyes;
+        skinPupils.sprite = normalFace.Pupil;
+        if (skinPupils.sprite == null)
+            skinPupils.enabled = false;
     }
 }

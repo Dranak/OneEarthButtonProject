@@ -54,6 +54,12 @@ MonoBehaviour:
   DeathMenu: {fileID: 2}
   DressingMenu: {fileID: 717242685541967239}
   eventSystem: {fileID: 0}
+  allSkins:
+  - {fileID: 11400000, guid: 6a63f9d61e07b734b9251d6c92bfcd4c, type: 2}
+  - {fileID: 11400000, guid: c1a1bde55368b7847a990e4ff3861f8e, type: 2}
+  - {fileID: 11400000, guid: 0aff9e9f94da17c4e9dd3e12fe9572b8, type: 2}
+  - {fileID: 11400000, guid: e7cf2bf8deb3e3f4cbf1b6f993f107c7, type: 2}
+  - {fileID: 11400000, guid: fcedd1fde1a2a624b88bbe961aa6e641, type: 2}
 --- !u!1001 &1258331583695508569
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef2b57f27b35b1a46b2980bbdf3b039f, type: 3}
-  m_Name: SweatFace
+  m_Name: SweatFace 1
   m_EditorClassIdentifier: 
   FaceType: 3
   Eyes: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}

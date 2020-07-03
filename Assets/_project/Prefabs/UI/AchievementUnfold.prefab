@@ -167,9 +167,14 @@ MonoBehaviour:
   skinToggle: {fileID: 1530657053288152885}
   progressionImage: {fileID: 3306660174469992683}
   progressionText: {fileID: 4174985949899583491}
-  skinBGImage: {fileID: 208593409824712473}
   unlockCond: 0
-  unlockPrice: -1
+  unlockPrice: 0
+  thisSkinData: {fileID: 0}
+  skinBGImage: {fileID: 208593409824712473}
+  skinHead: {fileID: 2658251016357734149}
+  skinMouth: {fileID: 4861747409533025247}
+  skinEyes: {fileID: 6598481324808282132}
+  skinPupils: {fileID: 7244391210009847356}
 --- !u!1 &208593409824712475
 GameObject:
   m_ObjectHideFlags: 0

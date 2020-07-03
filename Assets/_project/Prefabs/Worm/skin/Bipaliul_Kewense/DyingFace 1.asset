@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DyingFace 1
   m_EditorClassIdentifier: 
   FaceType: 4
-  Eyes: {fileID: 21300000, guid: cd30c1e7acd26b74fa8a7ddf0fc2306f, type: 3}
+  Eyes: {fileID: 684826011381926897, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}
   Pupil: {fileID: 0}
   Mouth: {fileID: 3239641485748022024, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}

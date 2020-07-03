@@ -19,6 +19,7 @@ public class UiManager : MonoBehaviour
     public int BestSessionScore { get; set; } = 0;
     public int SessionStrikesTotal { get; set; } = 0; // total ammount of eggshells strike during session
     public List<SkinData> allSkins;
+    public bool isSkinPreviewsSet = false;
 
     // Start is called before the first frame update
     private void Awake()

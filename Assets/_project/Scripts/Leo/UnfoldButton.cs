@@ -75,14 +75,18 @@ public class UnfoldButton : MonoBehaviour
 
     public void UnfoldersSetup()
     {
+        var skinPreviewBool = UiManager.Instance.isSkinPreviewsSet;
         foreach(Unfolder unfolder in unfolders)
         {
             if (!unfolder.isUnlocked)
             {
                 unfolder.SetProgression();
-                if (unfolder.thisSkinData = UiManager.Instance.allSkins[GameManager.Instance.Player.CurrentSkinId])
-                    unfolder.SelectSkin();
             }
+            if (unfolder.thisSkinData == UiManager.Instance.allSkins[GameManager.Instance.Player.CurrentSkinId])
+                unfolder.SelectSkin();
+            if (!skinPreviewBool)
+                unfolder.SetupSkinPreview();
         }
+        UiManager.Instance.isSkinPreviewsSet = true;
     }
 }
