@@ -10722,9 +10722,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FillingImage: {fileID: 7724855718089600966}
+  ScoreText: {fileID: 236490298345439064}
   CurrentLevelText: {fileID: 8166044771768245067}
   NextLevelText: {fileID: 5572938132896506537}
-  NormalPanel: {fileID: 0}
+  NormalPanel: {fileID: 6854568351527143234}
   LevelUpPanel: {fileID: 1243459470263286391}
 --- !u!1 &2985658212878071429
 GameObject:

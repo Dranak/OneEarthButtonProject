@@ -330,8 +330,6 @@ public class WormHead : WormBody
         Line.material = skindata.BodyMaterial;
         AllFaces = skindata.Faces;
         SetFace(FeelType.Normal);
-
-
     }
 
     public void SetFace(FeelType feel )
@@ -340,7 +338,6 @@ public class WormHead : WormBody
         _currentFace = feel;
         Face face = AllFaces.Where(f => f.FaceType == feel).FirstOrDefault();
         Eyes.sprite = face.Eyes;
-        Pupil.sprite = face.Pupil;
         Mouth.sprite = face.Mouth;
         
     }
