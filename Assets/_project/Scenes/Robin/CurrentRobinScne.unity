@@ -297,6 +297,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1166075108, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+      propertyPath: DurationOfCycle
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166075108, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+      propertyPath: Gradient.ctime1
+      value: 17926
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166075108, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+      propertyPath: Gradient.ctime2
+      value: 27563
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166075108, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+      propertyPath: Gradient.ctime3
+      value: 36815
+      objectReference: {fileID: 0}
     - target: {fileID: 4206860315590997158, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
         type: 3}
       propertyPath: m_LocalPosition.x
