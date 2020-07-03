@@ -58,7 +58,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 18d05b713332a4a46bedfaa2534d99a1, type: 3}
     - {fileID: 21300000, guid: f275e3ae7e91ee043bc3e73352801edd, type: 3}
     - {fileID: 21300000, guid: b22d2ee69b3640144b5e9674d0715661, type: 3}
-    - {fileID: 21300000, guid: cfbdf7bfce1694040af9c934d676646c, type: 3}
+    - {fileID: 21300000, guid: cf5c6f180ee2056458b23c132cbba4e5, type: 3}
     - {fileID: 21300000, guid: 11d577d5f7e27db4684c59bc4c854b34, type: 3}
     - {fileID: 21300000, guid: d0d0ba44697d0d34fa7189869243bc4d, type: 3}
     - {fileID: 21300000, guid: fe6db9936b8de134880afd8c1000ad15, type: 3}
@@ -68,6 +68,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
     - {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
     - {fileID: 21300000, guid: 25fd824cdc7995746ae236544522cf8d, type: 3}
+    - {fileID: 21300000, guid: dad1147afbb5bed4fa601f3f0ab6764b, type: 3}
     - {fileID: 2800000, guid: 26b9c76b02d08ea438560b9b4c256999, type: 3}
     - {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
     - {fileID: 21300000, guid: 3f344d2968331bf46b5d70ff89165c3c, type: 3}
@@ -84,8 +85,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
     - {fileID: 21300000, guid: bcd46ceafd3de74488451ad6c54b07f0, type: 3}
     - {fileID: 21300000, guid: 243b1de3d007510429c4f2f21da1e993, type: 3}
-    - {fileID: 21300000, guid: cf5c6f180ee2056458b23c132cbba4e5, type: 3}
-    totalSpriteSurfaceArea: 1401057
+    totalSpriteSurfaceArea: 1408914
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -113,6 +113,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
   - {fileID: 21300000, guid: dbbe026a9dc3bb149a55971c7f827814, type: 3}
   - {fileID: 21300000, guid: bcedff6a7c584ba4485e4824a4af2622, type: 3}
+  - {fileID: 21300000, guid: dad1147afbb5bed4fa601f3f0ab6764b, type: 3}
   - {fileID: 21300000, guid: bcd46ceafd3de74488451ad6c54b07f0, type: 3}
   - {fileID: 21300000, guid: c38bc2faeb8332a47b150deaf903b748, type: 3}
   - {fileID: 21300000, guid: 1acc991bf2361d0489d22ac136c54c9a, type: 3}
@@ -130,7 +131,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f029df1fe3fba4f48b034c9181507580, type: 3}
   - {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
   - {fileID: 21300000, guid: e54086afe4e9d3a4fb145b34ec9d969c, type: 3}
-  - {fileID: 21300000, guid: cfbdf7bfce1694040af9c934d676646c, type: 3}
   - {fileID: 21300000, guid: a17f7bff1b1ee29408ea377f3a53a8f4, type: 3}
   m_PackedSpriteNamesToIndex:
   - Expression Mouth Scream 2
@@ -157,6 +157,7 @@ SpriteAtlas:
   - Skin Myth or Reality Eyes
   - Skins Megascolides Australis Body
   - Skin Bipaliul Kewense Tail
+  - Expression Mouth Tuba Fear
   - Skin Myth or Reality head
   - Skins Megascolides Australis Tail
   - Skin Bipaliul Kewense Body
@@ -174,7 +175,6 @@ SpriteAtlas:
   - Ver 2 terre queue2 (1)
   - Skin Anecics Head
   - Expression Vicieux
-  - Expression Goute d_eau
   - Skin Bipaliul Kewense Eyes
   m_Tag: Worm
   m_IsVariant: 0
