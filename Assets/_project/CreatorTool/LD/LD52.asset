@@ -41,7 +41,7 @@ MonoBehaviour:
     - id: 16
     - id: 17
     - id: 18
-  obstaclesPrefabs:
+  spawnablesPrefabs:
   - {fileID: 2380778448985100210, guid: fe1ce22affbca9d43822e666f1c921be, type: 3}
   - {fileID: 2005348715299561, guid: 81cda19ac0a302148a2a249f6012660b, type: 3}
   - {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29, type: 3}
@@ -49,6 +49,9 @@ MonoBehaviour:
   - {fileID: 2005348715299561, guid: a9d5e5aa3ce0c9a4c9dc4f675ea05afe, type: 3}
   - {fileID: 2005348715299561, guid: f4c845eb9b6c18f40970a214d2eba86f, type: 3}
   - {fileID: 3377678760059438315, guid: 46b81165be0c46b42a924b2f9e864d22, type: 3}
+  - {fileID: 876991834316367035, guid: c66de28affa03714daec9419dd31e4dc, type: 3}
+  - {fileID: 5907380261387261795, guid: ce161c3b802b2b34c8118521943f77cb, type: 3}
+  - {fileID: 5907380261387261795, guid: db1d45cb5ea2ae34c940970865e2e3d4, type: 3}
   references:
     version: 1
     00000000:
@@ -63,7 +66,6 @@ MonoBehaviour:
         BoundsSize: {x: 3.6381438, y: 2.7271872}
         BodyOffset: {x: -0.08480322, y: 0.7685926}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000001:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -76,7 +78,6 @@ MonoBehaviour:
         BoundsSize: {x: 1.9759712, y: 1.9681139}
         BodyOffset: {x: 1.2767181, y: -0.11785126}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000002:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -89,7 +90,6 @@ MonoBehaviour:
         BoundsSize: {x: 3.906189, y: 2.1142025}
         BodyOffset: {x: -0.06283569, y: 0.87646127}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000003:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -129,7 +129,6 @@ MonoBehaviour:
         BoundsSize: {x: 3.906189, y: 2.1142025}
         BodyOffset: {x: 1.5, y: 1.5}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000007:
       type: {class: CollectibleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -223,7 +222,6 @@ MonoBehaviour:
         BoundsSize: {x: 1.6815186, y: 1.1679583}
         BodyOffset: {x: -0.057109833, y: 0.17085028}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000011:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -236,7 +234,6 @@ MonoBehaviour:
         BoundsSize: {x: 1.8467278, y: 0.8435402}
         BodyOffset: {x: 1.7650576, y: -0.095243454}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0
     00000012:
       type: {class: ObstacleSpawnable, ns: , asm: Assembly-CSharp}
       data:
@@ -249,4 +246,3 @@ MonoBehaviour:
         BoundsSize: {x: 2.105585, y: 1.5992241}
         BodyOffset: {x: 0.33135414, y: 1.6960778}
         RotationOffsetRange: {x: 0, y: 0}
-        ObsKind: 0

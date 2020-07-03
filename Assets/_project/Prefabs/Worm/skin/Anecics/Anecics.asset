@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdfaaa7c38d672439d33bc659dca33c, type: 3}
+  m_Name: Anecics
+  m_EditorClassIdentifier: 
+  SkinType: 0
+  HeadSprite: {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
+  TailSprite: {fileID: 21300000, guid: da2b88c03d5e3ab46b775cee256280ca, type: 3}
+  BodyMaterial: {fileID: 2100000, guid: 27ec52d102f0f3548a0b0556d8858c2d, type: 2}
+  Faces:
+  - {fileID: 11400000, guid: 8f9cbad6154332245b09be788d3a824b, type: 2}
+  - {fileID: 11400000, guid: 5ae4589987b50e84f9bbcd021246d6c2, type: 2}
+  - {fileID: 11400000, guid: 3e1b84676b823c447b2221c3022e0865, type: 2}
+  - {fileID: 11400000, guid: 9b629c3c0e0a4554696c5c78fc766976, type: 2}
+  - {fileID: 11400000, guid: b5d8052a2a359ad47b6d0e89267b8009, type: 2}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2b57f27b35b1a46b2980bbdf3b039f, type: 3}
+  m_Name: HappyFace 1
+  m_EditorClassIdentifier: 
+  FaceType: 1
+  Eyes: {fileID: 21300000, guid: 5b742de271cc12d4f83c2c2e54295f41, type: 3}
+  Pupil: {fileID: 0}
+  Mouth: {fileID: 8803394450933359300, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
