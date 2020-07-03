@@ -8,6 +8,7 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
 
+    public State State;
     public MainMenu MainMenu;
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
@@ -57,16 +58,17 @@ public class UiManager : MonoBehaviour
         }
 
         MainMenu.group.alpha = 0; // hide main menu
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(thisSceneName);
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        State = State.Play;
+        SceneManager.LoadSceneAsync(thisSceneName);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    /*void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (thisSceneName == scene.name)
             MainMenu.Play();
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    }*/
 
     public void GoMainMenu()
     {
@@ -112,4 +114,12 @@ public class UiManager : MonoBehaviour
         DressingMenu.gameObject.SetActive(true);
         DressingMenu.SwitchMenuPanel(menuID);
     }
+}
+
+public enum State
+{
+    InMenu,
+    Play,
+    Dead,
+    Pause
 }

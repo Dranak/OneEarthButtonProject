@@ -89,6 +89,8 @@ public class Player : MonoBehaviour
         SetupWorm();
         LoadData();
 
+        if (UiManager.Instance.State == State.Play)
+            UiManager.Instance.MainMenu.Play();
     }
 
     void Update()
@@ -159,8 +161,6 @@ public class Player : MonoBehaviour
         WormHead.TimeFaceDisplayed = TimeFaceDisplayed;
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
-        LoadSkin(DefaultSkin);
-
     }
 
     void YourAreDead(Obstacle obstacleTouched, Player player)

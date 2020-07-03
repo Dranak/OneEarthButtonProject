@@ -5,6 +5,7 @@ using System.Linq;
 public class BlocManager : MonoBehaviour
 {
     public static BlocManager Instance;
+    [SerializeField] GameManager gameManager;
     Player player;
 
     [Header("Blocs")]
@@ -43,7 +44,7 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            player = GameManager.Instance.Player;
+            player = gameManager.Player;
 
             AddToPool(spawnablesPools.transform.GetChild(0), ref cansPool);
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);

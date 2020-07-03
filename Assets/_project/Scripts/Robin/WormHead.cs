@@ -56,11 +56,10 @@ public class WormHead : WormBody
 
     private string _lastNameCollectible = String.Empty;
 
-    Player _player;
+    [SerializeField] Player _player;
     protected override void Awake()
     {
         base.Awake();
-        _player = GameManager.Instance.Player;
 
         _lastFace = FeelType.Normal;
         _currentFace = FeelType.Normal;
@@ -82,7 +81,7 @@ public class WormHead : WormBody
     void Update()
     {
         UpdateLineRenderer();
-        if (GameManager.Instance.State == State.Play)
+        if (UiManager.Instance.State == State.Play)
         {
             Sight();
             IncreaseSpeed();
@@ -125,7 +124,7 @@ public class WormHead : WormBody
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.State == State.Play)
+        if (UiManager.Instance.State == State.Play)
         {
             SetForce(IsDigging);
         }

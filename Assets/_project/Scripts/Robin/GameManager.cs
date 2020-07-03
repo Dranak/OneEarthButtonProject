@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public State State;
     public Player Player;
 
     [HideInInspector] public Camera camera;
@@ -50,7 +49,7 @@ public class GameManager : MonoBehaviour
         var endWormPos = BlocManager.Instance.startingBlocMin - 15; // position the worm is at when the first bloc becomes visible (seeing 15 units after the worm head at the end of transition)
         var wormHeadT = Player.WormHead.transform;
 
-        while (true)
+        while (wormHeadT)
         {
             var newScreenX = Mathf.Lerp(0.5f, savedStartingOffset, wormHeadT.position.x / endWormPos);
             if (newScreenX <= savedStartingOffset)
@@ -65,13 +64,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
-        if (State == State.Play)
+        if (UiManager.Instance.State == State.Play)
         {
             Time.timeScale = 1f;
         }
         else
         {
-            State = State.InMenu;
+            UiManager.Instance.State = State.InMenu;
             Time.timeScale = 0f;
         }
     }
@@ -83,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        switch (State)
+        switch (UiManager.Instance.State)
         {
             case State.Play:
 
@@ -102,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void SetState(State state)
     {
-        State = state;
+        UiManager.Instance.State = state;
         switch (state)
         {
             case State.Play:
@@ -142,14 +141,4 @@ public class GameManager : MonoBehaviour
         unPoolerLeft.SetActive(true);
         poolerRight.SetActive(true);
     }
-}
-
-
-public enum State
-{
-    Play,
-    InMenu,
-    Dead,
-    Pause,
-
 }

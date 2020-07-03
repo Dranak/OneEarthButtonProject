@@ -358,6 +358,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728286, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6017596611703711441}
     - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
