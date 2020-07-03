@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: HappyFace
   m_EditorClassIdentifier: 
   FaceType: 1
-  Eyes: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Pupil: {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Mouth: {fileID: 8803394450933359300, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Eyes: {fileID: 21300000, guid: 11d577d5f7e27db4684c59bc4c854b34, type: 3}
+  Mouth: {fileID: 21300000, guid: 298c535e09f099b498f1075212227ef6, type: 3}
