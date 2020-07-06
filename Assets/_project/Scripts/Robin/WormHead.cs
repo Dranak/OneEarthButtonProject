@@ -16,7 +16,6 @@ public class WormHead : WormBody
 
     public List<Face> AllFaces { get; set; } = new List<Face>();
     public SpriteRenderer Eyes;
-    public SpriteRenderer Pupil;
     public SpriteRenderer Mouth;
    // public SkinData DefaultSkin;
 
@@ -71,9 +70,7 @@ public class WormHead : WormBody
 
     void Start()
     {
-        SetupBody();     
-        StartPosition = Rigidbody.position;
-        Line.positionCount = _wormBodies.Count + 1;
+       // SetupBody();
       //  SetSkin(DefaultSkin);
     }
 
@@ -185,7 +182,7 @@ public class WormHead : WormBody
         return Mathf.Lerp(startAngleRotate, endAngleRotate, scaleTimeRotate);
     }
 
-    void SetupBody()
+    public void SetupBody()
     {
         _wormBodies = new List<WormBody>();
         for (int i = 0; i < NumberOfParts; ++i)
@@ -199,6 +196,9 @@ public class WormHead : WormBody
         }
         _wormBodies.Last().Trail.enabled = true;
         _wormBodies.Last().SpriteExtremity.enabled = true;
+
+        StartPosition = Rigidbody.position;
+        Line.positionCount = _wormBodies.Count + 1;
     }
 
 

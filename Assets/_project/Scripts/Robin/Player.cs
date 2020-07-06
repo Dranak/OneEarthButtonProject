@@ -161,6 +161,7 @@ public class Player : MonoBehaviour
         WormHead.TimeFaceDisplayed = TimeFaceDisplayed;
         WormHead.CallBackDead = YourAreDead;
         WormHead.CallBackPoint = GetPoint;
+        WormHead.SetupBody();
     }
 
     void YourAreDead(Obstacle obstacleTouched, Player player)
