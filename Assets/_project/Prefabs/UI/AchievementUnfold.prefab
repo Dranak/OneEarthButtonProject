@@ -174,7 +174,6 @@ MonoBehaviour:
   skinHead: {fileID: 2658251016357734149}
   skinMouth: {fileID: 4861747409533025247}
   skinEyes: {fileID: 6598481324808282132}
-  skinPupils: {fileID: 0}
 --- !u!1 &208593409824712475
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,10 +523,10 @@ RectTransform:
   m_Father: {fileID: 6781931128081623423}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3219177124628920641
 CanvasRenderer:
@@ -770,6 +769,7 @@ GameObject:
   - component: {fileID: 4979124449783829791}
   - component: {fileID: 673971597301074017}
   - component: {fileID: 4861747409533025247}
+  - component: {fileID: 5876319644480366116}
   m_Layer: 5
   m_Name: mouth
   m_TagString: Untagged
@@ -791,10 +791,10 @@ RectTransform:
   m_Father: {fileID: 6781931128081623423}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &673971597301074017
 CanvasRenderer:
@@ -832,6 +832,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5876319644480366116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506911198003500845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &2586911569273713383
 GameObject:
   m_ObjectHideFlags: 0
