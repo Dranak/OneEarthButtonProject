@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float savedStartingOffset;
     [SerializeField] GameObject unPoolerLeft, poolerRight;
     [SerializeField] SpriteAtlas backObjAtlas;
+    public MusicManager MusicManager;
+    public AudioSource environmentNoise;
 
     private void Awake()
     {
@@ -106,12 +108,13 @@ public class GameManager : MonoBehaviour
         {
             case State.Play:
                 Time.timeScale = 1f;
-                UiManager.Instance.MainMenu.PlayButton.interactable = false;
-                UiManager.Instance.MainMenu.SkinButton.interactable = false;
-                UiManager.Instance.MainMenu.SettingButton.interactable = false;
+                UiManager.Instance.MainMenu.group.interactable = false;
+                environmentNoise.volume = 0.5f;
                 break;
             case State.InMenu:
                 Time.timeScale = 0f;
+                UiManager.Instance.MainMenu.group.interactable = true;
+                environmentNoise.volume = 0.5f;
                 break;
             case State.Dead:
                 Player.StreakEggShell = 0;
@@ -119,10 +122,14 @@ public class GameManager : MonoBehaviour
                 if (UiManager.Instance.BestSessionScore < Player.Score)
                     UiManager.Instance.BestSessionScore = Player.Score;
                 UiManager.Instance.Death();
+                environmentNoise.volume = 0f;
                 break;
             case State.Pause:
+                Time.timeScale = 0f;
+                environmentNoise.volume = 0.25f;
                 break;
         }
+        MusicManager.SwitchMusic(state);
     }
 
     public void BGWPSetup()

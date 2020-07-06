@@ -13,6 +13,7 @@ public class UiManager : MonoBehaviour
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
     public DressingManager DressingMenu;
+    public AudioManager AudioMenu;
     public EventSystem eventSystem;
     string thisSceneName;
 
@@ -80,11 +81,6 @@ public class UiManager : MonoBehaviour
         {
             DeathMenu.gameObject.SetActive(false);
         }
-
-        //MainMenu.gameObject.SetActive(true);
-        MainMenu.PlayButton.interactable = true;
-        MainMenu.SkinButton.interactable = true;
-        MainMenu.SettingButton.interactable = true;
     }
 
     public void Quit()
@@ -101,18 +97,19 @@ public class UiManager : MonoBehaviour
         DeathMenu.gameObject.SetActive(true);
     }
 
-   
-
-    public void AudioMenu()
+    public void ToAudioMenu()
     {
-
-        //Time.timeScale = 0;
+        AudioMenu.gameObject.SetActive(true);
     }
-
     public void ToDressingMenu(int menuID)
     {
         DressingMenu.gameObject.SetActive(true);
         DressingMenu.SwitchMenuPanel(menuID);
+    }
+    public void BackToMainMenu(in GameObject panel) // back to main menu from a sub-menu in the main menu (not in-game)
+    {
+        panel.SetActive(false); // deactivate menu panel
+        GameManager.Instance.environmentNoise.volume = 0.5f; // unmute environment noise
     }
 }
 

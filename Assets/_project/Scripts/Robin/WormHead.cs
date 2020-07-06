@@ -17,6 +17,7 @@ public class WormHead : WormBody
     public List<Face> AllFaces { get; set; } = new List<Face>();
     public SpriteRenderer Eyes;
     public SpriteRenderer Mouth;
+    [SerializeField] ParticleSystem headDirtParticle;
    // public SkinData DefaultSkin;
 
     private FeelType _lastFace;
@@ -53,7 +54,7 @@ public class WormHead : WormBody
     public Action<Obstacle, Player> CallBackDead;
     public Action<Collectible> CallBackPoint;
 
-    private string _lastNameCollectible = String.Empty;
+    private string _lastNameCollectible = string.Empty;
 
     [SerializeField] Player _player;
     protected override void Awake()

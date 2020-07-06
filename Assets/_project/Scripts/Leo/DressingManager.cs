@@ -101,6 +101,6 @@ public class DressingManager : MonoBehaviour
     public void BackToMainMenu()
     {
         menuPanels[(selectedUIPanel+1)%2].SetActive(true); // activate deactivated panel
-        gameObject.SetActive(false); // deactivate main panel (dressing)
+        UiManager.Instance.BackToMainMenu(gameObject);
     }
 }

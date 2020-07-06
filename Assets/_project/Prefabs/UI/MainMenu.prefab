@@ -320,9 +320,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6348476082413881638}
-        m_MethodName: 
-        m_Mode: 5
+      - m_Target: {fileID: 6348476082413881689}
+        m_MethodName: SettingsMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1000,6 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayButton: {fileID: 6348476081051155628}
   SkinButton: {fileID: 6348476081311173059}
+  StatsButton: {fileID: 539299659}
   SettingButton: {fileID: 6348476080453569565}
   group: {fileID: 5252875113887680226}
   Canvas: {fileID: 6348476082413881690}

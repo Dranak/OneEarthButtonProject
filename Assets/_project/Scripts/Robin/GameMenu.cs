@@ -14,7 +14,7 @@ public class GameMenu:MonoBehaviour
     public void Pause()
     {
         PauseMenu.gameObject.SetActive(true);
-        GameManager.Instance.SetState(State.InMenu);
+        GameManager.Instance.SetState(State.Pause);
 
     }
 

@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button PlayButton;
-    public Button SkinButton;
-    public Button SettingButton;
+    public Button PlayButton, SkinButton, StatsButton, SettingButton;
     public CanvasGroup group;
     public Canvas Canvas;
 
@@ -21,12 +19,8 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Play");
         Canvas.renderMode = RenderMode.WorldSpace;
         GameManager.Instance.SetState(State.Play);
-               
-        UiManager.Instance.GameMenu.gameObject.SetActive(true);
 
-        PlayButton.interactable = false;
-        SkinButton.interactable = false;
-        SettingButton.interactable = false;
+        UiManager.Instance.GameMenu.gameObject.SetActive(true);
 
         StartCoroutine(GameManager.Instance.cameraDecentering());
     }
@@ -34,9 +28,16 @@ public class MainMenu : MonoBehaviour
     public void StatsMenu()
     {
         UiManager.Instance.ToDressingMenu(0);
+        GameManager.Instance.environmentNoise.volume = 0f;
     }
     public void SkinsMenu()
     {
         UiManager.Instance.ToDressingMenu(1);
+        GameManager.Instance.environmentNoise.volume = 0f;
+    }
+    public void SettingsMenu()
+    {
+        UiManager.Instance.ToAudioMenu();
+        GameManager.Instance.environmentNoise.volume = 0.25f;
     }
 }

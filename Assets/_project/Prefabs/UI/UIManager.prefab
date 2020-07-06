@@ -54,6 +54,7 @@ MonoBehaviour:
   GameMenu: {fileID: 2020868243}
   DeathMenu: {fileID: 2}
   DressingMenu: {fileID: 717242685541967239}
+  AudioMenu: {fileID: 3098521913339949278}
   eventSystem: {fileID: 0}
   allSkins:
   - {fileID: 11400000, guid: 6a63f9d61e07b734b9251d6c92bfcd4c, type: 2}
@@ -70,6 +71,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5290652816685789337}
     m_Modifications:
+    - target: {fileID: 6348476080453569562, guid: 39f43a3613450cd4cb1c0c77bf378932,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 79.84961
+      objectReference: {fileID: 0}
     - target: {fileID: 6348476082070426267, guid: 39f43a3613450cd4cb1c0c77bf378932,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -322,6 +328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2412425454396062782, guid: 457cf25c28d2b22479f1ae5771595216,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 457cf25c28d2b22479f1ae5771595216, type: 3}
 --- !u!224 &7500328051908928314 stripped
@@ -330,6 +341,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5290652816552943368}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3098521913339949278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7092050075205693398, guid: 457cf25c28d2b22479f1ae5771595216,
+    type: 3}
+  m_PrefabInstance: {fileID: 5290652816552943368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e178f94e41e03c4c83b72b00e7a2fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5290652817117849537
 PrefabInstance:
   m_ObjectHideFlags: 0
