@@ -204,7 +204,6 @@ public class WormHead : WormBody
 
     void IncreaseSpeed()
     {
-
         if (Speed < MaxSpeed)
         {
             if (_chronoIncreaseSpeed >= TimeToIncreaseSpeed)
@@ -248,7 +247,7 @@ public class WormHead : WormBody
             if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == _player.LastIndexEggShell)
             {
                 BlocManager.Instance.PoolOut(collectible);
-
+                // hotfix
             }
             else
             {

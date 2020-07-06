@@ -745,7 +745,7 @@ public class BlocManager : MonoBehaviour
         PoolOut(toPoolOut.gameObject);
         toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool
     }
-    public void PoolOut(in Obstacle toPoolOut)
+    public void PoolOut(in Obstacle toPoolOut) // for obstacles
     {
         toPoolOut.col.enabled = true;
         PoolOut((SpawnableObject)toPoolOut);
