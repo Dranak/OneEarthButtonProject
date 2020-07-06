@@ -243,8 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,7 +251,7 @@ SpriteRenderer:
   m_Size: {x: 0.32222223, y: 0.23333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1677485549694723981
@@ -356,9 +355,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e,
-    type: 3}
+  m_SortingOrder: 9
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -366,7 +364,7 @@ SpriteRenderer:
   m_Size: {x: 0.21111111, y: 0.13333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1677485550520728282
@@ -383,6 +381,7 @@ GameObject:
   - component: {fileID: 1677485550520728286}
   - component: {fileID: 1677485550520728287}
   - component: {fileID: 1677485550520728281}
+  - component: {fileID: 1800013485}
   m_Layer: 8
   m_Name: Head
   m_TagString: Player
@@ -448,13 +447,12 @@ SpriteRenderer:
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
   m_SortingOrder: 8
-  m_Sprite: {fileID: 1964965028443353993, guid: de8035927f4aa9147b86b2e24f034e6e,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.99444443, y: 0.99444443}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -493,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf2b1453ff0b7b4da0d90e9b599eb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: 3
+  Damping: 2.09
   Anchor: {fileID: 472139966832600559}
   PrefabWormBody: {fileID: 4516079124152242864, guid: 7ff8d7e4b7fed8d45b407d9daa0028d2,
     type: 3}
@@ -502,7 +500,6 @@ MonoBehaviour:
   Eyes: {fileID: 1677485549021696420}
   Pupil: {fileID: 1677485550491048140}
   Mouth: {fileID: 1677485550737107806}
-  DefaultSkin: {fileID: 0}
   Line: {fileID: 1677485550520728287}
   LayerMaskSpawnables:
     serializedVersion: 2
@@ -595,7 +592,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
-  m_SortingOrder: 7
+  m_SortingOrder: 6
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
@@ -605,7 +602,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.91428757
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -631,8 +628,8 @@ LineRenderer:
         inWeight: 0.4231026
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.94999695
-        value: 0.9285717
+        time: 0.93333435
+        value: 0.8999996
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -695,6 +692,102 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4888889
+--- !u!82 &1800013485
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677485550520728282}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1677485550598512090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,8 +5612,7 @@ SpriteRenderer:
   m_SortingLayerID: -1131974779
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4880952269719582720, guid: de8035927f4aa9147b86b2e24f034e6e,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5528,7 +5620,7 @@ SpriteRenderer:
   m_Size: {x: 0.06666667, y: 0.055555556}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3140684000977642329
