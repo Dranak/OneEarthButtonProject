@@ -56,11 +56,10 @@ public class WormHead : WormBody
 
     private string _lastNameCollectible = String.Empty;
 
-    Player _player;
+    [SerializeField] Player _player;
     protected override void Awake()
     {
         base.Awake();
-        _player = GameManager.Instance.Player;
 
         _lastFace = FeelType.Normal;
         _currentFace = FeelType.Normal;
@@ -82,7 +81,7 @@ public class WormHead : WormBody
     void Update()
     {
         UpdateLineRenderer();
-        if (GameManager.Instance.State == State.Play)
+        if (UiManager.Instance.State == State.Play)
         {
             Sight();
             IncreaseSpeed();
@@ -125,7 +124,7 @@ public class WormHead : WormBody
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.State == State.Play)
+        if (UiManager.Instance.State == State.Play)
         {
             SetForce(IsDigging);
         }
@@ -205,7 +204,6 @@ public class WormHead : WormBody
 
     void IncreaseSpeed()
     {
-
         if (Speed < MaxSpeed)
         {
             if (_chronoIncreaseSpeed >= TimeToIncreaseSpeed)
@@ -249,7 +247,7 @@ public class WormHead : WormBody
             if (_lastNameCollectible == collectible.name && collectible.collectibleParameters.EggShellIndex > -1 && collectible.collectibleParameters.EggShellIndex == _player.LastIndexEggShell)
             {
                 BlocManager.Instance.PoolOut(collectible);
-
+                // hotfix
             }
             else
             {
@@ -330,8 +328,6 @@ public class WormHead : WormBody
         Line.material = skindata.BodyMaterial;
         AllFaces = skindata.Faces;
         SetFace(FeelType.Normal);
-
-
     }
 
     public void SetFace(FeelType feel )
@@ -340,7 +336,6 @@ public class WormHead : WormBody
         _currentFace = feel;
         Face face = AllFaces.Where(f => f.FaceType == feel).FirstOrDefault();
         Eyes.sprite = face.Eyes;
-        Pupil.sprite = face.Pupil;
         Mouth.sprite = face.Mouth;
         
     }

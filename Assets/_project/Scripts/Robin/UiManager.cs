@@ -8,6 +8,7 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
 
+    public State State;
     public MainMenu MainMenu;
     public GameMenu GameMenu;
     public DeathMenu DeathMenu;
@@ -19,7 +20,7 @@ public class UiManager : MonoBehaviour
     public int BestSessionScore { get; set; } = 0;
     public int SessionStrikesTotal { get; set; } = 0; // total ammount of eggshells strike during session
     public List<SkinData> allSkins;
-    public bool isSkinPreviewsSet = false;
+    [HideInInspector] public bool isSkinPreviewsSet = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -57,16 +58,17 @@ public class UiManager : MonoBehaviour
         }
 
         MainMenu.group.alpha = 0; // hide main menu
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(thisSceneName);
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        State = State.Play;
+        SceneManager.LoadSceneAsync(thisSceneName);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    /*void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (thisSceneName == scene.name)
             MainMenu.Play();
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    }*/
 
     public void GoMainMenu()
     {
@@ -112,4 +114,12 @@ public class UiManager : MonoBehaviour
         DressingMenu.gameObject.SetActive(true);
         DressingMenu.SwitchMenuPanel(menuID);
     }
+}
+
+public enum State
+{
+    InMenu,
+    Play,
+    Dead,
+    Pause
 }

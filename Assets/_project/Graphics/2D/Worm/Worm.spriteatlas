@@ -43,132 +43,138 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 21300000, guid: f06170e2af549e84e99d694f21167bf0, type: 3}
-    - {fileID: -5925508898483844578, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: -951813043987997032, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 7904281720099316921, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: -335905200997136968, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 4603523345142856462, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: -8544934529487123643, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: -3220343350404127509, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 4622540151828376314, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 1472147152236163465, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: -4880952269719582720, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 6893174842667388971, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 8803394450933359300, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-    - {fileID: 21300000, guid: 54804717a6b02f8489eb341777cd9921, type: 3}
+    - {fileID: 21300000, guid: f029df1fe3fba4f48b034c9181507580, type: 3}
+    - {fileID: 2800000, guid: 54804717a6b02f8489eb341777cd9921, type: 3}
     - {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
-    - {fileID: 21300000, guid: 2971c1b3602fb654f8110f5f3b2affcc, type: 3}
-    - {fileID: 684826011381926897, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}
-    - {fileID: 3239641485748022024, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}
-    - {fileID: 21300000, guid: 25fd824cdc7995746ae236544522cf8d, type: 3}
-    - {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
-    - {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
-    - {fileID: 21300000, guid: c65779d9e0f54d94281333782e897153, type: 3}
-    - {fileID: 21300000, guid: 3f344d2968331bf46b5d70ff89165c3c, type: 3}
-    - {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
-    - {fileID: 21300000, guid: 26b9c76b02d08ea438560b9b4c256999, type: 3}
-    - {fileID: 21300000, guid: bcedff6a7c584ba4485e4824a4af2622, type: 3}
-    - {fileID: 21300000, guid: 79d1d33dafb3f4a4eb05e66ccae2aaff, type: 3}
-    - {fileID: 21300000, guid: d2b764c449a228945913f596638f170d, type: 3}
-    - {fileID: 21300000, guid: a17f7bff1b1ee29408ea377f3a53a8f4, type: 3}
-    - {fileID: 21300000, guid: 1acc991bf2361d0489d22ac136c54c9a, type: 3}
-    - {fileID: 21300000, guid: c38bc2faeb8332a47b150deaf903b748, type: 3}
-    - {fileID: 21300000, guid: 5b742de271cc12d4f83c2c2e54295f41, type: 3}
-    - {fileID: 21300000, guid: dff771632dbedd9469ad3b37caebde2e, type: 3}
-    - {fileID: 21300000, guid: dbbe026a9dc3bb149a55971c7f827814, type: 3}
+    - {fileID: 21300000, guid: e54086afe4e9d3a4fb145b34ec9d969c, type: 3}
+    - {fileID: 21300000, guid: 065934685e5f07944b45e4dc787bcd13, type: 3}
+    - {fileID: 21300000, guid: 298c535e09f099b498f1075212227ef6, type: 3}
+    - {fileID: 21300000, guid: fa0c6fe6bce79e04fb05167fc9e949f3, type: 3}
+    - {fileID: 21300000, guid: 4eaa1fb47d2f3c64b8d0416b0f1fab4e, type: 3}
+    - {fileID: 21300000, guid: fc7e9f48db72527478c35c612bb07592, type: 3}
+    - {fileID: 21300000, guid: 0477bf9dd71a99a4cab4c3600903f920, type: 3}
+    - {fileID: 21300000, guid: b6e0a2b111200a5408b9b680dadd48ee, type: 3}
+    - {fileID: 21300000, guid: 951ebab9b3181824ea06acc55616236b, type: 3}
+    - {fileID: 21300000, guid: 18d05b713332a4a46bedfaa2534d99a1, type: 3}
+    - {fileID: 21300000, guid: f275e3ae7e91ee043bc3e73352801edd, type: 3}
+    - {fileID: 21300000, guid: b22d2ee69b3640144b5e9674d0715661, type: 3}
     - {fileID: 21300000, guid: cf5c6f180ee2056458b23c132cbba4e5, type: 3}
-    - {fileID: 21300000, guid: 243b1de3d007510429c4f2f21da1e993, type: 3}
-    - {fileID: 21300000, guid: bcd46ceafd3de74488451ad6c54b07f0, type: 3}
-    - {fileID: 21300000, guid: 45484b4b001c1774da6a71756cf238f7, type: 3}
+    - {fileID: 21300000, guid: 11d577d5f7e27db4684c59bc4c854b34, type: 3}
+    - {fileID: 21300000, guid: d0d0ba44697d0d34fa7189869243bc4d, type: 3}
+    - {fileID: 21300000, guid: fe6db9936b8de134880afd8c1000ad15, type: 3}
+    - {fileID: 21300000, guid: e555157bfb995f34fa234fd835dd6586, type: 3}
+    - {fileID: 21300000, guid: 3df0a63c769790941b2b1e3a4212c2c5, type: 3}
+    - {fileID: 2800000, guid: c65779d9e0f54d94281333782e897153, type: 3}
+    - {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
+    - {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
+    - {fileID: 21300000, guid: 25fd824cdc7995746ae236544522cf8d, type: 3}
+    - {fileID: 21300000, guid: dad1147afbb5bed4fa601f3f0ab6764b, type: 3}
+    - {fileID: 2800000, guid: 26b9c76b02d08ea438560b9b4c256999, type: 3}
+    - {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
+    - {fileID: 21300000, guid: 3f344d2968331bf46b5d70ff89165c3c, type: 3}
+    - {fileID: 2800000, guid: 1acc991bf2361d0489d22ac136c54c9a, type: 3}
+    - {fileID: 21300000, guid: a17f7bff1b1ee29408ea377f3a53a8f4, type: 3}
+    - {fileID: 21300000, guid: d2b764c449a228945913f596638f170d, type: 3}
+    - {fileID: 21300000, guid: 79d1d33dafb3f4a4eb05e66ccae2aaff, type: 3}
+    - {fileID: 21300000, guid: bcedff6a7c584ba4485e4824a4af2622, type: 3}
+    - {fileID: 2800000, guid: dbbe026a9dc3bb149a55971c7f827814, type: 3}
+    - {fileID: 21300000, guid: dff771632dbedd9469ad3b37caebde2e, type: 3}
+    - {fileID: 21300000, guid: 5b742de271cc12d4f83c2c2e54295f41, type: 3}
+    - {fileID: 21300000, guid: c38bc2faeb8332a47b150deaf903b748, type: 3}
+    - {fileID: 2800000, guid: 45484b4b001c1774da6a71756cf238f7, type: 3}
     - {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
-    totalSpriteSurfaceArea: 881863
+    - {fileID: 21300000, guid: bcd46ceafd3de74488451ad6c54b07f0, type: 3}
+    - {fileID: 21300000, guid: 243b1de3d007510429c4f2f21da1e993, type: 3}
+    totalSpriteSurfaceArea: 1408914
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 684826011381926897, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}
-  - {fileID: 3239641485748022024, guid: bf36f77212a353a4a82edba75f5e7312, type: 3}
-  - {fileID: 4603523345142856462, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -8544934529487123643, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -3220343350404127509, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 1472147152236163465, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 4622540151828376314, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 6893174842667388971, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -4880952269719582720, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 8803394450933359300, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -335905200997136968, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -951813043987997032, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: 7904281720099316921, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  - {fileID: -5925508898483844578, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  - {fileID: 21300000, guid: 18d05b713332a4a46bedfaa2534d99a1, type: 3}
+  - {fileID: 21300000, guid: b6e0a2b111200a5408b9b680dadd48ee, type: 3}
   - {fileID: 21300000, guid: f06170e2af549e84e99d694f21167bf0, type: 3}
   - {fileID: 21300000, guid: 5b742de271cc12d4f83c2c2e54295f41, type: 3}
   - {fileID: 21300000, guid: dec5c2f227374684dbcdb65bcb0d4575, type: 3}
   - {fileID: 21300000, guid: dff771632dbedd9469ad3b37caebde2e, type: 3}
-  - {fileID: 21300000, guid: 2971c1b3602fb654f8110f5f3b2affcc, type: 3}
+  - {fileID: 21300000, guid: fe6db9936b8de134880afd8c1000ad15, type: 3}
   - {fileID: 21300000, guid: 243b1de3d007510429c4f2f21da1e993, type: 3}
+  - {fileID: 21300000, guid: d0d0ba44697d0d34fa7189869243bc4d, type: 3}
+  - {fileID: 21300000, guid: 4eaa1fb47d2f3c64b8d0416b0f1fab4e, type: 3}
   - {fileID: 21300000, guid: d2b764c449a228945913f596638f170d, type: 3}
+  - {fileID: 21300000, guid: 11d577d5f7e27db4684c59bc4c854b34, type: 3}
+  - {fileID: 21300000, guid: b22d2ee69b3640144b5e9674d0715661, type: 3}
+  - {fileID: 21300000, guid: fa0c6fe6bce79e04fb05167fc9e949f3, type: 3}
   - {fileID: 21300000, guid: 54804717a6b02f8489eb341777cd9921, type: 3}
   - {fileID: 21300000, guid: cf5c6f180ee2056458b23c132cbba4e5, type: 3}
+  - {fileID: 21300000, guid: fc7e9f48db72527478c35c612bb07592, type: 3}
+  - {fileID: 21300000, guid: 065934685e5f07944b45e4dc787bcd13, type: 3}
   - {fileID: 21300000, guid: 3f344d2968331bf46b5d70ff89165c3c, type: 3}
+  - {fileID: 21300000, guid: 951ebab9b3181824ea06acc55616236b, type: 3}
   - {fileID: 21300000, guid: c65779d9e0f54d94281333782e897153, type: 3}
   - {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
   - {fileID: 21300000, guid: dbbe026a9dc3bb149a55971c7f827814, type: 3}
   - {fileID: 21300000, guid: bcedff6a7c584ba4485e4824a4af2622, type: 3}
+  - {fileID: 21300000, guid: dad1147afbb5bed4fa601f3f0ab6764b, type: 3}
   - {fileID: 21300000, guid: bcd46ceafd3de74488451ad6c54b07f0, type: 3}
   - {fileID: 21300000, guid: c38bc2faeb8332a47b150deaf903b748, type: 3}
   - {fileID: 21300000, guid: 1acc991bf2361d0489d22ac136c54c9a, type: 3}
   - {fileID: 21300000, guid: 45484b4b001c1774da6a71756cf238f7, type: 3}
   - {fileID: 21300000, guid: 26b9c76b02d08ea438560b9b4c256999, type: 3}
+  - {fileID: 21300000, guid: e555157bfb995f34fa234fd835dd6586, type: 3}
+  - {fileID: 21300000, guid: 3df0a63c769790941b2b1e3a4212c2c5, type: 3}
   - {fileID: 21300000, guid: 25fd824cdc7995746ae236544522cf8d, type: 3}
   - {fileID: 21300000, guid: 5015406c9f5109041981da4d4b832377, type: 3}
   - {fileID: 21300000, guid: 79d1d33dafb3f4a4eb05e66ccae2aaff, type: 3}
+  - {fileID: 21300000, guid: 0477bf9dd71a99a4cab4c3600903f920, type: 3}
+  - {fileID: 21300000, guid: 298c535e09f099b498f1075212227ef6, type: 3}
+  - {fileID: 21300000, guid: f275e3ae7e91ee043bc3e73352801edd, type: 3}
   - {fileID: 21300000, guid: 5be1b1de03025bc42ae1b0c58f9f3781, type: 3}
+  - {fileID: 21300000, guid: f029df1fe3fba4f48b034c9181507580, type: 3}
   - {fileID: 21300000, guid: 7d67408f8046499479b24cb1acaca6a6, type: 3}
+  - {fileID: 21300000, guid: e54086afe4e9d3a4fb145b34ec9d969c, type: 3}
   - {fileID: 21300000, guid: a17f7bff1b1ee29408ea377f3a53a8f4, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Dying face_0
-  - Dying face_1
-  - Scream Anime 1
-  - Scream Anime 2
-  - Pupille
-  - Sleep mouth Anime 1
-  - Sleep mouth Anime 3
-  - Sleep mouth Anime 2
-  - Sleep mouth Anime 5
-  - Sleep mouth Anime 4
-  - Smile
-  - yeux normaux
-  - Goute d'eau
-  - Clin d'oeil yeux Anime 2
-  - Clin d'oeil yeux Anime 3
-  - Clin d'oeil yeux Anime 1
+  - Expression Mouth Scream 2
+  - Expression Mouth sleep Anime 1
   - Ver 2 terre queue2
   - Skins Megascolides Australis Sun glasses
   - Test ver
   - Skins Megascolides Australis head
-  - Shield in game 2
+  - Expression clin d_oeil anime 3
   - Skin Myth or Reality Mouth
+  - Expression Dead
+  - Expression Mouth sleep Anime 4
   - Skin Bipaliul Kewense Head
+  - Expression eux normaux
+  - Expression Mouth bad
+  - Expression Mouth sleep Anime 5
   - Ver 2 terre Corps2
   - Skin Myth or Reality Tail
+  - Expression Mouth sleep Anime 3
+  - Expression Mouth Vicieux
   - Skin Anecics Tail
+  - Expression Mouth Scream
   - Skin Ancestor Body
   - Skin Myth or Reality Eyes
   - Skins Megascolides Australis Body
   - Skin Bipaliul Kewense Tail
+  - Expression Mouth Tuba Fear
   - Skin Myth or Reality head
   - Skins Megascolides Australis Tail
   - Skin Bipaliul Kewense Body
   - Skin Myth or Reality Body
   - Skin Anecics Body
+  - Expression clin d_oeil anime 2
+  - Expression clin d_oeil anime 1
   - Skin Ancestor Tuba
   - Skin Ancestor Tail
   - Skin Bipaliul Kewense Mouth Vicieuse
+  - Expression Mouth sleep Anime 2
+  - Expression Mouth Smile
+  - Expression Mouth Dead
   - Skin Ancestor Head
+  - Ver 2 terre queue2 (1)
   - Skin Anecics Head
+  - Expression Vicieux
   - Skin Bipaliul Kewense Eyes
   m_Tag: Worm
   m_IsVariant: 0

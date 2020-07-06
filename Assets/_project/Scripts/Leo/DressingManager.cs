@@ -37,7 +37,7 @@ public class DressingManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    float currentXp;
+    float currentProgress;
     int levelPlayer, highScore, breadC, apples, eggs, eggChains, shieldB, angrys, deathC, ecoP;
     [HideInInspector] public int[] playerStatsArray;
 
@@ -49,7 +49,7 @@ public class DressingManager : MonoBehaviour
 
     void GetPlayerPrefs()
     {
-        currentXp = PlayerPrefs.GetFloat("CurrentXp", 0);
+        currentProgress = PlayerPrefs.GetFloat("CurrentXp", 0) / GameManager.Instance.Player.NeededXp;
         levelPlayer = PlayerPrefs.GetInt("LevelPlayer", 1);
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         ecoP = PlayerPrefs.GetInt("EcoPoints", 0);
@@ -66,7 +66,7 @@ public class DressingManager : MonoBehaviour
     void SetPrefsToMenus()
     {
         // level progression setup
-        currentProgressionSlider.value = currentXp;
+        currentProgressionSlider.value = currentProgress;
         currentLevel.text = levelPlayer.ToString();
         levelBarTitle.text = "Level : " + levelPlayer;
         nextLevel.text = (levelPlayer + 1).ToString();

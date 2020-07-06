@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FaceType: 2
   Eyes: {fileID: 21300000, guid: 296af16a13b15d044942a9bff7983460, type: 3}
-  Pupil: {fileID: 0}
-  Mouth: {fileID: 4603523345142856462, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Mouth: {fileID: 21300000, guid: 951ebab9b3181824ea06acc55616236b, type: 3}

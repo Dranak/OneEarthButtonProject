@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: FearFace 1
   m_EditorClassIdentifier: 
   FaceType: 2
-  Eyes: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Pupil: {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Mouth: {fileID: 4603523345142856462, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Eyes: {fileID: 21300000, guid: a17f7bff1b1ee29408ea377f3a53a8f4, type: 3}
+  Mouth: {fileID: 21300000, guid: 951ebab9b3181824ea06acc55616236b, type: 3}

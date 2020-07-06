@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a191089a960028848ad4ecf71f41e30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 5633448737910605981}
   startingBlocKind: 0
   wpT: {fileID: 5633448737497603065}
   wpPool: []
@@ -153,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf60115599e54547883e660a18243f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 1
   Player: {fileID: 0}
   camera: {fileID: 0}
   cameraHalfWidth: 0

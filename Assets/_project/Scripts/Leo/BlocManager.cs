@@ -5,6 +5,7 @@ using System.Linq;
 public class BlocManager : MonoBehaviour
 {
     public static BlocManager Instance;
+    [SerializeField] GameManager gameManager;
     Player player;
 
     [Header("Blocs")]
@@ -43,7 +44,7 @@ public class BlocManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            player = GameManager.Instance.Player;
+            player = gameManager.Player;
 
             AddToPool(spawnablesPools.transform.GetChild(0), ref cansPool);
             AddToPool(spawnablesPools.transform.GetChild(1), ref bottlesPool);
@@ -744,7 +745,7 @@ public class BlocManager : MonoBehaviour
         PoolOut(toPoolOut.gameObject);
         toPoolOut.transform.parent = spawnablesPools.transform.GetChild(toPoolOut.GetSpawnable().SpawnablePrefabIndex); // reparent to original pool
     }
-    public void PoolOut(in Obstacle toPoolOut)
+    public void PoolOut(in Obstacle toPoolOut) // for obstacles
     {
         toPoolOut.col.enabled = true;
         PoolOut((SpawnableObject)toPoolOut);

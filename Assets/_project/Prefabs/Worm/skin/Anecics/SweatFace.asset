@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: SweatFace
   m_EditorClassIdentifier: 
   FaceType: 3
-  Eyes: {fileID: 5834792008769165847, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Pupil: {fileID: 1771972615340297556, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
-  Mouth: {fileID: -335905200997136968, guid: de8035927f4aa9147b86b2e24f034e6e, type: 3}
+  Eyes: {fileID: 21300000, guid: 11d577d5f7e27db4684c59bc4c854b34, type: 3}
+  Mouth: {fileID: 21300000, guid: b22d2ee69b3640144b5e9674d0715661, type: 3}

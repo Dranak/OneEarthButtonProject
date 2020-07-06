@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c61cdd8eafdb044c924a4d6a378c140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
   MainMenu: {fileID: 5290652817928002816}
   GameMenu: {fileID: 2020868243}
   DeathMenu: {fileID: 2}
@@ -58,6 +59,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a63f9d61e07b734b9251d6c92bfcd4c, type: 2}
   - {fileID: 11400000, guid: c1a1bde55368b7847a990e4ff3861f8e, type: 2}
   - {fileID: 11400000, guid: 0aff9e9f94da17c4e9dd3e12fe9572b8, type: 2}
+  - {fileID: 11400000, guid: e8dd6842de87c3b4d8e596e592854187, type: 2}
   - {fileID: 11400000, guid: e7cf2bf8deb3e3f4cbf1b6f993f107c7, type: 2}
   - {fileID: 11400000, guid: fcedd1fde1a2a624b88bbe961aa6e641, type: 2}
   isSkinPreviewsSet: 0

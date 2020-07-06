@@ -36,7 +36,7 @@ public class Unfolder : MonoBehaviour
 
     [Header("Skin Preview")]
     public Image skinBGImage;
-    public Image skinHead, skinMouth, skinEyes, skinPupils;
+    public Image skinHead, skinMouth, skinEyes;
 
     public void SetProgression()
     {
@@ -65,8 +65,5 @@ public class Unfolder : MonoBehaviour
         var normalFace = thisSkinData.Faces.FirstOrDefault(w => w.name.Contains("Normal"));
         skinMouth.sprite = normalFace.Mouth;
         skinEyes.sprite = normalFace.Eyes;
-        skinPupils.sprite = normalFace.Pupil;
-        if (skinPupils.sprite == null)
-            skinPupils.enabled = false;
     }
 }
