@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7845762024829849878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32,10 +32,10 @@ RectTransform:
   m_Father: {fileID: 3849581377679855350}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 877.28, y: -840}
+  m_SizeDelta: {x: 1754.56, y: 106.666664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &304516283838597647
 GameObject:
@@ -1246,7 +1246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0009460449}
+  m_AnchoredPosition: {x: 0, y: -0.0009765625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1593774058675857176
@@ -2841,7 +2841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0009460449}
+  m_AnchoredPosition: {x: 0, y: -0.0009765625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5233241565510487948
@@ -3863,7 +3863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Eggsheels chains completed
+  m_text: Eggshells chains completed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21817ea1ecfd41f459b1ff83d24f3153, type: 2}
   m_sharedMaterial: {fileID: 8108319875220396561, guid: 21817ea1ecfd41f459b1ff83d24f3153,
@@ -6671,22 +6671,22 @@ PrefabInstance:
     - target: {fileID: 2331541926517579092, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 301
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2331541926517579092, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2331541926517579092, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2331541926517579092, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2584177501324934152, guid: 40cda2374bd356f4fb507aba2f916825,
         type: 3}
