@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
 
     void GetPoint(Collectible collectible)
     {
-        Instantiate(collectible.starParticle, collectible.transform.position, Quaternion.identity);
+        Instantiate(collectible.starParticle, collectible.objectBody.position, Quaternion.identity);
         //collectible.starParticle.Play();
         string collectibleStatName = "";
         var collectibleParams = collectible.collectibleParameters;
