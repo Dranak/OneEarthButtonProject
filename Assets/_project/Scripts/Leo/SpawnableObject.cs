@@ -4,6 +4,7 @@ public abstract class SpawnableObject : MonoBehaviour
 {
     public Vector2 Size; // the grid-wise size -> shall not change ig (part of the prefab)
     public Transform objectBody;
+    public AudioClip touchedSound;
 
     public virtual void SetSpawnable(Spawnable _spawnableParameters, in Vector2 _blocPos, in int _prefabIndex)
     {

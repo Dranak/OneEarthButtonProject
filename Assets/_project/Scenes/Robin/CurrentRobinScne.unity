@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: environmentNoise
       value: 
       objectReference: {fileID: 829576457}
+    - target: {fileID: 5633448737910605981, guid: 48793bd3335eeb845a49011e4c22bd5d,
+        type: 3}
+      propertyPath: cameraSoundSource
+      value: 
+      objectReference: {fileID: 682896649}
     - target: {fileID: 5633448737910605982, guid: 48793bd3335eeb845a49011e4c22bd5d,
         type: 3}
       propertyPath: m_Name
@@ -395,6 +400,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e0f18528e18a040a1a50dc4ec53a0a, type: 3}
+--- !u!82 &682896649 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1790460815207001577, guid: 59e0f18528e18a040a1a50dc4ec53a0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 682896648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &698862443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5395711807035314354, guid: 59e0f18528e18a040a1a50dc4ec53a0a,

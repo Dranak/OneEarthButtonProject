@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
         Rage,
         Small
     }
+
+    [Header("Munch Sounds")]
+    [SerializeField] AudioSource encounteredObjSoundSource;
+    
     [Space]
 
     [Header("Level System")]
@@ -170,6 +174,7 @@ public class Player : MonoBehaviour
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
         IncreaseStatTotal("Deaths", 1);
+        encounteredObjSoundSource.PlayOneShot(obstacleTouched.touchedSound);
         GameManager.Instance.SetState(State.Dead);
     }
 
@@ -191,18 +196,22 @@ public class Player : MonoBehaviour
         {
             case "collectible_apple":
                 collectibleStatName = "AppleCores";
+                PlayObjSoundWithPitch(collectible, 1);
                 break;
             case "collectible_breadcrumb":
                 collectibleStatName = "BreadCrumbs";
+                PlayObjSoundWithPitch(collectible, UnityEngine.Random.Range(0.75f, 1.25f));
                 break;
             case "shield_bonus":
                 collectibleStatName = "Shields";
+                PlayObjSoundWithPitch(collectible, 1);
                 ActivateBonus(Bonus.Shield);
                 break;
-            case "rage_bonus":
+            /*case "rage_bonus":
                 collectibleStatName = "Angrys";
+                PlayObjSoundWithPitch(collectible, 1);
                 ActivateBonus(Bonus.Shield);
-                break;
+                break;*/
             case "collectible_eggshell":
                 collectibleStatName = "EggShells";
                 break;
@@ -222,6 +231,7 @@ public class Player : MonoBehaviour
 
             //   Debug.Log("Point Before: " + Score);
             int scoreIncrease = 0;
+            float eggPitch = 0.75f;
             switch (StreakEggShell)
             {
                 case 1:
@@ -229,6 +239,7 @@ public class Player : MonoBehaviour
                     break;
                 case 2:
                     scoreIncrease = EggShellStreakTwo;
+                    eggPitch = 1;
                     break;
                 case 3:
                     //        Debug.Log(" Streak Completed EggShellIndex " + collectible.collectibleParameters.EggShellIndex
@@ -236,6 +247,7 @@ public class Player : MonoBehaviour
                     scoreIncrease = EggShellStreakThird;
                     StreakEggShell = 0;
                     ++UiManager.Instance.SessionStrikesTotal;
+                    eggPitch = 1.25f;
                     IncreaseStatTotal("EggChains", 1);
                     break;
                 default:
@@ -243,6 +255,7 @@ public class Player : MonoBehaviour
                     StreakEggShell = 0;
                     break;
             }
+            PlayObjSoundWithPitch(collectible, eggPitch);
             Score += scoreIncrease;
             ScoreTextFB.text = "+" + scoreIncrease;
             //Debug.Log("Point After: " + Score);
@@ -269,6 +282,11 @@ public class Player : MonoBehaviour
         }
 
         currentBonus = bonus;
+    }
+    void PlayObjSoundWithPitch(in SpawnableObject spawnable, in float pitch)
+    {
+        encounteredObjSoundSource.pitch = pitch;
+        encounteredObjSoundSource.PlayOneShot(spawnable.touchedSound);
     }
 
     IEnumerator DisplayText(TextMeshProUGUI text, float time)

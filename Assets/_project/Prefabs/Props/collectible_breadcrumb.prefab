@@ -31,6 +31,11 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 143559669843836554, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: baf2e02faf2a303489e3a1586c118539, type: 3}
     - target: {fileID: 274588282095954400, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Name
@@ -301,6 +306,16 @@ PrefabInstance:
       propertyPath: PointGain
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: collectedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: baf2e02faf2a303489e3a1586c118539, type: 3}
+    - target: {fileID: 2995639226411482580, guid: b9e93c53bdb53404c832b47f8a917b29,
+        type: 3}
+      propertyPath: touchedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: baf2e02faf2a303489e3a1586c118539, type: 3}
     - target: {fileID: 3018955264390912844, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_LocalPosition.x

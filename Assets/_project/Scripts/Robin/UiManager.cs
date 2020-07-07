@@ -106,10 +106,15 @@ public class UiManager : MonoBehaviour
         DressingMenu.gameObject.SetActive(true);
         DressingMenu.SwitchMenuPanel(menuID);
     }
-    public void BackToMainMenu(in GameObject panel) // back to main menu from a sub-menu in the main menu (not in-game)
+    public void BackToMainMenu(in GameObject panel) // back to main menu from a sub-menu in the main menu, or the pause menu
     {
         panel.SetActive(false); // deactivate menu panel
-        GameManager.Instance.environmentNoise.volume = 0.5f; // unmute environment noise
+        
+        // unmute environment noise
+        var environmentNoise = GameManager.Instance.muffledEnvirVol;
+        if (State == State.InMenu)
+            environmentNoise = GameManager.Instance.normalEnvirVol;
+        GameManager.Instance.environmentNoise.volume = environmentNoise;
     }
 }
 

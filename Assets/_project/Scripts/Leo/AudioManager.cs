@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
     {
         toMute = !toMute;
         audioMixer.SetFloat("Volume", -80f * Convert.ToInt32(toMute));
-
     }
     public void MuteUnmuteMusic(Toggle toggle)
     {

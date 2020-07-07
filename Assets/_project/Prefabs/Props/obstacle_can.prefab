@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: {x: 1, y: 2}
   objectBody: {fileID: 5880604076227151516}
+  touchedSound: {fileID: 8300000, guid: 7c3ff9bdc3c4c5c4e934adf1883c5749, type: 3}
   col: {fileID: 1012906314991533173}
   overEffect: {fileID: 1989945110377362853}
   obstacleRotation: 0

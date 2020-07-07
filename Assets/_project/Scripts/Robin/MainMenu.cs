@@ -38,6 +38,6 @@ public class MainMenu : MonoBehaviour
     public void SettingsMenu()
     {
         UiManager.Instance.ToAudioMenu();
-        GameManager.Instance.environmentNoise.volume = 0.25f;
+        GameManager.Instance.environmentNoise.volume = GameManager.Instance.muffledEnvirVol;
     }
 }
