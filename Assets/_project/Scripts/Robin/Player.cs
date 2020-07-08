@@ -180,7 +180,6 @@ public class Player : MonoBehaviour
 
     void GetPoint(Collectible collectible)
     {
-        Instantiate(collectible.starParticle, collectible.objectBody.position, Quaternion.identity);
         //collectible.starParticle.Play();
         string collectibleStatName = "";
         var collectibleParams = collectible.collectibleParameters;
@@ -192,6 +191,8 @@ public class Player : MonoBehaviour
             Score += pointGain;
             IncreaseStatTotal("EcoPoints", pointGain);
         }
+
+        bool starEffect = true;
         switch (collectibleParams.Tag)
         {
             case "collectible_apple":
@@ -206,16 +207,20 @@ public class Player : MonoBehaviour
                 collectibleStatName = "Shields";
                 PlayObjSoundWithPitch(collectible, 1);
                 ActivateBonus(Bonus.Shield);
+                starEffect = false;
                 break;
             /*case "rage_bonus":
                 collectibleStatName = "Angrys";
                 PlayObjSoundWithPitch(collectible, 1);
-                ActivateBonus(Bonus.Shield);
+                ActivateBonus(Bonus.Rage);
+                starEffect = false;
                 break;*/
             case "collectible_eggshell":
                 collectibleStatName = "EggShells";
                 break;
         }
+        if (starEffect)
+            Instantiate(collectible.starParticle, collectible.objectBody.position, Quaternion.identity);
 
         if (collectibleParams.EggShellIndex > -1)
         {

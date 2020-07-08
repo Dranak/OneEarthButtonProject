@@ -1,5 +1,4 @@
-﻿using MC;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,7 +15,6 @@ public class UiManager : MonoBehaviour
     public DressingManager DressingMenu;
     public AudioManager AudioMenu;
     public EventSystem eventSystem;
-    public SettingsMenu SettingsMenu;
     string thisSceneName;
 
     public int SessionGameCount { get; set; } = 0;
@@ -83,16 +81,7 @@ public class UiManager : MonoBehaviour
         {
             DeathMenu.gameObject.SetActive(false);
         }
-        if (SettingsMenu.gameObject.activeInHierarchy)
-        {
-            SettingsMenu.gameObject.SetActive(false);
-        }
-        if (AudioMenu.gameObject.activeInHierarchy)
-        {
-            AudioMenu.gameObject.SetActive(false);
-        }
     }
-
 
     public void Quit()
     {
@@ -120,24 +109,13 @@ public class UiManager : MonoBehaviour
     public void BackToMainMenu(in GameObject panel) // back to main menu from a sub-menu in the main menu, or the pause menu
     {
         panel.SetActive(false); // deactivate menu panel
-
+        
         // unmute environment noise
         var environmentNoise = GameManager.Instance.muffledEnvirVol;
         if (State == State.InMenu)
             environmentNoise = GameManager.Instance.normalEnvirVol;
         GameManager.Instance.environmentNoise.volume = environmentNoise;
     }
-
-    public void OpenOption()
-    {
-#if UNITY_STANDALONE
-        SettingsMenu.gameObject.SetActive(true);
-#endif
-#if UNITY_ANDROID
-        ToAudioMenu();
-#endif
-    }
-
 }
 
 public enum State
