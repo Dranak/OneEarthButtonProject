@@ -19,8 +19,7 @@ public class WormBody : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Trail = GetComponentInChildren<ParticleSystemRenderer>(); // new TRAIL is a Particle System
         SpriteExtremity = GetComponent<SpriteRenderer>();
-
-
+        Trail.enabled = SpriteExtremity.enabled;
     }
 
     private void FixedUpdate()
@@ -33,12 +32,16 @@ public class WormBody : MonoBehaviour
         Target = target;
     }
 
+    Vector2 currentBodyVel;
+
     void FollowTarget()
     {
         if (!Target)
             return;
- 
-           Rigidbody.MovePosition( Vector2.Lerp(Rigidbody.position, (Vector2)Target.Rigidbody.position, Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * Damping * (GameManager.Instance.Player.SpeedRight/10)));
+
+        var moveDeltaTime = Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * Damping * (GameManager.Instance.Player.WormHead.Rigidbody.velocity.magnitude / 10);
+        Rigidbody.MovePosition(Vector2.SmoothDamp(Rigidbody.position, Target.Rigidbody.position, ref currentBodyVel, 1f, 10f, moveDeltaTime));
+
         Vector3 diff = Vector3.zero;
         if (Target is WormHead)
         {
@@ -46,7 +49,6 @@ public class WormBody : MonoBehaviour
             float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
             Target.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
-
         }
         else if (Trail.enabled)
         {

@@ -1542,5 +1542,25 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 827154173}
+    - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: 1.1286838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: 1.1286838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.32366747
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017596611329487561, guid: 377730f41a5a5c14c9d64792ea2bf922,
+        type: 3}
+      propertyPath: Damping
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377730f41a5a5c14c9d64792ea2bf922, type: 3}

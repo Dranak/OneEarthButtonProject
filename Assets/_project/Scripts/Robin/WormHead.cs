@@ -124,6 +124,7 @@ public class WormHead : WormBody
     {
         if (UiManager.Instance.State == State.Play)
         {
+            transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
             SetForce(IsDigging);
         }
     }
@@ -135,8 +136,13 @@ public class WormHead : WormBody
         if (_isDigging)
         {
             _chronoAccelerationRising = 0f;
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
-            _chronoAccelerationDig += Time.fixedDeltaTime;
+            if (transform.localPosition.y > -9)
+            {
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
+                _chronoAccelerationDig += Time.fixedDeltaTime;
+            }
+            else
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
         }
         else
         {
@@ -146,7 +152,8 @@ public class WormHead : WormBody
                 Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
                 _chronoAccelerationRising += Time.fixedDeltaTime;
             }
-
+            else
+                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
         }
     }
 
