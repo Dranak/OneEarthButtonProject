@@ -1543,6 +1543,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 827154173}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 6017596611329487560, guid: 377730f41a5a5c14c9d64792ea2bf922,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
@@ -1563,6 +1564,8 @@ PrefabInstance:
       propertyPath: Damping
       value: 10
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of 79a3444... test settings pc
 =======
 >>>>>>> parent of 79a3444... test settings pc
     m_RemovedComponents: []
