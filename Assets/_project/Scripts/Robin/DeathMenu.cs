@@ -112,7 +112,7 @@ public class DeathMenu : MonoBehaviour
             Debug.Log("OOF " + score);
             scaleTime = (Time.unscaledTime - startTime) / duration;
 
-            ScoreText.text = ((int)Mathf.Lerp(0, score, scaleTime)).ToString();
+            ScoreText.text = Mathf.Lerp(0, score, scaleTime).ToString();
 
             yield return null;
         }

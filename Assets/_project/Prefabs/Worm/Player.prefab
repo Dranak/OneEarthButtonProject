@@ -230,6 +230,26 @@ PrefabInstance:
       objectReference: {fileID: 6017596611703711441}
     - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
         type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.91428757
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[3].time
+      value: 0.93333435
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[3].value
+      value: 0.8999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677485550520728287, guid: bd3dff6583a080b408eb786cd084432e,
+        type: 3}
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
