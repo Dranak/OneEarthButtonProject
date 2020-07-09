@@ -155,7 +155,7 @@ public class WormHead : WormBody
 
     void SetDirtPitch()
     {
-        dirtAudioSource.pitch = 1f + Mathf.Lerp(0, 1f, (Rigidbody.velocity.magnitude - Speed) / MaxSpeed);
+        dirtAudioSource.pitch = 0.5f + Mathf.Lerp(0, 1f, (Rigidbody.velocity.magnitude - Speed) / MaxSpeed);
     }
 
     void UpdateLineRenderer()
