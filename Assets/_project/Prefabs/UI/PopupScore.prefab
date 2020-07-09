@@ -52,7 +52,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 2
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_fontSize: 80
   m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

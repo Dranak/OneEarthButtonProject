@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 598b79eac3e82d947a731804b14fdaf0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4717480906229574896
+    second: Barre barre_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -133,7 +136,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Barre barre_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 29
+        width: 1124
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc6082d3ebd77140800000000000000
+      internalID: 4717480906229574896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
