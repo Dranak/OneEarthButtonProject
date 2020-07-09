@@ -476,7 +476,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &1677485550520728286
 MonoBehaviour:
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf2b1453ff0b7b4da0d90e9b599eb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: 2.09
+  Damping: 0
   Anchor: {fileID: 472139966832600559}
   PrefabWormBody: {fileID: 4516079124152242864, guid: 7ff8d7e4b7fed8d45b407d9daa0028d2,
     type: 3}
@@ -801,7 +801,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 22945446482701444bbfc79b24b85339,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e2a7819c3a25c364fa5e619271f8907a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ffd60001d9e671649851ed8cb9e9bbc7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
