@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     }
 
     [Header("Munch Sounds")]
-    [SerializeField] AudioSource encounteredObjSoundSource;
+    public AudioSource encounteredObjSoundSource;
     
     [Space]
 
@@ -174,7 +174,6 @@ public class Player : MonoBehaviour
         if (!Application.isEditor && !Debug.isDebugBuild) // Log only for non-dev builds
             gameLogin.OnGameOver(player, obstacleTouched);
         IncreaseStatTotal("Deaths", 1);
-        encounteredObjSoundSource.PlayOneShot(obstacleTouched.touchedSound);
         GameManager.Instance.SetState(State.Dead);
     }
 
@@ -343,7 +342,7 @@ public class Player : MonoBehaviour
             //Debug.Log("splitLine " + splitLine);
             if (splitLine[0] == CurrentLevelPlayer.ToString())
             {
-                NeededXp = Int32.Parse(splitLine[1]);
+                NeededXp = int.Parse(splitLine[1]);
                 //Debug.Log("NeededXp " + NeededXp);
                 break;
             }

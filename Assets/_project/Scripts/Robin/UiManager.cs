@@ -59,17 +59,17 @@ public class UiManager : MonoBehaviour
         }
 
         MainMenu.group.alpha = 0; // hide main menu
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
         State = State.Play;
         SceneManager.LoadSceneAsync(thisSceneName);
     }
 
-    /*void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (thisSceneName == scene.name)
-            MainMenu.Play();
+            GameMenu.ResetPauseButton();
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }*/
+    }
 
     public void GoMainMenu()
     {

@@ -7,13 +7,13 @@ public class PopupScore : MonoBehaviour
 {
 
     GameMenu _gameMenu;
-    WormHead _worm;
+    [SerializeField] WormHead _worm;
     public float Offset = 1f;
     public float TimeLerp;
     public float TimeStacking;
     float _chronoStacking;
     float _chronoLerp;
-  public  TextMeshProUGUI ScoreText;
+    public  TextMeshProUGUI ScoreText;
     GameObject _firstParent;
     public int Value { get; set; } = 0;
     private int _lastValue = -1;
@@ -23,7 +23,7 @@ public class PopupScore : MonoBehaviour
     void Start()
     {
         _gameMenu = UiManager.Instance.GameMenu;
-        _worm = GameManager.Instance.Player.WormHead;
+        //_worm = GameManager.Instance.Player.WormHead;
       // = new Vector3(_worm.transform.position.x, _worm.transform.position.y + Offset, _worm.transform.position.z); 
 
 
@@ -31,10 +31,11 @@ public class PopupScore : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //if(IsAvailable)
         //{
+        if (UiManager.Instance.State == State.Play)
             FollowWorm();
         
      

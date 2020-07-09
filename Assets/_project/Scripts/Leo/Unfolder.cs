@@ -54,7 +54,7 @@ public class Unfolder : MonoBehaviour
     }
     public void SelectSkin()
     {
-        DressingManager.Instance.unfoldManager.activatedSkinUnfolder.skinBGImage.color = Color.white;
+        DressingManager.Instance.unfoldManager.activatedSkinUnfolder.skinBGImage.color = new Color(0, 0, 0, 0.5f);
         skinBGImage.color = DressingManager.Instance.unfoldManager.selectedSkinBGColor;
         DressingManager.Instance.unfoldManager.activatedSkinUnfolder = this;
         GameManager.Instance.Player.LoadSkin(thisSkinData);

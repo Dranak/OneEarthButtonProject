@@ -34,6 +34,11 @@ public class GameMenu:MonoBehaviour
     {
         PauseMenu.gameObject.SetActive(false);
         GameManager.Instance.SetState(State.Play);
+        ResetPauseButton();
+    }
+
+    public void ResetPauseButton()
+    {
         pauseButtonImage.sprite = pauseSprite;
     }
 

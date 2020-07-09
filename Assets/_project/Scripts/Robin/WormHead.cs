@@ -127,7 +127,7 @@ public class WormHead : WormBody
 
     void SetForce(bool _isDigging)
     {
-        Rigidbody.velocity = new Vector2(Speed, Rigidbody.velocity.y);
+        //Rigidbody.velocity = new Vector2(Speed, Rigidbody.velocity.y);
 
         if (_isDigging)
         {
@@ -227,19 +227,22 @@ public class WormHead : WormBody
         var col = collision.collider;
         if (col.CompareTag("Death"))
         {
+            var obstacle = collision.transform.parent.GetComponent<Obstacle>();
+
+            GameManager.Instance.Player.encounteredObjSoundSource.PlayOneShot(obstacle.touchedSound);
             if (_player.currentBonus == Player.Bonus.Shield)
             {
                 _player.ActivateBonus(0);
                 col.enabled = false;
             }
-            else if (_player.currentBonus == Player.Bonus.Rage)
+            /*else if (_player.currentBonus == Player.Bonus.Rage)
             {
                 col.enabled = false;
-            }
+            }*/
             else
             {
                 //Debug.Log("Dead by " + collision.gameObject.name);
-                CallBackDead(collision.transform.parent.GetComponent<Obstacle>(), _player);
+                CallBackDead(obstacle, _player);
             }
         }
     }

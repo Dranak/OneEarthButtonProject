@@ -22,7 +22,7 @@ public class DeathMenu : MonoBehaviour
     private void OnEnable()
     {
         SetState(DeathState.Start);
-       
+
     }
 
     private void Update()
@@ -79,7 +79,6 @@ public class DeathMenu : MonoBehaviour
 
     IEnumerator LerpThreading(float from, float to, float startTime, float duration,bool levelUp =false)
     {
-
         float scaleTime = 0f;
         while (scaleTime < 1f)
         {
@@ -92,8 +91,7 @@ public class DeathMenu : MonoBehaviour
         }
 
         if(levelUp)
-         SetState(DeathState.LevelUp);
-
+            SetState(DeathState.NextBar); // DeathState.LevelUp for skins
     }
 
 
@@ -125,7 +123,6 @@ public class DeathMenu : MonoBehaviour
         else
         {
             StartCoroutine(LerpThreading(_currentFilling, 1f, Time.unscaledTime, 3f,true));
-          
         }
     }
 
@@ -135,14 +132,7 @@ public class DeathMenu : MonoBehaviour
 
         NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 2).ToString();
 
-
         StartCoroutine(LerpThreading(0, _newFilling - 1f, Time.unscaledTime, 3f));
-
-        ++GameManager.Instance.Player.CurrentLevelPlayer;
-        GameManager.Instance.Player.CurrentXp = GameManager.Instance.Player.CurrentXp - GameManager.Instance.Player.NeededXp;
-        GameManager.Instance.Player.LoadDataFromFile();
-
-        GameManager.Instance.Player.SaveData();
     }
 
     void SetState(DeathState state)
@@ -159,13 +149,24 @@ public class DeathMenu : MonoBehaviour
                 NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 1).ToString();
                 Debug.Log("NextLevelText : " + NextLevelText.text);
 
-
                 PlayerPrefs.SetInt("HighScore", GameManager.Instance.Player.HighScore);
+
+                // Score saving
+                var nextState = DeathState.LerpBar;
 
                 _currentFilling = GameManager.Instance.Player.CurrentXp / GameManager.Instance.Player.NeededXp;
                 GameManager.Instance.Player.CurrentXp += GameManager.Instance.Player.Score;
                 _newFilling = GameManager.Instance.Player.CurrentXp / GameManager.Instance.Player.NeededXp;
-                SetState(DeathState.LerpBar);
+                if (_newFilling > 1f)
+                {
+                    nextState = DeathState.NextBar;
+                    ++GameManager.Instance.Player.CurrentLevelPlayer;
+                    GameManager.Instance.Player.CurrentXp = GameManager.Instance.Player.CurrentXp - GameManager.Instance.Player.NeededXp;
+                    GameManager.Instance.Player.LoadDataFromFile();
+                }
+                GameManager.Instance.Player.SaveData();
+
+                SetState(nextState);
 
                 break;
             case DeathState.LerpBar:

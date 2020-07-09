@@ -44,7 +44,7 @@ public class UnfoldButton : MonoBehaviour
 
     void Unfold(Unfolder _selectedUnfolder)
     {
-        rollingCoroutine = StartCoroutine("RollingCoroutine", new object[3] { _selectedUnfolder, 350 + 100 * Convert.ToInt32(_selectedUnfolder.isUnlocked), true });
+        rollingCoroutine = StartCoroutine("RollingCoroutine", new object[3] { _selectedUnfolder, 350 + 200 * Convert.ToInt32(_selectedUnfolder.isUnlocked), true });
     }
 
     void Fold(Unfolder _selectedUnfolder)

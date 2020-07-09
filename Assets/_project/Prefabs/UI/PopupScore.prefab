@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c295c02ca8af5254cac25f48edf9e9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _worm: {fileID: 0}
   Offset: 1
   TimeLerp: 0
   TimeStacking: 0
@@ -212,11 +213,11 @@ MonoBehaviour:
   m_fontSize: 80
   m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
