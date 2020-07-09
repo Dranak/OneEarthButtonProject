@@ -103,7 +103,25 @@ public class PopupScore : MonoBehaviour
 
     void AddPoint()
     {
+        int actualScore = GameManager.Instance.Player.Score;
+        StartCoroutine(LerpPoint(actualScore, actualScore + Value,Time.time ,1f));
 
     }
+
+
+    IEnumerator LerpPoint(int from, int score, float startTime, float duration)
+    {
+        float scaleTime = 0f;
+        while (scaleTime < 1f)
+        {
+
+            scaleTime = (Time.unscaledTime - startTime) / duration;
+
+            ScoreText.text = ((int)Mathf.Lerp(from, score, scaleTime)).ToString();
+
+            yield return null;
+        }
+        GameManager.Instance.Player.Score += Value;
+      }
 
 }
