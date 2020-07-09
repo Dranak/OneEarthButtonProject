@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: {x: 1, y: 1}
   objectBody: {fileID: 3018955264390912844}
-  touchedSound: {fileID: 8300000, guid: d4a95cc3eb2a2004597eabb61161dab4, type: 3}
+  touchedSound: {fileID: 8300000, guid: 6dbf574505c24164391794046ff42517, type: 3}
   collectibleParameters:
     Tag: 
     BlocPosition: {x: 0, y: 0}

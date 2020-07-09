@@ -263,6 +263,7 @@ public class Player : MonoBehaviour
             PlayObjSoundWithPitch(collectible, eggPitch);
             Score += scoreIncrease;
             ScoreTextFB.text = "+" + scoreIncrease;
+            IncreaseStatTotal("EcoPoints", scoreIncrease);
             //Debug.Log("Point After: " + Score);
         }
         IncreaseStatTotal(collectibleStatName, 1); // increase this collectible stat count (total collected of this type)

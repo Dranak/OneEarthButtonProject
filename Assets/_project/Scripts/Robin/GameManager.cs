@@ -119,6 +119,10 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1f;
                 UiManager.Instance.MainMenu.group.interactable = false;
                 environmentNoise.volume = normalEnvirVol;
+                if (Player.WormHead.dirtAudioSource.isVirtual)
+                    Player.WormHead.dirtAudioSource.UnPause();
+                else
+                    Player.WormHead.dirtAudioSource.Play();
                 break;
             case State.InMenu:
                 Time.timeScale = 0f;
@@ -133,10 +137,12 @@ public class GameManager : MonoBehaviour
                 UiManager.Instance.Death();
                 cameraSoundSource.PlayOneShot(deathEffect);
                 environmentNoise.volume = 0f;
+                Player.WormHead.dirtAudioSource.Stop();
                 break;
             case State.Pause:
                 Time.timeScale = 0f;
                 environmentNoise.volume = muffledEnvirVol;
+                Player.WormHead.dirtAudioSource.Pause();
                 break;
         }
         MusicManager.SwitchMusic(state);

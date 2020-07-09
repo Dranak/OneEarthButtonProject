@@ -18,6 +18,7 @@ public class WormHead : WormBody
     public SpriteRenderer Eyes;
     public SpriteRenderer Mouth;
     [SerializeField] ParticleSystem headDirtParticle;
+    public AudioSource dirtAudioSource;
    // public SkinData DefaultSkin;
 
     private FeelType _lastFace;
@@ -126,6 +127,7 @@ public class WormHead : WormBody
         {
             transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
             SetForce(IsDigging);
+            SetDirtPitch();
         }
     }
 
@@ -138,27 +140,29 @@ public class WormHead : WormBody
             _chronoAccelerationRising = 0f;
             if (transform.localPosition.y > -9)
             {
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
+                Rigidbody.velocity = new Vector2(Speed, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
                 _chronoAccelerationDig += Time.fixedDeltaTime;
             }
             else
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
+                Rigidbody.velocity = new Vector2(Speed, 0);
         }
         else
         {
             _chronoAccelerationDig = 0f;
             if (Rigidbody.position.y < StartPosition.y)
             {
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
+                Rigidbody.velocity = new Vector2(Speed, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
                 _chronoAccelerationRising += Time.fixedDeltaTime;
             }
             else
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0);
+                Rigidbody.velocity = new Vector2(Speed, 0);
         }
     }
 
-
-
+    void SetDirtPitch()
+    {
+        dirtAudioSource.pitch = 0.5f + Mathf.Lerp(0, 1f, (Rigidbody.velocity.magnitude - Speed) / MaxSpeed);
+    }
 
     void UpdateLineRenderer()
     {

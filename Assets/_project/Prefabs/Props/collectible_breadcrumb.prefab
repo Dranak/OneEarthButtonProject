@@ -315,7 +315,7 @@ PrefabInstance:
         type: 3}
       propertyPath: touchedSound
       value: 
-      objectReference: {fileID: 8300000, guid: baf2e02faf2a303489e3a1586c118539, type: 3}
+      objectReference: {fileID: 8300000, guid: 0891af01d4b6f8c46b6217d6c79484ce, type: 3}
     - target: {fileID: 3018955264390912844, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -165,8 +165,9 @@ MonoBehaviour:
     type: 2}
   MusicManager: {fileID: 0}
   environmentNoise: {fileID: 0}
-  normalEnvirVol: 0.2
-  muffledEnvirVol: 0.1
+  normalEnvirVol: 0.1
+  muffledEnvirVol: 0.05
+  cameraSoundSource: {fileID: 0}
   deathEffect: {fileID: 8300000, guid: 159652fe20de54484882d0914255f574, type: 3}
 --- !u!1 &5633448739139851504
 GameObject:
