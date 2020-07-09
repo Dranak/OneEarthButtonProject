@@ -69,7 +69,7 @@ PrefabInstance:
         type: 3}
       propertyPath: touchedSound
       value: 
-      objectReference: {fileID: 8300000, guid: 5df93c33f97d1dc448d733ffeada2b41, type: 3}
+      objectReference: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
     - target: {fileID: 3150751497898283089, guid: b9e93c53bdb53404c832b47f8a917b29,
         type: 3}
       propertyPath: m_Sprite

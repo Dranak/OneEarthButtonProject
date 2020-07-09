@@ -10,8 +10,7 @@ public class SoundEffect : MonoBehaviour
 
     void OnEnable()
     {
-        if (audioClips.Count > 0)
-            audioSource.clip = audioClips[Random.Range(0, audioClips.Count)];
+        audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Count)]);
         audioSource.pitch = Random.Range(0.75f, 1.25f);
     }
 }
