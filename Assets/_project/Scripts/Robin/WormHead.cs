@@ -109,9 +109,9 @@ public class WormHead : WormBody
 
             IsDigging = touchingInput;
 
-            /*transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
+            transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
             SetForce(IsDigging);
-            SetDirtPitch();*/
+            //SetDirtPitch();
         }
     }
 
@@ -119,8 +119,8 @@ public class WormHead : WormBody
     {
         if (UiManager.Instance.State == State.Play)
         {
-            transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
-            SetForce(IsDigging);
+            /*transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
+            SetForce(IsDigging);*/
             SetDirtPitch();
         }
     }
@@ -135,7 +135,7 @@ public class WormHead : WormBody
             if (transform.localPosition.y > -9)
             {
                 Rigidbody.velocity = new Vector2(Speed, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
-                _chronoAccelerationDig += Time.fixedDeltaTime;
+                _chronoAccelerationDig += Time.smoothDeltaTime;
             }
             else
                 Rigidbody.velocity = new Vector2(Speed, 0);
@@ -146,7 +146,7 @@ public class WormHead : WormBody
             if (Rigidbody.position.y < StartPosition.y)
             {
                 Rigidbody.velocity = new Vector2(Speed, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
-                _chronoAccelerationRising += Time.fixedDeltaTime;
+                _chronoAccelerationRising += Time.smoothDeltaTime;
             }
             else
                 Rigidbody.velocity = new Vector2(Speed, 0);
