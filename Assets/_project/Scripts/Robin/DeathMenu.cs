@@ -22,9 +22,7 @@ public class DeathMenu : MonoBehaviour
     private void OnEnable()
     {
         SetState(DeathState.Start);
-        Debug.Log("WESH ALORS");
-
-
+       
     }
 
     private void Update()
@@ -37,6 +35,7 @@ public class DeathMenu : MonoBehaviour
 
                 break;
             case DeathState.LerpBar:
+                Debug.Log("LerpBar");
                 break;
             case DeathState.LevelUp:
                 break;
@@ -109,7 +108,7 @@ public class DeathMenu : MonoBehaviour
         float scaleTime = 0f;
         while (scaleTime < 1f)
         {
-            Debug.Log("OOF " + score);
+        
             scaleTime = (Time.unscaledTime - startTime) / duration;
 
             ScoreText.text = ((int)Mathf.Lerp(0, score, scaleTime)).ToString();
@@ -155,8 +154,11 @@ public class DeathMenu : MonoBehaviour
                 StartCoroutine(LerpPoint(GameManager.Instance.Player.Score, Time.unscaledTime, 2f));
 
                 CurrentLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer).ToString();
+                Debug.Log("CurrentLevelText : " + CurrentLevelText.text);
 
                 NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 1).ToString();
+                Debug.Log("NextLevelText : " + NextLevelText.text);
+
 
                 PlayerPrefs.SetInt("HighScore", GameManager.Instance.Player.HighScore);
 

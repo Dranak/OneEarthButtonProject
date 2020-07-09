@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8936393117110815885}
   - component: {fileID: 3890560885297843950}
   - component: {fileID: 5079886672788265189}
-  - component: {fileID: 8328986036057518665}
+  - component: {fileID: 1784390930}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PopupScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8328986036057518665
+--- !u!114 &1784390930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,11 +109,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3765848680088835489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc6370c4c0e88c449d5309867a61c81, type: 3}
+  m_Script: {fileID: 11500000, guid: c295c02ca8af5254cac25f48edf9e9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffsetY: 1
+  Offset: 1
+  TimeLerp: 0
+  TimeStacking: 0
   ScoreText: {fileID: 1039852738777787854}
+  IsAvailable: 1
 --- !u!1 &9167006105862643279
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,16 +182,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e737af85467db554ca375e8b90ad8264, type: 2}
-  m_sharedMaterial: {fileID: 8108319875220396561, guid: e737af85467db554ca375e8b90ad8264,
+  m_fontAsset: {fileID: 11400000, guid: 4e293d9e6e9217a4d8ef0476473a7562, type: 2}
+  m_sharedMaterial: {fileID: 8108319875220396561, guid: 4e293d9e6e9217a4d8ef0476473a7562,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -206,8 +209,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -223,7 +226,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
