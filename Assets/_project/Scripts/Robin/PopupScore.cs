@@ -24,6 +24,7 @@ public class PopupScore : MonoBehaviour
     {
         _gameMenu = UiManager.Instance.GameMenu;
         _worm = GameManager.Instance.Player.WormHead;
+      // = new Vector3(_worm.transform.position.x, _worm.transform.position.y + Offset, _worm.transform.position.z); 
 
 
 
@@ -32,8 +33,15 @@ public class PopupScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowWorm();
+        //if(IsAvailable)
+        //{
+            FollowWorm();
+        
+     
 
+        //FinishStacking();
+        //TimeToGo();
+      
     }
 
 
@@ -80,6 +88,7 @@ public class PopupScore : MonoBehaviour
         {
             _lastValue = Value;
             Value += value;
+            ScoreText.text = "+" + Value;
         }
         return IsAvailable;
      
@@ -104,7 +113,12 @@ public class PopupScore : MonoBehaviour
     void AddPoint()
     {
         int actualScore = GameManager.Instance.Player.Score;
-        StartCoroutine(LerpPoint(actualScore, actualScore + Value,Time.time ,1f));
+        ScoreText.text = "";
+        ScoreText.transform.SetParent(transform);
+        ScoreText.transform.position = _worm.transform.position;
+
+        IsAvailable = true;
+        StartCoroutine(LerpPoint(actualScore, actualScore + Value,Time.time ,.2f));
 
     }
 
@@ -122,6 +136,7 @@ public class PopupScore : MonoBehaviour
             yield return null;
         }
         GameManager.Instance.Player.Score += Value;
+        
       }
 
 }
