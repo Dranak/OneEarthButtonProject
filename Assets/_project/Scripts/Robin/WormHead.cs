@@ -64,16 +64,6 @@ public class WormHead : WormBody
 
         _lastFace = FeelType.Normal;
         _currentFace = FeelType.Normal;
-      
-
-        
-       
-    }
-
-    void Start()
-    {
-       // SetupBody();
-      //  SetSkin(DefaultSkin);
     }
 
     bool touchingInput = false;
@@ -118,17 +108,21 @@ public class WormHead : WormBody
 #endif
 
             IsDigging = touchingInput;
+
+            transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
+            SetForce(IsDigging);
+            SetDirtPitch();
         }
     }
 
     private void FixedUpdate()
     {
-        if (UiManager.Instance.State == State.Play)
+        /*if (UiManager.Instance.State == State.Play)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, -9, 0)); // clamping the worm position between the grass (0) and bedrock (-9)
             SetForce(IsDigging);
             SetDirtPitch();
-        }
+        }*/
     }
 
     void SetForce(bool _isDigging)
@@ -141,7 +135,7 @@ public class WormHead : WormBody
             if (transform.localPosition.y > -9)
             {
                 Rigidbody.velocity = new Vector2(Speed, -Accelerate(AccelerationCurveDig, VelocityDig, _chronoAccelerationDig, AccelerationTimeDig));
-                _chronoAccelerationDig += Time.fixedDeltaTime;
+                _chronoAccelerationDig += Time.smoothDeltaTime;
             }
             else
                 Rigidbody.velocity = new Vector2(Speed, 0);
@@ -152,7 +146,7 @@ public class WormHead : WormBody
             if (Rigidbody.position.y < StartPosition.y)
             {
                 Rigidbody.velocity = new Vector2(Speed, Accelerate(AccelerationCurveRising, VelocityRising, _chronoAccelerationRising, AccelerationTimeRising));
-                _chronoAccelerationRising += Time.fixedDeltaTime;
+                _chronoAccelerationRising += Time.smoothDeltaTime;
             }
             else
                 Rigidbody.velocity = new Vector2(Speed, 0);
@@ -161,7 +155,7 @@ public class WormHead : WormBody
 
     void SetDirtPitch()
     {
-        dirtAudioSource.pitch = 0.5f + Mathf.Lerp(0, 1f, (Rigidbody.velocity.magnitude - Speed) / MaxSpeed);
+        dirtAudioSource.pitch = 1f + Mathf.Lerp(0, 1f, (Rigidbody.velocity.magnitude - Speed) / MaxSpeed);
     }
 
     void UpdateLineRenderer()

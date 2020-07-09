@@ -22,6 +22,11 @@ public class WormBody : MonoBehaviour
         Trail.enabled = SpriteExtremity.enabled;
     }
 
+    private void Start()
+    {
+        wormHeadRb2D = GameManager.Instance.Player.WormHead.Rigidbody;
+    }
+
     private void FixedUpdate()
     {
         FollowTarget();
@@ -33,14 +38,15 @@ public class WormBody : MonoBehaviour
     }
 
     Vector2 currentBodyVel;
+    Rigidbody2D wormHeadRb2D;
 
     void FollowTarget()
     {
         if (!Target)
             return;
 
-        var moveDeltaTime = Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * Damping * (GameManager.Instance.Player.WormHead.Rigidbody.velocity.magnitude / 10);
-        Rigidbody.MovePosition(Vector2.SmoothDamp(Rigidbody.position, Target.Rigidbody.position, ref currentBodyVel, 1f, 10f, moveDeltaTime));
+        var moveDeltaTime = Time.fixedDeltaTime * Vector2.Distance(Rigidbody.position, Target.Rigidbody.position) * (wormHeadRb2D.velocity.magnitude / 10);
+        Rigidbody.MovePosition(Vector2.SmoothDamp(Rigidbody.position, Target.Rigidbody.position, ref currentBodyVel, 0.1f, 10f, moveDeltaTime));
 
         Vector3 diff = Vector3.zero;
         if (Target is WormHead)
