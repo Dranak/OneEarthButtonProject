@@ -75,6 +75,7 @@ public class UiManager : MonoBehaviour
     {
         MainMenu.group.alpha = 1; // unhide main menu
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.SetState(State.InMenu);
         if (DeathMenu.gameObject.activeInHierarchy)

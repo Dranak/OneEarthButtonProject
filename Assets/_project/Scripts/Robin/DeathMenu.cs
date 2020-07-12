@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class DeathMenu : MonoBehaviour
 {
@@ -77,7 +78,7 @@ public class DeathMenu : MonoBehaviour
 
     //}
 
-    IEnumerator LerpThreading(float from, float to, float startTime, float duration,bool levelUp =false)
+    IEnumerator LerpThreading(float from, float to, float startTime, float duration, bool levelUp = false)
     {
         float scaleTime = 0f;
         while (scaleTime < 1f)
@@ -87,11 +88,15 @@ public class DeathMenu : MonoBehaviour
             //Debug.Log("startTime: " + startTime + "scaleTime: " + scaleTime + "Time.time" + Time.unscaledTime);
             FillingImage.fillAmount = Mathf.Lerp(from, to, scaleTime);
             //  Debug.Log("LerpATM: "+ FillingImage.fillAmount + "scaleTime: " + scaleTime);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
-        if(levelUp)
-            SetState(DeathState.NextBar); // DeathState.LevelUp for skins
+        if (levelUp)
+        {
+            _newFilling =  GameManager.Instance.Player.CurrentXp / nextNeededXps[0]; // get next needed XP to determine the next filling
+            nextNeededXps.RemoveAt(0); // remove that needed XP from the list of upcoming needed XPs
+            SetState(DeathState.NextBar); // (DeathState.LevelUp for skins ==> backlog)
+        }
     }
 
 
@@ -117,24 +122,24 @@ public class DeathMenu : MonoBehaviour
 
     void LerpBarNormal()
     {
-        //startTime = Time.unscaledTime;
         if (_newFilling < 1f)
             StartCoroutine(LerpThreading(_currentFilling, _newFilling, Time.unscaledTime, 3f));
         else
         {
-            StartCoroutine(LerpThreading(_currentFilling, 1f, Time.unscaledTime, 3f,true));
+            StartCoroutine(LerpThreading(_currentFilling, 1f, Time.unscaledTime, 3f, true));
         }
     }
 
     void LerpBarLevelUp()
     {
-        CurrentLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 1).ToString();
+        CurrentLevelText.text = NextLevelText.text;
 
-        NextLevelText.text = (GameManager.Instance.Player.CurrentLevelPlayer + 2).ToString();
+        NextLevelText.text = (Convert.ToInt32(CurrentLevelText.text) + 1).ToString();
 
-        StartCoroutine(LerpThreading(0, _newFilling - 1f, Time.unscaledTime, 3f));
+        StartCoroutine(LerpThreading(0, _newFilling, Time.unscaledTime, 3f, _newFilling > 1));
     }
 
+    List<float> nextNeededXps = new List<float>();
     void SetState(DeathState state)
     {
         _state = state;
@@ -152,26 +157,27 @@ public class DeathMenu : MonoBehaviour
                 PlayerPrefs.SetInt("HighScore", GameManager.Instance.Player.HighScore);
 
                 // Score saving
-                var nextState = DeathState.LerpBar;
-
                 _currentFilling = GameManager.Instance.Player.CurrentXp / GameManager.Instance.Player.NeededXp;
                 GameManager.Instance.Player.CurrentXp += GameManager.Instance.Player.Score;
                 _newFilling = GameManager.Instance.Player.CurrentXp / GameManager.Instance.Player.NeededXp;
-                if (_newFilling > 1f)
+
+                var _fillingRound = _newFilling;
+                while (_fillingRound > 1f)
                 {
-                    nextState = DeathState.NextBar;
                     ++GameManager.Instance.Player.CurrentLevelPlayer;
-                    GameManager.Instance.Player.CurrentXp = GameManager.Instance.Player.CurrentXp - GameManager.Instance.Player.NeededXp;
                     GameManager.Instance.Player.LoadDataFromFile();
+                    _fillingRound = GameManager.Instance.Player.CurrentXp / GameManager.Instance.Player.NeededXp;
+                    nextNeededXps.Add(GameManager.Instance.Player.NeededXp);
                 }
+
                 GameManager.Instance.Player.SaveData();
-
-                SetState(nextState);
-
+                SetState(DeathState.LerpBar);
                 break;
+
             case DeathState.LerpBar:
                 LerpBarNormal();
                 break;
+
             case DeathState.LevelUp:
                 NormalPanel.SetActive(false);
                 LevelUpPanel.SetActive(true);
