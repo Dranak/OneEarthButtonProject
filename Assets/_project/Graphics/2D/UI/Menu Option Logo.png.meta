@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 49067426c496b7b459ad3b58d91244ae
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5285842276163156686
+    second: Menu Option Logo_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,7 +136,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Menu Option Logo_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 23
+        width: 246
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2358d86947ae4a6b0800000000000000
+      internalID: -5285842276163156686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
