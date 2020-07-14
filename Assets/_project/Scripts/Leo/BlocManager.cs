@@ -140,9 +140,7 @@ public class BlocManager : MonoBehaviour
         var sortedBlocs = allBlocsRanked[currentBlocDiff];
         randomBloc = sortedBlocs[Random.Range(0, sortedBlocs.Count)].Clone(); // cloning the bloc used, not to change the original
 
-        currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max, not working for X random
         randomizedSortedBloc = new List<Spawnable>();
-        Debug.Log("Choosen Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
 
         // random Y pos for the bloc
         blocRandomY = 0;
@@ -158,14 +156,20 @@ public class BlocManager : MonoBehaviour
         }
 
         // Bloc-wise offsets (position)
-        Vector4 globalOffset = randomBloc.globalOffsetRange;
-        if (globalOffset != Vector4.zero)
+        Vector4 globalOffsetR = randomBloc.globalOffsetRange;
+        if (globalOffsetR != Vector4.zero)
         {
+            var globalOffset = new Vector2Int(Random.Range((int)(globalOffsetR).x, (int)(globalOffsetR).y), Random.Range((int)(globalOffsetR).z, (int)(globalOffsetR).w));
             foreach (ObstacleSpawnable obstacle in randomizedSortedBloc)
             {
-                obstacle.BlocPosition += new Vector2(Random.Range((int)(globalOffset).x, (int)(globalOffset).y), Random.Range((int)(globalOffset).z, (int)(globalOffset).w));
+                obstacle.BlocPosition += globalOffset;
             }
+            if (globalOffset.x > 0)
+                randomBloc.blocLength += globalOffset.x;
         }
+
+        currentBlocMax += randomBloc.blocLength; // add this bloc size to the bloc max
+        Debug.Log("Choosen Bloc is " + randomBloc.blocName + ", POS : min = " + currentBlocMin + ", max = " + currentBlocMax);
 
         // sort the list by X pos
         randomizedSortedBloc = randomizedSortedBloc.OrderBy(x => x.BlocPosition.x).ToList();
@@ -605,14 +609,14 @@ public class BlocManager : MonoBehaviour
         currentWPMax += 6;
         PoolIn(ref wpPool, Vector3.right * currentWPMax, out pooledIn, transform);
         // Also pool in background objects
-        WPObjects(in currentWPMax);
+        WPObjects(currentWPMax - 3);
         // Also pool in spawnables
         SpawnablesSpawn(currentWPMax + 3);
     }
 
     bool isBack = false;
     int previousFrontSo = 3;
-    int previousBackSo = -1;
+    int previousBackSo = 0;
     float previousFrontPos = 0;
 
     void WPObjects(in int thisWPX)
@@ -649,7 +653,7 @@ public class BlocManager : MonoBehaviour
             GameObject pooledIn;
             var thisX = xPoss[Random.Range(0, xPoss.Count)];
             xPoss.Remove(thisX);
-            PoolIn(ref backTreesPool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+            PoolIn(ref backTreesPool, Vector3.right * (thisWPX + thisX), out pooledIn, spawnablesAnchor);
 
             pooledInList.Add(pooledIn);
             pooledIn.transform.localPosition += Vector3.up * 0.278f;
@@ -673,7 +677,7 @@ public class BlocManager : MonoBehaviour
             {
                 if (currentBlocAreaIdx == 0)
                 {
-                    previousBackSo = -1; // back sorting order reset to minimum
+                    previousBackSo = 0; // back sorting order reset to minimum
 
                     if (previousFrontPos > thisFrontPos) // this front obj touches the previous front obj
                     {
@@ -709,7 +713,7 @@ public class BlocManager : MonoBehaviour
         GameObject pooledIn;
 
         var thisX = Random.Range(0, 5);
-        PoolIn(ref pool, Vector3.right * (thisWPX - 3 + thisX), out pooledIn, spawnablesAnchor);
+        PoolIn(ref pool, Vector3.right * (thisWPX + thisX), out pooledIn, spawnablesAnchor);
         pooledIn.transform.localPosition += Vector3.up * verticalOffset;
 
         var renderer = pooledIn.GetComponent<SpriteRenderer>();
